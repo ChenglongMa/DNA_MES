@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// ****************************************************
+//  Author: Charles Ma
+//  Date: 2018/02/09 13:47
+// ****************************************************
+//  Copyright © DNA Studio 2018. All rights reserved.
+// ****************************************************
+
 using System.Windows.Forms;
 
 namespace DnaMesUi

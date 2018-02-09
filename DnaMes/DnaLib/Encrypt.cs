@@ -1,20 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
+﻿// ****************************************************
+//  Author: Charles Ma
+//  Date: 2018/02/09 14:05
+// ****************************************************
+//  Copyright © DNA Studio 2018. All rights reserved.
+// ****************************************************
+
+using System;
 using System.IO;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace DnaLib
 {
     /// <summary>
-    /// 加密工具类
+    ///     加密工具类
     /// </summary>
     public class Encrypt
     {
         /// <summary>
-        /// 使用DES加密指定字符串
+        ///     使用DES加密指定字符串
         /// </summary>
         /// <param name="encryptStr">待加密的字符串</param>
         /// <param name="key">密钥(最大长度8)</param>
@@ -49,7 +53,7 @@ namespace DnaLib
             for (var i = 0; i < 8; i++)
             {
                 var radNum = ra.Next(36);
-                var radChr = Convert.ToChar(radNum + 65);//生成一个随机字符
+                var radChr = Convert.ToChar(radNum + 65); //生成一个随机字符
 
                 retVal = retVal.Substring(0, 2 * i + 1) + radChr + retVal.Substring(2 * i + 1);
             }
@@ -58,7 +62,7 @@ namespace DnaLib
         }
 
         /// <summary>
-        /// 使用DES解密指定字符串
+        ///     使用DES解密指定字符串
         /// </summary>
         /// <param name="encryptedValue">待解密的字符串</param>
         /// <param name="key">密钥(最大长度8)</param>
@@ -68,15 +72,9 @@ namespace DnaLib
         {
             //去掉干扰字符
             var tmp = encryptedValue;
-            if (tmp.Length < 16)
-            {
-                return "";
-            }
+            if (tmp.Length < 16) return "";
 
-            for (var i = 0; i < 8; i++)
-            {
-                tmp = tmp.Substring(0, i + 1) + tmp.Substring(i + 2);
-            }
+            for (var i = 0; i < 8; i++) tmp = tmp.Substring(0, i + 1) + tmp.Substring(i + 2);
             encryptedValue = tmp;
 
             //将key和IV处理成8个字符
@@ -107,8 +105,6 @@ namespace DnaLib
             {
                 return "";
             }
-
         }
-
     }
 }

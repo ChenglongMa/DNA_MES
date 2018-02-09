@@ -1,18 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿// ****************************************************
+//  Author: Charles Ma
+//  Date: 2018/02/09 13:47
+// ****************************************************
+//  Copyright © DNA Studio 2018. All rights reserved.
+// ****************************************************
+
+using System;
 using System.Windows.Forms;
 
 namespace DnaMesUi
 {
-    static class Program
+    internal static class Program
     {
         /// <summary>
-        /// 应用程序的主入口点。
+        ///     应用程序的主入口点。
         /// </summary>
         [STAThread]
-        static void Main()
+        private static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

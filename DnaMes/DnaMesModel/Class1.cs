@@ -1,8 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// ****************************************************
+//  Author: Charles Ma
+//  Date: 2018/02/09 14:05
+// ****************************************************
+//  Copyright © DNA Studio 2018. All rights reserved.
+// ****************************************************
 
 namespace DnaMesModel
 {

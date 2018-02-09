@@ -1,5 +1,11 @@
-﻿using System.Reflection;
-using System.Runtime.CompilerServices;
+﻿// ****************************************************
+//  Author: Charles Ma
+//  Date: 2018/02/09 14:03
+// ****************************************************
+//  Copyright © DNA Studio 2018. All rights reserved.
+// ****************************************************
+
+using System.Reflection;
 using System.Runtime.InteropServices;
 
 // 有关程序集的一般信息由以下
