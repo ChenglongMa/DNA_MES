@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DnaMes.Properties
+namespace DnaMesUi.Properties
 {
 
 

@@ -1,4 +1,4 @@
-﻿namespace DnaMes
+﻿namespace DnaMesUi
 {
     partial class Form1
     {
