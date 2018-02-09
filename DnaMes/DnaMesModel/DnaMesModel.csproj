@@ -42,7 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
-    <Compile Include="Config\DataConfig.cs" />
+    <Compile Include="Config\DbConfig.cs" />
+    <Compile Include="Global\DbInfoName.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

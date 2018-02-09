@@ -8,6 +8,7 @@
 using System;
 using System.Configuration;
 using DnaLib;
+using DnaMesModel.Global;
 
 namespace DnaMesModel.Config
 {
@@ -15,7 +16,7 @@ namespace DnaMesModel.Config
     /// <summary>
     /// 数据库配置类
     /// </summary>
-    public class DataConfig : ConfigurationSection // 所有配置节点都要选择这个基类
+    public class DbConfig : ConfigurationSection // 所有配置节点都要选择这个基类
     {
         private static readonly ConfigurationProperty SProperty
             = new ConfigurationProperty(string.Empty, typeof(DbCollection), null,
@@ -68,10 +69,10 @@ namespace DnaMesModel.Config
     public class DbInfo : ConfigurationElement // 集合中的每个元素
     {
         [ConfigurationProperty("name", IsRequired = true)]
-        public string Name
+        public DbInfoName Name
         {
-            get => this["name"].ToString();
-            set => this["name"] = value;
+            get => DbInfoName.this["name"];//bug:将字符串转换为枚举
+            set => this["name"] = value.ToString();
         }
 
         [ConfigurationProperty("DBType", IsRequired = true)]
