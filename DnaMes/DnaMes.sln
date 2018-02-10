@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnaMesModel", "DnaMesModel\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnaLib", "DnaLib\DnaLib.csproj", "{5EE75C11-D636-447E-BD31-013BFB144DFD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnaMesServer", "DnaMesServer\DnaMesServer.csproj", "{2B0D12EE-3737-44DA-999A-6C29BE06FBE7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnaMesTest", "DnaMesTest\DnaMesTest.csproj", "{8249A352-64EF-4A16-A93C-C176316A096E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{5EE75C11-D636-447E-BD31-013BFB144DFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5EE75C11-D636-447E-BD31-013BFB144DFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5EE75C11-D636-447E-BD31-013BFB144DFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B0D12EE-3737-44DA-999A-6C29BE06FBE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B0D12EE-3737-44DA-999A-6C29BE06FBE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B0D12EE-3737-44DA-999A-6C29BE06FBE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B0D12EE-3737-44DA-999A-6C29BE06FBE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8249A352-64EF-4A16-A93C-C176316A096E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8249A352-64EF-4A16-A93C-C176316A096E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8249A352-64EF-4A16-A93C-C176316A096E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8249A352-64EF-4A16-A93C-C176316A096E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
