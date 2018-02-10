@@ -5,10 +5,14 @@
 //  Copyright © DNA Studio 2018. All rights reserved.
 // ****************************************************
 
+using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
 using DnaMesModel.Config;
+using DnaMesModel.Global;
+using SqlSugar;
 
 namespace DnaMesDll
 {
@@ -32,11 +36,11 @@ namespace DnaMesDll
         #region 公有方法
         #region DataBase.config
 
-        private readonly DbConfig _dataConfig =(DbConfig)ConfigurationManager.GetSection("DataConfig");
+        private readonly DbConfig _dataConfig =(DbConfig)ConfigurationManager.GetSection("DbConfig");
 
-        private List<DbInfo> GetDbInfos()
+        private List<DbConnection> GetDbInfos()
         {
-            return _dataConfig.DbCollection.Cast<DbInfo>().ToList();
+            return _dataConfig.DbCollection.Cast<DbConnection>().ToList();
         }
 
         /// <summary>
@@ -44,21 +48,21 @@ namespace DnaMesDll
         /// </summary>
         /// <param name="name">模块名称</param>
         /// <returns></returns>
-        public DbInfo GetDbInfo(string name)
+        public DbConnection GetDbInfo(DbInfoName name)
         {
-            return GetDbInfos().Find(db => db.Name == name) ?? new DbInfo();
+            return GetDbInfos().Find(db => db.Name == name) ?? new DbConnection();
         }
 
         /// <summary>
         /// 保存数据库配置
         /// </summary>
-        /// <param name="dbInfo"></param>
-        public void SetDbInfo(DbInfo dbInfo)
+        /// <param name="dbConnection"></param>
+        public void SetDbInfo(DbConnection dbConnection)
         {
             var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            var integrationDbConfig = (DbConfig)config.GetSection("DataConfig");
-            integrationDbConfig.DbCollection.Remove(dbInfo.Name);
-            integrationDbConfig.DbCollection.Add(dbInfo);
+            var integrationDbConfig = (DbConfig)config.GetSection("DbConfig");
+            integrationDbConfig.DbCollection.Remove(dbConnection.Name.ToString());
+            integrationDbConfig.DbCollection.Add(dbConnection);
             config.Save();
         }
 
