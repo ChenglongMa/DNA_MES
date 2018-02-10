@@ -19,7 +19,7 @@ namespace DnaMesDll
     /// <summary>
     ///     DllDataConfig类
     /// </summary>
-    public class DllDbConfig
+    public static class DllDbConfig
     {
         #region 私有字段
 
@@ -36,11 +36,12 @@ namespace DnaMesDll
         #region 公有方法
         #region DataBase.config
 
-        private readonly DbConfig _dataConfig =(DbConfig)ConfigurationManager.GetSection("DbConfig");
+        private static readonly Configuration Config =
+            ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
 
-        private List<DbConnection> GetDbInfos()
+        private static List<DbInfo> GetDbInfos()
         {
-            return _dataConfig.DbCollection.Cast<DbConnection>().ToList();
+            return (Config.GetSection("DbConfig") as DbConfig)?.DbCollection.Cast<DbInfo>().ToList();
         }
 
         /// <summary>
@@ -48,21 +49,21 @@ namespace DnaMesDll
         /// </summary>
         /// <param name="name">模块名称</param>
         /// <returns></returns>
-        public DbConnection GetDbInfo(DbInfoName name)
+        public static DbInfo GetDbInfo(DbInfoName name)
         {
-            return GetDbInfos().Find(db => db.Name == name) ?? new DbConnection();
+            return GetDbInfos().Find(db => db.Name == name) ?? new DbInfo();
         }
 
         /// <summary>
         /// 保存数据库配置
         /// </summary>
-        /// <param name="dbConnection"></param>
-        public void SetDbInfo(DbConnection dbConnection)
+        /// <param name="dbInfo"></param>
+        public static void SetDbInfo(this DbInfo dbInfo)
         {
             var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            var integrationDbConfig = (DbConfig)config.GetSection("DbConfig");
-            integrationDbConfig.DbCollection.Remove(dbConnection.Name.ToString());
-            integrationDbConfig.DbCollection.Add(dbConnection);
+            var dbConfig = (DbConfig)config.GetSection("DbConfig");
+            dbConfig.DbCollection.Remove(dbInfo.Name);
+            dbConfig.DbCollection.Add(dbInfo);
             config.Save();
         }
 

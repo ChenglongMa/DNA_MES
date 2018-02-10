@@ -32,7 +32,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="SqlSugar, Version=4.6.4.5, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\sqlSugar.4.6.4.5\lib\SqlSugar.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -47,6 +52,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DnaLib\DnaLib.csproj">
+      <Project>{5ee75c11-d636-447e-bd31-013bfb144dfd}</Project>
+      <Name>DnaLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DnaMesBll\DnaMesBll.csproj">
+      <Project>{45fd2ff0-4e6c-4e15-9b65-ada1bae41a88}</Project>
+      <Name>DnaMesBll</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DnaMesDll\DnaMesDll.csproj">
+      <Project>{3651bc4a-26e8-46f1-8221-181bac92e0e8}</Project>
+      <Name>DnaMesDll</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DnaMesModel\DnaMesModel.csproj">
+      <Project>{68162c26-262a-4703-9cbe-5c05602add52}</Project>
+      <Name>DnaMesModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

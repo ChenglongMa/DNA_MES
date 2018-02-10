@@ -30,7 +30,7 @@ namespace DnaMesModel.Config
         public DbCollection DbCollection => (DbCollection) base[SProperty];
     }
 
-    [ConfigurationCollection(typeof(DbConnection))]
+    [ConfigurationCollection(typeof(DbInfo))]
     public class DbCollection : ConfigurationElementCollection // 自定义一个集合
     {
         // 基本上，所有的方法都只要简单地调用基类的实现就可以了。
@@ -40,21 +40,21 @@ namespace DnaMesModel.Config
         }
 
         // 其实关键就是这个索引器。但它也是调用基类的实现，只是做下类型转就行了。
-        public new DbConnection this[string name] => (DbConnection) BaseGet(name);
+        public new DbInfo this[string name] => (DbInfo) BaseGet(name);
 
         // 下面二个方法中抽象类中必须要实现的。
         protected override ConfigurationElement CreateNewElement()
         {
-            return new DbConnection();
+            return new DbInfo();
         }
 
         protected override object GetElementKey(ConfigurationElement element)
         {
-            return ((DbConnection) element).Name;
+            return ((DbInfo) element).Name.ToString();
         }
 
         // 说明：如果不需要在代码中修改集合，可以不实现Add, Clear, Remove
-        public void Add(DbConnection setting)
+        public void Add(DbInfo setting)
         {
             BaseAdd(setting);
         }
@@ -64,13 +64,13 @@ namespace DnaMesModel.Config
             BaseClear();
         }
 
-        public void Remove(string name)
+        public void Remove(DbInfoName name)
         {
-            BaseRemove(name);
+            BaseRemove(name.ToString());
         }
     }
 
-    public class DbConnection : ConfigurationElement // 集合中的每个元素
+    public class DbInfo : ConfigurationElement // 集合中的每个元素
     {
         /// <summary>
         ///     配置节名
@@ -85,7 +85,7 @@ namespace DnaMesModel.Config
         /// <summary>
         ///     数据库类型
         /// </summary>
-        [ConfigurationProperty("DBType", IsRequired = true)]
+        [ConfigurationProperty("DbType", IsRequired = true)]
         public DbType DbType
         {
             get => Enum.TryParse(this["DbType"].ToString(), out DbType type) ? type : DbType.SqlServer;
@@ -115,11 +115,11 @@ namespace DnaMesModel.Config
         /// <summary>
         ///     数据库名
         /// </summary>
-        [ConfigurationProperty("DBName", IsRequired = false)]
+        [ConfigurationProperty("DbName", IsRequired = false)]
         public string DbName
         {
-            get => this["DBName"].ToString();
-            set => this["DBName"] = value;
+            get => this["DbName"].ToString();
+            set => this["DbName"] = value;
         }
 
         /// <summary>
