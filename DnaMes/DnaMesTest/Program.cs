@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using DnaLib;
 using DnaLib.Global;
-using DnaMesDll;
 using SqlSugar;
 using static System.Console;
 
@@ -16,7 +15,7 @@ namespace DnaMesTest
         static void Main(string[] args)
         {
             //num.TryParse(this["DbType"].ToString(), out DbType type)
-            var dbInfo = DllDbConfig.GetDbInfo(DbInfoName.MainDb);
+            var dbInfo = DbConfig.GetDbInfo(DbInfoName.MainDb);
             WriteLine(dbInfo);
             //dbInfo.DbType = DbType.SqlServer;
             //dbInfo.DbName = "DnaMesDb";

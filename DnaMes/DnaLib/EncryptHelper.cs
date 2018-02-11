@@ -15,7 +15,7 @@ namespace DnaLib
     /// <summary>
     ///     加密工具类
     /// </summary>
-    public class Encrypt
+    public class EncryptHelper
     {
         /// <summary>
         ///     使用DES加密指定字符串

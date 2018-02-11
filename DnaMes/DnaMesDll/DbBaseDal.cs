@@ -7,12 +7,12 @@
 
 using SqlSugar;
 
-namespace DnaMesDll
+namespace DnaMesDal
 {
     /// <summary>
     /// 数据库操作底层
     /// </summary>
-    public class DllDbBase<T>:SimpleClient<T> where T : class, new()
+    public class DbBaseDal<T>:SimpleClient<T> where T : class, new()
     {
         #region 私有字段
 
@@ -32,7 +32,7 @@ namespace DnaMesDll
 
         #region 公有方法
 
-        public DllDbBase(SqlSugarClient context) : base(context)
+        public DbBaseDal(SqlSugarClient context) : base(context)
         {
         }
 

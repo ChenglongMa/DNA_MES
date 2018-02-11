@@ -17,7 +17,7 @@ namespace DnaLib
     /// <summary>
     ///     DllDataConfig类
     /// </summary>
-    public static class DllDbConfig
+    public static class DbConfig
     {
         #region 私有字段
 
@@ -34,7 +34,7 @@ namespace DnaLib
 
         private static List<DbInfo> GetDbInfos()
         {
-            return (Config.GetSection("DbConfig") as DbConfig)?.DbCollection.Cast<DbInfo>().ToList();
+            return (Config.GetSection("DbConfig") as Config.DbConfig)?.DbCollection.Cast<DbInfo>().ToList();
         }
 
         #endregion
@@ -60,7 +60,7 @@ namespace DnaLib
         public static void SetDbInfo(this DbInfo dbInfo)
         {
             var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            var dbConfig = (DbConfig) config.GetSection("DbConfig");
+            var dbConfig = (Config.DbConfig) config.GetSection("DbConfig");
             dbConfig.DbCollection.Remove(dbInfo.Name);
             dbConfig.DbCollection.Add(dbInfo);
             config.Save();
