@@ -8,13 +8,11 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Data.SqlClient;
 using System.Linq;
-using DnaMesModel.Config;
-using DnaMesModel.Global;
-using SqlSugar;
+using DnaLib.Config;
+using DnaLib.Global;
 
-namespace DnaMesDll
+namespace DnaLib
 {
     /// <summary>
     ///     DllDataConfig类

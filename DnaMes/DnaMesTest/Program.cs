@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DnaLib;
+using DnaLib.Global;
 using DnaMesDll;
-using DnaMesModel.Global;
 using SqlSugar;
 using static System.Console;
 
