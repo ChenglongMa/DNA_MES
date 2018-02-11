@@ -8,7 +8,10 @@
 using System;
 using System.Configuration;
 using System.Data.Common;
+using System.Data.OracleClient;
 using System.Data.SqlClient;
+using System.Data.SQLite;
+using Devart.Data.PostgreSql;
 using DnaLib;
 using DnaMesModel.Global;
 using MySql.Data.MySqlClient;
@@ -106,9 +109,9 @@ namespace DnaMesModel.Config
         ///     端口号（非必需）
         /// </summary>
         [ConfigurationProperty("Port", IsRequired = false)]
-        public uint Port
+        public int Port
         {
-            get => (uint) this["Port"];
+            get => (int) this["Port"];
             set => this["Port"] = value;
         }
 
@@ -143,25 +146,36 @@ namespace DnaMesModel.Config
         }
 
         /// <summary>
+        ///     连接超时（非必需）
+        /// </summary>
+        [ConfigurationProperty("Timeout", IsRequired = false)]
+        public int Timeout
+        {
+            get => (int) this["Timeout"];
+            set => this["Timeout"] = value;
+        }
+
+        /// <summary>
         /// 获取数据库连接字符串
-        /// Info:目前只支持MSSQL和MySQL
+        /// Info:除MSSQL和MySQL外尚需完善
         /// </summary>
         /// <returns>ConnectionString</returns>
         public override string ToString()
         {
-            DbConnectionStringBuilder dsBuilder = null;
+            DbConnectionStringBuilder dsBuilder;
             switch (DbType)
             {
                 case DbType.MySql:
                     dsBuilder = new MySqlConnectionStringBuilder
                     {
-                        Database = DbName, // 同 ss.initialCatalog
-                        Server = DataSource, //同 ss.DataSource
+                        Database = DbName, // initialCatalog
+                        Server = DataSource, //DataSource
                         UserID = UserId,
                         Password = Password,
                         Pooling = true,
                         CharacterSet = "utf8", // 支持中文
-                        Port = Port
+                        Port = (uint) Port,
+                        ConnectionTimeout = (uint) Timeout,
                     };
                     break;
                 case DbType.SqlServer:
@@ -172,20 +186,44 @@ namespace DnaMesModel.Config
                         IntegratedSecurity = true, //是否可以windows登录验证
                         UserID = UserId,
                         Password = Password,
-                        Pooling = true //是否使用连接池
+                        Pooling = true, //是否使用连接池
+                        ConnectTimeout = Timeout,
                     };
                     break;
                 case DbType.Sqlite:
+                    dsBuilder = new SQLiteConnectionStringBuilder
+                    {
+                        DataSource = DataSource,
+                        BusyTimeout = Timeout,
+                        Password = Password,
+                        Pooling = true,
+                    };
                     break;
                 case DbType.Oracle:
+                    dsBuilder = new OracleConnectionStringBuilder
+                    {
+                        DataSource = DataSource,
+                        UserID = UserId,
+                        Password = Password,
+                        Pooling = true,
+                    };
                     break;
                 case DbType.PostgreSQL:
+                    dsBuilder = new PgSqlConnectionStringBuilder
+                    {
+                        Database = DataSource,
+                        UserId = UserId,
+                        Password = Password,
+                        Port = Port,
+                        Pooling = true,
+                        ConnectionTimeout = Timeout,
+                    };
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
 
-            return dsBuilder?.ConnectionString ?? throw new InvalidOperationException();
+            return dsBuilder.ConnectionString;
         }
     }
 }

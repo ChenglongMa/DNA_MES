@@ -29,7 +29,7 @@ namespace DnaMesTest
                 DbType = dbInfo.DbType,
                 IsAutoCloseConnection = true
             });
-            var dt = db.Ado.GetDataTable("select * from table");
+            //var dt = db.Ado.GetDataTable("select * from table");
             ReadKey();
 
         }
