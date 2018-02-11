@@ -10,7 +10,7 @@ using DnaMesModel.Model;
 
 namespace DnaMesBll
 {
-    public abstract class BaseBll<T>:BaseDal<T> where T:BaseModel,new()
+    public abstract class BaseBll<T>
     {
 
     }

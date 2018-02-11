@@ -13,8 +13,8 @@ namespace DnaMesModel.Link
     /// <summary>
     /// 基础关系模型
     /// </summary>
-    /// <typeparam name="TA">角色A</typeparam>
-    /// <typeparam name="TB">角色B</typeparam>
+    /// <typeparam name="TA">角色A:1</typeparam>
+    /// <typeparam name="TB">角色B:n</typeparam>
     public abstract class BaseLink<TA, TB> : BaseModel where TA : BaseModel where TB : BaseModel
     {
         protected BaseLink(TA roleA, TB roleB)

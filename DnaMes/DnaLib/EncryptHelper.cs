@@ -15,26 +15,28 @@ namespace DnaLib
     /// <summary>
     ///     加密工具类
     /// </summary>
-    public class EncryptHelper
+    public static class EncryptHelper
     {
         /// <summary>
-        ///     使用DES加密指定字符串
+        ///     加密，可逆
         /// </summary>
         /// <param name="encryptStr">待加密的字符串</param>
         /// <param name="key">密钥(最大长度8)</param>
-        /// <param name="IV">初始化向量(最大长度8)</param>
+        /// <param name="iv">初始化向量(最大长度8)</param>
         /// <returns>加密后的字符串</returns>
-        public static string DesEncrypt(string encryptStr, string key, string IV)
+        public static string DesEncrypt(this string encryptStr, string key="12345678", string iv="12345678")
         {
             //将key和IV处理成8个字符
             key += "12345678";
-            IV += "12345678";
+            iv += "12345678";
             key = key.Substring(0, 8);
-            IV = IV.Substring(0, 8);
+            iv = iv.Substring(0, 8);
 
-            SymmetricAlgorithm sa = new DESCryptoServiceProvider();
-            sa.Key = Encoding.UTF8.GetBytes(key);
-            sa.IV = Encoding.UTF8.GetBytes(IV);
+            SymmetricAlgorithm sa = new DESCryptoServiceProvider
+            {
+                Key = Encoding.UTF8.GetBytes(key),
+                IV = Encoding.UTF8.GetBytes(iv)
+            };
             var ict = sa.CreateEncryptor();
 
             var byt = Encoding.UTF8.GetBytes(encryptStr);
@@ -62,13 +64,13 @@ namespace DnaLib
         }
 
         /// <summary>
-        ///     使用DES解密指定字符串
+        ///     解密，可逆
         /// </summary>
         /// <param name="encryptedValue">待解密的字符串</param>
         /// <param name="key">密钥(最大长度8)</param>
-        /// <param name="IV">初始化向量(最大长度8)</param>
+        /// <param name="iv">初始化向量(最大长度8)</param>
         /// <returns>解密后的字符串</returns>
-        public static string DesDecrypt(string encryptedValue, string key, string IV)
+        public static string DesDecrypt(this string encryptedValue, string key="12345678", string iv="12345678")
         {
             //去掉干扰字符
             var tmp = encryptedValue;
@@ -79,15 +81,17 @@ namespace DnaLib
 
             //将key和IV处理成8个字符
             key += "12345678";
-            IV += "12345678";
+            iv += "12345678";
             key = key.Substring(0, 8);
-            IV = IV.Substring(0, 8);
+            iv = iv.Substring(0, 8);
 
             try
             {
-                SymmetricAlgorithm sa = new DESCryptoServiceProvider();
-                sa.Key = Encoding.UTF8.GetBytes(key);
-                sa.IV = Encoding.UTF8.GetBytes(IV);
+                SymmetricAlgorithm sa = new DESCryptoServiceProvider
+                {
+                    Key = Encoding.UTF8.GetBytes(key),
+                    IV = Encoding.UTF8.GetBytes(iv)
+                };
                 var ict = sa.CreateDecryptor();
 
                 var byt = Convert.FromBase64String(encryptedValue);
@@ -105,6 +109,22 @@ namespace DnaLib
             {
                 return "";
             }
+        }
+        /// <summary>
+        /// 32位MD5加密，不可逆
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public static string Md5Hash(this string source)
+        {
+            var md5Hasher = new MD5CryptoServiceProvider();
+            var data = md5Hasher.ComputeHash(Encoding.Default.GetBytes(source));
+            var sBuilder = new StringBuilder();
+            foreach (var d in data)
+            {
+                sBuilder.Append(d.ToString("x2"));
+            }
+            return sBuilder.ToString();
         }
     }
 }

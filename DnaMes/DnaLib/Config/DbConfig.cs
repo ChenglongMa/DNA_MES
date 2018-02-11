@@ -147,8 +147,8 @@ namespace DnaLib.Config
         [ConfigurationProperty("Password", IsRequired = true)]
         public string Password
         {
-            get => EncryptHelper.DesDecrypt(this["Password"].ToString(), "DnaMes", "DATABASE");
-            set => this["Password"] = EncryptHelper.DesEncrypt(value, "DnaMes", "DATABASE");
+            get => this["Password"].ToString().DesDecrypt("DnaMes", "DATABASE");
+            set => this["Password"] = value.DesEncrypt("DnaMes", "DATABASE");
         }
 
         /// <summary>

@@ -1,23 +1,24 @@
 ﻿// ****************************************************
 //  Author: Charles Ma
-//  Date: 2018/02/12 0:48
+//  Date: 2018/02/12 9:39
 // ****************************************************
 //  Copyright © DNA Studio 2018. All rights reserved.
 // ****************************************************
 
-using System.Collections.Generic;
-using DnaLib.Global;
+using DnaMesModel.Link;
 using DnaMesModel.Model;
-using DnaMesModel.Model.BasicInfo;
 
-namespace DnaMesDal.BasicInfo
+namespace DnaMesDal
 {
+    
     /// <summary>
-    /// 用户表操作类
+    /// 关系类数据基础操作
     /// </summary>
-    public static class UserDal
+    internal class BaseLinkDal<TA,TB> where TA : BaseModel where TB: BaseModel
     {
-
+        public BaseLinkDal(TA roleA, TB roleB)
+        {
+        }
         #region 私有字段
 
 
@@ -25,12 +26,7 @@ namespace DnaMesDal.BasicInfo
 
         #region 公有属性
 
-        public static List<Domain> GetDomain(this User user)
-        {
-            var dal = new BaseDal<User>();
-            dal.GetById(user.EmpId);
-            BaseDal<User>.Insert()
-        }
+
 
         #endregion
 
@@ -43,6 +39,8 @@ namespace DnaMesDal.BasicInfo
 
 
         #endregion
+
+
     }
 }
 

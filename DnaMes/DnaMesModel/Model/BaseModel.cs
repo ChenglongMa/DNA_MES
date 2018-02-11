@@ -19,8 +19,8 @@ namespace DnaMesModel.Model
 
         //[SugarColumn(IsNullable = false)] public abstract int ClassId { get;}
 
-        [SugarColumn(IsNullable = false, IsPrimaryKey = true, IsIdentity = true)]
-        public int ObjId { get; set; }
+        [SugarColumn(IsNullable = false, IsPrimaryKey = true, IsIdentity = true, IsOnlyIgnoreInsert = true)]
+        public int ObjId { get; set; } = -1;
 
         [SugarColumn(IsNullable = false, Length = 45)]
         public string Creator { get; set; } = SysInfo.EmpId + "@" + SysInfo.UserName;
