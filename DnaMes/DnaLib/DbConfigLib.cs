@@ -23,6 +23,7 @@ namespace DnaLib
 
         private static readonly Configuration Config =
             ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+        private static readonly DbConfig DbConfig = Config.GetSection("DbConfig") as DbConfig;
 
         #endregion
 
@@ -34,7 +35,7 @@ namespace DnaLib
 
         private static List<DbInfo> GetDbInfos()
         {
-            return (Config.GetSection("DbConfig") as DbConfig)?.DbCollection.Cast<DbInfo>().ToList();
+            return DbConfig?.DbCollection.Cast<DbInfo>().ToList();
         }
 
         #endregion
@@ -50,20 +51,21 @@ namespace DnaLib
         /// <returns></returns>
         public static DbInfo GetDbInfo(DbInfoName name)
         {
-            return GetDbInfos().Find(db => db.Name == name) ?? new DbInfo();
+            return GetDbInfos()?.Find(db => db.Name == name);
         }
 
         /// <summary>
         /// 保存数据库配置
         /// </summary>
         /// <param name="dbInfo"></param>
-        public static void SetDbInfo(this DbInfo dbInfo)
+        public static void Update(this DbInfo dbInfo)
         {
-            var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            var dbConfig = (DbConfig) config.GetSection("DbConfig");
-            dbConfig.DbCollection.Remove(dbInfo.Name);
-            dbConfig.DbCollection.Add(dbInfo);
-            config.Save();
+            if (GetDbInfo(dbInfo.Name)!=null)
+            {
+                DbConfig.DbCollection.Remove(dbInfo.Name);
+            }
+            DbConfig.DbCollection.Add(dbInfo);
+            Config.Save();
         }
 
         /// <summary>

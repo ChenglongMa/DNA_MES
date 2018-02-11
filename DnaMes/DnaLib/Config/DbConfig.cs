@@ -21,7 +21,8 @@ namespace DnaLib.Config
 {
     /// <inheritdoc />
     /// <summary>
-    ///     数据库配置类
+    ///     数据库配置类 in app.config
+    /// 修改该名称及路径时需要一并修改app.config文件内容
     /// </summary>
     public class DbConfig : ConfigurationSection // 所有配置节点都要选择这个基类
     {
@@ -73,6 +74,11 @@ namespace DnaLib.Config
         }
     }
 
+    /// <inheritdoc />
+    /// <summary>
+    /// 元素类
+    /// 属性名称要区分大小写
+    /// </summary>
     public class DbInfo : ConfigurationElement // 集合中的每个元素
     {
         /// <summary>

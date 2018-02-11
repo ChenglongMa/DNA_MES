@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnaLib", "DnaLib\DnaLib.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnaMesServer", "DnaMesServer\DnaMesServer.csproj", "{2B0D12EE-3737-44DA-999A-6C29BE06FBE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnaMesTest", "DnaMesTest\DnaMesTest.csproj", "{8249A352-64EF-4A16-A93C-C176316A096E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnaMesConsole", "DnaMesTest\DnaMesConsole.csproj", "{8249A352-64EF-4A16-A93C-C176316A096E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
