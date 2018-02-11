@@ -19,7 +19,26 @@ namespace DnaMesConsole
                 IsAutoCloseConnection = true,
                 InitKeyType = InitKeyType.Attribute,
             });
-            db.CodeFirst.InitTables(typeof(Person));
+            var isAvailable = db.DbMaintenance.IsAnyTable("BasicInfo_User");
+            if (!isAvailable)
+            {
+                Console.WriteLine("可以建表");
+                db.CodeFirst.InitTables(typeof(User));
+            }
+            db=new SqlSugarClient(new ConnectionConfig
+            {
+                ConnectionString = dbInfo.ToString(),
+                DbType = dbInfo.DbType,
+                IsAutoCloseConnection = true,
+                InitKeyType = InitKeyType.SystemTable,
+            });
+            db.Insertable<User>(new User
+            {
+                EmpId = 100001.ToString(),
+                Name = "admin",
+                Password = "admin",
+
+            })
             Console.WriteLine("成功！");
             Console.ReadKey();
 

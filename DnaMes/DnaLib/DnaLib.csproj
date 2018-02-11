@@ -63,6 +63,7 @@
     <Compile Include="DbConfigLib.cs" />
     <Compile Include="EncryptHelper.cs" />
     <Compile Include="Global\DbInfoName.cs" />
+    <Compile Include="Global\SysInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

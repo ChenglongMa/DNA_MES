@@ -13,9 +13,15 @@ namespace DnaMesModel.BasicInfo
     /// <summary>
     /// 员工信息类
     /// </summary>
-    [SugarTable("BasicInfo_Person")]
-    public class Person : BaseModel
+    [SugarTable("BasicInfo_User")]
+    public class User : BaseModel
     {
+        public User()
+        {
+            ClassId = 100001;
+            Creator
+        }
+
         #region 私有字段
 
         private string _password;
@@ -33,8 +39,8 @@ namespace DnaMesModel.BasicInfo
         [SugarColumn(IsNullable = false, Length = 100)]
         public string Password
         {
-            get => EncryptHelper.DesDecrypt(_password, "DnaMes", "Person");
-            set => _password = EncryptHelper.DesEncrypt(value, "DnaMes", "Person");
+            get => EncryptHelper.DesDecrypt(_password, "DnaMes", "User");
+            set => _password = EncryptHelper.DesEncrypt(value, "DnaMes", "User");
         }
 
         [SugarColumn(IsNullable = true, Length = 45)]
