@@ -15,7 +15,7 @@ namespace DnaMesTest
         static void Main(string[] args)
         {
             //num.TryParse(this["DbType"].ToString(), out DbType type)
-            var dbInfo = DbConfig.GetDbInfo(DbInfoName.MainDb);
+            var dbInfo = DbConfigLib.GetDbInfo(DbInfoName.MainDb);
             WriteLine(dbInfo);
             //dbInfo.DbType = DbType.SqlServer;
             //dbInfo.DbName = "DnaMesDb";

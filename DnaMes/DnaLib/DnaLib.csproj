@@ -60,7 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config\DbConfig.cs" />
-    <Compile Include="DbConfig.cs" />
+    <Compile Include="DbConfigLib.cs" />
     <Compile Include="EncryptHelper.cs" />
     <Compile Include="Global\DbInfoName.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
