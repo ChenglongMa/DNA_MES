@@ -5,6 +5,10 @@
 //  Copyright © DNA Studio 2018. All rights reserved.
 // ****************************************************
 
+using System;
+using System.Linq;
+using System.Net;
+
 namespace DnaLib.Global
 {
     /// <summary>
@@ -14,24 +18,45 @@ namespace DnaLib.Global
     {
         #region 私有字段
 
-        
-
         #endregion
 
         #region 公有属性
-        public static 
+
+        /// <summary>
+        /// 登录员工id
+        /// </summary>
+        public static string EmpId { get; set; }
+
+        /// <summary>
+        /// 登录员工姓名
+        /// </summary>
+        public static string UserName { get; set; }
+
+        /// <summary>
+        /// 登录时间
+        /// </summary>
+        public static DateTime LoginTime { get; set; }
+
+        /// <summary>
+        /// 内网IP地址
+        /// </summary>
+        public static IPAddress InterIp
+        {
+            get
+            {
+                var host = Dns.GetHostEntry(Dns.GetHostName());
+                return host.AddressList.FirstOrDefault(address => address.AddressFamily.ToString() == "InterNetwork");
+            }
+        }
 
         #endregion
 
         #region 私有方法
 
-
         #endregion
 
         #region 公有方法
 
-
         #endregion
     }
 }
-

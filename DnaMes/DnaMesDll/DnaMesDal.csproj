@@ -44,7 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DbBaseDal.cs" />
+    <Compile Include="BaseDal.cs" />
+    <Compile Include="BasicInfo\UserDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -52,6 +53,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DnaLib\DnaLib.csproj">
+      <Project>{5ee75c11-d636-447e-bd31-013bfb144dfd}</Project>
+      <Name>DnaLib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DnaMesModel\DnaMesModel.csproj">
       <Project>{68162C26-262A-4703-9CBE-5C05602ADD52}</Project>
       <Name>DnaMesModel</Name>

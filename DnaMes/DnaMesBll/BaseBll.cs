@@ -5,9 +5,13 @@
 //  Copyright © DNA Studio 2018. All rights reserved.
 // ****************************************************
 
+using DnaMesDal;
+using DnaMesModel.Model;
+
 namespace DnaMesBll
 {
-    public class Class1
+    public abstract class BaseBll<T>:BaseDal<T> where T:BaseModel,new()
     {
+
     }
 }

@@ -1,43 +1,38 @@
 ﻿// ****************************************************
 //  Author: Charles Ma
-//  Date: 2018/02/10 16:14
+//  Date: 2018/02/12 0:12
 // ****************************************************
 //  Copyright © DNA Studio 2018. All rights reserved.
 // ****************************************************
 
-using SqlSugar;
+using DnaMesModel.Model.BasicInfo;
 
-namespace DnaMesDal
+namespace DnaMesModel.Link.BasicInfo
 {
+    /// <inheritdoc />
     /// <summary>
-    /// 数据库操作底层
+    /// 用户与权限关系类
     /// </summary>
-    public class DbBaseDal<T>:SimpleClient<T> where T : class, new()
+    public class UserDomain : BaseLink<User, Domain>
     {
+        public UserDomain(User roleA, Domain roleB) : base(roleA, roleB)
+        {
+        }
+
         #region 私有字段
-
-
 
         #endregion
 
         #region 公有属性
 
-
         #endregion
 
         #region 私有方法
-
 
         #endregion
 
         #region 公有方法
 
-        public DbBaseDal(SqlSugarClient context) : base(context)
-        {
-        }
-
         #endregion
-
     }
 }
-

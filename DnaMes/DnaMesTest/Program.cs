@@ -1,7 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using DnaLib;
 using DnaLib.Global;
-using DnaMesModel.BasicInfo;
+using DnaMesModel.Model.BasicInfo;
 using SqlSugar;
 
 namespace DnaMesConsole
@@ -10,6 +11,10 @@ namespace DnaMesConsole
     {
         static void Main(string[] args)
         {
+            var u=new User();
+            Console.WriteLine(u.Creator);
+            Console.WriteLine(u.Modifier);
+            Console.Read();
             var dbInfo = DbConfigLib.GetDbInfo(DbInfoName.MainDb);
             Console.WriteLine(dbInfo);
             var db = new SqlSugarClient(new ConnectionConfig
@@ -32,13 +37,13 @@ namespace DnaMesConsole
                 IsAutoCloseConnection = true,
                 InitKeyType = InitKeyType.SystemTable,
             });
-            db.Insertable<User>(new User
+            db.Insertable(new User
             {
                 EmpId = 100001.ToString(),
                 Name = "admin",
                 Password = "admin",
 
-            })
+            });
             Console.WriteLine("成功！");
             Console.ReadKey();
 

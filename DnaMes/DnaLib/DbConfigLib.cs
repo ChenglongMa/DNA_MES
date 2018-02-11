@@ -49,7 +49,7 @@ namespace DnaLib
         /// </summary>
         /// <param name="name">模块名称</param>
         /// <returns></returns>
-        public static DbInfo GetDbInfo(DbInfoName name)
+        public static DbInfo GetDbInfo(DbInfoName name=DbInfoName.MainDb)
         {
             return GetDbInfos()?.Find(db => db.Name == name);
         }

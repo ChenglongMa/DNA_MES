@@ -8,7 +8,7 @@
 using DnaLib;
 using SqlSugar;
 
-namespace DnaMesModel.BasicInfo
+namespace DnaMesModel.Model.BasicInfo
 {
     /// <summary>
     /// 员工信息类
@@ -16,12 +16,6 @@ namespace DnaMesModel.BasicInfo
     [SugarTable("BasicInfo_User")]
     public class User : BaseModel
     {
-        public User()
-        {
-            ClassId = 100001;
-            Creator
-        }
-
         #region 私有字段
 
         private string _password;
