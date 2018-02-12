@@ -33,8 +33,8 @@ namespace DnaMesModel.Model.BasicInfo
         [SugarColumn(IsNullable = false, Length = 100)]
         public string Password
         {
-            get => _password.DesDecrypt("DnaMes", "User");
-            set => _password = value.DesEncrypt("DnaMes", "User");
+            get => _password;
+            set => _password = value.Md5Hash();
         }
 
         [SugarColumn(IsNullable = true, Length = 45)]

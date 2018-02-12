@@ -23,15 +23,15 @@ namespace DnaMesModel.Model
         public int ObjId { get; set; } = -1;
 
         [SugarColumn(IsNullable = false, Length = 45)]
-        public string Creator { get; set; } = SysInfo.EmpId + "@" + SysInfo.UserName;
+        public string Creator { get; set; } //= SysInfo.EmpId + "@" + SysInfo.UserName;
 
-        [SugarColumn(IsNullable = false)] public DateTime CreationTime { get; set; } = DateTime.Now;
+        [SugarColumn(IsNullable = false)] public DateTime CreationTime { get; set; } //= DateTime.Now;
 
         [SugarColumn(IsNullable = false, Length = 45)]
         public string Modifier { get; set; }= SysInfo.EmpId + "@" + SysInfo.UserName;
 
-        [SugarColumn(IsNullable = false)] public DateTime ModifiedTime { get; set; } = DateTime.Now;
+        [SugarColumn(IsNullable = false)] public DateTime ModifiedTime { get; set; } //= DateTime.Now;
 
-        [SugarColumn(Length = 250)] public string Description { get; set; }
+        [SugarColumn(IsNullable = true,Length = 250)] public string Description { get; set; }
     }
 }

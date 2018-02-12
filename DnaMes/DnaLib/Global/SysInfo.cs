@@ -25,12 +25,13 @@ namespace DnaLib.Global
         /// <summary>
         /// 登录员工id
         /// </summary>
-        public static string EmpId { get; set; }
+        public static string EmpId { get; set; } = "100001";
+
 
         /// <summary>
         /// 登录员工姓名
         /// </summary>
-        public static string UserName { get; set; }
+        public static string UserName { get; set; } = "admin";
 
         /// <summary>
         /// 登录时间

@@ -5,6 +5,7 @@
 //  Copyright © DNA Studio 2018. All rights reserved.
 // ****************************************************
 
+using System;
 using System.Collections.Generic;
 using DnaMesDal.BasicInfo;
 using DnaMesModel.Model.BasicInfo;
@@ -14,7 +15,7 @@ namespace DnaMesBll.BasicInfo
     /// <summary>
     /// 用户业务扩展类
     /// </summary>
-    public static class UserBll
+    public static class UserBll//不能继承泛型类
     {
         #region 私有字段
         private static readonly UserDal Db=new UserDal();

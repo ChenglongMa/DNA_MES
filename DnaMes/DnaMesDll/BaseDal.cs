@@ -5,7 +5,9 @@
 //  Copyright © DNA Studio 2018. All rights reserved.
 // ****************************************************
 
+using System;
 using DnaLib;
+using DnaLib.Global;
 using DnaMesModel.Model;
 using SqlSugar;
 
@@ -62,7 +64,19 @@ namespace DnaMesDal
 
         #region 公有方法
         //插入并返回bool, 并将identity赋值到实体
-        public new bool Insert(T model) => DbClient.Insertable(model).ExecuteCommandIdentityIntoEntity();
+        public new bool Insert(T model)
+        {
+            if (model== null) throw new ArgumentNullException(nameof(model));
+            if (model.Creator.IsNullOrEmpty())
+            {
+                model.Creator = SysInfo.EmpId + "@" + SysInfo.UserName;
+                model.CreationTime=DateTime.Now;
+            }
+
+            //model.Modifier = SysInfo.EmpId + "@" + SysInfo.UserName;
+            model.ModifiedTime=DateTime.Now;
+            return DbClient.Insertable(model).ExecuteCommandIdentityIntoEntity();
+        }
 
         #endregion
     }
