@@ -78,7 +78,6 @@ namespace DnaMesDal
             model.ModifiedTime=DateTime.Now;
             return DbClient.Insertable(model).ExecuteCommandIdentityIntoEntity();
         }
-
         #endregion
     }
 }

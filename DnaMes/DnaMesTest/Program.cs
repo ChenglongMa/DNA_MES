@@ -18,9 +18,9 @@ namespace DnaMesConsole
                 Name = "李宗盛",
                 //Password = "admin",
             };
-
-
-            u.Insert();
+            //u.Insert();
+            Console.WriteLine(u.ObjId + ";" + u.Name + ";" + u.Password);
+            u=UserBll.GetUserByEmpId(4);
             Console.WriteLine(u.ObjId + ";" + u.Name + ";" + u.Password);
             Console.WriteLine("成功");
             Console.ReadKey();

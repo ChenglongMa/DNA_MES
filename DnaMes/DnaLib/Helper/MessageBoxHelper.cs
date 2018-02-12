@@ -7,7 +7,7 @@
 
 using System.Windows.Forms;
 
-namespace DnaLib
+namespace DnaLib.Helper
 {
     /// <summary>
     ///     显示消息服务

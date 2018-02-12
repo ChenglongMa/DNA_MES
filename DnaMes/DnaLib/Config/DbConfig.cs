@@ -14,6 +14,7 @@ using System.Data.SqlClient;
 using System.Data.SQLite;
 using Devart.Data.PostgreSql;
 using DnaLib.Global;
+using DnaLib.Helper;
 using MySql.Data.MySqlClient;
 using SqlSugar;
 

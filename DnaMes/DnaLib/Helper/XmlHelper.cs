@@ -1,13 +1,17 @@
-﻿using System;
+﻿// ****************************************************
+//  Author: Charles Ma
+//  Date: 2018/02/11 22:36
+// ****************************************************
+//  Copyright © DNA Studio 2018. All rights reserved.
+// ****************************************************
+
+using System;
 using System.IO;
 using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
-using DnaLib.Helper;
 
-//using NationalInstruments.Visa.Internal;
-
-namespace DnaLib
+namespace DnaLib.Helper
 {
     public static class XmlHelper
     {
@@ -40,7 +44,7 @@ namespace DnaLib
         }
 
         /// <summary>
-        /// 将一个对象序列化为XML字符串
+        ///     将一个对象序列化为XML字符串
         /// </summary>
         /// <param name="o">要序列化的对象</param>
         /// <param name="encoding">编码方式</param>
@@ -60,7 +64,7 @@ namespace DnaLib
         }
 
         /// <summary>
-        /// 将一个对象按XML序列化的方式写入到一个文件
+        ///     将一个对象按XML序列化的方式写入到一个文件
         /// </summary>
         /// <param name="o">要序列化的对象</param>
         /// <param name="path">保存文件路径</param>
@@ -77,7 +81,7 @@ namespace DnaLib
         }
 
         /// <summary>
-        /// 从XML字符串中反序列化对象
+        ///     从XML字符串中反序列化对象
         /// </summary>
         /// <typeparam name="T">结果对象类型</typeparam>
         /// <param name="s">包含对象的XML字符串</param>
@@ -90,12 +94,12 @@ namespace DnaLib
             if (encoding == null)
                 throw new ArgumentNullException(nameof(encoding));
 
-            var mySerializer = new XmlSerializer(typeof (T));
+            var mySerializer = new XmlSerializer(typeof(T));
             MemoryStream ms = null;
             try
             {
                 ms = new MemoryStream(encoding.GetBytes(s));
-            
+
                 using (var sr = new StreamReader(ms, encoding))
                 {
                     return (T) mySerializer.Deserialize(sr);
@@ -108,22 +112,21 @@ namespace DnaLib
         }
 
         /// <summary>
-        /// 读入一个文件，并按XML的方式反序列化对象。
+        ///     读入一个文件，并按XML的方式反序列化对象。
         /// </summary>
         /// <typeparam name="T">结果对象类型</typeparam>
         /// <param name="path">文件路径</param>
         /// <param name="encoding">编码方式</param>
         /// <returns>反序列化得到的对象</returns>
-        public static T XmlDeserializeFromFile<T>(string path, Encoding encoding=null)
+        public static T XmlDeserializeFromFile<T>(string path, Encoding encoding = null)
         {
             if (path.IsNullOrEmpty())
                 throw new ArgumentNullException(nameof(path));
             if (encoding == null)
-                encoding=Encoding.UTF8;
+                encoding = Encoding.UTF8;
             if (!File.Exists(path)) return Activator.CreateInstance<T>();
             var xml = File.ReadAllText(path, encoding);
             return xml.Trim().IsNullOrEmpty() ? Activator.CreateInstance<T>() : XmlDeserialize<T>(xml, encoding);
         }
     }
-
 }

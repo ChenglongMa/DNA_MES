@@ -10,7 +10,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace DnaLib
+namespace DnaLib.Helper
 {
     /// <summary>
     ///     加密工具类

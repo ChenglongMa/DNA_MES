@@ -6,6 +6,7 @@
 // ****************************************************
 
 using DnaLib;
+using DnaLib.Helper;
 using SqlSugar;
 
 namespace DnaMesModel.Model.BasicInfo

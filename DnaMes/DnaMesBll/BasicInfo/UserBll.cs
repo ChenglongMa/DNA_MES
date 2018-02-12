@@ -23,6 +23,9 @@ namespace DnaMesBll.BasicInfo
         #endregion
 
         #region 公有属性
+
+        #region 增
+
         /// <summary>
         /// 增加新员工
         /// </summary>
@@ -32,7 +35,21 @@ namespace DnaMesBll.BasicInfo
         {
             return Db.Insert(user);
         }
-        public static User GetUserById(string empId) => Db.GetById(empId);
+
+        #endregion
+
+        #region 删
+
+        public static bool Delete(this User user)
+        {
+            return Db.Delete(user);
+        }
+
+        #endregion
+        public static User GetUserByEmpId(string empId)
+        {
+            return Db;
+        }
 
         public static List<User> GetUsers() => Db.GetList();
 
