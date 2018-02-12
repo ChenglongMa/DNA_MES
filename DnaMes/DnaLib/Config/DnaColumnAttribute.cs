@@ -14,7 +14,7 @@ namespace DnaLib.Config
     /// 扩展SugarColumn特性
     /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
-    public class DnaColumn: SugarColumn
+    public class DnaColumnAttribute: SugarColumn
     {
         #region 私有字段
 
@@ -22,8 +22,11 @@ namespace DnaLib.Config
         #endregion
 
         #region 公有属性
-        public bool IsUnique { get; set; }
-        
+        /// <summary>
+        /// 值是否可以重复
+        /// </summary>
+        public bool IsUnique { get; set; } = false;
+
 
         #endregion
 

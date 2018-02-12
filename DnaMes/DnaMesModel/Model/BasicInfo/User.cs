@@ -6,6 +6,7 @@
 // ****************************************************
 
 using DnaLib;
+using DnaLib.Config;
 using DnaLib.Helper;
 using SqlSugar;
 
@@ -19,7 +20,7 @@ namespace DnaMesModel.Model.BasicInfo
     {
         public User()
         {
-            Password = "123456";//info:默认密码
+            Password = "123456"; //info:默认密码
         }
 
         #region 私有字段
@@ -31,7 +32,7 @@ namespace DnaMesModel.Model.BasicInfo
         #region 公有属性
 
         //todo:目前无法指定unique列
-        [SugarColumn(IsNullable = false, Length = 10)]
+        [DnaColumn(IsNullable = false, Length = 10, IsUnique = true)]
         public string EmpId { get; set; }
 
         [SugarColumn(IsNullable = false, Length = 45)]
