@@ -14,10 +14,11 @@ namespace DnaMesDal
     /// <summary>
     /// 数据库操作底层
     /// 用于重写或扩展SimpleClient类
+    /// 该类只可继承不能实例化，子类需要每次new 一个新的实例
     /// </summary>
-    internal class BaseDal<T> : SimpleClient<T> where T : BaseModel, new()
+    public abstract class BaseDal<T> : SimpleClient<T> where T : BaseModel, new()
     {
-        public BaseDal() : base(DbClient)
+        protected BaseDal() : base(DbClient)
         {
         }
 
@@ -60,6 +61,7 @@ namespace DnaMesDal
         #endregion
 
         #region 公有方法
+        //插入并返回bool, 并将identity赋值到实体
         public new bool Insert(T model) => DbClient.Insertable(model).ExecuteCommandIdentityIntoEntity();
 
         #endregion

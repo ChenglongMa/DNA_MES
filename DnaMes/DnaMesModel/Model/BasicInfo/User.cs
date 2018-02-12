@@ -18,7 +18,7 @@ namespace DnaMesModel.Model.BasicInfo
     {
         #region 私有字段
 
-        private string _password;
+        private string _password = "123456";//info:默认密码
 
         #endregion
 
