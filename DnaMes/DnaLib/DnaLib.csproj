@@ -68,10 +68,11 @@
     <Compile Include="EncryptHelper.cs" />
     <Compile Include="Global\DbInfoName.cs" />
     <Compile Include="Global\SysInfo.cs" />
+    <Compile Include="Helper\IsHelper.cs" />
     <Compile Include="LogHelper.cs" />
     <Compile Include="MessageBoxHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ValueHelper.cs" />
+    <Compile Include="BitConverterHelper.cs" />
     <Compile Include="XmlHelper.cs" />
   </ItemGroup>
   <ItemGroup>

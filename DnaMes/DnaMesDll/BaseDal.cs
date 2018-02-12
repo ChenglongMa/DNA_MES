@@ -8,6 +8,7 @@
 using System;
 using DnaLib;
 using DnaLib.Global;
+using DnaLib.Helper;
 using DnaMesModel.Model;
 using SqlSugar;
 

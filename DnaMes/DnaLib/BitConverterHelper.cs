@@ -14,23 +14,11 @@ using System.Text;
 namespace DnaLib
 {
     /// <summary>
-    ///     值帮助类
+    ///     值转换 帮助类
     /// </summary>
-    public static class ValueHelper
+    public static class BitConverterHelper
     {
-        #region 值判断
 
-        /// <summary>
-        ///     判断值是否为null或string.Empty或空白或不含有任何元素
-        /// </summary>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        public static bool IsNullOrEmpty(this IEnumerable data)
-        {
-            return data==null||!data.GetEnumerator().MoveNext();
-        }
-
-        #endregion
 
         #region 值获取
 
@@ -50,7 +38,7 @@ namespace DnaLib
 
         private static readonly bool LittleEndian;
 
-        static ValueHelper()
+        static BitConverterHelper()
         {
             unsafe
             {

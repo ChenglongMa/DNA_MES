@@ -8,6 +8,7 @@
 using System;
 using System.IO;
 using System.Text;
+using DnaLib.Helper;
 
 namespace DnaLib
 {

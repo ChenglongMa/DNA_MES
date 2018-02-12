@@ -16,14 +16,20 @@ namespace DnaMesModel.Model.BasicInfo
     [SugarTable("BasicInfo_User")]
     public class User : BaseModel
     {
+        public User()
+        {
+            Password = "123456";//info:默认密码
+        }
+
         #region 私有字段
 
-        private string _password = "123456";//info:默认密码
+        private string _password;
 
         #endregion
 
         #region 公有属性
 
+        //todo:目前无法指定unique列
         [SugarColumn(IsNullable = false, Length = 10)]
         public string EmpId { get; set; }
 

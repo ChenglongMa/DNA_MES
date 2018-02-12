@@ -3,6 +3,7 @@ using System.IO;
 using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
+using DnaLib.Helper;
 
 //using NationalInstruments.Visa.Internal;
 
@@ -17,9 +18,9 @@ namespace DnaLib
             if (encoding == null)
                 throw new ArgumentNullException(nameof(encoding));
 
-            XmlSerializer serializer = new XmlSerializer(o.GetType());
+            var serializer = new XmlSerializer(o.GetType());
 
-            XmlWriterSettings settings = new XmlWriterSettings
+            var settings = new XmlWriterSettings
             {
                 Indent = true,
                 NewLineChars = "\r\n",
@@ -28,10 +29,10 @@ namespace DnaLib
                 OmitXmlDeclaration = true // 不生成声明头
             };
             // 强制指定命名空间，覆盖默认的命名空间。
-            XmlSerializerNamespaces namespaces = new XmlSerializerNamespaces();
+            var namespaces = new XmlSerializerNamespaces();
             namespaces.Add(string.Empty, string.Empty);
 
-            using (XmlWriter writer = XmlWriter.Create(stream, settings))
+            using (var writer = XmlWriter.Create(stream, settings))
             {
                 serializer.Serialize(writer, o, namespaces);
                 writer.Close();
@@ -46,12 +47,12 @@ namespace DnaLib
         /// <returns>序列化产生的XML字符串</returns>
         public static string XmlSerialize(object o, Encoding encoding)
         {
-            using (MemoryStream stream = new MemoryStream())
+            using (var stream = new MemoryStream())
             {
                 XmlSerializeInternal(stream, o, encoding);
 
                 stream.Position = 0;
-                using (StreamReader reader = new StreamReader(stream, encoding))
+                using (var reader = new StreamReader(stream, encoding))
                 {
                     return reader.ReadToEnd();
                 }
@@ -85,9 +86,9 @@ namespace DnaLib
         public static T XmlDeserialize<T>(string s, Encoding encoding)
         {
             if (s.IsNullOrEmpty())
-                throw new ArgumentNullException("s");
+                throw new ArgumentNullException(nameof(s));
             if (encoding == null)
-                throw new ArgumentNullException("encoding");
+                throw new ArgumentNullException(nameof(encoding));
 
             var mySerializer = new XmlSerializer(typeof (T));
             MemoryStream ms = null;
@@ -95,7 +96,7 @@ namespace DnaLib
             {
                 ms = new MemoryStream(encoding.GetBytes(s));
             
-                using (StreamReader sr = new StreamReader(ms, encoding))
+                using (var sr = new StreamReader(ms, encoding))
                 {
                     return (T) mySerializer.Deserialize(sr);
                 }
@@ -116,11 +117,11 @@ namespace DnaLib
         public static T XmlDeserializeFromFile<T>(string path, Encoding encoding=null)
         {
             if (path.IsNullOrEmpty())
-                throw new ArgumentNullException("path");
+                throw new ArgumentNullException(nameof(path));
             if (encoding == null)
                 encoding=Encoding.UTF8;
             if (!File.Exists(path)) return Activator.CreateInstance<T>();
-            string xml = File.ReadAllText(path, encoding);
+            var xml = File.ReadAllText(path, encoding);
             return xml.Trim().IsNullOrEmpty() ? Activator.CreateInstance<T>() : XmlDeserialize<T>(xml, encoding);
         }
     }

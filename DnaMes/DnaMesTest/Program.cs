@@ -14,38 +14,39 @@ namespace DnaMesConsole
         {
             var u = new User
             {
-                EmpId = "100001",
-                Name = "admin",
-                Password = "admin",
+                EmpId = "100002",
+                Name = "李宗盛",
+                //Password = "admin",
             };
-            Console.WriteLine(SysInfo.InterIp);
-            var dbInfo = DbConfigLib.GetDbInfo();
-            Console.WriteLine(dbInfo);
-            Console.WriteLine(u.Password);
-            Console.ReadKey();
 
-            var db = new SqlSugarClient(new ConnectionConfig
+
+            u.Insert();
+            Console.WriteLine(u.ObjId + ";" + u.Name + ";" + u.Password);
+            Console.WriteLine("成功");
+            Console.ReadKey();
+        }
+
+        private static void BuildUserTable()
+        {
+            var dbInfo = DbConfigLib.GetDbInfo();
+            using (var db = new SqlSugarClient(new ConnectionConfig
             {
                 ConnectionString = dbInfo.ToString(),
                 DbType = dbInfo.DbType,
                 IsAutoCloseConnection = true,
                 InitKeyType = InitKeyType.Attribute,
-            });
-            var isAvailable = db.DbMaintenance.IsAnyTable("BasicInfo_User");
-            if (!isAvailable)
+            }))
             {
-                Console.WriteLine("可以建表，要继续吗？（y/n）");
-                if (Console.ReadLine()?.ToLower()=="y")
+                var isAvailable = db.DbMaintenance.IsAnyTable("BasicInfo_User");
+                if (!isAvailable)
                 {
-                    db.CodeFirst.InitTables(typeof(User));
+                    Console.WriteLine("可以建表，要继续吗？（y/n）");
+                    if (Console.ReadLine()?.ToLower() == "y")
+                    {
+                        db.CodeFirst.InitTables(typeof(User));
+                    }
                 }
             }
-
-
-            u.Insert();
-            Console.WriteLine("成功");
-            Console.ReadKey();
-
         }
     }
 }
