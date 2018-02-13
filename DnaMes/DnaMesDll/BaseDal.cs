@@ -37,7 +37,8 @@ namespace DnaMesDal
         /// 用来处理事务多表查询和复杂的操作
         /// 需要每次new 一个新的实例
         /// </summary>
-        private static SqlSugarClient DbClient
+        //TODO:修改访问符
+        public static SqlSugarClient DbClient
         {
             get
             {
@@ -64,14 +65,14 @@ namespace DnaMesDal
         /// </summary>
         /// <param name="property"></param>
         /// <returns></returns>
-        private static bool IsKey(string property)
+        protected static bool IsKey(string property)
         {
             var type = typeof(T);
             return (type.GetProperty(property) ?? throw new InvalidOperationException()).GetCustomAttribute(
                        typeof(DbColumnAttribute)) is DbColumnAttribute attr && attr.IsKey;
         }
 
-        private static IEnumerable<PropertyInfo> GetKeyProperties()
+        protected static IEnumerable<PropertyInfo> GetKeyProperties()
         {
             var type = typeof(T);
             var keys = type.GetProperties().Where(ppt => ppt.CanRead && ppt.CanWrite && IsKey(ppt.Name)).ToList();
@@ -87,17 +88,18 @@ namespace DnaMesDal
         /// <returns></returns>
         private static string BuildWhereString(T model)
         {
+            if (model == null) throw new ArgumentNullException(nameof(model));
             var ppts = GetKeyProperties();
             var whereStr = "1=1 ";
             foreach (var ppt in ppts)
             {
                 var value = ppt.GetValue(model, null);
                 whereStr += " ANDs " + ppt.Name + "=" + value;
-
             }
 
             return whereStr;
         }
+
         #endregion
 
         #region 公有方法
@@ -116,6 +118,7 @@ namespace DnaMesDal
             {
                 throw new Exception($"增：{nameof(model)}.Obj ID:{model.ObjId},该数据已存在");
             }
+
             if (model.Creator.IsNullOrEmpty())
             {
                 model.Creator = SysInfo.EmpId + "@" + SysInfo.UserName;
@@ -130,6 +133,7 @@ namespace DnaMesDal
         #endregion
 
         #region 删
+
         /// <summary>
         /// 从数据库中删除Model
         /// 根据关键属性而非主键
@@ -146,6 +150,7 @@ namespace DnaMesDal
 
             return DbClient.Deleteable(model).Where(BuildWhereString(model)).ExecuteCommandHasChange();
         }
+
         #endregion
 
         #region 改
@@ -158,8 +163,12 @@ namespace DnaMesDal
                 throw new Exception($"改：{nameof(model)}.Obj ID:{model.ObjId},该数据不存在");
             }
 
-            return DbClient.Ado.ExecuteCommand(BuildWhereString(model))>0;
+            //TODO:待完善
+            DbClient.Updateable(model).ToSql();
+
+            return DbClient.Ado.ExecuteCommand(BuildWhereString(model)) > 0;
         }
+
         #endregion
 
         #region 查
@@ -171,8 +180,21 @@ namespace DnaMesDal
         /// <returns></returns>
         public bool IsExist(T model)
         {
-
             return DbClient.Queryable<T>().Where(BuildWhereString(model)).Any();
+        }
+
+        #endregion
+
+        #region 其他
+
+        /// <summary>
+        /// 代码自动判断插入或更新数据
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public bool InsertOrUpdate(T model)
+        {
+            return IsExist(model) ? Update(model) : Insert(model);
         }
 
         #endregion

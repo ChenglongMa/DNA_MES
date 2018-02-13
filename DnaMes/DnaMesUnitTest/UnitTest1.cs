@@ -1,36 +1,21 @@
 ﻿using System;
 using DnaLib;
-using DnaMesDal.BasicInfo;
 using DnaMesModel.Model.BasicInfo;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SqlSugar;
 
-namespace DnaMesTest
+namespace DnaMesUnitTest
 {
-
-    class Program
+    [TestClass]
+    public class UnitTest1
     {
-        static void Main(string[] args)
+        [TestMethod]
+        public void TestMethod1()
         {
-
-            //Console.ReadKey();
-
             //BuildUserTable();
-            var u = new User
-            {
-                EmpId = "100001",
-                Name = "admin",
-                Password = "admin",
-            };
-
-            //Console.WriteLine(u.IsExist());
-            //u.Insert();
-            //Console.WriteLine(u.ObjId + ";" + u.Name + ";" + u.Password);
-            //Console.WriteLine(u.IsExist());
-            ////Console.WriteLine(u.ObjId + ";" + u.Name + ";" + u.Password);
-            ////Console.WriteLine("成功");
-            //Console.ReadKey();
         }
-        private static void BuildUserTable()
+        [TestMethod]
+        public void BuildUserTable()
         {
             var dbInfo = DbConfigLib.GetDbInfo();
             using (var db = new SqlSugarClient(new ConnectionConfig
