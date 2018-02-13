@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using DnaLib;
 using DnaLib.Global;
 using DnaMesBll.BasicInfo;
+using DnaMesDal;
+using DnaMesModel.Model;
 using DnaMesModel.Model.BasicInfo;
 using SqlSugar;
 
@@ -12,18 +14,23 @@ namespace DnaMesConsole
     {
         static void Main(string[] args)
         {
-            var u = new User
-            {
-                EmpId = "100002",
-                Name = "李宗盛",
-                //Password = "admin",
-            };
+
+            //Console.ReadKey();
+
+            //BuildUserTable();
+            //var u = new User
+            //{
+            //    EmpId = "100001",
+            //    Name = "admin",
+            //    Password = "admin",
+            //};
+            //Console.WriteLine(u.IsExist());
             //u.Insert();
-            Console.WriteLine(u.ObjId + ";" + u.Name + ";" + u.Password);
-            u=UserBll.GetUserByEmpId(4);
-            Console.WriteLine(u.ObjId + ";" + u.Name + ";" + u.Password);
-            Console.WriteLine("成功");
-            Console.ReadKey();
+            //Console.WriteLine(u.ObjId + ";" + u.Name + ";" + u.Password);
+            //Console.WriteLine(u.IsExist());
+            ////Console.WriteLine(u.ObjId + ";" + u.Name + ";" + u.Password);
+            ////Console.WriteLine("成功");
+            //Console.ReadKey();
         }
 
         private static void BuildUserTable()
@@ -38,13 +45,11 @@ namespace DnaMesConsole
             }))
             {
                 var isAvailable = db.DbMaintenance.IsAnyTable("BasicInfo_User");
-                if (!isAvailable)
+                if (isAvailable) return;
+                Console.WriteLine("可以建表，要继续吗？（y/n）");
+                if (Console.ReadLine()?.ToLower() == "y")
                 {
-                    Console.WriteLine("可以建表，要继续吗？（y/n）");
-                    if (Console.ReadLine()?.ToLower() == "y")
-                    {
-                        db.CodeFirst.InitTables(typeof(User));
-                    }
+                    db.CodeFirst.InitTables(typeof(User));
                 }
             }
         }

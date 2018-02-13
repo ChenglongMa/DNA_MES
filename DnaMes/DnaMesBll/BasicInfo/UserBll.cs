@@ -24,6 +24,16 @@ namespace DnaMesBll.BasicInfo
 
         #region 公有属性
 
+
+
+        #endregion
+
+        #region 私有方法
+
+
+        #endregion
+
+        #region 公有方法
         #region 增
 
         /// <summary>
@@ -48,21 +58,15 @@ namespace DnaMesBll.BasicInfo
         #endregion
         public static User GetUserByEmpId(string empId)
         {
-            return Db;
+            return Db.GetById(empId);//todo:待完善
         }
 
         public static List<User> GetUsers() => Db.GetList();
 
-        #endregion
-
-        #region 私有方法
-
-
-        #endregion
-
-        #region 公有方法
-
-
+        public static bool IsExist(this User user)
+        {
+            return Db.IsExist(user);
+        }
         #endregion
     }
 }

@@ -6,7 +6,12 @@
 // ****************************************************
 
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using DnaLib;
+using DnaLib.Config;
 using DnaLib.Global;
 using DnaLib.Helper;
 using DnaMesModel.Model;
@@ -50,34 +55,128 @@ namespace DnaMesDal
 
         #region 公有属性
 
-        /// <summary>
-        /// 数据库实体
-        /// 用来处理单表常用操作
-        /// 需要每次new 一个新的实例
-        /// </summary>
-        //public static SimpleClient<T> DbSimpleClient=>new SimpleClient<T>(DbClient);
-
         #endregion
 
         #region 私有方法
 
+        /// <summary>
+        /// 获取某属性是否为关键属性
+        /// </summary>
+        /// <param name="property"></param>
+        /// <returns></returns>
+        private static bool IsKey(string property)
+        {
+            var type = typeof(T);
+            return (type.GetProperty(property) ?? throw new InvalidOperationException()).GetCustomAttribute(
+                       typeof(DbColumnAttribute)) is DbColumnAttribute attr && attr.IsKey;
+        }
+
+        private static IEnumerable<PropertyInfo> GetKeyProperties()
+        {
+            var type = typeof(T);
+            var keys = type.GetProperties().Where(ppt => ppt.CanRead && ppt.CanWrite && IsKey(ppt.Name)).ToList();
+            T t;
+            var objIds = new List<PropertyInfo> {type.GetProperty(nameof(t.ObjId))};
+            return keys.IsNullOrEmpty() ? objIds : keys;
+        }
+
+        /// <summary>
+        /// 根据关键属性构建Where语句
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        private static string BuildWhereString(T model)
+        {
+            var ppts = GetKeyProperties();
+            var whereStr = "1=1 ";
+            foreach (var ppt in ppts)
+            {
+                var value = ppt.GetValue(model, null);
+                whereStr += " ANDs " + ppt.Name + "=" + value;
+
+            }
+
+            return whereStr;
+        }
         #endregion
 
         #region 公有方法
-        //插入并返回bool, 并将identity赋值到实体
+
+        #region 增
+
+        /// <summary>
+        /// 插入并返回bool, 并将identity赋值到实体
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         public new bool Insert(T model)
         {
-            if (model== null) throw new ArgumentNullException(nameof(model));
+            if (model == null) throw new ArgumentNullException(nameof(model));
+            if (IsExist(model))
+            {
+                throw new Exception($"增：{nameof(model)}.Obj ID:{model.ObjId},该数据已存在");
+            }
             if (model.Creator.IsNullOrEmpty())
             {
                 model.Creator = SysInfo.EmpId + "@" + SysInfo.UserName;
-                model.CreationTime=DateTime.Now;
+                model.CreationTime = DateTime.Now;
             }
 
-            //model.Modifier = SysInfo.EmpId + "@" + SysInfo.UserName;
-            model.ModifiedTime=DateTime.Now;
+            //model.Modifier = SysInfo.EmpId + "@" + SysInfo.UserName;//Modifier有默认值
+            model.ModifiedTime = DateTime.Now;
             return DbClient.Insertable(model).ExecuteCommandIdentityIntoEntity();
         }
+
+        #endregion
+
+        #region 删
+        /// <summary>
+        /// 从数据库中删除Model
+        /// 根据关键属性而非主键
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public new bool Delete(T model)
+        {
+            if (model == null) throw new ArgumentNullException(nameof(model));
+            if (!IsExist(model))
+            {
+                throw new Exception($"删：{nameof(model)}.Obj ID:{model.ObjId},该数据不存在");
+            }
+
+            return DbClient.Deleteable(model).Where(BuildWhereString(model)).ExecuteCommandHasChange();
+        }
+        #endregion
+
+        #region 改
+
+        public new bool Update(T model)
+        {
+            if (model == null) throw new ArgumentNullException(nameof(model));
+            if (!IsExist(model))
+            {
+                throw new Exception($"改：{nameof(model)}.Obj ID:{model.ObjId},该数据不存在");
+            }
+
+            return DbClient.Ado.ExecuteCommand(BuildWhereString(model))>0;
+        }
+        #endregion
+
+        #region 查
+
+        /// <summary>
+        /// 根据Unique列查询是否已在数据库中存在
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public bool IsExist(T model)
+        {
+
+            return DbClient.Queryable<T>().Where(BuildWhereString(model)).Any();
+        }
+
+        #endregion
+
         #endregion
     }
 }

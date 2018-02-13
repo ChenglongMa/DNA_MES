@@ -32,26 +32,26 @@ namespace DnaMesModel.Model.BasicInfo
         #region 公有属性
 
         //todo:目前无法指定unique列
-        [DnaColumn(IsNullable = false, Length = 10, IsUnique = true)]
+        [DbColumn(IsNullable = false, Length = 10, IsKey = true)]
         public string EmpId { get; set; }
 
-        [SugarColumn(IsNullable = false, Length = 45)]
+        [DbColumn(IsNullable = false, Length = 45)]
         public string Name { get; set; }
 
-        [SugarColumn(IsNullable = false, Length = 100)]
+        [DbColumn(IsNullable = false, Length = 100)]
         public string Password
         {
             get => _password;
             set => _password = value.Md5Hash();
         }
 
-        [SugarColumn(IsNullable = true, Length = 45)]
+        [DbColumn(IsNullable = true, Length = 45)]
         public string Tel { get; set; }
 
-        [SugarColumn(IsNullable = true, Length = 250)]
+        [DbColumn(IsNullable = true, Length = 250)]
         public string Addr { get; set; }
 
-        [SugarColumn(IsNullable = true, Length = 45)]
+        [DbColumn(IsNullable = true, Length = 45)]
         public string Email { get; set; }
 
         #endregion

@@ -6,6 +6,7 @@
 // ****************************************************
 
 using System;
+using DnaLib.Config;
 using DnaLib.Global;
 using SqlSugar;
 
@@ -17,21 +18,21 @@ namespace DnaMesModel.Model
         {
         }
 
-        //[SugarColumn(IsNullable = false)] public abstract int ClassId { get;}
+        //[DbColumn(IsNullable = false)] public abstract int ClassId { get;}
 
-        [SugarColumn(IsNullable = false, IsPrimaryKey = true, IsIdentity = true, IsOnlyIgnoreInsert = true)]
+        [DbColumn(IsNullable = false, IsPrimaryKey = true, IsIdentity = true, IsOnlyIgnoreInsert = true)]
         public int ObjId { get; set; } = -1;
 
-        [SugarColumn(IsNullable = false, Length = 45)]
+        [DbColumn(IsNullable = false, Length = 45)]
         public string Creator { get; set; } //= SysInfo.EmpId + "@" + SysInfo.UserName;
 
-        [SugarColumn(IsNullable = false)] public DateTime CreationTime { get; set; } //= DateTime.Now;
+        [DbColumn(IsNullable = false)] public DateTime CreationTime { get; set; } //= DateTime.Now;
 
-        [SugarColumn(IsNullable = false, Length = 45)]
+        [DbColumn(IsNullable = false, Length = 45)]
         public string Modifier { get; set; }= SysInfo.EmpId + "@" + SysInfo.UserName;
 
-        [SugarColumn(IsNullable = false)] public DateTime ModifiedTime { get; set; } //= DateTime.Now;
+        [DbColumn(IsNullable = false)] public DateTime ModifiedTime { get; set; } //= DateTime.Now;
 
-        [SugarColumn(IsNullable = true,Length = 250)] public string Description { get; set; }
+        [DbColumn(IsNullable = true,Length = 250)] public string Description { get; set; }
     }
 }
