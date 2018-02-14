@@ -5,6 +5,8 @@
 //  Copyright © DNA Studio 2018. All rights reserved.
 // ****************************************************
 
+using System;
+using DnaLib.Config;
 using DnaMesModel.Model;
 using SqlSugar;
 
@@ -17,16 +19,21 @@ namespace DnaMesModel.Link
     /// <typeparam name="TB">角色B:n</typeparam>
     public abstract class BaseLink<TA, TB> : BaseModel where TA : BaseModel where TB : BaseModel
     {
+        [Obsolete("建议使用带参数构造函数")]
+        protected BaseLink()
+        {
+
+        }
         protected BaseLink(TA roleA, TB roleB)
         {
-            _roleA = roleA;
-            _roleB = roleB;
+            RoleA = roleA;
+            RoleB = roleB;
         }
 
         #region 私有字段
 
-        private readonly TA _roleA;
-        private readonly TB _roleB;
+        protected readonly TA RoleA;
+        protected readonly TB RoleB;
 
         #endregion
 
@@ -35,14 +42,22 @@ namespace DnaMesModel.Link
         /// <summary>
         /// 角色A的Obj ID
         /// </summary>
-        [SugarColumn(IsNullable = false)]
-        public int RoleAId => _roleA.ObjId;
+        [DnaColumn(IsKey = true,IsNullable = false)]
+        public int RoleAId
+        {
+            get => RoleA.ObjId;
+            set => RoleA.ObjId = value;
+        }
 
         /// <summary>
         /// 角色B的Obj ID
         /// </summary>
-        [SugarColumn(IsNullable = false)]
-        public int RoleBId => _roleB.ObjId;
+        [DnaColumn(IsKey = true, IsNullable = false)]
+        public int RoleBId
+        {
+            get => RoleB.ObjId;
+            set => RoleB.ObjId = value;
+        }
 
         #endregion
 

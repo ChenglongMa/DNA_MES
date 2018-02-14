@@ -6,7 +6,6 @@
 // ****************************************************
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -17,7 +16,7 @@ using DnaLib.Helper;
 using DnaMesModel.Model;
 using SqlSugar;
 
-namespace DnaMesDal
+namespace DnaMesDal.Model
 {
     /// <summary>
     /// 数据库操作底层
@@ -37,8 +36,7 @@ namespace DnaMesDal
         /// 用来处理事务多表查询和复杂的操作
         /// 需要每次new 一个新的实例
         /// </summary>
-        //TODO:修改访问符
-        public static SqlSugarClient DbClient
+        protected static SqlSugarClient DbClient
         {
             get
             {
@@ -69,7 +67,7 @@ namespace DnaMesDal
         {
             var type = typeof(T);
             return (type.GetProperty(property) ?? throw new InvalidOperationException()).GetCustomAttribute(
-                       typeof(DbColumnAttribute)) is DbColumnAttribute attr && attr.IsKey;
+                       typeof(DnaColumnAttribute)) is DnaColumnAttribute attr && attr.IsKey;
         }
 
         protected static IEnumerable<PropertyInfo> GetKeyProperties()
@@ -86,7 +84,7 @@ namespace DnaMesDal
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        private static string BuildWhereString(T model)
+        protected static string BuildWhereString(T model)
         {
             if (model == null) throw new ArgumentNullException(nameof(model));
             var ppts = GetKeyProperties();
@@ -135,8 +133,7 @@ namespace DnaMesDal
         #region 删
 
         /// <summary>
-        /// 从数据库中删除Model
-        /// 根据关键属性而非主键
+        /// 根据关键属性删除Model
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
@@ -155,18 +152,18 @@ namespace DnaMesDal
 
         #region 改
 
+        /// <summary>
+        /// 根据关键属性更新数据
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         public new bool Update(T model)
         {
             if (model == null) throw new ArgumentNullException(nameof(model));
-            if (!IsExist(model))
-            {
-                throw new Exception($"改：{nameof(model)}.Obj ID:{model.ObjId},该数据不存在");
-            }
-
-            //TODO:待完善
-            DbClient.Updateable(model).ToSql();
-
-            return DbClient.Ado.ExecuteCommand(BuildWhereString(model)) > 0;
+            var m = DbClient.Queryable<T>().Where(BuildWhereString(model)).Single();//查询库内该数据ObjId并赋值给新model
+            model.ObjId = m.ObjId;
+            model.ModifiedTime = DateTime.Now;
+            return DbClient.Updateable(model).ExecuteCommandHasChange();
         }
 
         #endregion

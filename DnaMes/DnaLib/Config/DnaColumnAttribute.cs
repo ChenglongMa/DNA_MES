@@ -14,7 +14,7 @@ namespace DnaLib.Config
     /// 扩展SugarColumn特性
     /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
-    public class DbColumnAttribute: SugarColumn
+    public class DnaColumnAttribute: SugarColumn
     {
         #region 私有字段
 

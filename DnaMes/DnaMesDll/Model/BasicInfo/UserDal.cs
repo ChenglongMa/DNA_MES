@@ -7,27 +7,23 @@
 
 using System;
 using System.Collections.Generic;
-using DnaLib.Global;
-using DnaMesModel.Model;
 using DnaMesModel.Model.BasicInfo;
 
-namespace DnaMesDal.BasicInfo
+namespace DnaMesDal.Model.BasicInfo
 {
     /// <inheritdoc />
     /// <summary>
     /// 用户表操作类
     /// </summary>
-    public class UserDal: BaseDal<User>
+    public class UserDal : BaseDal<User>
     {
-
         #region 私有字段
-
 
         #endregion
 
         #region 公有属性
 
-        public static List<Domain> GetDomain( User user)
+        public static List<Domain> GetDomain(User user)
         {
             throw new NotImplementedException();
         }
@@ -36,13 +32,10 @@ namespace DnaMesDal.BasicInfo
 
         #region 私有方法
 
-
         #endregion
 
         #region 公有方法
 
-
         #endregion
     }
 }
-

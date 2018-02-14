@@ -5,7 +5,9 @@
 //  Copyright © DNA Studio 2018. All rights reserved.
 // ****************************************************
 
+using System;
 using DnaMesModel.Model.BasicInfo;
+using SqlSugar;
 
 namespace DnaMesModel.Link.BasicInfo
 {
@@ -13,11 +15,18 @@ namespace DnaMesModel.Link.BasicInfo
     /// <summary>
     /// 用户与权限关系类
     /// </summary>
+    [SugarTable("Link_BasicInfo_UserDomain")]
     public class UserDomain : BaseLink<User, Domain>
     {
         public UserDomain(User roleA, Domain roleB) : base(roleA, roleB)
         {
         }
+
+        //[Obsolete]
+        public UserDomain()
+        {
+        }
+
 
         #region 私有字段
 

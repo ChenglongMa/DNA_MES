@@ -64,7 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config\DbConfig.cs" />
-    <Compile Include="Config\DbColumnAttribute.cs" />
+    <Compile Include="Config\DnaColumnAttribute.cs" />
     <Compile Include="DbConfigLib.cs" />
     <Compile Include="Helper\EncryptHelper.cs" />
     <Compile Include="Global\DbInfoName.cs" />

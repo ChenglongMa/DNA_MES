@@ -1,19 +1,22 @@
 ﻿// ****************************************************
 //  Author: Charles Ma
-//  Date: 2018/02/12 0:05
+//  Date: 2018/02/14 10:25
 // ****************************************************
 //  Copyright © DNA Studio 2018. All rights reserved.
 // ****************************************************
 
-using SqlSugar;
+using DnaMesDal.Model;
+using DnaMesModel.Link;
+using DnaMesModel.Link.BasicInfo;
+using DnaMesModel.Model;
+using DnaMesModel.Model.BasicInfo;
 
-namespace DnaMesModel.Model.BasicInfo
+namespace DnaMesDal.Link.BasicInfo
 {
     /// <summary>
-    /// 权限类
+    /// 用户与权限关系处理类
     /// </summary>
-    [SugarTable("BasicInfo_Domain")]
-    public class Domain:BaseModel
+    public class UserDomainDal:BaseDal<UserDomain>
     {
         #region 私有字段
 
@@ -21,9 +24,7 @@ namespace DnaMesModel.Model.BasicInfo
         #endregion
 
         #region 公有属性
-        public int FunctionCode { get; set; }
-        public string Name { get; set; }
-        
+
         
 
         #endregion

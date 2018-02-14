@@ -1,6 +1,7 @@
 ﻿using System;
 using DnaLib;
-using DnaMesDal.BasicInfo;
+using DnaMesDal.Model;
+using DnaMesModel.Link.BasicInfo;
 using DnaMesModel.Model.BasicInfo;
 using SqlSugar;
 
@@ -14,13 +15,24 @@ namespace DnaMesTest
 
             //Console.ReadKey();
 
-            //BuildUserTable();
+            BuildUserTable("Link_BasicInfo_UserDomain", typeof(UserDomain));
+
             var u = new User
             {
                 EmpId = "100001",
                 Name = "admin",
                 Password = "admin",
             };
+            var d = new Domain
+            {
+                Description = "临时权限"
+            };
+
+            var link = new UserDomain(u, d);
+            GetDb().GetSimpleClient().Insert(link);
+
+
+            Console.ReadKey();
 
             //Console.WriteLine(u.IsExist());
             //u.Insert();
@@ -30,25 +42,30 @@ namespace DnaMesTest
             ////Console.WriteLine("成功");
             //Console.ReadKey();
         }
-        private static void BuildUserTable()
+        private static void BuildUserTable(string tableName,Type classType)
+        {
+
+            {
+                var hasTable = GetDb().DbMaintenance.IsAnyTable(tableName);
+                if (hasTable) return;
+                Console.WriteLine(tableName+":可以建表，要继续吗？（y/n）");
+                if (Console.ReadLine()?.ToLower() == "y")
+                {
+                    GetDb().CodeFirst.InitTables(classType);
+                }
+            }
+        }
+
+        private static SqlSugarClient GetDb()
         {
             var dbInfo = DbConfigLib.GetDbInfo();
-            using (var db = new SqlSugarClient(new ConnectionConfig
+            return new SqlSugarClient(new ConnectionConfig
             {
                 ConnectionString = dbInfo.ToString(),
                 DbType = dbInfo.DbType,
                 IsAutoCloseConnection = true,
                 InitKeyType = InitKeyType.Attribute,
-            }))
-            {
-                var isAvailable = db.DbMaintenance.IsAnyTable("BasicInfo_User");
-                if (isAvailable) return;
-                Console.WriteLine("可以建表，要继续吗？（y/n）");
-                if (Console.ReadLine()?.ToLower() == "y")
-                {
-                    db.CodeFirst.InitTables(typeof(User));
-                }
-            }
+            });
         }
     }
 }
