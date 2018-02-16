@@ -6,35 +6,21 @@
 // ****************************************************
 
 using System;
+using System.Reflection;
 using DnaLib.Config;
 
 namespace DnaMesModel
 {
     /// <summary>
     /// 基础关系模型
-    /// 必须将关系类放到roleA所在文件夹内
-    /// 类名必须为roleA+roleB格式
+    /// 数据库中表名格式为 "L_"+"roleA类名"+"roleB类名"
+    /// 1. 必须将关系类放到roleA所在文件夹内
+    /// 2. 类名必须为roleA+roleB格式
     /// 例：User 和 Domain的关系类为UserDomain 路径与User相同
     /// </summary>
-    /// <typeparam name="TA">角色A:1</typeparam>
-    /// <typeparam name="TB">角色B:n</typeparam>
-    public abstract class BaseLink<TA, TB> : BaseModel where TA : BaseModel where TB : BaseModel
+    public class BaseLink : BaseModel
     {
-        [Obsolete("建议使用带参数构造函数")]
-        protected BaseLink()
-        {
-            
-        }
-        protected BaseLink(TA roleA, TB roleB)
-        {
-            RoleA = roleA;
-            RoleB = roleB;
-        }
-
         #region 私有字段
-
-        protected readonly TA RoleA;
-        protected readonly TB RoleB;
 
         #endregion
 
@@ -44,21 +30,13 @@ namespace DnaMesModel
         /// 角色A的Obj ID
         /// </summary>
         [DnaColumn(IsKey = true,IsNullable = false)]
-        public int RoleAId
-        {
-            get => RoleA.ObjId;
-            set => RoleA.ObjId = value;
-        }
+        public int RoleAId { get; set; }
 
         /// <summary>
         /// 角色B的Obj ID
         /// </summary>
         [DnaColumn(IsKey = true, IsNullable = false)]
-        public int RoleBId
-        {
-            get => RoleB.ObjId;
-            set => RoleB.ObjId = value;
-        }
+        public int RoleBId { get; set; }
 
         #endregion
 
@@ -67,7 +45,6 @@ namespace DnaMesModel
         #endregion
 
         #region 公有方法
-
         #endregion
     }
 }

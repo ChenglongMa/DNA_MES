@@ -5,6 +5,7 @@
 //  Copyright © DNA Studio 2018. All rights reserved.
 // ****************************************************
 
+using DnaLib.Config;
 using SqlSugar;
 
 namespace DnaMesModel.BasicInfo
@@ -13,30 +14,28 @@ namespace DnaMesModel.BasicInfo
     /// 权限类
     /// </summary>
     [SugarTable("BasicInfo_Domain")]
-    public class Domain:BaseModel
+    public class Domain : BaseModel
     {
         #region 私有字段
-
 
         #endregion
 
         #region 公有属性
+
+        [DnaColumn(IsKey = true, IsNullable = false)]
         public int FunctionCode { get; set; }
+
+        [DnaColumn(IsNullable = true, Length = 45)]
         public string Name { get; set; }
-        
-        
 
         #endregion
 
         #region 私有方法
 
-
         #endregion
 
         #region 公有方法
 
-
         #endregion
     }
 }
-

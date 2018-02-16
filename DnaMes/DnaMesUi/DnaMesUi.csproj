@@ -50,8 +50,11 @@
     <StartupObject>DnaMesUi.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="SqlSugar, Version=4.6.4.5, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\sqlSugar.4.6.4.5\lib\SqlSugar.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="SqlSugar, Version=4.6.4.6, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\sqlSugar.4.6.4.6\lib\SqlSugar.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

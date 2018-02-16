@@ -8,29 +8,48 @@ using SqlSugar;
 
 namespace DnaMesTest
 {
-
     class Program
     {
         static void Main(string[] args)
         {
-            //BuildUserTable("Link_BasicInfo_UserDomain", typeof(UserDomain));
+            BuildUserTable("L_UserDomain", typeof(UserDomain));
+            BuildUserTable("BasicInfo_Domain", typeof(Domain));
 
             var u = new User
             {
-                ObjId = 55534,
+                ObjId = 16,
                 EmpId = "100001",
                 Name = "admin",
                 Password = "admin",
             };
-            var d = new Domain
-            {
-                Description = "临时权限"
-            };
-            var udal=new UserDal();
-            var link = udal.GetLinkWith(u, d);
-            Console.WriteLine(link.RoleAId+";"+link.RoleBId);
-            //GetDb().GetSimpleClient().Insert(link);
+            #region 插入新数据
 
+            //for (int i = 0; i < 5; i++)
+            //{
+            //    var d = new Domain
+            //    {
+            //        FunctionCode = 10001+i,
+            //        Name = "临时权限"+i,
+            //        Description = "临时权限"+i,
+            //    };
+            //    var dal = new BaseDal<Domain>();
+            //    if (dal.Insert(d))
+            //    {
+            //        var link = new UserDomain(u, d);
+            //        var dal2 = new BaseDal<UserDomain>();
+            //        dal2.Insert(link);
+            //    }
+
+            //}
+
+            #endregion
+            var d=new UserDal();
+            var list = d.GetLinkWith<Domain>(u,t=>t.FunctionCode==10002);
+            foreach (var domain in list)
+            {
+                
+                Console.WriteLine(domain.Name);
+            }
 
             Console.ReadKey();
 
@@ -42,13 +61,13 @@ namespace DnaMesTest
             ////Console.WriteLine("成功");
             //Console.ReadKey();
         }
-        private static void BuildUserTable(string tableName,Type classType)
-        {
 
+        private static void BuildUserTable(string tableName, Type classType)
+        {
             {
                 var hasTable = GetDb().DbMaintenance.IsAnyTable(tableName);
                 if (hasTable) return;
-                Console.WriteLine(tableName+":可以建表，要继续吗？（y/n）");
+                Console.WriteLine(tableName + ":可以建表，要继续吗？（y/n）");
                 if (Console.ReadLine()?.ToLower() == "y")
                 {
                     GetDb().CodeFirst.InitTables(classType);
