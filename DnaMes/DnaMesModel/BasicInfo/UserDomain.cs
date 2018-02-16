@@ -13,7 +13,7 @@ namespace DnaMesModel.BasicInfo
     /// <summary>
     /// 用户与权限关系类
     /// </summary>
-    [SugarTable("Link_BasicInfo_UserDomain")]
+    [SugarTable("L_UserDomain")]
     public class UserDomain : BaseLink
     {
 

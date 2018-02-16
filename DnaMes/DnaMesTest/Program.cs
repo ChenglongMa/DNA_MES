@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using DnaLib;
+using DnaMesDal.Link;
 using DnaMesDal.Model;
 using DnaMesDal.Model.BasicInfo;
 using DnaMesModel.BasicInfo;
@@ -17,7 +18,7 @@ namespace DnaMesTest
 
             var u = new User
             {
-                ObjId = 16,
+                ObjId = 1,
                 EmpId = "100001",
                 Name = "admin",
                 Password = "admin",
@@ -44,13 +45,23 @@ namespace DnaMesTest
 
             #endregion
             var d=new UserDal();
-            var list = d.GetLinkWith<Domain>(u,t=>t.FunctionCode==10002);
+            var list = d.GetLinkWith<Domain>(u, t => t.FunctionCode == 10002);
+            var linkDal = new BaseLinkDal<UserDomain>();
+            var links = linkDal.GetLinkWith<User,Domain>(u, t => t.FunctionCode == 10002);
+            
             foreach (var domain in list)
             {
                 
                 Console.WriteLine(domain.Name);
-            }
 
+            }
+            Console.WriteLine("以上是普通关系类");
+            foreach (var domain in links)
+            {
+                
+                Console.WriteLine(domain.Name);
+            }
+            Console.WriteLine("以上是扩展关系类");
             Console.ReadKey();
 
             //Console.WriteLine(u.IsExist());

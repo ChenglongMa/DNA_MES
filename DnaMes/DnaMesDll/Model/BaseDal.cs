@@ -212,6 +212,7 @@ namespace DnaMesDal.Model
             var linkInstance = Activator.CreateInstance(linkType, roleA, roleB);
             return linkInstance;
         }
+
         /// <summary>
         /// 通过关系获取另一实体类
         /// </summary>
@@ -220,7 +221,7 @@ namespace DnaMesDal.Model
         /// <param name="exp">额外条件表达式</param>
         /// <returns>所求对象集合</returns>
         public virtual List<TB> GetLinkWith<TB>(T roleA, Expression<Func<TB, bool>> exp = null)
-            where TB : BaseModel, new()
+            where TB : BaseModel, new() 
         {
             var links = DbClient.Queryable<BaseLink>().AS("L_" + typeof(T).Name + typeof(TB).Name)
                 .Where(l => l.RoleAId == roleA.ObjId).ToList();
