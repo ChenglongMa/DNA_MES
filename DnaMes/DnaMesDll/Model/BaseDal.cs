@@ -111,7 +111,7 @@ namespace DnaMesDal.Model
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public new bool Insert(T model)
+        public bool Insert<TB>(TB model) where TB : BaseModel, new()
         {
             if (model == null) throw new ArgumentNullException(nameof(model));
             if (IsExist(model))
@@ -219,7 +219,7 @@ namespace DnaMesDal.Model
         /// <param name="roleA">已知对象</param>
         /// <param name="exp">额外条件表达式</param>
         /// <returns>所求对象集合</returns>
-        public List<TB> GetLinkWith<TB>(T roleA, Expression<Func<TB, bool>> exp = null)
+        public virtual List<TB> GetLinkWith<TB>(T roleA, Expression<Func<TB, bool>> exp = null)
             where TB : BaseModel, new()
         {
             var links = DbClient.Queryable<BaseLink>().AS("L_" + typeof(T).Name + typeof(TB).Name)
@@ -237,9 +237,14 @@ namespace DnaMesDal.Model
             return DbClient.Queryable<TB>().Where(expTemp.And(exp).ToExpression()).ToList();
         }
 
-        public bool SetLinkWith<TB>(T roleA, TB roleB) where TB : BaseModel, new()
+        public virtual bool SetLinkWith<TB>(T roleA, TB roleB) where TB : BaseModel, new()
         {
-            throw new Exception();
+            var link = new BaseLink
+            {
+                RoleAId = roleA.ObjId,
+                RoleBId = roleB.ObjId,
+            };
+            return Insert(link);
         }
         #endregion
 
