@@ -13,7 +13,8 @@ using DnaLib;
 using DnaLib.Config;
 using DnaLib.Global;
 using DnaLib.Helper;
-using DnaMesModel.Model;
+using DnaMesModel;
+using DnaMesModel.BasicInfo;
 using SqlSugar;
 
 namespace DnaMesDal.Model
@@ -63,18 +64,18 @@ namespace DnaMesDal.Model
         /// </summary>
         /// <param name="property"></param>
         /// <returns></returns>
-        protected static bool IsKey(string property)
+        protected static bool IsKey<TB>(string property) where TB:BaseModel
         {
-            var type = typeof(T);
+            var type = typeof(TB);
             return (type.GetProperty(property) ?? throw new InvalidOperationException()).GetCustomAttribute(
                        typeof(DnaColumnAttribute)) is DnaColumnAttribute attr && attr.IsKey;
         }
 
-        protected static IEnumerable<PropertyInfo> GetKeyProperties()
+        protected static IEnumerable<PropertyInfo> GetKeyProperties<TB>() where TB:BaseModel
         {
-            var type = typeof(T);
-            var keys = type.GetProperties().Where(ppt => ppt.CanRead && ppt.CanWrite && IsKey(ppt.Name)).ToList();
-            T t;
+            var type = typeof(TB);
+            var keys = type.GetProperties().Where(ppt => ppt.CanRead && ppt.CanWrite && IsKey<TB>(ppt.Name)).ToList();
+            TB t;
             var objIds = new List<PropertyInfo> {type.GetProperty(nameof(t.ObjId))};
             return keys.IsNullOrEmpty() ? objIds : keys;
         }
@@ -84,15 +85,15 @@ namespace DnaMesDal.Model
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        protected static string BuildWhereString(T model)
+        protected static string BuildWhereString<TB>(TB model) where TB:BaseModel
         {
             if (model == null) throw new ArgumentNullException(nameof(model));
-            var ppts = GetKeyProperties();
+            var ppts = GetKeyProperties<TB>();
             var whereStr = "1=1 ";
             foreach (var ppt in ppts)
             {
                 var value = ppt.GetValue(model, null);
-                whereStr += " ANDs " + ppt.Name + "=" + value;
+                whereStr += " AND " + ppt.Name + "=" + value;
             }
 
             return whereStr;
@@ -160,7 +161,7 @@ namespace DnaMesDal.Model
         public new bool Update(T model)
         {
             if (model == null) throw new ArgumentNullException(nameof(model));
-            var m = DbClient.Queryable<T>().Where(BuildWhereString(model)).Single();//查询库内该数据ObjId并赋值给新model
+            var m = DbClient.Queryable<T>().Where(BuildWhereString(model)).Single(); //查询库内该数据ObjId并赋值给新model
             model.ObjId = m.ObjId;
             model.ModifiedTime = DateTime.Now;
             return DbClient.Updateable(model).ExecuteCommandHasChange();
@@ -175,9 +176,9 @@ namespace DnaMesDal.Model
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public bool IsExist(T model)
+        public bool IsExist<TB>(TB model) where TB:BaseModel, new()
         {
-            return DbClient.Queryable<T>().Where(BuildWhereString(model)).Any();
+            return DbClient.Queryable<TB>().Where(BuildWhereString(model)).Any();
         }
 
         #endregion
@@ -192,6 +193,23 @@ namespace DnaMesDal.Model
         public bool InsertOrUpdate(T model)
         {
             return IsExist(model) ? Update(model) : Insert(model);
+        }
+
+        #endregion
+
+        #region 关系操作
+
+        public BaseLink<T, TB> GetLinkWith<TB>(T roleA, TB roleB) where TB : BaseModel, new()
+        {
+            if (!IsExist(roleA)||!IsExist(roleB))
+            {
+                
+            }
+            var tA = typeof(T);
+            var tB = typeof(TB);
+            var linkType = Assembly.Load(nameof(DnaMesModel)).GetType(tA.FullName + tB.Name);
+            var linkInstance = Activator.CreateInstance(linkType, roleA, roleB);
+            return linkInstance as BaseLink<T, TB>;
         }
 
         #endregion

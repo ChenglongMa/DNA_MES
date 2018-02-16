@@ -6,10 +6,7 @@
 // ****************************************************
 
 using DnaMesDal.Model;
-using DnaMesModel.Link;
-using DnaMesModel.Link.BasicInfo;
-using DnaMesModel.Model;
-using DnaMesModel.Model.BasicInfo;
+using DnaMesModel.BasicInfo;
 
 namespace DnaMesDal.Link.BasicInfo
 {

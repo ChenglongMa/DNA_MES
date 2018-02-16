@@ -7,7 +7,7 @@
 
 using SqlSugar;
 
-namespace DnaMesModel.Model.BasicInfo
+namespace DnaMesModel.BasicInfo
 {
     /// <summary>
     /// 权限类

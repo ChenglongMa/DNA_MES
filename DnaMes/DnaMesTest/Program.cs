@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Reflection;
 using DnaLib;
 using DnaMesDal.Model;
-using DnaMesModel.Link.BasicInfo;
-using DnaMesModel.Model.BasicInfo;
+using DnaMesDal.Model.BasicInfo;
+using DnaMesModel.BasicInfo;
 using SqlSugar;
 
 namespace DnaMesTest
@@ -12,13 +13,11 @@ namespace DnaMesTest
     {
         static void Main(string[] args)
         {
-
-            //Console.ReadKey();
-
-            BuildUserTable("Link_BasicInfo_UserDomain", typeof(UserDomain));
+            //BuildUserTable("Link_BasicInfo_UserDomain", typeof(UserDomain));
 
             var u = new User
             {
+                ObjId = 55534,
                 EmpId = "100001",
                 Name = "admin",
                 Password = "admin",
@@ -27,9 +26,10 @@ namespace DnaMesTest
             {
                 Description = "临时权限"
             };
-
-            var link = new UserDomain(u, d);
-            GetDb().GetSimpleClient().Insert(link);
+            var udal=new UserDal();
+            var link = udal.GetLinkWith(u, d);
+            Console.WriteLine(link.RoleAId+";"+link.RoleBId);
+            //GetDb().GetSimpleClient().Insert(link);
 
 
             Console.ReadKey();

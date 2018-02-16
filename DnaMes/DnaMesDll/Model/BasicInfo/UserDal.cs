@@ -7,7 +7,7 @@
 
 using System;
 using System.Collections.Generic;
-using DnaMesModel.Model.BasicInfo;
+using DnaMesModel.BasicInfo;
 
 namespace DnaMesDal.Model.BasicInfo
 {

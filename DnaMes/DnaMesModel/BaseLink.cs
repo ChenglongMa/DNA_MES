@@ -7,13 +7,14 @@
 
 using System;
 using DnaLib.Config;
-using DnaMesModel.Model;
-using SqlSugar;
 
-namespace DnaMesModel.Link
+namespace DnaMesModel
 {
     /// <summary>
     /// 基础关系模型
+    /// 必须将关系类放到roleA所在文件夹内
+    /// 类名必须为roleA+roleB格式
+    /// 例：User 和 Domain的关系类为UserDomain 路径与User相同
     /// </summary>
     /// <typeparam name="TA">角色A:1</typeparam>
     /// <typeparam name="TB">角色B:n</typeparam>
@@ -22,7 +23,7 @@ namespace DnaMesModel.Link
         [Obsolete("建议使用带参数构造函数")]
         protected BaseLink()
         {
-
+            
         }
         protected BaseLink(TA roleA, TB roleB)
         {

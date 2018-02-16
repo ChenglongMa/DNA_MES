@@ -6,8 +6,7 @@
 // ****************************************************
 
 using DnaMesDal.Model;
-using DnaMesModel.Link;
-using DnaMesModel.Model;
+using DnaMesModel;
 
 namespace DnaMesDal.Link
 {
@@ -15,8 +14,8 @@ namespace DnaMesDal.Link
     /// <summary>
     /// 关系类数据基础操作
     /// </summary>
-    internal class BaseLinkDal<TA, TB> : BaseDal<BaseLink<TA, TB> where TA: BaseModel,new() where TB: BaseModel,new() 
-    //internal class BaseLinkDal<TA>:BaseDal<TA> where TA: BaseLink<BaseModel,BaseModel>,new() 
+    //internal class BaseLinkDal<TA, TB> : BaseDal<BaseLink<TA, TB> where TA: BaseModel,new() where TB: BaseModel,new() 
+    internal class BaseLinkDal<TA> : BaseDal<TA> where TA : BaseLink<BaseModel, BaseModel>, new()
     {
         #region 私有字段
 

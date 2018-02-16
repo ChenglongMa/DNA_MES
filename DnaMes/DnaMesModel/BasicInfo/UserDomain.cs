@@ -5,11 +5,9 @@
 //  Copyright © DNA Studio 2018. All rights reserved.
 // ****************************************************
 
-using System;
-using DnaMesModel.Model.BasicInfo;
 using SqlSugar;
 
-namespace DnaMesModel.Link.BasicInfo
+namespace DnaMesModel.BasicInfo
 {
     /// <inheritdoc />
     /// <summary>

@@ -8,9 +8,8 @@
 using System;
 using DnaLib.Config;
 using DnaLib.Global;
-using SqlSugar;
 
-namespace DnaMesModel.Model
+namespace DnaMesModel
 {
     public abstract class BaseModel
     {

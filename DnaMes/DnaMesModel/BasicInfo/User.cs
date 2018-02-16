@@ -5,12 +5,11 @@
 //  Copyright © DNA Studio 2018. All rights reserved.
 // ****************************************************
 
-using DnaLib;
 using DnaLib.Config;
 using DnaLib.Helper;
 using SqlSugar;
 
-namespace DnaMesModel.Model.BasicInfo
+namespace DnaMesModel.BasicInfo
 {
     /// <summary>
     /// 员工信息类

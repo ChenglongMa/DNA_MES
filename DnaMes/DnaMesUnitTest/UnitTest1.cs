@@ -1,6 +1,6 @@
 ﻿using System;
 using DnaLib;
-using DnaMesModel.Model.BasicInfo;
+using DnaMesModel.BasicInfo;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SqlSugar;
 
