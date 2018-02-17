@@ -15,7 +15,6 @@ using DnaLib.Config;
 using DnaLib.Global;
 using DnaLib.Helper;
 using DnaMesModel;
-using DnaMesModel.BasicInfo;
 using SqlSugar;
 
 namespace DnaMesDal.Model
@@ -200,6 +199,7 @@ namespace DnaMesDal.Model
 
         #region 关系操作
 
+        [Obsolete]
         private dynamic GetLinkWith<TB>(T roleA, TB roleB) where TB : BaseModel, new()
         {
             var tA = typeof(T);
@@ -217,18 +217,20 @@ namespace DnaMesDal.Model
         /// 通过关系获取另一实体类
         /// </summary>
         /// <typeparam name="TB">要获得的对象</typeparam>
+        /// <typeparam name="TLink">特殊的关系类</typeparam>
         /// <param name="roleA">已知对象</param>
         /// <param name="exp">额外条件表达式</param>
         /// <returns>所求对象集合</returns>
-        public virtual List<TB> GetLinkWith<TB>(T roleA, Expression<Func<TB, bool>> exp = null)
-            where TB : BaseModel, new() 
+        public virtual List<TB> GetLinkWith<TB, TLink>(T roleA, Expression<Func<TB, bool>> exp = null)
+            where TB : BaseModel, new() where TLink : BaseLink, new()
         {
-            var links = DbClient.Queryable<BaseLink>().AS("L_" + typeof(T).Name + typeof(TB).Name)
+            var links = DbClient.Queryable<TLink>().AS("L_" + typeof(T).Name + typeof(TB).Name)
                 .Where(l => l.RoleAId == roleA.ObjId).ToList();
             if (links.IsNullOrEmpty())
             {
                 return null;
             }
+
             var expTemp = new Expressionable<TB>();
             foreach (var link in links)
             {
@@ -239,22 +241,37 @@ namespace DnaMesDal.Model
         }
 
         /// <summary>
+        /// 通过关系获取另一实体类
+        /// </summary>
+        /// <typeparam name="TB">要获得的对象</typeparam>
+        /// <param name="roleA">已知对象</param>
+        /// <param name="exp">额外条件表达式</param>
+        /// <returns>所求对象集合</returns>
+        public List<TB> GetLinkWith<TB>(T roleA, Expression<Func<TB, bool>> exp = null)
+            where TB : BaseModel, new()
+        {
+            return GetLinkWith<TB, BaseLink>(roleA, exp);
+        }
+
+        /// <summary>
         /// 建立关系
         /// </summary>
         /// <typeparam name="TB"></typeparam>
         /// <param name="roleA"></param>
         /// <param name="roleB"></param>
         /// <returns></returns>
-        public virtual bool SetLinkWith<TB>(T roleA, TB roleB) where TB : BaseModel, new()
+        public bool SetLinkWith<TB>(T roleA, TB roleB) where TB : BaseModel, new()
         {
             if (!IsExist(roleA))
             {
-                throw new ArgumentException($"{nameof(roleA)}不存在",nameof(roleA));
+                throw new ArgumentException($"{nameof(roleA)}不存在", nameof(roleA));
             }
+
             if (!IsExist(roleB))
             {
-                throw new ArgumentException($"{nameof(roleB)}不存在",nameof(roleB));
+                throw new ArgumentException($"{nameof(roleB)}不存在", nameof(roleB));
             }
+
             var link = new BaseLink
             {
                 RoleAId = roleA.ObjId,
@@ -262,6 +279,7 @@ namespace DnaMesDal.Model
             };
             return InsertOrUpdate(link);
         }
+
         #endregion
 
         #endregion
