@@ -16,6 +16,7 @@ using Devart.Data.PostgreSql;
 using DnaLib.Global;
 using DnaLib.Helper;
 using MySql.Data.MySqlClient;
+using Oracle.ManagedDataAccess.Client;
 using SqlSugar;
 
 namespace DnaLib.Config
@@ -207,12 +208,13 @@ namespace DnaLib.Config
                     };
                     break;
                 case DbType.Oracle:
-                    dsBuilder = new OracleConnectionStringBuilder
+                    dsBuilder = new Oracle.ManagedDataAccess.Client.OracleConnectionStringBuilder
                     {
-                        DataSource = DataSource,
+                        DataSource=DataSource,
                         UserID = UserId,
                         Password = Password,
                         Pooling = true,
+                        ConnectionTimeout = Timeout,
                     };
                     break;
                 case DbType.PostgreSQL:
