@@ -159,7 +159,7 @@ namespace DnaMesDal.Model
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public new bool Update(T model)
+        public bool Update<TB>(TB model) where TB : BaseModel, new()
         {
             if (model == null) throw new ArgumentNullException(nameof(model));
             var m = DbClient.Queryable<T>().Where(BuildWhereString(model)).Single(); //查询库内该数据ObjId并赋值给新model
@@ -191,7 +191,7 @@ namespace DnaMesDal.Model
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public bool InsertOrUpdate(T model)
+        public bool InsertOrUpdate<TB>(TB model) where TB : BaseModel, new()
         {
             return IsExist(model) ? Update(model) : Insert(model);
         }
@@ -237,15 +237,29 @@ namespace DnaMesDal.Model
 
             return DbClient.Queryable<TB>().Where(expTemp.And(exp).ToExpression()).ToList();
         }
-
+        /// <summary>
+        /// 建立关系
+        /// </summary>
+        /// <typeparam name="TB"></typeparam>
+        /// <param name="roleA"></param>
+        /// <param name="roleB"></param>
+        /// <returns></returns>
         public virtual bool SetLinkWith<TB>(T roleA, TB roleB) where TB : BaseModel, new()
         {
+            if (!IsExist(roleA))
+            {
+                throw new ArgumentException($"{nameof(roleA)}不存在",nameof(roleA));
+            }
+            if (!IsExist(roleB))
+            {
+                throw new ArgumentException($"{nameof(roleB)}不存在",nameof(roleB));
+            }
             var link = new BaseLink
             {
                 RoleAId = roleA.ObjId,
                 RoleBId = roleB.ObjId,
             };
-            return Insert(link);
+            return InsertOrUpdate(link);
         }
         #endregion
 
