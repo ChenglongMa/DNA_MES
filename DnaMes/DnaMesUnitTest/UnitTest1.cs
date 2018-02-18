@@ -21,16 +21,15 @@ namespace DnaMesUnitTest
             {
                 ObjId = 13,
                 EmpId = "100002",
-                Name = "user1",
-                Password = "admin",
+                Name = "周杰伦",
+                Password = "jaychou",
             };
 
             var dal = new BaseDal<User>();
-            //dal.Insert(user);
-            Assert.AreNotEqual(13,user.ObjId);
+            //Assert.IsTrue(dal.Insert(user));
+            Assert.IsTrue(dal.Update(user));
             //Assert.IsTrue(dal.Delete(user));
 
-            //Assert.AreEqual(2, list.Count);
         }
 
         [TestMethod]

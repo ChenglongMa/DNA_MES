@@ -158,12 +158,10 @@ namespace DnaMesDal.Model
             if (model == null) throw new ArgumentNullException(nameof(model));
             if (!IsExist(model))
             {
-                throw new Exception($"删：{nameof(model)}.Obj ID:{model.ObjId},该数据不存在");
+                throw new ArgumentException($"删：{nameof(model)}.Obj ID:{model.ObjId},该数据不存在");
             }
-            var m = DbClient.Queryable<T>().Where(BuildWhereString(model)).Single(); //查询库内该数据ObjId并赋值给新model
-            //model.ObjId = m.ObjId;
+
             return DbClient.Deleteable<T>().Where(BuildWhereString(model)).ExecuteCommandHasChange();
-            return DbClient.Deleteable(model).Where(BuildWhereString(model)).ExecuteCommandHasChange();
         }
 
         #endregion
@@ -178,9 +176,15 @@ namespace DnaMesDal.Model
         public bool Update<TB>(TB model) where TB : BaseModel, new()
         {
             if (model == null) throw new ArgumentNullException(nameof(model));
+            if (!IsExist(model))
+            {
+                throw new ArgumentException($"改：{nameof(model)}.Obj ID:{model.ObjId},该数据不存在");
+            }
             var m = DbClient.Queryable<T>().Where(BuildWhereString(model)).Single(); //查询库内该数据ObjId并赋值给新model
             model.ObjId = m.ObjId;
             model.ModifiedTime = DateTime.Now;
+            model.Creator = m.Creator;
+            model.CreationTime = m.CreationTime;
             return DbClient.Updateable(model).ExecuteCommandHasChange();
         }
 
@@ -217,6 +221,7 @@ namespace DnaMesDal.Model
         {
             return DbClient.Queryable<T>().Where(whereString).ToList();
         }
+
         /// <summary>
         /// 根据condition List获取相应Model集合
         /// </summary>
@@ -226,6 +231,7 @@ namespace DnaMesDal.Model
         {
             return DbClient.Queryable<T>().Where(cons).ToList();
         }
+
         #endregion
 
         #region 其他

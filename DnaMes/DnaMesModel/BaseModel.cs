@@ -16,7 +16,7 @@ namespace DnaMesModel
     public abstract class BaseModel
     {
         //[DbColumn(IsNullable = false)] public abstract int ClassId { get;}
-
+        //[Obsolete("不建议主动修改")]
         [DnaColumn(IsNullable = false, IsPrimaryKey = true, IsIdentity = true, IsOnlyIgnoreInsert = true)]
         public int ObjId { get; set; } = -1;
 
