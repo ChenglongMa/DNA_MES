@@ -56,7 +56,7 @@ namespace DnaMesDal.Model
             if (model == null) throw new ArgumentNullException(nameof(model));
             if (!IsExist(model))
             {
-                throw new ArgumentException($"删：{nameof(model)}.Obj ID:{model.ObjId},该数据不存在");
+                throw new ArgumentException($"删：{typeof(T).Name}[{model.ObjId}],该数据不存在");
             }
 
             return DbClient.Deleteable<T>().Where(BuildWhereString(model)).ExecuteCommandHasChange();
@@ -121,7 +121,7 @@ namespace DnaMesDal.Model
         {
             if (!IsExist(roleA))
             {
-                throw new ArgumentException($"{nameof(roleA)}不存在", nameof(roleA));
+                throw new ArgumentException($"{typeof(T).Name}[{roleA.ObjId}]不存在", nameof(roleA));
             }
 
             Get(ref roleA);
@@ -251,7 +251,7 @@ namespace DnaMesDal.Model
             if (model == null) throw new ArgumentNullException(nameof(model));
             if (IsExist(model))
             {
-                throw new ArgumentException($"增：{nameof(model)}.Obj ID:{model.ObjId},该数据已存在", nameof(model));
+                throw new ArgumentException($"增：{typeof(T).Name}[{model.ObjId}]:该数据已存在", nameof(model));
             }
 
             if (model.Creator.IsNullOrEmpty())
@@ -279,7 +279,7 @@ namespace DnaMesDal.Model
             if (model == null) throw new ArgumentNullException(nameof(model));
             if (!IsExist(model))
             {
-                throw new ArgumentException($"改：{nameof(model)}.Obj ID:{model.ObjId},该数据不存在");
+                throw new ArgumentException($"改：{typeof(T).Name}[{model.ObjId}]:该数据不存在");
             }
 
             var m = DbClient.Queryable<T>().Where(BuildWhereString(model)).Single(); //查询库内该数据ObjId并赋值给新model
@@ -358,12 +358,12 @@ namespace DnaMesDal.Model
         {
             if (!IsExist(roleA))
             {
-                throw new ArgumentException($"{nameof(roleA)}不存在", nameof(roleA));
+                throw new ArgumentException($"{typeof(TA).Name}[{roleA.ObjId}]不存在", nameof(roleA));
             }
 
             if (!IsExist(roleB))
             {
-                throw new ArgumentException($"{nameof(roleB)}不存在", nameof(roleB));
+                throw new ArgumentException($"{typeof(TB).Name}[{roleB.ObjId}]不存在", nameof(roleB));
             }
 
             Get(ref roleA);
