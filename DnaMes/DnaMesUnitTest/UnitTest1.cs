@@ -42,26 +42,5 @@ namespace DnaMesUnitTest
             //Assert.IsTrue(dal.Delete(user));
         }
 
-        [TestMethod]
-        public void BuildUserTable()
-        {
-            var dbInfo = DbConfigLib.GetDbInfo();
-            using (var db = new SqlSugarClient(new ConnectionConfig
-            {
-                ConnectionString = dbInfo.ToString(),
-                DbType = dbInfo.DbType,
-                IsAutoCloseConnection = true,
-                InitKeyType = InitKeyType.Attribute,
-            }))
-            {
-                var isAvailable = db.DbMaintenance.IsAnyTable("BasicInfo_User");
-                if (isAvailable) return;
-                Console.WriteLine("可以建表，要继续吗？（y/n）");
-                if (Console.ReadLine()?.ToLower() == "y")
-                {
-                    db.CodeFirst.InitTables(typeof(User));
-                }
-            }
-        }
     }
 }
