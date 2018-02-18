@@ -11,6 +11,7 @@ using System.Configuration;
 using System.Linq;
 using DnaLib.Config;
 using DnaLib.Global;
+using SqlSugar;
 
 namespace DnaLib
 {
@@ -23,6 +24,7 @@ namespace DnaLib
 
         private static readonly Configuration Config =
             ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+
         private static readonly DbConfig DbConfig = Config.GetSection("DbConfig") as DbConfig;
 
         #endregion
@@ -32,10 +34,28 @@ namespace DnaLib
         #endregion
 
         #region 私有方法
-
+        /// <summary>
+        /// 获取所有数据库配置
+        /// </summary>
+        /// <returns></returns>
         private static List<DbInfo> GetDbInfos()
         {
             return DbConfig?.DbCollection.Cast<DbInfo>().ToList();
+        }
+        /// <summary>
+        /// 根据配置获取SugarClient
+        /// </summary>
+        /// <param name="dbInfo"></param>
+        /// <returns></returns>
+        private static SqlSugarClient GetDbClient(DbInfo dbInfo)
+        {
+            return new SqlSugarClient(new ConnectionConfig
+            {
+                ConnectionString = dbInfo.ToString(),
+                DbType = dbInfo.DbType,
+                InitKeyType = InitKeyType.SystemTable, //从数据库读取主键
+                IsAutoCloseConnection = true
+            });
         }
 
         #endregion
@@ -49,7 +69,7 @@ namespace DnaLib
         /// </summary>
         /// <param name="name">模块名称</param>
         /// <returns></returns>
-        public static DbInfo GetDbInfo(DbInfoName name=DbInfoName.MainDb)
+        public static DbInfo GetDbInfo(DbInfoName name = DbInfoName.MainDb)
         {
             return GetDbInfos()?.Find(db => db.Name == name);
         }
@@ -60,10 +80,11 @@ namespace DnaLib
         /// <param name="dbInfo"></param>
         public static void Update(this DbInfo dbInfo)
         {
-            if (GetDbInfo(dbInfo.Name)!=null)
+            if (GetDbInfo(dbInfo.Name) != null)
             {
                 DbConfig.DbCollection.Remove(dbInfo.Name);
             }
+
             DbConfig.DbCollection.Add(dbInfo);
             Config.Save();
         }
@@ -115,6 +136,32 @@ namespace DnaLib
             config.Save(ConfigurationSaveMode.Modified);
             // 强制重新载入配置文件的ConnectionStrings配置节
             ConfigurationManager.RefreshSection(nameof(ConfigurationManager.ConnectionStrings));
+        }
+
+        /// <summary>
+        /// 测试数据库连接
+        /// </summary>
+        /// <param name="dbInfo"></param>
+        /// <param name="errorMessage">错误信息</param>
+        /// <returns></returns>
+        public static bool TestConnection(DbInfo dbInfo,out string errorMessage)
+        {
+            using (var db = GetDbClient(dbInfo))
+            {
+                try
+                {
+                    db.Ado.Open();
+                    db.Ado.Close();
+                }
+                catch (UtilExceptions e)
+                {
+                    errorMessage = e.Message;
+                    return false;
+                }
+            }
+
+            errorMessage = null;
+            return true;
         }
 
         #endregion

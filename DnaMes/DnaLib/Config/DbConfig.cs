@@ -191,7 +191,7 @@ namespace DnaLib.Config
                     {
                         DataSource = DataSource, //连接的数据库的实例或者网络地址
                         InitialCatalog = DbName, //连接的数据库的名称
-                        IntegratedSecurity = true, //是否可以windows登录验证
+                        IntegratedSecurity = false, //是否可以windows登录验证
                         UserID = UserId,
                         Password = Password,
                         Pooling = true, //是否使用连接池
