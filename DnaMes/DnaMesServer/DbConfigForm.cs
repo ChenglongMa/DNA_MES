@@ -20,7 +20,6 @@ namespace DnaMesServer
         {
             InitializeComponent();
             InitialTabPage(pageMES);
-
         }
 
         #region 私有属性
@@ -53,8 +52,9 @@ namespace DnaMesServer
             var dbInfo = new DbInfo
             {
                 Name = DbInfoName.MainDb,
-                DbType = (SqlSugar.DbType)Enum.Parse(typeof(SqlSugar.DbType),cmbMES.SelectedItem as string ?? throw new InvalidOperationException()),
-                DataSource= txtMESServer.Text,
+                DbType = (SqlSugar.DbType) Enum.Parse(typeof(SqlSugar.DbType),
+                    cmbMES.SelectedItem as string ?? throw new InvalidOperationException()),
+                DataSource = txtMESServer.Text,
                 DbName = txtMESDbName.Text,
                 UserId = txtMESUser.Text,
                 Password = txtMESPswd.Text
@@ -70,5 +70,28 @@ namespace DnaMesServer
         }
 
         #endregion
+
+        private void btnSaveMes_Click(object sender, EventArgs e)
+        {
+            var dbInfo = new DbInfo
+            {
+                Name = DbInfoName.MainDb,
+                DbType = (SqlSugar.DbType) Enum.Parse(typeof(SqlSugar.DbType),
+                    cmbMES.SelectedItem as string ?? throw new InvalidOperationException()),
+                DataSource = txtMESServer.Text,
+                DbName = txtMESDbName.Text,
+                UserId = txtMESUser.Text,
+                Password = txtMESPswd.Text
+            };
+            try
+            {
+                dbInfo.Update();
+                MessageBoxHelper.ShowInformationOk("保存成功，重启后生效");
+            }
+            catch (Exception ex)
+            {
+                MessageBoxHelper.ShowError($"保存失败\n错误信息：{ex.Message}");
+            }
+        }
     }
 }

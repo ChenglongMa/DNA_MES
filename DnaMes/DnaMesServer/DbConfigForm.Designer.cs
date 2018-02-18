@@ -103,6 +103,7 @@
             this.btnSaveMes.TabIndex = 25;
             this.btnSaveMes.Text = "保存";
             this.btnSaveMes.UseVisualStyleBackColor = true;
+            this.btnSaveMes.Click += new System.EventHandler(this.btnSaveMes_Click);
             // 
             // label8
             // 
