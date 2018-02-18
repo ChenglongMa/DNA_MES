@@ -44,24 +44,7 @@ namespace DnaMesTest
             //}
 
             #endregion
-            var d=new UserDal();
-            var list = d.GetLinkWith<Domain>(u, t => t.FunctionCode == 10002);
-            var linkDal = new BaseLinkDal<UserDomain>();
-            var links = linkDal.GetLinkWith<User,Domain>(u, t => t.FunctionCode == 10002);
-            
-            foreach (var domain in list)
-            {
-                
-                Console.WriteLine(domain.Name);
 
-            }
-            Console.WriteLine("以上是普通关系类");
-            foreach (var domain in links)
-            {
-                
-                Console.WriteLine(domain.Name);
-            }
-            Console.WriteLine("以上是扩展关系类");
             Console.ReadKey();
 
             //Console.WriteLine(u.IsExist());

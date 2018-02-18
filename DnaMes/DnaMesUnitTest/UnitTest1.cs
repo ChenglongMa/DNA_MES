@@ -1,7 +1,11 @@
 ﻿using System;
+using Castle.Core.Internal;
 using DnaLib;
+using DnaMesDal;
+using DnaMesDal.Model;
 using DnaMesModel.BasicInfo;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using SqlSugar;
 
 namespace DnaMesUnitTest
@@ -10,10 +14,25 @@ namespace DnaMesUnitTest
     public class UnitTest1
     {
         [TestMethod]
+        //[ExpectedException(typeof(ArgumentException))]
         public void TestMethod1()
         {
-            //BuildUserTable();
+            var user = new User
+            {
+                ObjId = 13,
+                EmpId = "100002",
+                Name = "user1",
+                Password = "admin",
+            };
+
+            var dal = new BaseDal<User>();
+            //dal.Insert(user);
+            Assert.AreNotEqual(13,user.ObjId);
+            //Assert.IsTrue(dal.Delete(user));
+
+            //Assert.AreEqual(2, list.Count);
         }
+
         [TestMethod]
         public void BuildUserTable()
         {

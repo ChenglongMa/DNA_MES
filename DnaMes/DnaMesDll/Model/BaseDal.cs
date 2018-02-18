@@ -99,6 +99,21 @@ namespace DnaMesDal.Model
             return whereStr;
         }
 
+        protected static List<ConditionalModel> BuildWhereConditions<TB>(TB model) where TB : BaseModel
+        {
+            if (model == null) throw new ArgumentNullException(nameof(model));
+            var ppts = GetKeyProperties<TB>();
+
+            return (from ppt in ppts
+                let value = ppt.GetValue(model, null)
+                select new ConditionalModel
+                {
+                    ConditionalType = ConditionalType.Equal,
+                    FieldName = ppt.Name,
+                    FieldValue = value.ToString()
+                }).ToList();
+        }
+
         #endregion
 
         #region 公有方法
@@ -115,7 +130,7 @@ namespace DnaMesDal.Model
             if (model == null) throw new ArgumentNullException(nameof(model));
             if (IsExist(model))
             {
-                throw new Exception($"增：{nameof(model)}.Obj ID:{model.ObjId},该数据已存在");
+                throw new ArgumentException($"增：{nameof(model)}.Obj ID:{model.ObjId},该数据已存在", nameof(model));
             }
 
             if (model.Creator.IsNullOrEmpty())
@@ -145,7 +160,9 @@ namespace DnaMesDal.Model
             {
                 throw new Exception($"删：{nameof(model)}.Obj ID:{model.ObjId},该数据不存在");
             }
-
+            var m = DbClient.Queryable<T>().Where(BuildWhereString(model)).Single(); //查询库内该数据ObjId并赋值给新model
+            //model.ObjId = m.ObjId;
+            return DbClient.Deleteable<T>().Where(BuildWhereString(model)).ExecuteCommandHasChange();
             return DbClient.Deleteable(model).Where(BuildWhereString(model)).ExecuteCommandHasChange();
         }
 
@@ -181,6 +198,34 @@ namespace DnaMesDal.Model
             return DbClient.Queryable<TB>().Where(BuildWhereString(model)).Any();
         }
 
+        /// <summary>
+        /// 根据条件获取相应Model集合
+        /// </summary>
+        /// <param name="exp">Lambda表达式</param>
+        /// <returns></returns>
+        public List<T> Get(Expression<Func<T, bool>> exp)
+        {
+            return DbClient.Queryable<T>().Where(exp).ToList();
+        }
+
+        /// <summary>
+        /// 根据SQL Where字符串获取相应Model集合
+        /// </summary>
+        /// <param name="whereString">where 字符串</param>
+        /// <returns></returns>
+        public List<T> Get(string whereString = null)
+        {
+            return DbClient.Queryable<T>().Where(whereString).ToList();
+        }
+        /// <summary>
+        /// 根据condition List获取相应Model集合
+        /// </summary>
+        /// <param name="cons"></param>
+        /// <returns></returns>
+        public List<T> Get(List<IConditionalModel> cons)
+        {
+            return DbClient.Queryable<T>().Where(cons).ToList();
+        }
         #endregion
 
         #region 其他
@@ -221,7 +266,7 @@ namespace DnaMesDal.Model
         /// <param name="roleA">已知对象</param>
         /// <param name="exp">额外条件表达式</param>
         /// <returns>所求对象集合</returns>
-        public virtual List<TB> GetLinkWith<TB, TLink>(T roleA, Expression<Func<TB, bool>> exp = null)
+        protected virtual List<TB> GetLinkWith<TB, TLink>(T roleA, Expression<Func<TB, bool>> exp = null)
             where TB : BaseModel, new() where TLink : BaseLink, new()
         {
             var links = DbClient.Queryable<TLink>().AS("L_" + typeof(T).Name + typeof(TB).Name)
