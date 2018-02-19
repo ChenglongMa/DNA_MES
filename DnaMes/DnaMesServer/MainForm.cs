@@ -82,7 +82,8 @@ namespace DnaMesServer
 
         private void miInitial_Click(object sender, EventArgs e)
         {
-
+            ServorInitilizeForm frm = new ServorInitilizeForm();
+            frm.ShowDialog();
         }
     }
 }
