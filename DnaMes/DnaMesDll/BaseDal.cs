@@ -295,7 +295,7 @@ namespace DnaMesDal
         #region 查
 
         /// <summary>
-        /// 根据Unique列查询是否已在数据库中存在
+        /// 根据关键属性查询是否已在数据库中存在
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
@@ -344,8 +344,39 @@ namespace DnaMesDal
             var linkInstance = Activator.CreateInstance(linkType, roleA, roleB);
             return linkInstance;
         }
+        private bool IsExistLink<TA, TB>(TA roleA, TB roleB) where TA : BaseModel, new() where TB : BaseModel, new()
+        {
+            if (!IsExist(roleA)|| !IsExist(roleB))
+            {
+                return false;
+            }
+            Get(ref roleA);
+            Get(ref roleB);
+            var link = new BaseLink
+            {
+                RoleAId = roleA.ObjId,
+                RoleBId = roleB.ObjId,
+                //Creator = SysInfo.EmpId + "@" + SysInfo.UserName,
+                //CreationTime = DateTime.Now,
+                //Modifier = SysInfo.EmpId + "@" + SysInfo.UserName,
+                //ModifiedTime = DateTime.Now,
+            };
+            var tableName = "L_" + typeof(TA).Name + typeof(TB).Name;
+            return DbClient.Queryable<BaseLink>().AS(tableName).Where(BuildWhereString(link)).Any();
+        }
+        //todo:删除关系方法未完成
+        public bool DeleteLinkWith<TA,TB>(TA roleA,TB roleB) where TA : BaseModel, new() where TB : BaseModel, new()
+        {
 
+            var tableName = "L_" + typeof(TA).Name + typeof(TB).Name;
+            if (IsExistLink(roleA,roleB))
+            {
+                return DbClient.Deleteable(link).AS(tableName).ExecuteCommandHasChange();
+            }
 
+            throw new ArgumentException($"{typeof(TA).Name}[{roleA.ObjId}]与{typeof(TB).Name}[{roleB.ObjId}]关系不存在",
+                tableName);
+        }
         /// <summary>
         /// 建立关系
         /// </summary>
