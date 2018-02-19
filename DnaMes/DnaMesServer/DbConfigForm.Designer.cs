@@ -117,10 +117,10 @@
             // 
             // txtMESDbName
             // 
-            this.txtMESDbName.Location = new System.Drawing.Point(141, 129);
+            this.txtMESDbName.Location = new System.Drawing.Point(142, 129);
             this.txtMESDbName.Margin = new System.Windows.Forms.Padding(4);
             this.txtMESDbName.Name = "txtMESDbName";
-            this.txtMESDbName.Size = new System.Drawing.Size(199, 25);
+            this.txtMESDbName.Size = new System.Drawing.Size(197, 25);
             this.txtMESDbName.TabIndex = 24;
             // 
             // label9
@@ -165,7 +165,7 @@
             // 
             // txtMESPswd
             // 
-            this.txtMESPswd.Location = new System.Drawing.Point(140, 212);
+            this.txtMESPswd.Location = new System.Drawing.Point(142, 212);
             this.txtMESPswd.Margin = new System.Windows.Forms.Padding(4);
             this.txtMESPswd.Name = "txtMESPswd";
             this.txtMESPswd.Size = new System.Drawing.Size(197, 25);

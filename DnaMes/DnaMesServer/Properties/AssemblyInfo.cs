@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("DnaMesServer")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("DNA制造过程管理系统")]
+[assembly: AssemblyDescription("电子邮件：dna.studio@outlook.com")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("DnaMesServer")]
-[assembly: AssemblyCopyright("Copyright ©  2018")]
+[assembly: AssemblyCompany("DNA Studio")]
+[assembly: AssemblyProduct("DNA制造过程管理系统")]
+[assembly: AssemblyCopyright("Copyright ©  DNA Studio 2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

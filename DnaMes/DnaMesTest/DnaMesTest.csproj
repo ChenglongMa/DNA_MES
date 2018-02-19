@@ -74,10 +74,6 @@
       <Project>{5ee75c11-d636-447e-bd31-013bfb144dfd}</Project>
       <Name>DnaLib</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DnaMesBll\DnaMesBll.csproj">
-      <Project>{45fd2ff0-4e6c-4e15-9b65-ada1bae41a88}</Project>
-      <Name>DnaMesBll</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DnaMesDll\DnaMesDal.csproj">
       <Project>{3651bc4a-26e8-46f1-8221-181bac92e0e8}</Project>
       <Name>DnaMesDal</Name>
