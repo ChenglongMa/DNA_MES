@@ -206,9 +206,9 @@
             this.label7.Location = new System.Drawing.Point(123, 34);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(226, 23);
+            this.label7.Size = new System.Drawing.Size(219, 23);
             this.label7.TabIndex = 18;
-            this.label7.Text = "CAXA制造过程管理数据服务";
+            this.label7.Text = "DNA制造过程管理数据服务";
             // 
             // label2
             // 
@@ -454,8 +454,10 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.mainMenu);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
-            this.Text = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "DNA制造过程管理服务端";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.SizeChanged += new System.EventHandler(this.MainForm_SizeChanged);
             this.groupBox1.ResumeLayout(false);
