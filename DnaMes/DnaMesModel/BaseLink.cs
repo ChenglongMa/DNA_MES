@@ -14,9 +14,6 @@ namespace DnaMesModel
     /// <summary>
     /// 基础关系模型
     /// 数据库中表名格式为 "L_"+"roleA类名"+"roleB类名"
-    /// 1. 必须将关系类放到roleA所在文件夹内
-    /// 2. 类名必须为roleA+roleB格式
-    /// 例：User 和 Domain的关系类为UserDomain 路径与User相同
     /// </summary>
     public class BaseLink : BaseModel
     {

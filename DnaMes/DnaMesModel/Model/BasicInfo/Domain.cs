@@ -8,7 +8,7 @@
 using DnaLib.Config;
 using SqlSugar;
 
-namespace DnaMesModel.BasicInfo
+namespace DnaMesModel.Model.BasicInfo
 {
     /// <summary>
     /// 权限类

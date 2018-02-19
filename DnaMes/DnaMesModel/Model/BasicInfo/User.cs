@@ -9,7 +9,7 @@ using DnaLib.Config;
 using DnaLib.Helper;
 using SqlSugar;
 
-namespace DnaMesModel.BasicInfo
+namespace DnaMesModel.Model.BasicInfo
 {
     /// <summary>
     /// 员工信息类

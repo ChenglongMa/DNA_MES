@@ -2,7 +2,8 @@
 using System.Reflection;
 using DnaLib;
 using DnaMesDal.Link;
-using DnaMesModel.BasicInfo;
+using DnaMesModel.Link.BasicInfo;
+using DnaMesModel.Model.BasicInfo;
 using SqlSugar;
 
 namespace DnaMesTest

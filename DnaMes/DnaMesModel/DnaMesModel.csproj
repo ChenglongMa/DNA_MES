@@ -71,10 +71,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseLink.cs" />
-    <Compile Include="BasicInfo\UserDomain.cs" />
+    <Compile Include="Link\BasicInfo\UserDomain.cs" />
     <Compile Include="BaseModel.cs" />
-    <Compile Include="BasicInfo\Domain.cs" />
-    <Compile Include="BasicInfo\User.cs" />
+    <Compile Include="Model\BasicInfo\Domain.cs" />
+    <Compile Include="Model\BasicInfo\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

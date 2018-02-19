@@ -5,15 +5,16 @@
 //  Copyright © DNA Studio 2018. All rights reserved.
 // ****************************************************
 
+using DnaMesModel.Model.BasicInfo;
 using SqlSugar;
 
-namespace DnaMesModel.BasicInfo
+namespace DnaMesModel.Link.BasicInfo
 {
     /// <inheritdoc />
     /// <summary>
     /// 用户与权限关系类
     /// </summary>
-    [SugarTable("L_UserDomain")]
+    [SugarTable("L_"+nameof(User)+nameof(Domain))]
     public class UserDomain : BaseLink
     {
 
