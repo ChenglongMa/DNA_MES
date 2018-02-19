@@ -15,8 +15,10 @@ namespace DnaMesServer
         public MainForm()
         {
             InitializeComponent();
+            dataProcessLabel.Text = @"就绪";
+            statusLabel.Text = @"就绪";
         }
-
+        private string _strExit;
         private void miDBSet_Click(object sender, EventArgs e)
         {
             var form = new DbConfigForm();
@@ -28,6 +30,58 @@ namespace DnaMesServer
         {
             var form=new AboutBox();
             form.ShowDialog(this);
+
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (_strExit != "exit")
+            {
+                e.Cancel = true;
+                WindowState = FormWindowState.Minimized;
+            }
+        }
+
+        private void MainForm_SizeChanged(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Minimized)
+            {
+                Hide();
+                notifyIcon1.Visible = true;
+                //ShowInTaskbar = false;
+            }
+        }
+
+        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            Visible = true;
+            WindowState = FormWindowState.Normal;
+            //ShowInTaskbar = true;
+            notifyIcon1.Visible = false;
+        }
+
+        private void openTSMI_Click(object sender, EventArgs e)
+        {
+            Visible = true;
+            WindowState = FormWindowState.Normal;
+            //ShowInTaskbar = true;
+            notifyIcon1.Visible = false;
+        }
+
+        private void exitTSMI_Click(object sender, EventArgs e)
+        {
+            _strExit = "exit";
+            Close();
+        }
+
+        private void miExit_Click(object sender, EventArgs e)
+        {
+            _strExit = "exit";
+            Close();
+        }
+
+        private void miInitial_Click(object sender, EventArgs e)
+        {
 
         }
     }

@@ -60,9 +60,6 @@
             this.miTools = new System.Windows.Forms.ToolStripMenuItem();
             this.miDBSet = new System.Windows.Forms.ToolStripMenuItem();
             this.miInitial = new System.Windows.Forms.ToolStripMenuItem();
-            this.miBackDatabase = new System.Windows.Forms.ToolStripMenuItem();
-            this.eRP接口配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cAPP接口配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.miExit = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenu = new System.Windows.Forms.MenuStrip();
             this.miFile = new System.Windows.Forms.ToolStripMenuItem();
@@ -282,6 +279,7 @@
             this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
             this.notifyIcon1.Text = "DNA制造过程管理服务端";
             this.notifyIcon1.Visible = true;
+            this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
             // 
             // contextMenuStrip1
             // 
@@ -294,14 +292,16 @@
             // openTSMI
             // 
             this.openTSMI.Name = "openTSMI";
-            this.openTSMI.Size = new System.Drawing.Size(108, 24);
+            this.openTSMI.Size = new System.Drawing.Size(175, 24);
             this.openTSMI.Text = "打开";
+            this.openTSMI.Click += new System.EventHandler(this.openTSMI_Click);
             // 
             // exitTSMI
             // 
             this.exitTSMI.Name = "exitTSMI";
-            this.exitTSMI.Size = new System.Drawing.Size(108, 24);
+            this.exitTSMI.Size = new System.Drawing.Size(175, 24);
             this.exitTSMI.Text = "退出";
+            this.exitTSMI.Click += new System.EventHandler(this.exitTSMI_Click);
             // 
             // picErp
             // 
@@ -384,10 +384,7 @@
             // 
             this.miTools.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.miDBSet,
-            this.miInitial,
-            this.miBackDatabase,
-            this.eRP接口配置ToolStripMenuItem,
-            this.cAPP接口配置ToolStripMenuItem});
+            this.miInitial});
             this.miTools.Name = "miTools";
             this.miTools.Size = new System.Drawing.Size(70, 24);
             this.miTools.Text = "工具(&T)";
@@ -395,40 +392,23 @@
             // miDBSet
             // 
             this.miDBSet.Name = "miDBSet";
-            this.miDBSet.Size = new System.Drawing.Size(183, 26);
+            this.miDBSet.Size = new System.Drawing.Size(181, 26);
             this.miDBSet.Text = "数据库配置(&D)";
             this.miDBSet.Click += new System.EventHandler(this.miDBSet_Click);
             // 
             // miInitial
             // 
             this.miInitial.Name = "miInitial";
-            this.miInitial.Size = new System.Drawing.Size(183, 26);
+            this.miInitial.Size = new System.Drawing.Size(181, 26);
             this.miInitial.Text = "系统初始化(&I)";
-            // 
-            // miBackDatabase
-            // 
-            this.miBackDatabase.Name = "miBackDatabase";
-            this.miBackDatabase.Size = new System.Drawing.Size(183, 26);
-            this.miBackDatabase.Text = "数据备份(&B)";
-            this.miBackDatabase.Visible = false;
-            // 
-            // eRP接口配置ToolStripMenuItem
-            // 
-            this.eRP接口配置ToolStripMenuItem.Name = "eRP接口配置ToolStripMenuItem";
-            this.eRP接口配置ToolStripMenuItem.Size = new System.Drawing.Size(183, 26);
-            this.eRP接口配置ToolStripMenuItem.Text = "ERP接口配置";
-            // 
-            // cAPP接口配置ToolStripMenuItem
-            // 
-            this.cAPP接口配置ToolStripMenuItem.Name = "cAPP接口配置ToolStripMenuItem";
-            this.cAPP接口配置ToolStripMenuItem.Size = new System.Drawing.Size(183, 26);
-            this.cAPP接口配置ToolStripMenuItem.Text = "CAPP接口配置";
+            this.miInitial.Click += new System.EventHandler(this.miInitial_Click);
             // 
             // miExit
             // 
             this.miExit.Name = "miExit";
-            this.miExit.Size = new System.Drawing.Size(132, 26);
+            this.miExit.Size = new System.Drawing.Size(181, 26);
             this.miExit.Text = "退出(&E)";
+            this.miExit.Click += new System.EventHandler(this.miExit_Click);
             // 
             // mainMenu
             // 
@@ -476,6 +456,8 @@
             this.Controls.Add(this.mainMenu);
             this.Name = "MainForm";
             this.Text = "MainForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
+            this.SizeChanged += new System.EventHandler(this.MainForm_SizeChanged);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.statusStrip2.ResumeLayout(false);
@@ -527,9 +509,6 @@
         private System.Windows.Forms.ToolStripMenuItem miTools;
         private System.Windows.Forms.ToolStripMenuItem miDBSet;
         private System.Windows.Forms.ToolStripMenuItem miInitial;
-        private System.Windows.Forms.ToolStripMenuItem miBackDatabase;
-        private System.Windows.Forms.ToolStripMenuItem eRP接口配置ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem cAPP接口配置ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem miExit;
         private System.Windows.Forms.MenuStrip mainMenu;
         private System.Windows.Forms.ToolStripMenuItem miFile;
