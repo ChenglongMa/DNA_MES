@@ -3,7 +3,6 @@ using System.Linq;
 using Castle.Core.Internal;
 using DnaLib;
 using DnaMesDal;
-using DnaMesDal.Model;
 using DnaMesModel.BasicInfo;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;

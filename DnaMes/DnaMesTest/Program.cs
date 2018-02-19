@@ -2,8 +2,6 @@
 using System.Reflection;
 using DnaLib;
 using DnaMesDal.Link;
-using DnaMesDal.Model;
-using DnaMesDal.Model.BasicInfo;
 using DnaMesModel.BasicInfo;
 using SqlSugar;
 

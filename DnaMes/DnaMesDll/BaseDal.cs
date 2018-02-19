@@ -17,7 +17,7 @@ using DnaLib.Helper;
 using DnaMesModel;
 using SqlSugar;
 
-namespace DnaMesDal.Model
+namespace DnaMesDal
 {
     /// <summary>
     /// 数据库操作底层
