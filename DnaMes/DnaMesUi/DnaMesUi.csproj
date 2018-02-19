@@ -75,10 +75,19 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Shared\Dialog\MESLoginDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Shared\Dialog\MESLoginDialog.Designer.cs">
+      <DependentUpon>MESLoginDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shared\Dialog\MESLoginDialog.resx">
+      <DependentUpon>MESLoginDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -115,6 +124,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DnaLib\DnaLib.csproj">
+      <Project>{5EE75C11-D636-447E-BD31-013BFB144DFD}</Project>
+      <Name>DnaLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

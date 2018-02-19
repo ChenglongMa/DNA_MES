@@ -57,17 +57,7 @@ namespace DnaMesBll.BasicInfo
         }
 
         #endregion
-        public static User GetUserByEmpId(string empId)
-        {
-            return Db.GetById(empId);//todo:待完善
-        }
 
-        public static List<User> GetUsers() => Db.GetList();
-
-        public static bool IsExist(this User user)
-        {
-            return Db.IsExist(user);
-        }
         #endregion
     }
 }

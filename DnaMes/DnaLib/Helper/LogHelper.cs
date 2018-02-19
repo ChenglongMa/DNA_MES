@@ -35,7 +35,7 @@ namespace DnaLib.Helper
             }
         }
 
-        public static void WriteErrorLog(string fileName, Exception ex, string description = null)
+        public static void WriteErrorLog(Exception ex, string fileName,  string description = null)
         {
             var path = RootPath;
             var strFile = "\\ErrorLog_" + fileName + DateTime.Now.ToString("yyyyMMdd") + ".log";
@@ -64,7 +64,7 @@ namespace DnaLib.Helper
             }
         }
 
-        public static void WriteWarningLog(string fileName, string message)
+        public static void WriteWarningLog(string message,string fileName)
         {
             var path = RootPath;
             var strFile = "\\WarningLog_" + fileName + DateTime.Now.ToString("yyyyMMdd") + ".log";
