@@ -344,39 +344,61 @@ namespace DnaMesDal
             var linkInstance = Activator.CreateInstance(linkType, roleA, roleB);
             return linkInstance;
         }
+        /// <summary>
+        /// 检查关系是否存在
+        /// </summary>
+        /// <typeparam name="TA"></typeparam>
+        /// <typeparam name="TB"></typeparam>
+        /// <param name="roleA"></param>
+        /// <param name="roleB"></param>
+        /// <returns></returns>
         private bool IsExistLink<TA, TB>(TA roleA, TB roleB) where TA : BaseModel, new() where TB : BaseModel, new()
         {
-            if (!IsExist(roleA)|| !IsExist(roleB))
+            if (!IsExist(roleA) || !IsExist(roleB))
             {
                 return false;
             }
+
             Get(ref roleA);
             Get(ref roleB);
             var link = new BaseLink
             {
                 RoleAId = roleA.ObjId,
                 RoleBId = roleB.ObjId,
-                //Creator = SysInfo.EmpId + "@" + SysInfo.UserName,
-                //CreationTime = DateTime.Now,
-                //Modifier = SysInfo.EmpId + "@" + SysInfo.UserName,
-                //ModifiedTime = DateTime.Now,
             };
             var tableName = "L_" + typeof(TA).Name + typeof(TB).Name;
             return DbClient.Queryable<BaseLink>().AS(tableName).Where(BuildWhereString(link)).Any();
         }
-        //todo:删除关系方法未完成
-        public bool DeleteLinkWith<TA,TB>(TA roleA,TB roleB) where TA : BaseModel, new() where TB : BaseModel, new()
-        {
 
+        /// <summary>
+        /// 删除关系
+        /// </summary>
+        /// <typeparam name="TA"></typeparam>
+        /// <typeparam name="TB"></typeparam>
+        /// <param name="roleA"></param>
+        /// <param name="roleB"></param>
+        /// <returns></returns>
+        public bool DeleteLinkWith<TA, TB>(TA roleA, TB roleB) where TA : BaseModel, new() where TB : BaseModel, new()
+        {
             var tableName = "L_" + typeof(TA).Name + typeof(TB).Name;
-            if (IsExistLink(roleA,roleB))
+            if (IsExistLink(roleA, roleB))
             {
-                return DbClient.Deleteable(link).AS(tableName).ExecuteCommandHasChange();
+                var link = new BaseLink
+                {
+                    RoleAId = roleA.ObjId,
+                    RoleBId = roleB.ObjId,
+                    //Creator = SysInfo.EmpId + "@" + SysInfo.UserName,
+                    //CreationTime = DateTime.Now,
+                    //Modifier = SysInfo.EmpId + "@" + SysInfo.UserName,
+                    //ModifiedTime = DateTime.Now,
+                };
+                return DbClient.Deleteable(link).AS(tableName).Where(BuildWhereString(link)).ExecuteCommandHasChange();
             }
 
             throw new ArgumentException($"{typeof(TA).Name}[{roleA.ObjId}]与{typeof(TB).Name}[{roleB.ObjId}]关系不存在",
                 tableName);
         }
+
         /// <summary>
         /// 建立关系
         /// </summary>
@@ -387,18 +409,13 @@ namespace DnaMesDal
         /// <returns></returns>
         public bool SetLinkWith<TA, TB>(TA roleA, TB roleB) where TA : BaseModel, new() where TB : BaseModel, new()
         {
-            if (!IsExist(roleA))
+            var tableName = "L_" + typeof(TA).Name + typeof(TB).Name;
+            if (IsExistLink(roleA, roleB))
             {
-                throw new ArgumentException($"{typeof(TA).Name}[{roleA.ObjId}]不存在", nameof(roleA));
+                throw new ArgumentException($"{typeof(TA).Name}[{roleA.ObjId}]与{typeof(TB).Name}[{roleB.ObjId}]关系已存在",
+                    tableName);
             }
 
-            if (!IsExist(roleB))
-            {
-                throw new ArgumentException($"{typeof(TB).Name}[{roleB.ObjId}]不存在", nameof(roleB));
-            }
-
-            Get(ref roleA);
-            Get(ref roleB);
             var link = new BaseLink
             {
                 RoleAId = roleA.ObjId,
@@ -408,17 +425,7 @@ namespace DnaMesDal
                 Modifier = SysInfo.EmpId + "@" + SysInfo.UserName,
                 ModifiedTime = DateTime.Now,
             };
-            var tableName = "L_" + typeof(TA).Name + typeof(TB).Name;
-
-            var isExist = DbClient.Queryable<BaseLink>().AS(tableName).Where(BuildWhereString(link)).Any();
-
-            if (!isExist)
-            {
-                return DbClient.Insertable(link).AS(tableName).ExecuteCommandIdentityIntoEntity();
-            }
-
-            throw new ArgumentException($"{typeof(TA).Name}[{roleA.ObjId}]与{typeof(TB).Name}[{roleB.ObjId}]关系已存在",
-                tableName);
+            return DbClient.Insertable(link).AS(tableName).ExecuteCommandIdentityIntoEntity();
         }
 
         #endregion
