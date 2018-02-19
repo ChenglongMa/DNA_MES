@@ -37,9 +37,12 @@ namespace DnaLib.Global
         /// 登录时间
         /// </summary>
         public static DateTime LoginTime { get; set; }
-
         /// <summary>
-        /// 内网IP地址
+        /// 服务器IP地址
+        /// </summary>
+        public static IPAddress ServerIp { get; set; }
+        /// <summary>
+        /// 本机内网IP地址
         /// </summary>
         public static IPAddress InterIp
         {
