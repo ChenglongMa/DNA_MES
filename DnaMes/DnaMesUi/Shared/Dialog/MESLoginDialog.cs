@@ -24,10 +24,10 @@ namespace DnaMesUi.Shared.Dialog
                 Dictionary<string, string> loginDict = LoginBll.GetLoginInfo();
                 if (loginDict != null && loginDict.ContainsKey("LoginName"))
                     txtBoxUserName.Text = loginDict["LoginName"];
-               #if DEBUG
+#if DEBUG
                 txtBoxUserName.Text = "sy";
                 txtBoxPassword.Text = "";
-               #endif
+#endif
                 if (loginDict != null && loginDict.ContainsKey("LoginIP"))
                     txtMESServerIP.Text = loginDict["LoginIP"];
                 SetDefaultStatus();
@@ -68,7 +68,7 @@ namespace DnaMesUi.Shared.Dialog
                 string strPassword;
                 string staffno = null;
                 string serverIp = txtMESServerIP.Text;
-                if(serverIp.IsNullOrEmpty())
+                if (serverIp.IsNullOrEmpty())
                     serverIp = LoginBll.GetIPFromLocalFile();
                 SysInfo.ServerIp = IPAddress.Parse(serverIp);
                 txtMESServerIP.Text = serverIp;
@@ -88,8 +88,8 @@ namespace DnaMesUi.Shared.Dialog
                     MessageBoxHelper.ShowWarning("更新失败，系统自动从本地获取登入信息！");
                 }
 
-                            
-                if (checkBoxStaffnoLogin.Checked==false) //员工姓名登入
+
+                if (checkBoxStaffnoLogin.Checked == false) //员工姓名登入
                 {
                     SetUserNameLogin();
                     strUserName = txtBoxUserName.Text;
@@ -122,6 +122,7 @@ namespace DnaMesUi.Shared.Dialog
                         MessageBoxHelper.ShowWarning("不存在此工号的人员！");
                         return;
                     }
+
                     bool rtnrslt2 = LoginBll.CheckUser(person.name, person.password, txtMESServerIP.Text);
                     if (rtnrslt2 == true)
                         LoginBll.RegisterUser();
@@ -137,19 +138,20 @@ namespace DnaMesUi.Shared.Dialog
                     strUserName = person.name;
                     SysInfo.EmpId = staffno;
                 }
+
                 SysInfo.UserName = strUserName;
-                SysInfo.WebService = "http://" + serverIp.Replace("http://", "").Replace("\r\n", "").Replace("/", "") + ":" + ConfigurationManager.AppSettings["WebPort"] + "/" +
-                       ConfigurationManager.AppSettings["WebServiceName"] +  "/FileService.asmx"; //报表设计器
+                SysInfo.WebService = "http://" + serverIp.Replace("http://", "").Replace("\r\n", "").Replace("/", "") +
+                                     ":" + ConfigurationManager.AppSettings["WebPort"] + "/" +
+                                     ConfigurationManager.AppSettings["WebServiceName"] + "/FileService.asmx"; //报表设计器
                 SaveTextBoxInfo();
                 DialogResult = DialogResult.OK;
             }
             catch (Exception ex)
             {
                 Cursor = Cursors.Default;
-                LogHelper.WriteErrorLog(ex,"Login");
+                LogHelper.WriteErrorLog(ex, "Login");
                 MessageBoxHelper.ShowWarning(ex.Message);
             }
-
         }
 
 
@@ -184,11 +186,9 @@ namespace DnaMesUi.Shared.Dialog
             }
             catch (Exception ex)
             {
-
                 LogHelper.WriteErrorLog(ex, "Login");
                 MessageBoxHelper.ShowWarning("登入系统失败！");
             }
-
         }
 
         private void pdcBtnSaveIP_Click(object sender, EventArgs e)
@@ -207,7 +207,6 @@ namespace DnaMesUi.Shared.Dialog
                 LogHelper.WriteErrorLog(ex, "Login");
                 MessageBoxHelper.ShowWarning("登入系统失败！");
             }
-
         }
 
         private void SetDefaultStatus()
@@ -246,8 +245,8 @@ namespace DnaMesUi.Shared.Dialog
             //LoginBll.SetDbInfo(dbInfo2);
 
             //IMessageBoxPDC.ShowWarning("请您点击退出然后再重新启动系统！");
-
         }
+
         /// <summary>
         /// 使用用户名登录
         /// </summary>
@@ -283,6 +282,5 @@ namespace DnaMesUi.Shared.Dialog
                 btnLogin_Click(null, null);
             }
         }
-
     }
 }

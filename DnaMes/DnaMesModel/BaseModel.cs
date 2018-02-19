@@ -9,6 +9,7 @@ using System;
 using System.Reflection;
 using DnaLib.Config;
 using DnaLib.Global;
+using DnaMesModel.Shared;
 
 namespace DnaMesModel
 {

@@ -15,6 +15,7 @@ using DnaLib.Config;
 using DnaLib.Global;
 using DnaLib.Helper;
 using DnaMesModel;
+using DnaMesModel.Shared;
 using SqlSugar;
 
 namespace DnaMesDal

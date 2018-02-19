@@ -81,7 +81,6 @@
     <Compile Include="DbConfigLib.cs" />
     <Compile Include="Helper\EncryptHelper.cs" />
     <Compile Include="Global\DbInfoName.cs" />
-    <Compile Include="Global\SysInfo.cs" />
     <Compile Include="Helper\IsHelper.cs" />
     <Compile Include="Helper\LogHelper.cs" />
     <Compile Include="Helper\MessageBoxHelper.cs" />
