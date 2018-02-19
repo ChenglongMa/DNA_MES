@@ -9,6 +9,7 @@ using System;
 using System.Threading;
 using System.Windows.Forms;
 using DnaLib.Helper;
+using DnaMesUi.Shared.Dialog;
 
 namespace DnaMesUi
 {
@@ -30,11 +31,26 @@ namespace DnaMesUi
             //AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 
             #endregion
+
+            #region 默认操作
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            #endregion
+
+            #region 登录窗口
+
+            var loginDlg = new MESLoginDialog();
+            if (loginDlg.ShowDialog() == DialogResult.Cancel)
+                return;//退出后程序退出
+
+            #endregion
             Application.Run(new Form1());
         }
+
+        #region 全局异常处理事件
+
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             var ex = (Exception)e.ExceptionObject;
@@ -48,5 +64,7 @@ namespace DnaMesUi
             MessageBoxHelper.ShowError(ex.Message);
             LogHelper.WriteErrorLog(ex,"UI Exception");
         }
+
+        #endregion
     }
 }

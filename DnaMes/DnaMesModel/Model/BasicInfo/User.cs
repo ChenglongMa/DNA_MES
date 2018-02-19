@@ -30,7 +30,7 @@ namespace DnaMesModel.Model.BasicInfo
 
         #region 公有属性
 
-        //todo:目前无法指定unique列
+        //todo:目前无法指定unique列--使用代码层关键属性代替，未在数据库中设置Unique列
         [DnaColumn(IsNullable = false, Length = 10, IsKey = true)]
         public string EmpId { get; set; }
 

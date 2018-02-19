@@ -130,6 +130,10 @@
       <Project>{5EE75C11-D636-447E-BD31-013BFB144DFD}</Project>
       <Name>DnaLib</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DnaMesBll\DnaMesBll.csproj">
+      <Project>{45FD2FF0-4E6C-4E15-9B65-ADA1BAE41A88}</Project>
+      <Name>DnaMesBll</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using DnaLib.Global;
 using DnaLib.Helper;
+using DnaMesBll.Shared;
 
 namespace DnaMesUi.Shared.Dialog
 {
@@ -19,7 +20,7 @@ namespace DnaMesUi.Shared.Dialog
         {
             try
             {
-                Dictionary<string, string> loginDict = BslLoginForm.GetLoginInfo();
+                Dictionary<string, string> loginDict = LoginBll.GetLoginInfo();
                 if (loginDict != null && loginDict.ContainsKey("LoginName"))
                     txtBoxUserName.Text = loginDict["LoginName"];
                #if DEBUG
@@ -68,11 +69,11 @@ namespace DnaMesUi.Shared.Dialog
                 string staffno = null;
                 string serverIp = txtMESServerIP.Text;
                 if(string.IsNullOrEmpty(serverIp))
-                    serverIp = BslLoginForm.GetIPFromLocalFile();
+                    serverIp = LoginBll.GetIPFromLocalFile();
                 SysInfo.UserIP = serverIp;
                 txtMESServerIP.Text = serverIp;
                 SysInfo.UserIP = serverIp;
-                BslLoginForm bslLogin = new BslLoginForm(txtMESServerIP.Text);
+                LoginBll bslLogin = new LoginBll(txtMESServerIP.Text);
                 try
                 {
                     if (bslLogin.ExistDifferLocalAndServerFile())
@@ -94,9 +95,9 @@ namespace DnaMesUi.Shared.Dialog
                     setUserNameLogin();
                     strUserName = txtBoxUserName.Text;
                     strPassword = txtBoxPassword.Text;
-                    rtnrslt = BslLoginForm.CheckUser(strUserName, strPassword, txtMESServerIP.Text);
+                    rtnrslt = LoginBll.CheckUser(strUserName, strPassword, txtMESServerIP.Text);
                     if (rtnrslt == true)
-                        BslLoginForm.RegisterUser();
+                        LoginBll.RegisterUser();
                     else
                     {
                         Cursor = Cursors.Default;
@@ -105,16 +106,16 @@ namespace DnaMesUi.Shared.Dialog
                         return;
                     }
 
-                    //SysInfo.AllAuthIDDict = BslLoginForm.GetAllOperationAuthDict();
-                    SysInfo.Staffno = BslLoginForm.GetPersonByName(strUserName).staffno;
-                    SysInfo.SysUserAuthIDDict = BslLoginForm.GetOperationAuthDictByName(strUserName);
+                    //SysInfo.AllAuthIDDict = LoginBll.GetAllOperationAuthDict();
+                    SysInfo.Staffno = LoginBll.GetPersonByName(strUserName).staffno;
+                    SysInfo.SysUserAuthIDDict = LoginBll.GetOperationAuthDictByName(strUserName);
                 }
                 else
                 {
                     setUserNameLogin(false);
                     staffno = this.txtStaffno.Text; //获取工号
-                    BslLoginForm.RegisterUser();
-                    Person person = BslLoginForm.GetPersonByStaffno(staffno);
+                    LoginBll.RegisterUser();
+                    Person person = LoginBll.GetPersonByStaffno(staffno);
 
                     if (person == null)
                     {
@@ -122,9 +123,9 @@ namespace DnaMesUi.Shared.Dialog
                         MessageBoxHelper.ShowWarning("不存在此工号的人员！");
                         return;
                     }
-                    bool rtnrslt2 = BslLoginForm.CheckUser(person.name, person.password, txtMESServerIP.Text);
+                    bool rtnrslt2 = LoginBll.CheckUser(person.name, person.password, txtMESServerIP.Text);
                     if (rtnrslt2 == true)
-                        BslLoginForm.RegisterUser();
+                        LoginBll.RegisterUser();
                     else
                     {
                         Cursor = Cursors.Default;
@@ -180,7 +181,7 @@ namespace DnaMesUi.Shared.Dialog
                 this.txtMESServerIP.Visible = true;
                 this.btnSaveIP.Visible = true;
 
-                this.txtMESServerIP.Text = BslLoginForm.GetIPFromLocalFile();
+                this.txtMESServerIP.Text = LoginBll.GetIPFromLocalFile();
             }
             catch (Exception ex)
             {
@@ -234,7 +235,7 @@ namespace DnaMesUi.Shared.Dialog
                 setUserNameLogin();
             }
 
-            //DbInfo dbInfo = BslLoginForm.GetDbInfo("MESServer");
+            //DbInfo dbInfo = LoginBll.GetDbInfo("MESServer");
             //DbInfo dbInfo2 = new DbInfo
             //{
             //    Name = dbInfo.Name,
@@ -243,7 +244,7 @@ namespace DnaMesUi.Shared.Dialog
             //    DbType = checkBoxStaffnoLogin.Checked == true ? "staffnoLogin" : "usernameLogin"
             //};
 
-            //BslLoginForm.SetDbInfo(dbInfo2);
+            //LoginBll.SetDbInfo(dbInfo2);
 
             //IMessageBoxPDC.ShowWarning("请您点击退出然后再重新启动系统！");
 
@@ -268,7 +269,7 @@ namespace DnaMesUi.Shared.Dialog
             tmpdict.Add("LoginName", txtBoxUserName.Text);
             tmpdict.Add("LoginIP", txtMESServerIP.Text);
             tmpdict.Add("staffno", txtStaffno.Text);
-            BslLoginForm.SaveLoginInfo(tmpdict);
+            LoginBll.SaveLoginInfo(tmpdict);
         }
 
         private void MESLoginDialog_KeyDown(object sender, KeyEventArgs e)
