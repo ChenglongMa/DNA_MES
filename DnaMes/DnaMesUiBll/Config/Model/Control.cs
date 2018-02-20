@@ -7,7 +7,7 @@
 
 using System.Collections.Generic;
 
-namespace DnaMesUi.Config.Model
+namespace DnaMesUiBll.Config.Model
 {
     /// <summary>
     /// 控件配置类
