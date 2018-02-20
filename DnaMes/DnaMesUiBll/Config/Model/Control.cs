@@ -6,19 +6,23 @@
 // ****************************************************
 
 using System.Collections.Generic;
+using System.Xml.Serialization;
 
 namespace DnaMesUiBll.Config.Model
 {
     /// <summary>
     /// 控件配置类
     /// </summary>
+    [XmlType("Control")]
     public class Control
     {
         /// <summary>
         /// 控件集合
         /// </summary>
+        [XmlElement]
         public List<ControlItem> Items { get; set; }
     }
+
     /// <summary>
     /// 控件项基类
     /// 包含 菜单 按钮及其他控件默认格式
@@ -28,49 +32,121 @@ namespace DnaMesUiBll.Config.Model
         /// <summary>
         /// 名字
         /// </summary>
+        [XmlAttribute]
         public string Name { get; set; }
+
         /// <summary>
         /// 显示名
         /// </summary>
+        [XmlAttribute]
         public string Text { get; set; }
+
         /// <summary>
         /// 停靠处
         /// </summary>
-        public string Dock { get; set; }
+        [XmlAttribute]
+        public string Dock { get; set; } //TODO:确定属性类型
     }
+
     /// <inheritdoc />
     /// <summary>
     /// 菜单控件
     /// </summary>
-    public class Menu:ControlItem
+    public class Menu : ControlItem
     {
-        public List<PopMenu> PopMenus { get; set; }
+        [XmlElement] public List<PopMenu> PopMenus { get; set; }
     }
+
     /// <summary>
     /// 弹出菜单页
     /// </summary>
-    public class PopMenu
+    public class PopMenu //TODO：以后可能会增加抽象类
     {
         /// <summary>
         /// 名字
         /// </summary>
+        [XmlAttribute]
         public string Name { get; set; }
+
         /// <summary>
         /// 显示名
         /// </summary>
+        [XmlAttribute]
         public string Text { get; set; }
+
+        /// <summary>
+        /// 快捷键
+        /// </summary>
+        [XmlAttribute]
         public string ShortCut { get; set; }
-        public List<MenuItem> MenuItems { get; set; }
+
+        /// <summary>
+        /// 菜单项集合
+        /// </summary>
+        [XmlElement]
+        public List<AbstractMenuItem> MenuItems { get; set; }
     }
 
-    public class MenuItem
+    /// <summary>
+    /// 菜单项抽象类
+    /// </summary>
+    public abstract class AbstractMenuItem
     {
+        /// <summary>
+        /// 名字
+        /// </summary>
+        [XmlAttribute]
         public string Name { get; set; }
-        public string Text { get; set; }
-        public string FormPath { get; set; }
-        public string Type { get; set; }
-        public int DomainId { get; set; }
 
+        /// <summary>
+        /// 显示名
+        /// </summary>
+        [XmlAttribute]
+        public string Text { get; set; }
+
+        /// <summary>
+        /// 快捷键
+        /// </summary>
+        [XmlAttribute]
+        public string ShortCut { get; set; }
+    }
+
+    /// <inheritdoc />
+    /// <summary>
+    /// 弹出窗体菜单项
+    /// </summary>
+    public class FormMenuItem : AbstractMenuItem
+    {
+        /// <summary>
+        /// Form路径
+        /// </summary>
+        [XmlAttribute]
+        public string FormPath { get; set; }
+
+        /// <summary>
+        /// 加载方式
+        /// </summary>
+        [XmlAttribute]
+        public FormType Type { get; set; }
+
+        /// <summary>
+        /// 权限ID
+        /// </summary>
+        [XmlAttribute]
+        public int DomainId { get; set; }
+    }
+
+    /// <inheritdoc />
+    /// <summary>
+    /// 执行命令菜单项
+    /// </summary>
+    public class CommandMenuItem : AbstractMenuItem
+    {
+        //TODO:增加其他字段
+        /// <summary>
+        /// 命令类型
+        /// </summary>
+        [XmlAttribute]
+        public CommandType Type { get; set; }
     }
 }
-

@@ -40,7 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Config\Model\CommandType.cs" />
     <Compile Include="Config\Model\Control.cs" />
+    <Compile Include="Config\Model\FormType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shared\LoginBll.cs" />
   </ItemGroup>
