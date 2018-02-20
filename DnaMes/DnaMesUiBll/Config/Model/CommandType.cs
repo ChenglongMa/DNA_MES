@@ -12,9 +12,10 @@ namespace DnaMesUiBll.Config.Model
     /// </summary>
     public enum CommandType
     {
+        Activate,
         Close,
-        SaveAs,
-        About,
+        //SaveAs,
+        //About,
         ReLogin,
     }
 }

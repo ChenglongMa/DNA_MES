@@ -16,7 +16,7 @@ namespace DnaLib.Helper
     /// </summary>
     public static class LogHelper
     {
-        private static readonly string RootPath = AppDomain.CurrentDomain.BaseDirectory + "Log";
+        private static readonly string RootPath = AppDomain.CurrentDomain.BaseDirectory + "\\Log";
 
         /// <summary>
         ///     创建日志文件夹

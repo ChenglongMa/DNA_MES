@@ -13,12 +13,16 @@ namespace DnaMesUiBll.Config.Model
     public enum FormType
     {
         /// <summary>
+        /// 无Form加载
+        /// </summary>
+        Null=-1,
+        /// <summary>
         /// 子窗体加载至MDI Form内
         /// </summary>
-        ChildForm,
+        ChildForm=0,
         /// <summary>
         /// 对话框
         /// </summary>
-        Dialog,
+        Dialog=1,
     }
 }

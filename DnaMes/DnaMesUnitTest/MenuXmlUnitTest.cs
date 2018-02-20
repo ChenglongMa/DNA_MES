@@ -11,7 +11,7 @@ namespace DnaMesUnitTest
     public class MenuXmlUnitTest
     {
         [TestMethod]
-        public void TestMethod1()
+        public void TestMenuBuilding()
         {
             var cons = BuildControl();
             CreateLogDirectory(RootPath, "\\XmlFile\\Menu.xml");
@@ -40,7 +40,7 @@ namespace DnaMesUnitTest
         {
             return new Control
             {
-                Items = new List<ControlItem>
+                Items = new List<Menu>
                 {
                     new Menu
                     {
@@ -49,33 +49,35 @@ namespace DnaMesUnitTest
                         Dock = "Top",
                         PopMenus = new List<PopMenu>
                         {
-                            new PopMenu
-                            {
-                                Name = "BasicInfoPop",
-                                Text = "基础信息管理",
-                                ShortCut = "J",
-                                MenuItems = new List<MenuItem>
-                                {
-                                    new FormMenuItem
-                                    {
-                                        Name = "MaterialManagement",
-                                        Text = "物料管理",
-                                        ShortCut = "W",
-                                        FormPath = "MaterialManagementForm",
-                                        Type = FormType.ChildForm,
-                                        DomainId = 10001,
-                                    },
-                                    new FormMenuItem
-                                    {
-                                        Name = "ProcessManagement",
-                                        Text = "工艺管理",
-                                        ShortCut = "G",
-                                        FormPath = "ProcessManagementForm",
-                                        Type = FormType.ChildForm,
-                                        DomainId = 10002,
-                                    },
-                                }
-                            },
+                            //new PopMenu
+                            //{
+                            //    Name = "BasicInfoPop",
+                            //    Text = "基础信息管理",
+                            //    ShortCut = "J",
+                            //    MenuItems = new List<MenuItem>
+                            //    {
+                            //        new MenuItem
+                            //        {
+                            //            Name = "MaterialManagement",
+                            //            Text = "物料管理",
+                            //            ShortCut = "W",
+                            //            FormPath = "MaterialManagementForm",
+                            //            FormType = FormType.ChildForm,
+                            //            DomainId = 10001,
+                            //            CommandType = CommandType.Activate,
+                            //        },
+                            //        new MenuItem
+                            //        {
+                            //            Name = "ProcessManagement",
+                            //            Text = "工艺管理",
+                            //            ShortCut = "G",
+                            //            FormPath = "ProcessManagementForm",
+                            //            FormType = FormType.ChildForm,
+                            //            DomainId = 10002,
+                            //            CommandType = CommandType.Activate,
+                            //        },
+                            //    }
+                            //},
                             new PopMenu
                             {
                                 Name = "OrderInfo",
@@ -83,24 +85,25 @@ namespace DnaMesUnitTest
                                 ShortCut = "D",
                                 MenuItems = new List<MenuItem>
                                 {
-                                    new FormMenuItem
+                                    new MenuItem
                                     {
                                         Name = "PlanManagement",
                                         Text = "计划管理",
                                         ShortCut = "H",
-                                        FormPath = "PlanManagementForm",
-                                        Type = FormType.ChildForm,
+                                        //FormPath = "PlanManagementForm",
+                                        FormType = FormType.Null,
                                         DomainId = 10003,
+                                        CommandType = CommandType.Close,
                                     },
-                                    new FormMenuItem
-                                    {
-                                        Name = "WorkOrderManagement",
-                                        Text = "工单管理",
-                                        ShortCut = "D",
-                                        FormPath = "WorkOrderManagementForm",
-                                        Type = FormType.ChildForm,
-                                        DomainId = 10004,
-                                    },
+                                    //new MenuItem
+                                    //{
+                                    //    Name = "WorkOrderManagement",
+                                    //    Text = "工单管理",
+                                    //    ShortCut = "D",
+                                    //    FormPath = "WorkOrderManagementForm",
+                                    //    FormType = FormType.ChildForm,
+                                    //    DomainId = 10004,
+                                    //},
                                 }
                             },
                         }
