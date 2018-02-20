@@ -27,6 +27,7 @@ namespace DnaMesUiBll.Config.Model
     /// 控件项基类
     /// 包含 菜单 按钮及其他控件默认格式
     /// </summary>
+    [XmlType]
     public abstract class ControlItem
     {
         /// <summary>
@@ -52,6 +53,7 @@ namespace DnaMesUiBll.Config.Model
     /// <summary>
     /// 菜单控件
     /// </summary>
+    [XmlType]
     public class Menu : ControlItem
     {
         [XmlElement] public List<PopMenu> PopMenus { get; set; }
@@ -60,6 +62,7 @@ namespace DnaMesUiBll.Config.Model
     /// <summary>
     /// 弹出菜单页
     /// </summary>
+    [XmlType]
     public class PopMenu //TODO：以后可能会增加抽象类
     {
         /// <summary>
@@ -84,13 +87,14 @@ namespace DnaMesUiBll.Config.Model
         /// 菜单项集合
         /// </summary>
         [XmlElement]
-        public List<AbstractMenuItem> MenuItems { get; set; }
+        public List<MenuItem> MenuItems { get; set; }
     }
 
     /// <summary>
     /// 菜单项抽象类
     /// </summary>
-    public abstract class AbstractMenuItem
+    [XmlType]
+    public abstract class MenuItem
     {
         /// <summary>
         /// 名字
@@ -115,7 +119,8 @@ namespace DnaMesUiBll.Config.Model
     /// <summary>
     /// 弹出窗体菜单项
     /// </summary>
-    public class FormMenuItem : AbstractMenuItem
+    [XmlType]
+    public class FormMenuItem : MenuItem
     {
         /// <summary>
         /// Form路径
@@ -127,7 +132,7 @@ namespace DnaMesUiBll.Config.Model
         /// 加载方式
         /// </summary>
         [XmlAttribute]
-        public FormType Type { get; set; }
+        public FormType Type { get; set; } = FormType.ChildForm;
 
         /// <summary>
         /// 权限ID
@@ -140,7 +145,8 @@ namespace DnaMesUiBll.Config.Model
     /// <summary>
     /// 执行命令菜单项
     /// </summary>
-    public class CommandMenuItem : AbstractMenuItem
+    [XmlType]
+    public class CommandMenuItem : MenuItem
     {
         //TODO:增加其他字段
         /// <summary>
