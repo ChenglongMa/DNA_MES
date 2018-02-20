@@ -1,15 +1,21 @@
-﻿using System.Reflection;
-using System.Runtime.CompilerServices;
+﻿// ****************************************************
+//  Author: Charles Ma
+//  Date: 2018/02/09 13:47
+// ****************************************************
+//  Copyright © DNA Studio 2018. All rights reserved.
+// ****************************************************
+
+using System.Reflection;
 using System.Runtime.InteropServices;
 
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("DnaMesUi")]
+[assembly: AssemblyTitle("DnaMes")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("DnaMesUi")]
+[assembly: AssemblyCompany("DNA Studio")]
+[assembly: AssemblyProduct("DnaMes")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +26,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
-[assembly: Guid("68b8015d-3d49-49b5-833d-12526cd772ad")]
+[assembly: Guid("398e106e-ad37-4fda-a4c5-b2b92a9ad4f4")]
 
 // 程序集的版本信息由下列四个值组成: 
 //

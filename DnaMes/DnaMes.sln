@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnaMesUi", "DnaMesUi\DnaMesUi.csproj", "{398E106E-AD37-4FDA-A4C5-B2B92A9AD4F4}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnaMesDal", "DnaMesDll\DnaMesDal.csproj", "{3651BC4A-26E8-46F1-8221-181BAC92E0E8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnaMesBll", "DnaMesBll\DnaMesBll.csproj", "{45FD2FF0-4E6C-4E15-9B65-ADA1BAE41A88}"
@@ -21,16 +19,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnaMesUnitTest", "DnaMesUni
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnaMesUiBll", "DnaMesUiBll\DnaMesUiBll.csproj", "{FAB2D33B-A13E-423E-B95A-38FD54D3D6F1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnaMesUi", "DnaMesUi\DnaMesUi.csproj", "{68B8015D-3D49-49B5-833D-12526CD772AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{398E106E-AD37-4FDA-A4C5-B2B92A9AD4F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{398E106E-AD37-4FDA-A4C5-B2B92A9AD4F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{398E106E-AD37-4FDA-A4C5-B2B92A9AD4F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{398E106E-AD37-4FDA-A4C5-B2B92A9AD4F4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3651BC4A-26E8-46F1-8221-181BAC92E0E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3651BC4A-26E8-46F1-8221-181BAC92E0E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3651BC4A-26E8-46F1-8221-181BAC92E0E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -63,6 +59,10 @@ Global
 		{FAB2D33B-A13E-423E-B95A-38FD54D3D6F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FAB2D33B-A13E-423E-B95A-38FD54D3D6F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FAB2D33B-A13E-423E-B95A-38FD54D3D6F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68B8015D-3D49-49B5-833D-12526CD772AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68B8015D-3D49-49B5-833D-12526CD772AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68B8015D-3D49-49B5-833D-12526CD772AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68B8015D-3D49-49B5-833D-12526CD772AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
