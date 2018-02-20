@@ -82,6 +82,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Shared\Sys\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -116,6 +117,9 @@
   <ItemGroup>
     <Folder Include="BasicInfo\" />
     <Folder Include="Shared\Dialog\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\增加用户32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
