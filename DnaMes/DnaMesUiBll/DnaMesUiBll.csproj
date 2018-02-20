@@ -62,7 +62,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="BasicInfo\" />
-    <Folder Include="Config\File\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Config\File\Menu.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

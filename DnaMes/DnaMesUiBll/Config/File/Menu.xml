@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Control>
+  <Items Name="mainMenu" Text="主菜单" Dock="Top">
+    <PopMenus Name="OrderInfo" Text="订单信息管理" ShortCut="D">
+      <MenuItems Name="PlanManagement" Text="计划管理" ShortCut="H" CommandType="Close" DomainId="10003">
+        <FormType>Null</FormType>
+      </MenuItems>
+    </PopMenus>
+  </Items>
+</Control>

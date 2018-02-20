@@ -30,7 +30,7 @@ namespace DnaLib.Helper
                 NewLineChars = "\r\n",
                 Encoding = encoding,
                 IndentChars = "    ",
-                OmitXmlDeclaration = true // 不生成声明头
+                //OmitXmlDeclaration = true // 不生成声明头
             };
             // 强制指定命名空间，覆盖默认的命名空间。
             var namespaces = new XmlSerializerNamespaces();
@@ -38,6 +38,7 @@ namespace DnaLib.Helper
 
             using (var writer = XmlWriter.Create(stream, settings))
             {
+                //serializer.Serialize(writer, o);
                 serializer.Serialize(writer, o, namespaces);
                 writer.Close();
             }
