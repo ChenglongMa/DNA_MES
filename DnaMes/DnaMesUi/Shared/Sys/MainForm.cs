@@ -22,6 +22,7 @@ namespace DnaMesUi.Shared.Sys
             InitializeComponent();
         }
 
+        private readonly List<Form> _childForms=new List<Form>();
         #region 自动生成代码
 
         private void ShowNewForm(object sender, EventArgs e)
@@ -116,22 +117,33 @@ namespace DnaMesUi.Shared.Sys
         /// </summary>
         /// <typeparam name="T">窗体类型</typeparam>
         /// <returns></returns>
-        private T AddMidForm<T>() where T : Form, new()
+        private void AddMidForm<T>() where T : Form, new()
         {
             var frm = new T {MdiParent = this};
             frm.Show();
             tabbedMdiManager.TabFromForm(frm).Activate();
-            return frm;
         }
-
+        
+        private void ActivateChildForm<T>() where T:Form,new()
+        {
+            var form = _childForms.FirstOrDefault(f => f.GetType() == typeof(T));
+            if (form == null)
+            {
+                AddMidForm<T>();
+            }
+            else
+            {
+                tabbedMdiManager.TabFromForm(form).Activate();
+            }
+        }
         private void tabbedMdiManager_InitializeTab(object sender, MdiTabEventArgs e)
         {
-            //AddMidForm<HomeForm>();
+            _childForms.Add(e.Tab.Form);//将子窗体添加到缓存中
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            AddMidForm<HomeForm>();
+            ActivateChildForm<HomeForm>();//加载首页
 
         }
         /// <summary>
@@ -165,6 +177,11 @@ namespace DnaMesUi.Shared.Sys
             {
                 if (mi.Tag is MdiTab tab) tab.Close();
             }
+        }
+
+        private void tabbedMdiManager_TabClosed(object sender, MdiTabEventArgs e)
+        {
+            _childForms.Remove(e.Tab.Form);//将窗体从缓存中移除
         }
     }
 }
