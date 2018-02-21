@@ -21,23 +21,6 @@ namespace DnaMesUi.Shared.Sys
             InitializeComponent();
         }
 
-        /// <summary>
-        /// 从menu.xml中读取的菜单项
-        /// </summary>
-        private readonly Menu _menu = MenuXmlHelper.GetMenu();
 
-        /// <summary>
-        /// 构建菜单栏
-        /// </summary>
-        private void BuildMenuBar()
-        {
-            var pops = _menu.PopMenus;
-            foreach (var pop in pops)
-            {
-                var grp = new UltraExplorerBarGroup(pop.Name) {Text = pop.Text};
-                MenuExplorerBar.Groups.Add(grp);
-
-            }
-        }
     }
 }

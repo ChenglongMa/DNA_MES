@@ -6,8 +6,10 @@
 // ****************************************************
 
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Windows.Forms;
 using System.Xml.Serialization;
+using Infragistics.Win.UltraWinToolbars;
 
 namespace DnaMesUiBll.Config.Model
 {
@@ -57,7 +59,7 @@ namespace DnaMesUiBll.Config.Model
         /// 停靠处
         /// </summary>
         [XmlAttribute]
-        public DockStyle Dock { get; set; }
+        public string Dock { get; set; } = DockedPosition.Top.ToString();
 
         [XmlElement] public List<PopMenu> PopMenus { get; set; }
     }

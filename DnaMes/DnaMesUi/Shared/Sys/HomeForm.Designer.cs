@@ -37,14 +37,16 @@
             this.MenuExplorerBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MenuExplorerBar.Location = new System.Drawing.Point(0, 0);
             this.MenuExplorerBar.Name = "MenuExplorerBar";
-            this.MenuExplorerBar.Size = new System.Drawing.Size(969, 665);
+            this.MenuExplorerBar.Size = new System.Drawing.Size(992, 646);
+            this.MenuExplorerBar.Style = Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarStyle.Toolbox;
             this.MenuExplorerBar.TabIndex = 0;
+            this.MenuExplorerBar.ViewStyle = Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarViewStyle.Office2007;
             // 
             // HomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(969, 665);
+            this.ClientSize = new System.Drawing.Size(992, 646);
             this.Controls.Add(this.MenuExplorerBar);
             this.Name = "HomeForm";
             this.Text = "Home";

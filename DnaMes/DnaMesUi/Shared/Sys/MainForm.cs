@@ -8,8 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DnaMesModel.Shared;
+using DnaMesUiBll.Config;
 using Infragistics.Win.IGControls;
+using Infragistics.Win.UltraWinExplorerBar;
 using Infragistics.Win.UltraWinTabbedMdi;
+using Infragistics.Win.UltraWinToolbars;
+using Menu = DnaMesUiBll.Config.Model.Menu;
 
 namespace DnaMesUi.Shared.Sys
 {
@@ -22,7 +26,8 @@ namespace DnaMesUi.Shared.Sys
             InitializeComponent();
         }
 
-        private readonly List<Form> _childForms=new List<Form>();
+        private readonly List<Form> _childForms = new List<Form>();
+
         #region 自动生成代码
 
         private void ShowNewForm(object sender, EventArgs e)
@@ -123,8 +128,12 @@ namespace DnaMesUi.Shared.Sys
             frm.Show();
             tabbedMdiManager.TabFromForm(frm).Activate();
         }
-        
-        private void ActivateChildForm<T>() where T:Form,new()
+
+        /// <summary>
+        /// 激活或添加新窗体
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        private void ActivateChildForm<T>() where T : Form, new()
         {
             var form = _childForms.FirstOrDefault(f => f.GetType() == typeof(T));
             if (form == null)
@@ -136,16 +145,50 @@ namespace DnaMesUi.Shared.Sys
                 tabbedMdiManager.TabFromForm(form).Activate();
             }
         }
+
+        /// <summary>
+        /// 从menu.xml中读取的菜单项
+        /// </summary>
+        private readonly Menu _menu = MenuXmlHelper.GetMenu();
+
+        /// <summary>
+        /// 构建菜单栏
+        /// </summary>
+        private void BuildMenuBar()
+        {
+            var mainMenu = toolBarManager.Toolbars["MainMenuBar"];
+            mainMenu.Text = _menu.Text;
+            mainMenu.KeyTip = _menu.Name;
+            mainMenu.DockedPosition = (DockedPosition) Enum.Parse(typeof(DockedPosition),_menu.Dock);
+            var tools = mainMenu.Tools;
+            var pops = _menu.PopMenus;
+            foreach (var pop in pops)
+            {
+                var tool=tools.AddTool(pop.Name);
+                foreach (var item in pop.MenuItems)
+                {
+                    var menuItem = new ToolStripMenuItem(item.Text);
+                    
+                }
+            }
+        }
         private void tabbedMdiManager_InitializeTab(object sender, MdiTabEventArgs e)
         {
-            _childForms.Add(e.Tab.Form);//将子窗体添加到缓存中
+            _childForms.Add(e.Tab.Form); //将子窗体添加到缓存中
+        }
+
+        private void tabbedMdiManager_TabClosed(object sender, MdiTabEventArgs e)
+        {
+            _childForms.Remove(e.Tab.Form); //将窗体从缓存中移除
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            ActivateChildForm<HomeForm>();//加载首页
-
+            ActivateChildForm<HomeForm>(); //加载首页
         }
+
+        #region 更改窗体标签右键英文显示
+
         /// <summary>
         /// 初始化MDI Manager右键菜单
         /// 用于将初始英文改成中文显示
@@ -166,6 +209,7 @@ namespace DnaMesUi.Shared.Sys
 
             e.ContextMenu.MenuItems.Add(menuItem);
         }
+
         /// <summary>
         /// 关闭标签事件
         /// </summary>
@@ -179,9 +223,6 @@ namespace DnaMesUi.Shared.Sys
             }
         }
 
-        private void tabbedMdiManager_TabClosed(object sender, MdiTabEventArgs e)
-        {
-            _childForms.Remove(e.Tab.Form);//将窗体从缓存中移除
-        }
+        #endregion
     }
 }

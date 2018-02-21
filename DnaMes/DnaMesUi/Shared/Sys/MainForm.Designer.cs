@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             Infragistics.Win.UltraWinToolbars.UltraToolbar ultraToolbar1 = new Infragistics.Win.UltraWinToolbars.UltraToolbar("SysToolBar");
+            Infragistics.Win.UltraWinToolbars.UltraToolbar ultraToolbar2 = new Infragistics.Win.UltraWinToolbars.UltraToolbar("MainMenuBar");
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -83,7 +84,7 @@
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.ultraToolbarsManager1 = new Infragistics.Win.UltraWinToolbars.UltraToolbarsManager(this.components);
+            this.toolBarManager = new Infragistics.Win.UltraWinToolbars.UltraToolbarsManager(this.components);
             this._MainForm_Toolbars_Dock_Area_Left = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this._MainForm_Toolbars_Dock_Area_Right = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this._MainForm_Toolbars_Dock_Area_Top = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
@@ -92,7 +93,7 @@
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ultraToolbarsManager1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.toolBarManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedMdiManager)).BeginInit();
             this.SuspendLayout();
             // 
@@ -106,7 +107,7 @@
             this.toolsMenu,
             this.windowsMenu,
             this.helpMenu});
-            this.menuStrip.Location = new System.Drawing.Point(0, 28);
+            this.menuStrip.Location = new System.Drawing.Point(0, 91);
             this.menuStrip.MdiWindowListItem = this.windowsMenu;
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
@@ -450,7 +451,7 @@
             this.printPreviewToolStripButton,
             this.toolStripSeparator2,
             this.helpToolStripButton});
-            this.toolStrip.Location = new System.Drawing.Point(0, 56);
+            this.toolStrip.Location = new System.Drawing.Point(0, 119);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.Size = new System.Drawing.Size(843, 27);
             this.toolStrip.TabIndex = 1;
@@ -540,17 +541,23 @@
             this.toolStripStatusLabel.Size = new System.Drawing.Size(39, 20);
             this.toolStripStatusLabel.Text = "状态";
             // 
-            // ultraToolbarsManager1
+            // toolBarManager
             // 
-            this.ultraToolbarsManager1.DesignerFlags = 1;
-            this.ultraToolbarsManager1.DockWithinContainer = this;
-            this.ultraToolbarsManager1.DockWithinContainerBaseType = typeof(System.Windows.Forms.Form);
-            this.ultraToolbarsManager1.Style = Infragistics.Win.UltraWinToolbars.ToolbarStyle.WindowsVista;
+            this.toolBarManager.DesignerFlags = 1;
+            this.toolBarManager.DockWithinContainer = this;
+            this.toolBarManager.DockWithinContainerBaseType = typeof(System.Windows.Forms.Form);
+            this.toolBarManager.Style = Infragistics.Win.UltraWinToolbars.ToolbarStyle.WindowsVista;
             ultraToolbar1.DockedColumn = 0;
-            ultraToolbar1.DockedRow = 0;
+            ultraToolbar1.DockedRow = 1;
+            ultraToolbar1.FloatingSize = new System.Drawing.Size(142, 27);
             ultraToolbar1.Text = "SysToolBar";
-            this.ultraToolbarsManager1.Toolbars.AddRange(new Infragistics.Win.UltraWinToolbars.UltraToolbar[] {
-            ultraToolbar1});
+            ultraToolbar2.DockedColumn = 0;
+            ultraToolbar2.DockedRow = 0;
+            ultraToolbar2.IsMainMenuBar = true;
+            ultraToolbar2.Text = "MainMenuBar";
+            this.toolBarManager.Toolbars.AddRange(new Infragistics.Win.UltraWinToolbars.UltraToolbar[] {
+            ultraToolbar1,
+            ultraToolbar2});
             // 
             // _MainForm_Toolbars_Dock_Area_Left
             // 
@@ -558,10 +565,10 @@
             this._MainForm_Toolbars_Dock_Area_Left.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(230)))), ((int)(((byte)(246)))));
             this._MainForm_Toolbars_Dock_Area_Left.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Left;
             this._MainForm_Toolbars_Dock_Area_Left.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._MainForm_Toolbars_Dock_Area_Left.Location = new System.Drawing.Point(0, 83);
+            this._MainForm_Toolbars_Dock_Area_Left.Location = new System.Drawing.Point(0, 146);
             this._MainForm_Toolbars_Dock_Area_Left.Name = "_MainForm_Toolbars_Dock_Area_Left";
-            this._MainForm_Toolbars_Dock_Area_Left.Size = new System.Drawing.Size(0, 415);
-            this._MainForm_Toolbars_Dock_Area_Left.ToolbarsManager = this.ultraToolbarsManager1;
+            this._MainForm_Toolbars_Dock_Area_Left.Size = new System.Drawing.Size(0, 352);
+            this._MainForm_Toolbars_Dock_Area_Left.ToolbarsManager = this.toolBarManager;
             // 
             // _MainForm_Toolbars_Dock_Area_Right
             // 
@@ -569,10 +576,10 @@
             this._MainForm_Toolbars_Dock_Area_Right.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(230)))), ((int)(((byte)(246)))));
             this._MainForm_Toolbars_Dock_Area_Right.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Right;
             this._MainForm_Toolbars_Dock_Area_Right.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._MainForm_Toolbars_Dock_Area_Right.Location = new System.Drawing.Point(843, 83);
+            this._MainForm_Toolbars_Dock_Area_Right.Location = new System.Drawing.Point(843, 146);
             this._MainForm_Toolbars_Dock_Area_Right.Name = "_MainForm_Toolbars_Dock_Area_Right";
-            this._MainForm_Toolbars_Dock_Area_Right.Size = new System.Drawing.Size(0, 415);
-            this._MainForm_Toolbars_Dock_Area_Right.ToolbarsManager = this.ultraToolbarsManager1;
+            this._MainForm_Toolbars_Dock_Area_Right.Size = new System.Drawing.Size(0, 352);
+            this._MainForm_Toolbars_Dock_Area_Right.ToolbarsManager = this.toolBarManager;
             // 
             // _MainForm_Toolbars_Dock_Area_Top
             // 
@@ -582,8 +589,8 @@
             this._MainForm_Toolbars_Dock_Area_Top.ForeColor = System.Drawing.SystemColors.ControlText;
             this._MainForm_Toolbars_Dock_Area_Top.Location = new System.Drawing.Point(0, 0);
             this._MainForm_Toolbars_Dock_Area_Top.Name = "_MainForm_Toolbars_Dock_Area_Top";
-            this._MainForm_Toolbars_Dock_Area_Top.Size = new System.Drawing.Size(843, 28);
-            this._MainForm_Toolbars_Dock_Area_Top.ToolbarsManager = this.ultraToolbarsManager1;
+            this._MainForm_Toolbars_Dock_Area_Top.Size = new System.Drawing.Size(843, 91);
+            this._MainForm_Toolbars_Dock_Area_Top.ToolbarsManager = this.toolBarManager;
             // 
             // _MainForm_Toolbars_Dock_Area_Bottom
             // 
@@ -594,7 +601,7 @@
             this._MainForm_Toolbars_Dock_Area_Bottom.Location = new System.Drawing.Point(0, 498);
             this._MainForm_Toolbars_Dock_Area_Bottom.Name = "_MainForm_Toolbars_Dock_Area_Bottom";
             this._MainForm_Toolbars_Dock_Area_Bottom.Size = new System.Drawing.Size(843, 0);
-            this._MainForm_Toolbars_Dock_Area_Bottom.ToolbarsManager = this.ultraToolbarsManager1;
+            this._MainForm_Toolbars_Dock_Area_Bottom.ToolbarsManager = this.toolBarManager;
             // 
             // tabbedMdiManager
             // 
@@ -627,7 +634,7 @@
             this.toolStrip.PerformLayout();
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ultraToolbarsManager1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.toolBarManager)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedMdiManager)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -688,7 +695,7 @@
         private System.Windows.Forms.ToolStripButton printPreviewToolStripButton;
         private System.Windows.Forms.ToolStripButton helpToolStripButton;
         private System.Windows.Forms.ToolTip toolTip;
-        private Infragistics.Win.UltraWinToolbars.UltraToolbarsManager ultraToolbarsManager1;
+        private Infragistics.Win.UltraWinToolbars.UltraToolbarsManager toolBarManager;
         private Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _MainForm_Toolbars_Dock_Area_Left;
         private Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _MainForm_Toolbars_Dock_Area_Right;
         private Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _MainForm_Toolbars_Dock_Area_Bottom;
