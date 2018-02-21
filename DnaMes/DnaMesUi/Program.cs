@@ -9,6 +9,7 @@ using System;
 using System.Threading;
 using System.Windows.Forms;
 using DnaLib.Helper;
+using DnaMesUi.Shared.Sys;
 
 namespace DnaMesUi
 {
@@ -39,13 +40,13 @@ namespace DnaMesUi
             #endregion
 
             #region 登录窗口
-
+            //TODO:登录窗口逻辑待完善
             //var loginDlg = new MESLoginDialog();
             //if (loginDlg.ShowDialog() == DialogResult.Cancel)
             //    return;//退出后程序退出
 
             #endregion
-            Application.Run(new BaseForm());
+            Application.Run(new MainForm());
         }
 
         #region 全局异常处理事件

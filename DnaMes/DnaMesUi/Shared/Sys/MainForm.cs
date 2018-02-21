@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DnaMesModel.Shared;
+using Infragistics.Win.IGControls;
+using Infragistics.Win.UltraWinTabbedMdi;
 
 namespace DnaMesUi.Shared.Sys
 {
@@ -18,6 +21,8 @@ namespace DnaMesUi.Shared.Sys
         {
             InitializeComponent();
         }
+
+        #region 自动生成代码
 
         private void ShowNewForm(object sender, EventArgs e)
         {
@@ -51,7 +56,7 @@ namespace DnaMesUi.Shared.Sys
 
         private void ExitToolsStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void CutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -101,6 +106,64 @@ namespace DnaMesUi.Shared.Sys
             foreach (Form childForm in MdiChildren)
             {
                 childForm.Close();
+            }
+        }
+
+        #endregion
+
+        /// <summary>
+        /// 实例化一个新窗口到系统中
+        /// </summary>
+        /// <typeparam name="T">窗体类型</typeparam>
+        /// <returns></returns>
+        private T AddMidForm<T>() where T : Form, new()
+        {
+            var frm = new T {MdiParent = this};
+            frm.Show();
+            tabbedMdiManager.TabFromForm(frm).Activate();
+            return frm;
+        }
+
+        private void tabbedMdiManager_InitializeTab(object sender, MdiTabEventArgs e)
+        {
+            //AddMidForm<HomeForm>();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            AddMidForm<HomeForm>();
+
+        }
+        /// <summary>
+        /// 初始化MDI Manager右键菜单
+        /// 用于将初始英文改成中文显示
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tabbedMdiManager_InitializeContextMenu(object sender, MdiTabContextMenuEventArgs e)
+        {
+            if (e.ContextMenuType != MdiTabContextMenu.Default)
+                return;
+            e.ContextMenu.MenuItems.Clear();
+            var menuItem = new IGMenuItem("关闭")
+            {
+                Tag = e.Tab
+            };
+
+            menuItem.Click += OnCustomMenuItemClose;
+
+            e.ContextMenu.MenuItems.Add(menuItem);
+        }
+        /// <summary>
+        /// 关闭标签事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private static void OnCustomMenuItemClose(object sender, EventArgs e)
+        {
+            if (sender is IGMenuItem mi)
+            {
+                if (mi.Tag is MdiTab tab) tab.Close();
             }
         }
     }
