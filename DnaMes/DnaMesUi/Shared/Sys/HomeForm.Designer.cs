@@ -28,11 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.MenuExplorerBar = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBar();
+            ((System.ComponentModel.ISupportInitialize)(this.MenuExplorerBar)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // MenuExplorerBar
+            // 
+            this.MenuExplorerBar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MenuExplorerBar.Location = new System.Drawing.Point(0, 0);
+            this.MenuExplorerBar.Name = "MenuExplorerBar";
+            this.MenuExplorerBar.Size = new System.Drawing.Size(969, 665);
+            this.MenuExplorerBar.TabIndex = 0;
+            // 
+            // HomeForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(969, 665);
+            this.Controls.Add(this.MenuExplorerBar);
+            this.Name = "HomeForm";
             this.Text = "Home";
+            ((System.ComponentModel.ISupportInitialize)(this.MenuExplorerBar)).EndInit();
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private Infragistics.Win.UltraWinExplorerBar.UltraExplorerBar MenuExplorerBar;
     }
 }

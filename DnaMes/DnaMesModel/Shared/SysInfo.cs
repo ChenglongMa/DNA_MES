@@ -51,6 +51,11 @@ namespace DnaMesModel.Shared
         public static List<Domain> Domains { get; set; }
 
         /// <summary>
+        /// 输出目录
+        /// </summary>
+        public static string BinPath => AppDomain.CurrentDomain.BaseDirectory;
+
+        /// <summary>
         /// 本机内网IP地址
         /// </summary>
         public static IPAddress InterIp

@@ -6,6 +6,7 @@
 // ****************************************************
 
 using System.Collections.Generic;
+using System.Windows.Forms;
 using System.Xml.Serialization;
 
 namespace DnaMesUiBll.Config.Model
@@ -56,7 +57,7 @@ namespace DnaMesUiBll.Config.Model
         /// 停靠处
         /// </summary>
         [XmlAttribute]
-        public string Dock { get; set; } //TODO:确定属性类型
+        public DockStyle Dock { get; set; }
 
         [XmlElement] public List<PopMenu> PopMenus { get; set; }
     }
