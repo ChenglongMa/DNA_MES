@@ -48,7 +48,7 @@ namespace DnaMesModel.Shared
         /// <summary>
         /// 权限点集合
         /// </summary>
-        public static List<Domain> Domains { get; set; }
+        public static List<int> Domains { get; set; }=new List<int>();
 
         /// <summary>
         /// 输出目录

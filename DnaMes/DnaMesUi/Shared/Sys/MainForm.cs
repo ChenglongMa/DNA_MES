@@ -24,6 +24,7 @@ namespace DnaMesUi.Shared.Sys
         public MainForm()
         {
             InitializeComponent();
+            BuildMenuBar();
         }
 
         private readonly List<Form> _childForms = new List<Form>();
@@ -156,22 +157,34 @@ namespace DnaMesUi.Shared.Sys
         /// </summary>
         private void BuildMenuBar()
         {
-            var mainMenu = toolBarManager.Toolbars["MainMenuBar"];
-            mainMenu.Text = _menu.Text;
-            mainMenu.KeyTip = _menu.Name;
-            mainMenu.DockedPosition = (DockedPosition) Enum.Parse(typeof(DockedPosition), _menu.Dock);
-            var tools = mainMenu.Tools;
+            //设置菜单栏
+            var mainMenuBar = toolBarManager.Toolbars[_menu.Name];
+            mainMenuBar.Text = _menu.Text;
+            mainMenuBar.DockedPosition = (DockedPosition) Enum.Parse(typeof(DockedPosition), _menu.Dock);
+            var menus = mainMenuBar.Tools;
             var pops = _menu.PopMenus;
             foreach (var pop in pops)
             {
-                var tool = new PopupMenuTool(pop.Name);
+                //设置菜单
+                var menuTool = new PopupMenuTool(pop.Name);
+                menuTool.SharedProps.Caption = pop.Text;
                 foreach (var item in pop.MenuItems)
                 {
+                    //设置菜单项
                     var menuItem = new ButtonTool(item.Name);
-                    tool.Tools.Add(menuItem);
+                    menuItem.SharedProps.Caption = item.Text;
+                    menuItem.SharedProps.Enabled = SysInfo.Domains.Contains(item.DomainId);
+                    if (!menuItem.SharedProps.Enabled)
+                    {
+                        menuItem.SharedProps.ToolTipTextFormatted= @"您没有该权限";
+                    }
+
+                    //menuItem.SharedProps.Shortcut
+                    menuTool.Tools.Add(menuItem);
                 }
 
-                tools.Add(tool);
+                toolBarManager.Tools.Add(menuTool);
+                menus.Add(menuTool);
             }
         }
 
