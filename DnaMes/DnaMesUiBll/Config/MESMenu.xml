@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Menu Name="MainMenuBar" Text="主菜单" Dock="Top">
+  <PopMenus Name="BasicInfoPop" Text="基础信息管理" ShortCut="J">
+    <MenuItems Name="MaterialManagement" Text="物料管理" ShortCut="W" CommandType="Activate" DomainId="10001">
+      <FormPath>MaterialManagementForm</FormPath>
+      <FormType>ChildForm</FormType>
+    </MenuItems>
+    <MenuItems Name="ProcessManagement" Text="工艺管理" ShortCut="G" CommandType="Activate" DomainId="10001">
+      <FormPath>Basic.ProcessManagementForm</FormPath>
+      <FormType>ChildForm</FormType>
+    </MenuItems>
+  </PopMenus>
+  <PopMenus Name="OrderInfo" Text="订单信息管理" ShortCut="D">
+    <MenuItems Name="PlanManagement" Text="计划管理" ShortCut="H" CommandType="Close" DomainId="10003">
+      <FormType>Null</FormType>
+    </MenuItems>
+    <MenuItems Name="WorkOrderManagement" Text="工单管理" ShortCut="D" CommandType="Activate" DomainId="10004">
+      <FormPath>WorkOrderManagementForm</FormPath>
+      <FormType>ChildForm</FormType>
+    </MenuItems>
+  </PopMenus>
+  <PopMenus Name="UserPage" Text="个人中心" ShortCut="H">
+    <MenuItems Name="Home" Text="我的主页" ShortCut="H" CommandType="Activate" DomainId="10001">
+      <FormPath>Shared.Sys.HomeForm</FormPath>
+      <FormType>ChildForm</FormType>
+    </MenuItems>
+    <MenuItems Name="Home2" Text="我的主页_带参数" ShortCut="H" CommandType="Activate" DomainId="10001">
+      <FormPath>Shared.Sys.HomeForm</FormPath>
+      <FormType>Dialog</FormType>
+      <Params>
+        <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" p6:type="q1:int" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">1</anyType>
+        <anyType xmlns:q2="http://www.w3.org/2001/XMLSchema" p6:type="q2:int" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">2</anyType>
+      </Params>
+    </MenuItems>
+  </PopMenus>
+</Menu>

@@ -70,7 +70,7 @@
     <Folder Include="Shared\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Config\File\MESMenu.xml">
+    <Content Include="Config\MESMenu.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

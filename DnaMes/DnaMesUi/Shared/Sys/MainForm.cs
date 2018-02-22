@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DnaLib.Helper;
 using DnaMesModel.Shared;
 using DnaMesUiBll.Config;
 using DnaMesUiBll.Config.Model;
@@ -117,9 +118,10 @@ namespace DnaMesUi.Shared.Sys
         /// 实例化一个新窗口到系统中
         /// </summary>
         /// <param name="formType">窗体类型</param>
-        private void AddMidForm(Type formType)
+        /// <param name="paras">构造函数的参数</param>
+        private void AddMidForm(Type formType,params object[] paras)
         {
-            if (!(Activator.CreateInstance(formType) is Form frm)) return;
+            if (!(Activator.CreateInstance(formType,paras) is Form frm)) return;
             frm.MdiParent = this;
             frm.Show();
             tabbedMdiManager.TabFromForm(frm).Activate();
@@ -128,12 +130,14 @@ namespace DnaMesUi.Shared.Sys
         /// <summary>
         /// 激活或添加新窗体
         /// </summary>
-        private void ActivateChildForm(Type formType)
+        /// <param name="formType"></param>
+        /// <param name="paras"></param>
+        private void ActivateChildForm(Type formType, params object[] paras)
         {
             var form = _childForms.FirstOrDefault(f => f.GetType() == formType);
             if (form == null)
             {
-                AddMidForm(formType);
+                AddMidForm(formType,paras);
             }
             else
             {
@@ -264,13 +268,13 @@ namespace DnaMesUi.Shared.Sys
                                 switch (eventItem.FormType)
                                 {
                                     case FormType.ChildForm:
-                                        ActivateChildForm(type);
+                                        ActivateChildForm(type,eventItem.Params);
                                         break;
                                     //正常情况下不应出现该项，为保证交互流畅此处不抛出异常
                                     //而是做Dialog处理
                                     case FormType.Null:
                                     case FormType.Dialog:
-                                        var form=Activator.CreateInstance(type) as Form;
+                                        var form=Activator.CreateInstance(type,eventItem.Params) as Form;
                                         form?.ShowDialog(this);
                                         break;
                                     default:

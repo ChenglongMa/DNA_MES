@@ -14,26 +14,29 @@ namespace DnaMesUnitTest
         public void TestMenuBuilding()
         {
             var cons = BuildControl();
-            CreateLogDirectory(RootPath, "\\XmlFile\\MESMenu.xml");
-            XmlHelper.XmlSerializeToFile(cons, RootPath + "\\XmlFile\\MESMenu.xml");
+            var path=CreateLogDirectory(RootPath, "\\Config\\MESMenu.xml");
+            XmlHelper.XmlSerializeToFile(cons, path);
+            //Assert.IsTrue(path.ToUpper().Contains("UI"));
         }
 
-        private static readonly string RootPath = AppDomain.CurrentDomain.BaseDirectory;
+        private static readonly string RootPath = Directory.GetCurrentDirectory();//AppDomain.CurrentDomain.BaseDirectory;
 
         /// <summary>
         ///     创建日志文件夹
         /// </summary>
         /// <returns></returns>
-        private static void CreateLogDirectory(string path, string strfile)
+        private static string CreateLogDirectory(string path, string strfile)
         {
             try
             {
                 if (!Directory.Exists(path)) Directory.CreateDirectory(path);
                 if (!File.Exists(path + strfile)) File.Create(path + strfile).Dispose();
+                return path + strfile;
             }
             catch (Exception ex)
             {
                 MessageBoxHelper.ShowError(ex.Message);
+                return null;
             }
         }
 
@@ -41,7 +44,7 @@ namespace DnaMesUnitTest
         {
             return new Menu
             {
-                Name = "mainMenu",
+                Name = "MainMenuBar",
                 Text = "主菜单",
                 Dock = "Top",
                 PopMenus = new List<PopMenu>
@@ -68,9 +71,9 @@ namespace DnaMesUnitTest
                                 Name = "ProcessManagement",
                                 Text = "工艺管理",
                                 ShortCut = "G",
-                                FormPath = "ProcessManagementForm",
+                                FormPath = "BasicInfo.ProcessManagementForm",
                                 FormType = FormType.ChildForm,
-                                DomainId = 10002,
+                                DomainId = 10001,
                                 CommandType = CommandType.Activate,
                             },
                         }
@@ -89,7 +92,7 @@ namespace DnaMesUnitTest
                                 ShortCut = "H",
                                 //FormPath = "PlanManagementForm",
                                 FormType = FormType.Null,
-                                DomainId = 10003,
+                                DomainId = 10001,
                                 CommandType = CommandType.Close,
                             },
                             new MenuItem
@@ -100,6 +103,36 @@ namespace DnaMesUnitTest
                                 FormPath = "WorkOrderManagementForm",
                                 FormType = FormType.ChildForm,
                                 DomainId = 10004,
+                            },
+                        }
+                    },
+                    new PopMenu
+                    {
+                        Name = "UserPage",
+                        Text = "个人中心",
+                        ShortCut = "H",
+                        MenuItems = new List<MenuItem>
+                        {
+                            new MenuItem
+                            {
+                                Name = "Home",
+                                Text = "我的主页",
+                                ShortCut = "H",
+                                FormPath = "Shared.Sys.HomeForm",
+                                FormType = FormType.ChildForm,
+                                DomainId = 10001,
+                                CommandType = CommandType.Activate,
+                            },
+                            new MenuItem
+                            {
+                                Name = "Home2",
+                                Text = "我的主页_带参数",
+                                ShortCut = "H",
+                                FormPath = "Shared.Sys.HomeForm",
+                                FormType = FormType.Dialog,
+                                DomainId = 10001,
+                                CommandType = CommandType.Activate,
+                                Params = new object[] {1,2},
                             },
                         }
                     },

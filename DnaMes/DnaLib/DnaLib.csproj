@@ -84,6 +84,7 @@
     <Compile Include="Helper\IsHelper.cs" />
     <Compile Include="Helper\LogHelper.cs" />
     <Compile Include="Helper\MessageBoxHelper.cs" />
+    <Compile Include="Helper\ReflectionHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Helper\BitConverterHelper.cs" />
     <Compile Include="Helper\XmlHelper.cs" />

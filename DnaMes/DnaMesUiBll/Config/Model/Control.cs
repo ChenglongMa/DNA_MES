@@ -125,5 +125,10 @@ namespace DnaMesUiBll.Config.Model
         /// </summary>
         [XmlElement]
         public FormType FormType { get; set; } = FormType.ChildForm;
+        /// <summary>
+        /// Form构造函数的参数
+        /// </summary>
+        [XmlArrayItem(typeof(object))]
+        public object[] Params { get; set; }
     }
 }

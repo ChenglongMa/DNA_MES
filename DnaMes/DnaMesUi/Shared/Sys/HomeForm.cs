@@ -21,6 +21,10 @@ namespace DnaMesUi.Shared.Sys
             InitializeComponent();
         }
 
+        public HomeForm(int p1, int p2):this()
+        {
+            MessageBox.Show("这是带参数的构造函数");
 
+        }
     }
 }
