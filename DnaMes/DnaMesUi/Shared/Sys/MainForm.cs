@@ -177,6 +177,7 @@ namespace DnaMesUi.Shared.Sys
 
                     //menuItem.SharedProps.Shortcut
                     menuItem.Tag = item;
+                    menuItem.SharedProps.Tag = item;
                     menuTool.Tools.Add(menuItem);
                 }
 
@@ -192,7 +193,8 @@ namespace DnaMesUi.Shared.Sys
 
         private void tabbedMdiManager_TabClosed(object sender, MdiTabEventArgs e)
         {
-            _childForms.Remove(e.Tab.Form); //将窗体从缓存中移除
+            var form = e.Tab.Tag as Form;
+            _childForms.Remove(form); //将窗体从缓存中移除
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -232,7 +234,11 @@ namespace DnaMesUi.Shared.Sys
         {
             if (sender is IGMenuItem mi)
             {
-                if (mi.Tag is MdiTab tab) tab.Close();
+                if (mi.Tag is MdiTab tab)
+                {
+                    tab.Tag = tab.Form;
+                    tab.Close();
+                }
             }
         }
 
@@ -240,13 +246,11 @@ namespace DnaMesUi.Shared.Sys
 
         private void toolBarManager_ToolClick(object sender, ToolClickEventArgs e)
         {
-            var popMenu = e.Tool.Owner as PopupMenuTool;
-
-            if (((popMenu?.Owner as UltraToolbar)?.Key==_menu.Name))
+            var popMenu = e.Tool.OwningMenu;
+            var toolBar = popMenu?.OwningToolbar;
+            if (toolBar?.Key==_menu.Name)
             {
-                //if (!(e.Tool.Tag is MenuItem eventItem)) return;
-                var eventItem = _menu.PopMenus.FirstOrDefault(i => i.Name == popMenu.Key).MenuItems
-                    .FirstOrDefault(m => m.Name == e.Tool.Key);
+                if (!(e.Tool.SharedProps.Tag is MenuItem eventItem)) return;
                 switch (eventItem.CommandType)
                 {
                     default:
