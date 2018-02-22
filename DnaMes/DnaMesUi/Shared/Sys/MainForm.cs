@@ -159,19 +159,22 @@ namespace DnaMesUi.Shared.Sys
             var mainMenu = toolBarManager.Toolbars["MainMenuBar"];
             mainMenu.Text = _menu.Text;
             mainMenu.KeyTip = _menu.Name;
-            mainMenu.DockedPosition = (DockedPosition) Enum.Parse(typeof(DockedPosition),_menu.Dock);
+            mainMenu.DockedPosition = (DockedPosition) Enum.Parse(typeof(DockedPosition), _menu.Dock);
             var tools = mainMenu.Tools;
             var pops = _menu.PopMenus;
             foreach (var pop in pops)
             {
-                var tool=tools.AddTool(pop.Name);
+                var tool = new PopupMenuTool(pop.Name);
                 foreach (var item in pop.MenuItems)
                 {
-                    var menuItem = new ToolStripMenuItem(item.Text);
-                    
+                    var menuItem = new ButtonTool(item.Name);
+                    tool.Tools.Add(menuItem);
                 }
+
+                tools.Add(tool);
             }
         }
+
         private void tabbedMdiManager_InitializeTab(object sender, MdiTabEventArgs e)
         {
             _childForms.Add(e.Tab.Form); //将子窗体添加到缓存中

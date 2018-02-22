@@ -46,7 +46,7 @@ namespace DnaMesUiBll.Config
         public static Menu GetMenu()
         {
             var path = System.IO.Path.Combine(Path, FileName);
-            if (File.Exists(path))
+            if (!File.Exists(path))
             {
                 throw new FileNotFoundException();
             }
