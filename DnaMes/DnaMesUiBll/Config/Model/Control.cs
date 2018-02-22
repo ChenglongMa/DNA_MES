@@ -88,7 +88,7 @@ namespace DnaMesUiBll.Config.Model
 
     /// <inheritdoc />
     /// <summary>
-    /// 菜单项抽象类
+    /// 菜单项
     /// </summary>
     [XmlType]
     public class MenuItem : ControlItem
@@ -113,6 +113,9 @@ namespace DnaMesUiBll.Config.Model
 
         /// <summary>
         /// Form路径
+        /// 格式：采用相对路径，从Form所属文件夹开始
+        /// [FolderName].[FormName]
+        /// 例如："BasicInfo.UserMantForm"
         /// </summary>
         [XmlElement]
         public string FormPath { get; set; }
