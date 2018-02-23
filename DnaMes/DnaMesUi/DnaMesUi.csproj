@@ -67,6 +67,12 @@
     <Compile Include="BasicInfo\ProcessManagementForm.Designer.cs">
       <DependentUpon>ProcessManagementForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="DnaToolBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DnaToolBar.Designer.cs">
+      <DependentUpon>DnaToolBar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shared\Sys\HomeForm.cs">
@@ -83,6 +89,9 @@
     </Compile>
     <EmbeddedResource Include="BasicInfo\ProcessManagementForm.resx">
       <DependentUpon>ProcessManagementForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DnaToolBar.resx">
+      <DependentUpon>DnaToolBar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -133,6 +142,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\增加用户32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\增加用户16.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -12,6 +12,7 @@ using DnaLib.Helper;
 using DnaMesModel.Shared;
 using DnaMesUiBll.Config;
 using DnaMesUiBll.Config.Model;
+using Infragistics.Win;
 using Infragistics.Win.IGControls;
 using Infragistics.Win.UltraWinExplorerBar;
 using Infragistics.Win.UltraWinTabbedMdi;
@@ -155,11 +156,33 @@ namespace DnaMesUi.Shared.Sys
         /// </summary>
         private void BuildMenuBar()
         {
+            foreach (var toolbar in toolBarManager.Toolbars)
+            {
+                toolbar.DockedRow++;
+            }
+            //toolBarManager.Toolbars[0].DockedRow = 1;
             //设置菜单栏
-            var mainMenuBar = toolBarManager.Toolbars[_menu.Name];
+            var mainMenuBar = toolBarManager.Toolbars.AddToolbar(_menu.Name);
+            mainMenuBar.IsMainMenuBar = true;
+            mainMenuBar.Settings.ShowToolTips = DefaultableBoolean.True;
             mainMenuBar.Text = _menu.Text;
-            mainMenuBar.DockedPosition = (DockedPosition) Enum.Parse(typeof(DockedPosition), _menu.Dock);
+            
+            if (_menu.IsLarge)
+            {
+                mainMenuBar.Settings.ToolDisplayStyle = ToolDisplayStyle.ImageAndText;
+                mainMenuBar.Settings.UseLargeImages = DefaultableBoolean.True;
+                toolBarManager.MenuSettings.ToolDisplayStyle = ToolDisplayStyle.ImageAndText;
+                toolBarManager.MenuSettings.UseLargeImages = DefaultableBoolean.True;
+            }
+            else
+            {
+                mainMenuBar.Settings.ToolDisplayStyle = ToolDisplayStyle.DefaultForToolType;
+                mainMenuBar.Settings.UseLargeImages = DefaultableBoolean.False;
+                toolBarManager.MenuSettings.ToolDisplayStyle = ToolDisplayStyle.DefaultForToolType;
+                toolBarManager.MenuSettings.UseLargeImages = DefaultableBoolean.False;
+            }
             mainMenuBar.Tag = _menu;
+            mainMenuBar.DockedRow = 0;
             var menus = mainMenuBar.Tools;
             var pops = _menu.PopMenus;
             foreach (var pop in pops)
@@ -192,12 +215,13 @@ namespace DnaMesUi.Shared.Sys
 
         private void tabbedMdiManager_InitializeTab(object sender, MdiTabEventArgs e)
         {
+            e.Tab.Tag = e.Tab.Form;
             _childForms.Add(e.Tab.Form); //将子窗体添加到缓存中
         }
 
         private void tabbedMdiManager_TabClosed(object sender, MdiTabEventArgs e)
         {
-            var form = e.Tab.Tag as Form;
+            var form = e.Tab.Tag as Form;//bug:点击关闭按钮时无效
             _childForms.Remove(form); //将窗体从缓存中移除
         }
 
@@ -240,7 +264,6 @@ namespace DnaMesUi.Shared.Sys
             {
                 if (mi.Tag is MdiTab tab)
                 {
-                    tab.Tag = tab.Form;
                     tab.Close();
                 }
             }

@@ -56,11 +56,11 @@ namespace DnaMesUiBll.Config.Model
     public class Menu : ControlItem
     {
         /// <summary>
-        /// 停靠处
+        /// 是否使用大图标
+        /// 触摸屏适用
         /// </summary>
         [XmlAttribute]
-        public string Dock { get; set; } = DockedPosition.Top.ToString();
-
+        public bool IsLarge { get; set; } = false;
         [XmlElement] public List<PopMenu> PopMenus { get; set; }
     }
 

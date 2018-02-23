@@ -29,8 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Infragistics.Win.UltraWinToolbars.UltraToolbar ultraToolbar1 = new Infragistics.Win.UltraWinToolbars.UltraToolbar("SysToolBar");
-            Infragistics.Win.UltraWinToolbars.UltraToolbar ultraToolbar2 = new Infragistics.Win.UltraWinToolbars.UltraToolbar("MainMenuBar");
+            Infragistics.Win.UltraWinToolbars.UltraToolbar ultraToolbar2 = new Infragistics.Win.UltraWinToolbars.UltraToolbar("SysToolBar");
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.toolBarManager = new Infragistics.Win.UltraWinToolbars.UltraToolbarsManager(this.components);
             this._MainForm_Toolbars_Dock_Area_Left = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
@@ -49,57 +48,76 @@
             this.toolBarManager.DesignerFlags = 1;
             this.toolBarManager.DockWithinContainer = this;
             this.toolBarManager.DockWithinContainerBaseType = typeof(System.Windows.Forms.Form);
-            this.toolBarManager.Style = Infragistics.Win.UltraWinToolbars.ToolbarStyle.WindowsVista;
-            ultraToolbar1.DockedColumn = 0;
-            ultraToolbar1.DockedRow = 1;
-            ultraToolbar1.FloatingSize = new System.Drawing.Size(142, 27);
-            ultraToolbar1.Text = "SysToolBar";
+            this.toolBarManager.FormDisplayStyle = Infragistics.Win.UltraWinToolbars.FormDisplayStyle.Standard;
+            this.toolBarManager.LockToolbars = true;
+            this.toolBarManager.MenuSettings.ShowToolTips = Infragistics.Win.DefaultableBoolean.True;
+            this.toolBarManager.RuntimeCustomizationOptions = Infragistics.Win.UltraWinToolbars.RuntimeCustomizationOptions.None;
+            this.toolBarManager.ShowFullMenusDelay = 500;
+            this.toolBarManager.ShowShortcutsInToolTips = true;
+            this.toolBarManager.Style = Infragistics.Win.UltraWinToolbars.ToolbarStyle.Office2007;
             ultraToolbar2.DockedColumn = 0;
             ultraToolbar2.DockedRow = 0;
-            ultraToolbar2.IsMainMenuBar = true;
-            ultraToolbar2.Text = "MainMenuBar";
+            ultraToolbar2.FloatingSize = new System.Drawing.Size(142, 27);
+            ultraToolbar2.Settings.AllowCustomize = Infragistics.Win.DefaultableBoolean.False;
+            ultraToolbar2.Settings.AllowDockBottom = Infragistics.Win.DefaultableBoolean.False;
+            ultraToolbar2.Settings.AllowDockLeft = Infragistics.Win.DefaultableBoolean.False;
+            ultraToolbar2.Settings.AllowDockRight = Infragistics.Win.DefaultableBoolean.False;
+            ultraToolbar2.Settings.AllowDockTop = Infragistics.Win.DefaultableBoolean.True;
+            ultraToolbar2.Settings.AllowFloating = Infragistics.Win.DefaultableBoolean.False;
+            ultraToolbar2.Settings.AllowHiding = Infragistics.Win.DefaultableBoolean.False;
+            ultraToolbar2.Settings.ToolDisplayStyle = Infragistics.Win.UltraWinToolbars.ToolDisplayStyle.ImageAndText;
+            ultraToolbar2.Settings.UseLargeImages = Infragistics.Win.DefaultableBoolean.True;
+            ultraToolbar2.Text = "工具栏";
             this.toolBarManager.Toolbars.AddRange(new Infragistics.Win.UltraWinToolbars.UltraToolbar[] {
-            ultraToolbar1,
             ultraToolbar2});
+            this.toolBarManager.ToolbarSettings.AllowCustomize = Infragistics.Win.DefaultableBoolean.False;
+            this.toolBarManager.ToolbarSettings.AllowDockBottom = Infragistics.Win.DefaultableBoolean.False;
+            this.toolBarManager.ToolbarSettings.AllowDockLeft = Infragistics.Win.DefaultableBoolean.False;
+            this.toolBarManager.ToolbarSettings.AllowDockRight = Infragistics.Win.DefaultableBoolean.False;
+            this.toolBarManager.ToolbarSettings.AllowDockTop = Infragistics.Win.DefaultableBoolean.True;
+            this.toolBarManager.ToolbarSettings.AllowFloating = Infragistics.Win.DefaultableBoolean.False;
+            this.toolBarManager.ToolbarSettings.AllowHiding = Infragistics.Win.DefaultableBoolean.False;
+            this.toolBarManager.ToolbarSettings.ShowToolTips = Infragistics.Win.DefaultableBoolean.True;
+            this.toolBarManager.ToolTipDisplayStyle = Infragistics.Win.UltraWinToolbars.ToolTipDisplayStyle.Standard;
             this.toolBarManager.ToolClick += new Infragistics.Win.UltraWinToolbars.ToolClickEventHandler(this.toolBarManager_ToolClick);
             // 
             // _MainForm_Toolbars_Dock_Area_Left
             // 
             this._MainForm_Toolbars_Dock_Area_Left.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this._MainForm_Toolbars_Dock_Area_Left.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(230)))), ((int)(((byte)(246)))));
+            this._MainForm_Toolbars_Dock_Area_Left.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
             this._MainForm_Toolbars_Dock_Area_Left.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Left;
             this._MainForm_Toolbars_Dock_Area_Left.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._MainForm_Toolbars_Dock_Area_Left.Location = new System.Drawing.Point(0, 45);
+            this._MainForm_Toolbars_Dock_Area_Left.Location = new System.Drawing.Point(0, 20);
             this._MainForm_Toolbars_Dock_Area_Left.Name = "_MainForm_Toolbars_Dock_Area_Left";
-            this._MainForm_Toolbars_Dock_Area_Left.Size = new System.Drawing.Size(0, 455);
+            this._MainForm_Toolbars_Dock_Area_Left.Size = new System.Drawing.Size(0, 480);
             this._MainForm_Toolbars_Dock_Area_Left.ToolbarsManager = this.toolBarManager;
             // 
             // _MainForm_Toolbars_Dock_Area_Right
             // 
             this._MainForm_Toolbars_Dock_Area_Right.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this._MainForm_Toolbars_Dock_Area_Right.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(230)))), ((int)(((byte)(246)))));
+            this._MainForm_Toolbars_Dock_Area_Right.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
             this._MainForm_Toolbars_Dock_Area_Right.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Right;
             this._MainForm_Toolbars_Dock_Area_Right.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._MainForm_Toolbars_Dock_Area_Right.Location = new System.Drawing.Point(843, 45);
+            this._MainForm_Toolbars_Dock_Area_Right.Location = new System.Drawing.Point(843, 20);
             this._MainForm_Toolbars_Dock_Area_Right.Name = "_MainForm_Toolbars_Dock_Area_Right";
-            this._MainForm_Toolbars_Dock_Area_Right.Size = new System.Drawing.Size(0, 455);
+            this._MainForm_Toolbars_Dock_Area_Right.Size = new System.Drawing.Size(0, 480);
             this._MainForm_Toolbars_Dock_Area_Right.ToolbarsManager = this.toolBarManager;
             // 
             // _MainForm_Toolbars_Dock_Area_Top
             // 
             this._MainForm_Toolbars_Dock_Area_Top.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this._MainForm_Toolbars_Dock_Area_Top.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(230)))), ((int)(((byte)(246)))));
+            this._MainForm_Toolbars_Dock_Area_Top.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
             this._MainForm_Toolbars_Dock_Area_Top.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Top;
             this._MainForm_Toolbars_Dock_Area_Top.ForeColor = System.Drawing.SystemColors.ControlText;
             this._MainForm_Toolbars_Dock_Area_Top.Location = new System.Drawing.Point(0, 0);
             this._MainForm_Toolbars_Dock_Area_Top.Name = "_MainForm_Toolbars_Dock_Area_Top";
-            this._MainForm_Toolbars_Dock_Area_Top.Size = new System.Drawing.Size(843, 45);
+            this._MainForm_Toolbars_Dock_Area_Top.Size = new System.Drawing.Size(843, 20);
             this._MainForm_Toolbars_Dock_Area_Top.ToolbarsManager = this.toolBarManager;
             // 
             // _MainForm_Toolbars_Dock_Area_Bottom
             // 
             this._MainForm_Toolbars_Dock_Area_Bottom.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this._MainForm_Toolbars_Dock_Area_Bottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(230)))), ((int)(((byte)(246)))));
+            this._MainForm_Toolbars_Dock_Area_Bottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
             this._MainForm_Toolbars_Dock_Area_Bottom.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Bottom;
             this._MainForm_Toolbars_Dock_Area_Bottom.ForeColor = System.Drawing.SystemColors.ControlText;
             this._MainForm_Toolbars_Dock_Area_Bottom.Location = new System.Drawing.Point(0, 500);
@@ -110,6 +128,9 @@
             // tabbedMdiManager
             // 
             this.tabbedMdiManager.MdiParent = this;
+            this.tabbedMdiManager.TabGroupSettings.CloseButtonLocation = Infragistics.Win.UltraWinTabs.TabCloseButtonLocation.Tab;
+            this.tabbedMdiManager.TabSettings.CloseButtonVisibility = Infragistics.Win.UltraWinTabs.TabCloseButtonVisibility.WhenSelectedOrHotTracked;
+            this.tabbedMdiManager.ViewStyle = Infragistics.Win.UltraWinTabbedMdi.ViewStyle.Office2007;
             this.tabbedMdiManager.InitializeContextMenu += new Infragistics.Win.UltraWinTabbedMdi.MdiTabContextMenuEventHandler(this.tabbedMdiManager_InitializeContextMenu);
             this.tabbedMdiManager.InitializeTab += new Infragistics.Win.UltraWinTabbedMdi.MdiTabEventHandler(this.tabbedMdiManager_InitializeTab);
             this.tabbedMdiManager.TabClosed += new Infragistics.Win.UltraWinTabbedMdi.MdiTabEventHandler(this.tabbedMdiManager_TabClosed);

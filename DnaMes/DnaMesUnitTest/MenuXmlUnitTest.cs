@@ -46,7 +46,7 @@ namespace DnaMesUnitTest
             {
                 Name = "MainMenuBar",
                 Text = "主菜单",
-                Dock = "Top",
+                IsLarge = false,
                 PopMenus = new List<PopMenu>
                 {
                     new PopMenu

@@ -63,6 +63,16 @@ namespace DnaMesUi.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap 增加用户16 {
+            get {
+                object obj = ResourceManager.GetObject("增加用户16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap 增加用户32 {
             get {
                 object obj = ResourceManager.GetObject("增加用户32", resourceCulture);
