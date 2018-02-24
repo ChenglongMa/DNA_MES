@@ -160,7 +160,6 @@ namespace DnaMesUi.Shared.Sys
             {
                 toolbar.DockedRow++;
             }
-            //toolBarManager.Toolbars[0].DockedRow = 1;
             //设置菜单栏
             var mainMenuBar = toolBarManager.Toolbars.AddToolbar(_menu.Name);
             mainMenuBar.IsMainMenuBar = true;
@@ -197,10 +196,10 @@ namespace DnaMesUi.Shared.Sys
                     var menuItem = new ButtonTool(item.Name);
                     menuItem.SharedProps.Caption = item.Text;
                     menuItem.SharedProps.Enabled = SysInfo.Domains.Contains(item.DomainId);
-                    //if (!menuItem.SharedProps.Enabled)
-                    //{
-                    //    menuItem.SharedProps.ToolTipTextFormatted= @"您没有该权限";
-                    //}
+                    if (!menuItem.SharedProps.Enabled)
+                    {
+                        menuItem.SharedProps.ToolTipText = @"您没有该权限";
+                    }
 
                     //menuItem.SharedProps.Shortcut
                     menuItem.Tag = item;
