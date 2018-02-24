@@ -120,9 +120,9 @@ namespace DnaMesUi.Shared.Sys
         /// </summary>
         /// <param name="formType">窗体类型</param>
         /// <param name="paras">构造函数的参数</param>
-        private void AddMidForm(Type formType,params object[] paras)
+        private void AddMidForm(Type formType, params object[] paras)
         {
-            if (!(Activator.CreateInstance(formType,paras) is Form frm)) return;
+            if (!(Activator.CreateInstance(formType, paras) is Form frm)) return;
             frm.MdiParent = this;
             frm.Show();
             tabbedMdiManager.TabFromForm(frm).Activate();
@@ -138,7 +138,7 @@ namespace DnaMesUi.Shared.Sys
             var form = _childForms.FirstOrDefault(f => f.GetType() == formType);
             if (form == null)
             {
-                AddMidForm(formType,paras);
+                AddMidForm(formType, paras);
             }
             else
             {
@@ -160,12 +160,13 @@ namespace DnaMesUi.Shared.Sys
             {
                 toolbar.DockedRow++;
             }
+
             //设置菜单栏
             var mainMenuBar = toolBarManager.Toolbars.AddToolbar(_menu.Name);
             mainMenuBar.IsMainMenuBar = true;
             mainMenuBar.Settings.ShowToolTips = DefaultableBoolean.True;
             mainMenuBar.Text = _menu.Text;
-            
+
             if (_menu.IsLarge)
             {
                 mainMenuBar.Settings.ToolDisplayStyle = ToolDisplayStyle.ImageAndText;
@@ -180,6 +181,7 @@ namespace DnaMesUi.Shared.Sys
                 toolBarManager.MenuSettings.ToolDisplayStyle = ToolDisplayStyle.DefaultForToolType;
                 toolBarManager.MenuSettings.UseLargeImages = DefaultableBoolean.False;
             }
+
             mainMenuBar.Tag = _menu;
             mainMenuBar.DockedRow = 0;
             var menus = mainMenuBar.Tools;
@@ -210,18 +212,6 @@ namespace DnaMesUi.Shared.Sys
                 toolBarManager.Tools.Add(menuTool);
                 menus.Add(menuTool);
             }
-        }
-
-        private void tabbedMdiManager_InitializeTab(object sender, MdiTabEventArgs e)
-        {
-            e.Tab.Tag = e.Tab.Form;
-            _childForms.Add(e.Tab.Form); //将子窗体添加到缓存中
-        }
-
-        private void tabbedMdiManager_TabClosed(object sender, MdiTabEventArgs e)
-        {
-            var form = e.Tab.Tag as Form;//bug:点击关闭按钮时无效
-            _childForms.Remove(form); //将窗体从缓存中移除
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -274,14 +264,14 @@ namespace DnaMesUi.Shared.Sys
         {
             var popMenu = e.Tool.OwningMenu;
             var toolBar = popMenu?.OwningToolbar;
-            if (toolBar?.Key==_menu.Name)
+            if (toolBar?.Key == _menu.Name)
             {
                 if (!(e.Tool.SharedProps.Tag is MenuItem eventItem)) return;
                 switch (eventItem.CommandType)
                 {
                     default:
                     case CommandType.Activate:
-                        var path = nameof(DnaMesUi)+"."+eventItem.FormPath;
+                        var path = nameof(DnaMesUi) + "." + eventItem.FormPath;
                         var type = Assembly.Load(nameof(DnaMesUi)).GetType(path);
                         if (type != null)
                         {
@@ -290,13 +280,13 @@ namespace DnaMesUi.Shared.Sys
                                 switch (eventItem.FormType)
                                 {
                                     case FormType.ChildForm:
-                                        ActivateChildForm(type,eventItem.Params);
+                                        ActivateChildForm(type, eventItem.Params);
                                         break;
                                     //正常情况下不应出现该项，为保证交互流畅此处不抛出异常
                                     //而是做Dialog处理
                                     case FormType.Null:
                                     case FormType.Dialog:
-                                        var form=Activator.CreateInstance(type,eventItem.Params) as Form;
+                                        var form = Activator.CreateInstance(type, eventItem.Params) as Form;
                                         form?.ShowDialog(this);
                                         break;
                                     default:
@@ -312,6 +302,17 @@ namespace DnaMesUi.Shared.Sys
                         break;
                 }
             }
+        }
+
+        private void tabbedMdiManager_TabClosing(object sender, CancelableMdiTabEventArgs e)
+        {
+            var form = e.Tab.Form;
+            _childForms.Remove(form);
+        }
+
+        private void tabbedMdiManager_TabDisplayed(object sender, MdiTabEventArgs e)
+        {
+            _childForms.Add(e.Tab.Form); //将子窗体添加到缓存中
         }
     }
 }
