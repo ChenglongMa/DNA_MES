@@ -67,12 +67,6 @@
     <Compile Include="BasicInfo\ProcessMantForm.Designer.cs">
       <DependentUpon>ProcessMantForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="DnaToolBar.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="DnaToolBar.Designer.cs">
-      <DependentUpon>DnaToolBar.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shared\Sys\HomeForm.cs">
@@ -87,11 +81,11 @@
     <Compile Include="Shared\Sys\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="BaseForm.resx">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BasicInfo\ProcessMantForm.resx">
       <DependentUpon>ProcessMantForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DnaToolBar.resx">
-      <DependentUpon>DnaToolBar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
