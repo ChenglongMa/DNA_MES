@@ -41,6 +41,7 @@
     <Reference Include="Infragistics4.Win.UltraWinTabbedMdi.v12.1, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
     <Reference Include="Infragistics4.Win.UltraWinTabControl.v12.1, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" />
     <Reference Include="Infragistics4.Win.UltraWinToolbars.v12.1, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
+    <Reference Include="Infragistics4.Win.UltraWinTree.v12.1, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
     <Reference Include="Infragistics4.Win.v12.1, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" />
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
@@ -89,6 +90,18 @@
     <Compile Include="Shared\Sys\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Templetes\WithTreeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Templetes\WithTreeForm.Designer.cs">
+      <DependentUpon>WithTreeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Templetes\NoTreeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Templetes\NoTreeForm.Designer.cs">
+      <DependentUpon>NoTreeForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="BaseForm.resx">
       <DependentUpon>BaseForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -114,6 +127,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Shared\Sys\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Templetes\WithTreeForm.resx">
+      <DependentUpon>WithTreeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Templetes\NoTreeForm.resx">
+      <DependentUpon>NoTreeForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

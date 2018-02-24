@@ -1,6 +1,6 @@
-﻿namespace DnaMesUi.BasicInfo
+﻿namespace DnaMesUi.Templetes
 {
-    partial class ProcessMantForm
+    partial class WithTreeForm
     {
         /// <summary>
         /// Required designer variable.
@@ -272,9 +272,9 @@
             this.uTree.Location = new System.Drawing.Point(0, 0);
             this.uTree.Name = "uTree";
             this.uTree.Size = new System.Drawing.Size(287, 487);
-            this.uTree.TabIndex = 1;
+            this.uTree.TabIndex = 0;
             // 
-            // ProcessMantForm
+            // WithTreeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -285,7 +285,7 @@
             this.Controls.Add(this._BaseForm_Toolbars_Dock_Area_Bottom);
             this.Controls.Add(this._BaseForm_Toolbars_Dock_Area_Top);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Name = "ProcessMantForm";
+            this.Name = "WithTreeForm";
             this.Text = "ProcessManagementForm";
             ((System.ComponentModel.ISupportInitialize)(this.ultraToolbarsManager1)).EndInit();
             this.BaseForm_Fill_Panel.ResumeLayout(false);

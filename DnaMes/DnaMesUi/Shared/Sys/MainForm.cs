@@ -33,7 +33,6 @@ namespace DnaMesUi.Shared.Sys
             BuildMenuBar();
         }
 
-        
 
         #region 自动生成代码
 
@@ -115,7 +114,9 @@ namespace DnaMesUi.Shared.Sys
         #endregion
 
         #region 添加子窗体
+
         private readonly List<Form> _childForms = new List<Form>();
+
         /// <summary>
         /// 实例化一个新窗口到系统中
         /// </summary>
@@ -195,12 +196,22 @@ namespace DnaMesUi.Shared.Sys
             {
                 //设置菜单
                 var menuTool = new PopupMenuTool(pop.Name);
+                if (!pop.ShortCut.IsNullOrEmpty())
+                {
+                    pop.Text += "(&" + pop.ShortCut + ")";
+                }
+
                 menuTool.SharedProps.Caption = pop.Text;
                 menuTool.Tag = pop;
                 foreach (var item in pop.MenuItems)
                 {
                     //设置菜单项
                     var menuItem = new ButtonTool(item.Name);
+                    if (!item.ShortCut.IsNullOrEmpty())
+                    {
+                        item.Text += "(&" + item.ShortCut + ")";
+                    }
+
                     menuItem.SharedProps.Caption = item.Text;
                     menuItem.SharedProps.Enabled = SysInfo.Domains.Contains(item.DomainId);
                     if (!menuItem.SharedProps.Enabled)
@@ -208,7 +219,6 @@ namespace DnaMesUi.Shared.Sys
                         menuItem.SharedProps.ToolTipText = @"您没有该权限";
                     }
 
-                    //todo:menuItem.SharedProps.Shortcut
                     menuItem.Tag = item;
                     menuItem.SharedProps.Tag = item;
                     menuTool.Tools.Add(menuItem);
