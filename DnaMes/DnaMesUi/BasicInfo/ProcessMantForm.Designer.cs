@@ -1,6 +1,6 @@
 ﻿namespace DnaMesUi.BasicInfo
 {
-    partial class ProcessManagementForm
+    partial class ProcessMantForm
     {
         /// <summary>
         /// Required designer variable.
