@@ -30,7 +30,6 @@ namespace DnaMesUi.Shared.Sys
         public MainForm()
         {
             InitializeComponent();
-            SysInfo.Domains.Add(10001);
             BuildMenuBar();
         }
 
@@ -203,7 +202,7 @@ namespace DnaMesUi.Shared.Sys
                         menuItem.SharedProps.ToolTipText = @"您没有该权限";
                     }
 
-                    //menuItem.SharedProps.Shortcut
+                    //todo:menuItem.SharedProps.Shortcut
                     menuItem.Tag = item;
                     menuItem.SharedProps.Tag = item;
                     menuTool.Tools.Add(menuItem);

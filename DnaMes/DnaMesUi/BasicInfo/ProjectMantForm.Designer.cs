@@ -1,6 +1,6 @@
 ﻿namespace DnaMesUi.BasicInfo
 {
-    partial class ProcessMantForm
+    partial class ProjectMantForm
     {
         /// <summary>
         /// Required designer variable.
@@ -44,21 +44,17 @@
             Infragistics.Win.Appearance appearance12 = new Infragistics.Win.Appearance();
             this.ultraToolbarsManager1 = new Infragistics.Win.UltraWinToolbars.UltraToolbarsManager(this.components);
             this.BaseForm_Fill_Panel = new System.Windows.Forms.Panel();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this._BaseForm_Toolbars_Dock_Area_Left = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this._BaseForm_Toolbars_Dock_Area_Right = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this._BaseForm_Toolbars_Dock_Area_Top = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this._BaseForm_Toolbars_Dock_Area_Bottom = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.ultraGrid1 = new Infragistics.Win.UltraWinGrid.UltraGrid();
             ((System.ComponentModel.ISupportInitialize)(this.ultraToolbarsManager1)).BeginInit();
             this.BaseForm_Fill_Panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
-            this.splitContainer2.Panel2.SuspendLayout();
-            this.splitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ultraGrid1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -107,8 +103,30 @@
             this.BaseForm_Fill_Panel.Location = new System.Drawing.Point(0, 20);
             this.BaseForm_Fill_Panel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.BaseForm_Fill_Panel.Name = "BaseForm_Fill_Panel";
-            this.BaseForm_Fill_Panel.Size = new System.Drawing.Size(863, 561);
+            this.BaseForm_Fill_Panel.Size = new System.Drawing.Size(975, 652);
             this.BaseForm_Fill_Panel.TabIndex = 0;
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.splitContainer1.IsSplitterFixed = true;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Font = new System.Drawing.Font("宋体", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.ultraGrid1);
+            this.splitContainer1.Size = new System.Drawing.Size(975, 652);
+            this.splitContainer1.SplitterDistance = 70;
+            this.splitContainer1.SplitterWidth = 5;
+            this.splitContainer1.TabIndex = 0;
             // 
             // _BaseForm_Toolbars_Dock_Area_Left
             // 
@@ -119,7 +137,7 @@
             this._BaseForm_Toolbars_Dock_Area_Left.Location = new System.Drawing.Point(0, 20);
             this._BaseForm_Toolbars_Dock_Area_Left.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._BaseForm_Toolbars_Dock_Area_Left.Name = "_BaseForm_Toolbars_Dock_Area_Left";
-            this._BaseForm_Toolbars_Dock_Area_Left.Size = new System.Drawing.Size(0, 561);
+            this._BaseForm_Toolbars_Dock_Area_Left.Size = new System.Drawing.Size(0, 652);
             this._BaseForm_Toolbars_Dock_Area_Left.ToolbarsManager = this.ultraToolbarsManager1;
             // 
             // _BaseForm_Toolbars_Dock_Area_Right
@@ -128,10 +146,10 @@
             this._BaseForm_Toolbars_Dock_Area_Right.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
             this._BaseForm_Toolbars_Dock_Area_Right.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Right;
             this._BaseForm_Toolbars_Dock_Area_Right.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._BaseForm_Toolbars_Dock_Area_Right.Location = new System.Drawing.Point(863, 20);
+            this._BaseForm_Toolbars_Dock_Area_Right.Location = new System.Drawing.Point(975, 20);
             this._BaseForm_Toolbars_Dock_Area_Right.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._BaseForm_Toolbars_Dock_Area_Right.Name = "_BaseForm_Toolbars_Dock_Area_Right";
-            this._BaseForm_Toolbars_Dock_Area_Right.Size = new System.Drawing.Size(0, 561);
+            this._BaseForm_Toolbars_Dock_Area_Right.Size = new System.Drawing.Size(0, 652);
             this._BaseForm_Toolbars_Dock_Area_Right.ToolbarsManager = this.ultraToolbarsManager1;
             // 
             // _BaseForm_Toolbars_Dock_Area_Top
@@ -143,7 +161,7 @@
             this._BaseForm_Toolbars_Dock_Area_Top.Location = new System.Drawing.Point(0, 0);
             this._BaseForm_Toolbars_Dock_Area_Top.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._BaseForm_Toolbars_Dock_Area_Top.Name = "_BaseForm_Toolbars_Dock_Area_Top";
-            this._BaseForm_Toolbars_Dock_Area_Top.Size = new System.Drawing.Size(863, 20);
+            this._BaseForm_Toolbars_Dock_Area_Top.Size = new System.Drawing.Size(975, 20);
             this._BaseForm_Toolbars_Dock_Area_Top.ToolbarsManager = this.ultraToolbarsManager1;
             // 
             // _BaseForm_Toolbars_Dock_Area_Bottom
@@ -152,40 +170,11 @@
             this._BaseForm_Toolbars_Dock_Area_Bottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
             this._BaseForm_Toolbars_Dock_Area_Bottom.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Bottom;
             this._BaseForm_Toolbars_Dock_Area_Bottom.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._BaseForm_Toolbars_Dock_Area_Bottom.Location = new System.Drawing.Point(0, 581);
+            this._BaseForm_Toolbars_Dock_Area_Bottom.Location = new System.Drawing.Point(0, 672);
             this._BaseForm_Toolbars_Dock_Area_Bottom.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._BaseForm_Toolbars_Dock_Area_Bottom.Name = "_BaseForm_Toolbars_Dock_Area_Bottom";
-            this._BaseForm_Toolbars_Dock_Area_Bottom.Size = new System.Drawing.Size(863, 0);
+            this._BaseForm_Toolbars_Dock_Area_Bottom.Size = new System.Drawing.Size(975, 0);
             this._BaseForm_Toolbars_Dock_Area_Bottom.ToolbarsManager = this.ultraToolbarsManager1;
-            // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
-            this.splitContainer1.IsSplitterFixed = true;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Name = "splitContainer1";
-            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(863, 561);
-            this.splitContainer1.SplitterDistance = 70;
-            this.splitContainer1.TabIndex = 0;
-            // 
-            // splitContainer2
-            // 
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer2.Name = "splitContainer2";
-            // 
-            // splitContainer2.Panel2
-            // 
-            this.splitContainer2.Panel2.Controls.Add(this.ultraGrid1);
-            this.splitContainer2.Size = new System.Drawing.Size(863, 487);
-            this.splitContainer2.SplitterDistance = 287;
-            this.splitContainer2.TabIndex = 0;
             // 
             // ultraGrid1
             // 
@@ -254,32 +243,29 @@
             this.ultraGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ultraGrid1.Location = new System.Drawing.Point(0, 0);
             this.ultraGrid1.Name = "ultraGrid1";
-            this.ultraGrid1.Size = new System.Drawing.Size(572, 487);
-            this.ultraGrid1.TabIndex = 1;
+            this.ultraGrid1.Size = new System.Drawing.Size(975, 577);
+            this.ultraGrid1.TabIndex = 0;
             this.ultraGrid1.Text = "ultraGrid1";
             this.ultraGrid1.UpdateMode = Infragistics.Win.UltraWinGrid.UpdateMode.OnCellChangeOrLostFocus;
             // 
-            // ProcessMantForm
+            // ProjectMantForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(863, 581);
+            this.ClientSize = new System.Drawing.Size(975, 672);
             this.Controls.Add(this.BaseForm_Fill_Panel);
             this.Controls.Add(this._BaseForm_Toolbars_Dock_Area_Left);
             this.Controls.Add(this._BaseForm_Toolbars_Dock_Area_Right);
             this.Controls.Add(this._BaseForm_Toolbars_Dock_Area_Bottom);
             this.Controls.Add(this._BaseForm_Toolbars_Dock_Area_Top);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Name = "ProcessMantForm";
-            this.Text = "ProcessManagementForm";
+            this.Name = "ProjectMantForm";
+            this.Text = "ProjectMantForm";
             ((System.ComponentModel.ISupportInitialize)(this.ultraToolbarsManager1)).EndInit();
             this.BaseForm_Fill_Panel.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.splitContainer2.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
-            this.splitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ultraGrid1)).EndInit();
             this.ResumeLayout(false);
 
@@ -294,7 +280,6 @@
         private Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _BaseForm_Toolbars_Dock_Area_Bottom;
         private Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _BaseForm_Toolbars_Dock_Area_Top;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.SplitContainer splitContainer2;
         private Infragistics.Win.UltraWinGrid.UltraGrid ultraGrid1;
     }
 }

@@ -102,7 +102,7 @@ namespace DnaMesUnitTest
                                 Name = "ProjectMant",
                                 Text = "项目管理",
                                 ShortCut = "P",
-                                FormPath = "ProjectMantForm",
+                                FormPath = $"{nameof(DnaMesUi.BasicInfo)}.{nameof(ProjectMantForm)}",
                                 FormType = FormType.ChildForm,
                                 DomainId = 10001,
                                 CommandType = CommandType.Activate,
