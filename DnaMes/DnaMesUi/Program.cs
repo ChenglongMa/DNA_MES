@@ -10,6 +10,8 @@ using System.Threading;
 using System.Windows.Forms;
 using DnaLib.Helper;
 using DnaMesUi.Shared.Sys;
+using DnaMesUiBll.Config;
+using Infragistics.Win.AppStyling;
 
 namespace DnaMesUi
 {
@@ -44,6 +46,14 @@ namespace DnaMesUi
             //var loginDlg = new MESLoginDialog();
             //if (loginDlg.ShowDialog() == DialogResult.Cancel)
             //    return;//退出后程序退出
+
+            #endregion
+
+            #region 加载UI Style
+
+            var islFile = UiConfigHelper.GetIsl();
+
+            StyleManager.Load(islFile);
 
             #endregion
             Application.Run(new MainForm());

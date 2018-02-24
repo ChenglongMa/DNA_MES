@@ -33,7 +33,7 @@ namespace DnaMesUi.Shared.Sys
             BuildMenuBar();
         }
 
-        private readonly List<Form> _childForms = new List<Form>();
+        
 
         #region 自动生成代码
 
@@ -114,6 +114,8 @@ namespace DnaMesUi.Shared.Sys
 
         #endregion
 
+        #region 添加子窗体
+        private readonly List<Form> _childForms = new List<Form>();
         /// <summary>
         /// 实例化一个新窗口到系统中
         /// </summary>
@@ -145,10 +147,14 @@ namespace DnaMesUi.Shared.Sys
             }
         }
 
+        #endregion
+
+        #region 菜单构建
+
         /// <summary>
         /// 从menu.xml中读取的菜单项
         /// </summary>
-        private readonly Menu _menu = ConfigHelper.GetMenu();
+        private readonly Menu _menu = UiConfigHelper.GetMenu();
 
         /// <summary>
         /// 构建菜单栏
@@ -212,6 +218,10 @@ namespace DnaMesUi.Shared.Sys
                 menus.Add(menuTool);
             }
         }
+
+        #endregion
+
+        #region 事件
 
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -313,5 +323,7 @@ namespace DnaMesUi.Shared.Sys
         {
             _childForms.Add(e.Tab.Form); //将子窗体添加到缓存中
         }
+
+        #endregion
     }
 }

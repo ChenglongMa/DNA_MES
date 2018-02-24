@@ -17,7 +17,7 @@ namespace DnaMesUiBll.Config
     /// <summary>
     /// 配置读取类
     /// </summary>
-    public static class ConfigHelper
+    public static class UiConfigHelper
     {
         #region 私有字段
 
@@ -39,6 +39,8 @@ namespace DnaMesUiBll.Config
 
         #region 公有方法
 
+        #region 菜单配置
+
         /// <summary>
         /// 通过XML文件构建菜单模型
         /// </summary>
@@ -54,6 +56,22 @@ namespace DnaMesUiBll.Config
             return XmlHelper.XmlDeserializeFromFile<Menu>(path);
         }
 
+        #endregion
+
+        #region UI Style配置
+        /// <summary>
+        /// 获取ISL文件路径
+        /// </summary>
+        /// <param name="fileName">isl文件名</param>
+        /// <returns></returns>
+        public static string GetIsl(string fileName = "IG.isl")
+        {
+            var path = Path + nameof(Config) + "\\StyleLibraries";
+
+            return System.IO.Path.Combine(path, fileName);
+        }
+
+        #endregion
         #endregion
     }
 }

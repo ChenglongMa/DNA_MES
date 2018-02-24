@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="Infragistics4.Shared.v12.1, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
     <Reference Include="Infragistics4.Win.UltraWinToolbars.v12.1, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
+    <Reference Include="Infragistics4.Win.v12.1, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -44,13 +45,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Config\ConfigHelper.cs" />
+    <Compile Include="Config\UiConfigHelper.cs" />
     <Compile Include="Config\Model\CommandType.cs" />
     <Compile Include="Config\Model\Grid.cs" />
     <Compile Include="Config\Model\Menu.cs" />
     <Compile Include="Config\Model\FormType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="System\LoginBll.cs" />
+    <Compile Include="Shared\Sys\LoginBll.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DnaLib\DnaLib.csproj">
@@ -68,7 +69,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="BasicInfo\" />
-    <Folder Include="Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Config\MESMenu.xml">
@@ -77,6 +77,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Config\DefaultMenuConfig.dat" />
+    <None Include="Config\StyleLibraries\black.isl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\StyleLibraries\BlackStyleSet.isl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\StyleLibraries\FlatNature.isl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\StyleLibraries\IG.isl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\StyleLibraries\Ocean_blue3_pill.isl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\StyleLibraries\Red_No_pill.isl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\StyleLibraries\TheBlues.isl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
