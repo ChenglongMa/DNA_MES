@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace DnaMesUi.BasicInfo
 {
-    public partial class ProcessMantForm : Form
+    public partial class ProcessMantForm : BaseForm
     {
         public ProcessMantForm()
         {

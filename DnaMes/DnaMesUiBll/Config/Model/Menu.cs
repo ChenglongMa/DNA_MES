@@ -13,20 +13,18 @@ using Infragistics.Win.UltraWinToolbars;
 
 namespace DnaMesUiBll.Config.Model
 {
-    /// <summary>
-    /// 控件配置类
-    /// </summary>
-    [XmlType("Control")]
-    public class Control
-    {
-        /// <summary>
-        /// 控件集合
-        /// </summary>
-        [XmlElement]
-        public List<Menu> Items { get; set; }
-
-        //public List<ControlItem> Items { get; set; }
-    }
+    ///// <summary>
+    ///// 控件配置类
+    ///// </summary>
+    //[XmlType("Control")]
+    //public class Control
+    //{
+    //    /// <summary>
+    //    /// 控件集合
+    //    /// </summary>
+    //    [XmlElement]
+    //    public List<Menu> Items { get; set; }
+    //}
 
     /// <summary>
     /// 控件项基类

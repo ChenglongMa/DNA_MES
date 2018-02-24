@@ -140,5 +140,140 @@
   <ItemGroup>
     <None Include="Resources\增加用户16.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\excel导出16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\excel导出32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\excel导入16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\excel导入32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\编辑216.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\编辑232.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\编辑订单16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\编辑订单32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\编辑用户16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\编辑用户32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\标准件16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\标准件32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\部件16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\部件32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\部门16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\部门32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\产品16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\产品32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\产品大类16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\产品大类32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\登陆16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\登陆32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\返修工单16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\返修工单32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\服务端桌面图标.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\公司16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\公司32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\集团16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\集团32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\取消全选16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\取消全选32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\全选16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\全选32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\删除用户16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\删除用户32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\刷新16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\刷新32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\退出16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\退出32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\新建16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\新建32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\新建工单16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\新建工单32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\作业计划16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\作业计划32.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

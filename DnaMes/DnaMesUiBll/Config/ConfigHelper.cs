@@ -15,14 +15,14 @@ using DnaMesUiBll.Config.Model;
 namespace DnaMesUiBll.Config
 {
     /// <summary>
-    /// 构建菜单栏类
+    /// 配置读取类
     /// </summary>
-    public static class MenuXmlHelper
+    public static class ConfigHelper
     {
         #region 私有字段
 
         private static readonly string Path = SysInfo.BinPath;
-        private static readonly string FileName = ConfigurationManager.AppSettings["MainFormMenu"];
+        private static readonly string MenuFileName = ConfigurationManager.AppSettings["MainFormMenu"];
 
         #endregion
 
@@ -45,7 +45,7 @@ namespace DnaMesUiBll.Config
         /// <returns></returns>
         public static Menu GetMenu()
         {
-            var path = System.IO.Path.Combine(Path, FileName);
+            var path = System.IO.Path.Combine(Path, MenuFileName);
             if (!File.Exists(path))
             {
                 throw new FileNotFoundException();

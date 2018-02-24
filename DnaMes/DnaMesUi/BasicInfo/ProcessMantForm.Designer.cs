@@ -30,16 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             Infragistics.Win.UltraWinToolbars.UltraToolbar ultraToolbar1 = new Infragistics.Win.UltraWinToolbars.UltraToolbar("SysToolBar");
-            Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool5 = new Infragistics.Win.UltraWinToolbars.ButtonTool("ButtonTool1");
-            Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool6 = new Infragistics.Win.UltraWinToolbars.ButtonTool("ButtonTool1");
-            Infragistics.Win.Appearance appearance1 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance2 = new Infragistics.Win.Appearance();
             this.ultraToolbarsManager1 = new Infragistics.Win.UltraWinToolbars.UltraToolbarsManager(this.components);
-            this.ProcessManagementForm_Fill_Panel = new System.Windows.Forms.Panel();
-            this._ProcessManagementForm_Toolbars_Dock_Area_Left = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
-            this._ProcessManagementForm_Toolbars_Dock_Area_Right = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
-            this._ProcessManagementForm_Toolbars_Dock_Area_Top = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
-            this._ProcessManagementForm_Toolbars_Dock_Area_Bottom = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
+            this.BaseForm_Fill_Panel = new System.Windows.Forms.Panel();
+            this._BaseForm_Toolbars_Dock_Area_Left = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
+            this._BaseForm_Toolbars_Dock_Area_Right = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
+            this._BaseForm_Toolbars_Dock_Area_Top = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
+            this._BaseForm_Toolbars_Dock_Area_Bottom = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             ((System.ComponentModel.ISupportInitialize)(this.ultraToolbarsManager1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,7 +43,7 @@
             // 
             this.ultraToolbarsManager1.DesignerFlags = 1;
             this.ultraToolbarsManager1.DockWithinContainer = this;
-            this.ultraToolbarsManager1.DockWithinContainerBaseType = typeof(System.Windows.Forms.Form);
+            this.ultraToolbarsManager1.DockWithinContainerBaseType = typeof(DnaMesUi.BaseForm);
             this.ultraToolbarsManager1.FormDisplayStyle = Infragistics.Win.UltraWinToolbars.FormDisplayStyle.Standard;
             this.ultraToolbarsManager1.LockToolbars = true;
             this.ultraToolbarsManager1.MenuSettings.ShowToolTips = Infragistics.Win.DefaultableBoolean.True;
@@ -58,8 +54,6 @@
             ultraToolbar1.DockedColumn = 0;
             ultraToolbar1.DockedRow = 0;
             ultraToolbar1.FloatingSize = new System.Drawing.Size(142, 27);
-            ultraToolbar1.NonInheritedTools.AddRange(new Infragistics.Win.UltraWinToolbars.ToolBase[] {
-            buttonTool5});
             ultraToolbar1.Settings.AllowCustomize = Infragistics.Win.DefaultableBoolean.False;
             ultraToolbar1.Settings.AllowDockBottom = Infragistics.Win.DefaultableBoolean.False;
             ultraToolbar1.Settings.AllowDockLeft = Infragistics.Win.DefaultableBoolean.False;
@@ -80,79 +74,72 @@
             this.ultraToolbarsManager1.ToolbarSettings.AllowFloating = Infragistics.Win.DefaultableBoolean.False;
             this.ultraToolbarsManager1.ToolbarSettings.AllowHiding = Infragistics.Win.DefaultableBoolean.False;
             this.ultraToolbarsManager1.ToolbarSettings.ShowToolTips = Infragistics.Win.DefaultableBoolean.True;
-            appearance1.Image = global::DnaMesUi.Properties.Resources.增加用户32;
-            buttonTool6.SharedPropsInternal.AppearancesLarge.Appearance = appearance1;
-            appearance2.Image = global::DnaMesUi.Properties.Resources.增加用户16;
-            buttonTool6.SharedPropsInternal.AppearancesSmall.Appearance = appearance2;
-            buttonTool6.SharedPropsInternal.Caption = "ButtonTool1";
-            this.ultraToolbarsManager1.Tools.AddRange(new Infragistics.Win.UltraWinToolbars.ToolBase[] {
-            buttonTool6});
             this.ultraToolbarsManager1.ToolTipDisplayStyle = Infragistics.Win.UltraWinToolbars.ToolTipDisplayStyle.Standard;
             // 
-            // ProcessManagementForm_Fill_Panel
+            // BaseForm_Fill_Panel
             // 
-            this.ProcessManagementForm_Fill_Panel.Cursor = System.Windows.Forms.Cursors.Default;
-            this.ProcessManagementForm_Fill_Panel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ProcessManagementForm_Fill_Panel.Location = new System.Drawing.Point(0, 44);
-            this.ProcessManagementForm_Fill_Panel.Name = "ProcessManagementForm_Fill_Panel";
-            this.ProcessManagementForm_Fill_Panel.Size = new System.Drawing.Size(498, 325);
-            this.ProcessManagementForm_Fill_Panel.TabIndex = 0;
+            this.BaseForm_Fill_Panel.Cursor = System.Windows.Forms.Cursors.Default;
+            this.BaseForm_Fill_Panel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BaseForm_Fill_Panel.Location = new System.Drawing.Point(0, 20);
+            this.BaseForm_Fill_Panel.Name = "BaseForm_Fill_Panel";
+            this.BaseForm_Fill_Panel.Size = new System.Drawing.Size(498, 349);
+            this.BaseForm_Fill_Panel.TabIndex = 0;
             // 
-            // _ProcessManagementForm_Toolbars_Dock_Area_Left
+            // _BaseForm_Toolbars_Dock_Area_Left
             // 
-            this._ProcessManagementForm_Toolbars_Dock_Area_Left.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this._ProcessManagementForm_Toolbars_Dock_Area_Left.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
-            this._ProcessManagementForm_Toolbars_Dock_Area_Left.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Left;
-            this._ProcessManagementForm_Toolbars_Dock_Area_Left.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._ProcessManagementForm_Toolbars_Dock_Area_Left.Location = new System.Drawing.Point(0, 44);
-            this._ProcessManagementForm_Toolbars_Dock_Area_Left.Name = "_ProcessManagementForm_Toolbars_Dock_Area_Left";
-            this._ProcessManagementForm_Toolbars_Dock_Area_Left.Size = new System.Drawing.Size(0, 325);
-            this._ProcessManagementForm_Toolbars_Dock_Area_Left.ToolbarsManager = this.ultraToolbarsManager1;
+            this._BaseForm_Toolbars_Dock_Area_Left.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this._BaseForm_Toolbars_Dock_Area_Left.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
+            this._BaseForm_Toolbars_Dock_Area_Left.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Left;
+            this._BaseForm_Toolbars_Dock_Area_Left.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._BaseForm_Toolbars_Dock_Area_Left.Location = new System.Drawing.Point(0, 20);
+            this._BaseForm_Toolbars_Dock_Area_Left.Name = "_BaseForm_Toolbars_Dock_Area_Left";
+            this._BaseForm_Toolbars_Dock_Area_Left.Size = new System.Drawing.Size(0, 349);
+            this._BaseForm_Toolbars_Dock_Area_Left.ToolbarsManager = this.ultraToolbarsManager1;
             // 
-            // _ProcessManagementForm_Toolbars_Dock_Area_Right
+            // _BaseForm_Toolbars_Dock_Area_Right
             // 
-            this._ProcessManagementForm_Toolbars_Dock_Area_Right.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this._ProcessManagementForm_Toolbars_Dock_Area_Right.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
-            this._ProcessManagementForm_Toolbars_Dock_Area_Right.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Right;
-            this._ProcessManagementForm_Toolbars_Dock_Area_Right.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._ProcessManagementForm_Toolbars_Dock_Area_Right.Location = new System.Drawing.Point(498, 44);
-            this._ProcessManagementForm_Toolbars_Dock_Area_Right.Name = "_ProcessManagementForm_Toolbars_Dock_Area_Right";
-            this._ProcessManagementForm_Toolbars_Dock_Area_Right.Size = new System.Drawing.Size(0, 325);
-            this._ProcessManagementForm_Toolbars_Dock_Area_Right.ToolbarsManager = this.ultraToolbarsManager1;
+            this._BaseForm_Toolbars_Dock_Area_Right.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this._BaseForm_Toolbars_Dock_Area_Right.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
+            this._BaseForm_Toolbars_Dock_Area_Right.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Right;
+            this._BaseForm_Toolbars_Dock_Area_Right.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._BaseForm_Toolbars_Dock_Area_Right.Location = new System.Drawing.Point(498, 20);
+            this._BaseForm_Toolbars_Dock_Area_Right.Name = "_BaseForm_Toolbars_Dock_Area_Right";
+            this._BaseForm_Toolbars_Dock_Area_Right.Size = new System.Drawing.Size(0, 349);
+            this._BaseForm_Toolbars_Dock_Area_Right.ToolbarsManager = this.ultraToolbarsManager1;
             // 
-            // _ProcessManagementForm_Toolbars_Dock_Area_Top
+            // _BaseForm_Toolbars_Dock_Area_Top
             // 
-            this._ProcessManagementForm_Toolbars_Dock_Area_Top.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this._ProcessManagementForm_Toolbars_Dock_Area_Top.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
-            this._ProcessManagementForm_Toolbars_Dock_Area_Top.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Top;
-            this._ProcessManagementForm_Toolbars_Dock_Area_Top.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._ProcessManagementForm_Toolbars_Dock_Area_Top.Location = new System.Drawing.Point(0, 0);
-            this._ProcessManagementForm_Toolbars_Dock_Area_Top.Name = "_ProcessManagementForm_Toolbars_Dock_Area_Top";
-            this._ProcessManagementForm_Toolbars_Dock_Area_Top.Size = new System.Drawing.Size(498, 44);
-            this._ProcessManagementForm_Toolbars_Dock_Area_Top.ToolbarsManager = this.ultraToolbarsManager1;
+            this._BaseForm_Toolbars_Dock_Area_Top.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this._BaseForm_Toolbars_Dock_Area_Top.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
+            this._BaseForm_Toolbars_Dock_Area_Top.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Top;
+            this._BaseForm_Toolbars_Dock_Area_Top.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._BaseForm_Toolbars_Dock_Area_Top.Location = new System.Drawing.Point(0, 0);
+            this._BaseForm_Toolbars_Dock_Area_Top.Name = "_BaseForm_Toolbars_Dock_Area_Top";
+            this._BaseForm_Toolbars_Dock_Area_Top.Size = new System.Drawing.Size(498, 20);
+            this._BaseForm_Toolbars_Dock_Area_Top.ToolbarsManager = this.ultraToolbarsManager1;
             // 
-            // _ProcessManagementForm_Toolbars_Dock_Area_Bottom
+            // _BaseForm_Toolbars_Dock_Area_Bottom
             // 
-            this._ProcessManagementForm_Toolbars_Dock_Area_Bottom.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this._ProcessManagementForm_Toolbars_Dock_Area_Bottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
-            this._ProcessManagementForm_Toolbars_Dock_Area_Bottom.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Bottom;
-            this._ProcessManagementForm_Toolbars_Dock_Area_Bottom.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._ProcessManagementForm_Toolbars_Dock_Area_Bottom.Location = new System.Drawing.Point(0, 369);
-            this._ProcessManagementForm_Toolbars_Dock_Area_Bottom.Name = "_ProcessManagementForm_Toolbars_Dock_Area_Bottom";
-            this._ProcessManagementForm_Toolbars_Dock_Area_Bottom.Size = new System.Drawing.Size(498, 0);
-            this._ProcessManagementForm_Toolbars_Dock_Area_Bottom.ToolbarsManager = this.ultraToolbarsManager1;
+            this._BaseForm_Toolbars_Dock_Area_Bottom.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this._BaseForm_Toolbars_Dock_Area_Bottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
+            this._BaseForm_Toolbars_Dock_Area_Bottom.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Bottom;
+            this._BaseForm_Toolbars_Dock_Area_Bottom.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._BaseForm_Toolbars_Dock_Area_Bottom.Location = new System.Drawing.Point(0, 369);
+            this._BaseForm_Toolbars_Dock_Area_Bottom.Name = "_BaseForm_Toolbars_Dock_Area_Bottom";
+            this._BaseForm_Toolbars_Dock_Area_Bottom.Size = new System.Drawing.Size(498, 0);
+            this._BaseForm_Toolbars_Dock_Area_Bottom.ToolbarsManager = this.ultraToolbarsManager1;
             // 
-            // ProcessManagementForm
+            // ProcessMantForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(498, 369);
-            this.Controls.Add(this.ProcessManagementForm_Fill_Panel);
-            this.Controls.Add(this._ProcessManagementForm_Toolbars_Dock_Area_Left);
-            this.Controls.Add(this._ProcessManagementForm_Toolbars_Dock_Area_Right);
-            this.Controls.Add(this._ProcessManagementForm_Toolbars_Dock_Area_Bottom);
-            this.Controls.Add(this._ProcessManagementForm_Toolbars_Dock_Area_Top);
-            this.Name = "ProcessManagementForm";
+            this.Controls.Add(this.BaseForm_Fill_Panel);
+            this.Controls.Add(this._BaseForm_Toolbars_Dock_Area_Left);
+            this.Controls.Add(this._BaseForm_Toolbars_Dock_Area_Right);
+            this.Controls.Add(this._BaseForm_Toolbars_Dock_Area_Bottom);
+            this.Controls.Add(this._BaseForm_Toolbars_Dock_Area_Top);
+            this.Name = "ProcessMantForm";
             this.Text = "ProcessManagementForm";
             ((System.ComponentModel.ISupportInitialize)(this.ultraToolbarsManager1)).EndInit();
             this.ResumeLayout(false);
@@ -162,10 +149,10 @@
         #endregion
 
         private Infragistics.Win.UltraWinToolbars.UltraToolbarsManager ultraToolbarsManager1;
-        private System.Windows.Forms.Panel ProcessManagementForm_Fill_Panel;
-        private Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _ProcessManagementForm_Toolbars_Dock_Area_Left;
-        private Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _ProcessManagementForm_Toolbars_Dock_Area_Right;
-        private Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _ProcessManagementForm_Toolbars_Dock_Area_Bottom;
-        private Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _ProcessManagementForm_Toolbars_Dock_Area_Top;
+        private System.Windows.Forms.Panel BaseForm_Fill_Panel;
+        private Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _BaseForm_Toolbars_Dock_Area_Left;
+        private Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _BaseForm_Toolbars_Dock_Area_Right;
+        private Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _BaseForm_Toolbars_Dock_Area_Bottom;
+        private Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _BaseForm_Toolbars_Dock_Area_Top;
     }
 }

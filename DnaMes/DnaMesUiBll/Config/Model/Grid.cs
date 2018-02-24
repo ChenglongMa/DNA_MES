@@ -1,21 +1,21 @@
 ﻿// ****************************************************
 //  Author: Charles Ma
-//  Date: 2018/02/20 16:53
+//  Date: 2018/02/24 15:41
 // ****************************************************
 //  Copyright © DNA Studio 2018. All rights reserved.
 // ****************************************************
 
+using System.Xml.Serialization;
+
 namespace DnaMesUiBll.Config.Model
 {
     /// <summary>
-    /// 命令类型
+    /// Grid控件模型
     /// </summary>
-    public enum CommandType
+    [XmlType]
+    public class Grid
     {
-        Activate,
-        Close,
-        //SaveAs,
-        //About,
-        Logout,
+
     }
 }
+

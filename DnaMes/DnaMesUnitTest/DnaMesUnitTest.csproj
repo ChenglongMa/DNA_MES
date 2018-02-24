@@ -90,9 +90,17 @@
       <Project>{68162C26-262A-4703-9CBE-5C05602ADD52}</Project>
       <Name>DnaMesModel</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DnaMesServer\DnaMesServer.csproj">
+      <Project>{2b0d12ee-3737-44da-999a-6c29be06fbe7}</Project>
+      <Name>DnaMesServer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DnaMesUiBll\DnaMesUiBll.csproj">
       <Project>{fab2d33b-a13e-423e-b95a-38fd54d3d6f1}</Project>
       <Name>DnaMesUiBll</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DnaMesUi\DnaMesUi.csproj">
+      <Project>{68b8015d-3d49-49b5-833d-12526cd772ad}</Project>
+      <Name>DnaMesUi</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

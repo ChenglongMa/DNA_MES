@@ -149,7 +149,7 @@ namespace DnaMesUi.Shared.Sys
         /// <summary>
         /// 从menu.xml中读取的菜单项
         /// </summary>
-        private readonly Menu _menu = MenuXmlHelper.GetMenu();
+        private readonly Menu _menu = ConfigHelper.GetMenu();
 
         /// <summary>
         /// 构建菜单栏
@@ -298,7 +298,7 @@ namespace DnaMesUi.Shared.Sys
                         break;
                     case CommandType.Close:
                         break;
-                    case CommandType.ReLogin:
+                    case CommandType.Logout:
                         break;
                 }
             }
