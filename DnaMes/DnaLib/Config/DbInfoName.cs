@@ -5,7 +5,7 @@
 //  Copyright © DNA Studio 2018. All rights reserved.
 // ****************************************************
 
-namespace DnaLib.Global
+namespace DnaLib.Config
 {
     /// <summary>
     /// 数据库名称枚举

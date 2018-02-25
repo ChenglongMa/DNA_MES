@@ -78,9 +78,9 @@
   <ItemGroup>
     <Compile Include="Config\DbConfig.cs" />
     <Compile Include="Config\DnaColumnAttribute.cs" />
-    <Compile Include="DbConfigLib.cs" />
+    <Compile Include="Helper\DbConfigHelper.cs" />
     <Compile Include="Helper\EncryptHelper.cs" />
-    <Compile Include="Global\DbInfoName.cs" />
+    <Compile Include="Config\DbInfoName.cs" />
     <Compile Include="Helper\IsHelper.cs" />
     <Compile Include="Helper\LogHelper.cs" />
     <Compile Include="Helper\MessageBoxHelper.cs" />

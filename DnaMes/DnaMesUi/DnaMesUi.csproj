@@ -160,6 +160,10 @@
       <Project>{fab2d33b-a13e-423e-b95a-38fd54d3d6f1}</Project>
       <Name>DnaMesUiBll</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DnaMesUiConfig\DnaMesUiConfig.csproj">
+      <Project>{f14f4a2f-1d31-469b-a9c9-95ef599e96ec}</Project>
+      <Name>DnaMesUiConfig</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Shared\Dialog\" />

@@ -61,7 +61,6 @@ namespace DnaMesModel.Model.BasicInfo
 
         #region 公有方法
 
-
         #endregion
     }
 }

@@ -8,7 +8,6 @@
 using System;
 using System.Reflection;
 using DnaLib.Config;
-using DnaLib.Global;
 using DnaMesModel.Shared;
 
 namespace DnaMesModel
@@ -26,11 +25,12 @@ namespace DnaMesModel
         [DnaColumn(IsNullable = false)] public DateTime CreationTime { get; set; } //= DateTime.Now;
 
         [DnaColumn(IsNullable = false, Length = 45)]
-        public string Modifier { get; set; }= SysInfo.EmpId + "@" + SysInfo.UserName;
+        public string Modifier { get; set; } = SysInfo.EmpId + "@" + SysInfo.UserName;
 
         [DnaColumn(IsNullable = false)] public DateTime ModifiedTime { get; set; } //= DateTime.Now;
 
-        [DnaColumn(IsNullable = true,Length = 250)] public string Description { get; set; }
+        [DnaColumn(IsNullable = true, Length = 250)]
+        public string Description { get; set; }
 
         #region 公有方法
 

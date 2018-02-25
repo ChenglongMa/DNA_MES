@@ -12,7 +12,6 @@ using System.Linq.Expressions;
 using System.Reflection;
 using DnaLib;
 using DnaLib.Config;
-using DnaLib.Global;
 using DnaLib.Helper;
 using DnaMesModel;
 using DnaMesModel.Shared;
@@ -173,7 +172,7 @@ namespace DnaMesDal
         {
             get
             {
-                var dbInfo = DbConfigLib.GetDbInfo();
+                var dbInfo = DbConfigHelper.GetDbInfo();
                 return new SqlSugarClient(new ConnectionConfig
                 {
                     ConnectionString = dbInfo.ToString(),
@@ -345,6 +344,7 @@ namespace DnaMesDal
             var linkInstance = Activator.CreateInstance(linkType, roleA, roleB);
             return linkInstance;
         }
+
         /// <summary>
         /// 检查关系是否存在
         /// </summary>

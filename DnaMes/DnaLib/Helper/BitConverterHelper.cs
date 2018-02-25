@@ -15,8 +15,6 @@ namespace DnaLib.Helper
     /// </summary>
     public static class BitConverterHelper
     {
-
-
         #region 值获取
 
         /// <summary>

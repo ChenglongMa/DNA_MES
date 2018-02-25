@@ -11,12 +11,13 @@ namespace DnaMesServer
         public ServorInitilizeForm()
         {
             InitializeComponent();
-        }        
+        }
+
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-       
+
         private void btnDBInitial_Click(object sender, EventArgs e)
         {
             if (MessageBoxHelper.ShowQuestion("该操作将删除现有的数据，是否继续？"))
@@ -36,10 +37,10 @@ namespace DnaMesServer
                 finally
                 {
                     Cursor.Current = Cursors.Default;
-                }              
+                }
             }
-        }      
-       
+        }
+
         private void btnBackupRestore_Click(object sender, EventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;
@@ -47,9 +48,10 @@ namespace DnaMesServer
             {
                 Application.DoEvents();
             }
-            Application.DoEvents();           
-            Cursor.Current = Cursors.Default;           
-        }  
+
+            Application.DoEvents();
+            Cursor.Current = Cursors.Default;
+        }
 
         private void btnUpdateDataBase_Click(object sender, EventArgs e)
         {

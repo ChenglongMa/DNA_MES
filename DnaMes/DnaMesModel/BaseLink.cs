@@ -26,7 +26,7 @@ namespace DnaMesModel
         /// <summary>
         /// 角色A的Obj ID
         /// </summary>
-        [DnaColumn(IsKey = true,IsNullable = false)]
+        [DnaColumn(IsKey = true, IsNullable = false)]
         public int RoleAId { get; set; }
 
         /// <summary>
@@ -42,6 +42,7 @@ namespace DnaMesModel
         #endregion
 
         #region 公有方法
+
         #endregion
     }
 }

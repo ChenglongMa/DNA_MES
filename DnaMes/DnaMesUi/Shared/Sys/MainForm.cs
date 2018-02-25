@@ -10,16 +10,16 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DnaLib.Helper;
 using DnaMesModel.Shared;
-using DnaMesUiBll.Config;
-using DnaMesUiBll.Config.Model;
+using DnaMesUiConfig.Helper;
+using DnaMesUiConfig.Model;
 using Infragistics.Win;
 using Infragistics.Win.IGControls;
 using Infragistics.Win.UltraWinExplorerBar;
 using Infragistics.Win.UltraWinTabbedMdi;
 using Infragistics.Win.UltraWinToolbars;
-using CommandType = DnaMesUiBll.Config.Model.CommandType;
-using Menu = DnaMesUiBll.Config.Model.Menu;
-using MenuItem = DnaMesUiBll.Config.Model.MenuItem;
+using CommandType = DnaMesUiConfig.Model.CommandType;
+using Menu = DnaMesUiConfig.Model.Menu;
+using MenuItem = DnaMesUiConfig.Model.MenuItem;
 
 namespace DnaMesUi.Shared.Sys
 {

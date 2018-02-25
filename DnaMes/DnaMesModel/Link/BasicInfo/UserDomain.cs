@@ -14,10 +14,9 @@ namespace DnaMesModel.Link.BasicInfo
     /// <summary>
     /// 用户与权限关系类
     /// </summary>
-    [SugarTable("L_"+nameof(User)+nameof(Domain))]
+    [SugarTable("L_" + nameof(User) + nameof(Domain))]
     public class UserDomain : BaseLink
     {
-
         #region 私有字段
 
         #endregion

@@ -18,19 +18,19 @@ namespace DnaMesServer
             dataProcessLabel.Text = @"就绪";
             statusLabel.Text = @"就绪";
         }
+
         private string _strExit;
+
         private void miDBSet_Click(object sender, EventArgs e)
         {
             var form = new DbConfigForm();
             form.ShowDialog(this);
-
         }
 
         private void miAbout_Click(object sender, EventArgs e)
         {
-            var form=new AboutBox();
+            var form = new AboutBox();
             form.ShowDialog(this);
-
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)

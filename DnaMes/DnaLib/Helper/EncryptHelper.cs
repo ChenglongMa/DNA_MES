@@ -24,7 +24,7 @@ namespace DnaLib.Helper
         /// <param name="key">密钥(最大长度8)</param>
         /// <param name="iv">初始化向量(最大长度8)</param>
         /// <returns>加密后的字符串</returns>
-        public static string DesEncrypt(this string encryptStr, string key="12345678", string iv="12345678")
+        public static string DesEncrypt(this string encryptStr, string key = "12345678", string iv = "12345678")
         {
             //将key和IV处理成8个字符
             key += "12345678";
@@ -70,7 +70,7 @@ namespace DnaLib.Helper
         /// <param name="key">密钥(最大长度8)</param>
         /// <param name="iv">初始化向量(最大长度8)</param>
         /// <returns>解密后的字符串</returns>
-        public static string DesDecrypt(this string encryptedValue, string key="12345678", string iv="12345678")
+        public static string DesDecrypt(this string encryptedValue, string key = "12345678", string iv = "12345678")
         {
             //去掉干扰字符
             var tmp = encryptedValue;
@@ -110,6 +110,7 @@ namespace DnaLib.Helper
                 return "";
             }
         }
+
         /// <summary>
         /// 32位MD5加密，不可逆
         /// </summary>
@@ -124,6 +125,7 @@ namespace DnaLib.Helper
             {
                 sBuilder.Append(d.ToString("x2"));
             }
+
             return sBuilder.ToString();
         }
     }

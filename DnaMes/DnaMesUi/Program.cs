@@ -10,7 +10,7 @@ using System.Threading;
 using System.Windows.Forms;
 using DnaLib.Helper;
 using DnaMesUi.Shared.Sys;
-using DnaMesUiBll.Config;
+using DnaMesUiConfig.Helper;
 using Infragistics.Win.AppStyling;
 
 namespace DnaMesUi
@@ -24,6 +24,7 @@ namespace DnaMesUi
         private static void Main()
         {
             #region 全局异常处理
+
             //TODO:项目完结后启用
             ////设置应用程序处理异常方式：ThreadException处理  
             //Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
@@ -42,6 +43,7 @@ namespace DnaMesUi
             #endregion
 
             #region 登录窗口
+
             //TODO:登录窗口逻辑待完善
             //var loginDlg = new MESLoginDialog();
             //if (loginDlg.ShowDialog() == DialogResult.Cancel)
@@ -56,6 +58,7 @@ namespace DnaMesUi
             StyleManager.Load(islFile);
 
             #endregion
+
             Application.Run(new MainForm());
         }
 
@@ -63,7 +66,7 @@ namespace DnaMesUi
 
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-            var ex = (Exception)e.ExceptionObject;
+            var ex = (Exception) e.ExceptionObject;
             MessageBoxHelper.ShowError(ex.Message);
             LogHelper.WriteErrorLog(ex, "non-UI Exception", $"Runtime terminating: {e.IsTerminating}");
         }
@@ -72,7 +75,7 @@ namespace DnaMesUi
         {
             var ex = e.Exception;
             MessageBoxHelper.ShowError(ex.Message);
-            LogHelper.WriteErrorLog(ex,"UI Exception");
+            LogHelper.WriteErrorLog(ex, "UI Exception");
         }
 
         #endregion

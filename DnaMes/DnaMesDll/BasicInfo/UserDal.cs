@@ -35,6 +35,7 @@ namespace DnaMesDal.BasicInfo
         #endregion
 
         #region 公有方法
+
         #endregion
     }
 }

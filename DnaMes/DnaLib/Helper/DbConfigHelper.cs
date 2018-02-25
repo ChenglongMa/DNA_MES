@@ -10,15 +10,14 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using DnaLib.Config;
-using DnaLib.Global;
 using SqlSugar;
 
-namespace DnaLib
+namespace DnaLib.Helper
 {
     /// <summary>
     ///     DllDataConfig类
     /// </summary>
-    public static class DbConfigLib
+    public static class DbConfigHelper
     {
         #region 私有字段
 
@@ -34,6 +33,7 @@ namespace DnaLib
         #endregion
 
         #region 私有方法
+
         /// <summary>
         /// 获取所有数据库配置
         /// </summary>
@@ -42,6 +42,7 @@ namespace DnaLib
         {
             return DbConfig?.DbCollection.Cast<DbInfo>().ToList();
         }
+
         /// <summary>
         /// 根据配置获取SugarClient
         /// </summary>
@@ -144,7 +145,7 @@ namespace DnaLib
         /// <param name="dbInfo"></param>
         /// <param name="errorMessage">错误信息</param>
         /// <returns></returns>
-        public static bool TestConnection(DbInfo dbInfo,out string errorMessage)
+        public static bool TestConnection(DbInfo dbInfo, out string errorMessage)
         {
             using (var db = GetDbClient(dbInfo))
             {

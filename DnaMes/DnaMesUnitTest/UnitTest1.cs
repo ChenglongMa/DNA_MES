@@ -18,9 +18,8 @@ namespace DnaMesUnitTest
         //[ExpectedException(typeof(ArgumentException))]
         public void TestMethod1()
         {
-            var user=ReflectionHelper.CreateInstance<User>(nameof(DnaMesModel), "Model.BasicInfo.User");
+            var user = ReflectionHelper.CreateInstance<User>(nameof(DnaMesModel), "Model.BasicInfo.User");
             Assert.IsNotNull(user);
         }
-
     }
 }

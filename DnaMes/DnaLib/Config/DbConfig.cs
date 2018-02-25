@@ -13,7 +13,6 @@ using System.Data.OracleClient;
 using System.Data.SqlClient;
 using System.Data.SQLite;
 using Devart.Data.PostgreSql;
-using DnaLib.Global;
 using DnaLib.Helper;
 using MySql.Data.MySqlClient;
 using Oracle.ManagedDataAccess.Client;
@@ -210,7 +209,7 @@ namespace DnaLib.Config
                 case DbType.Oracle:
                     dsBuilder = new Oracle.ManagedDataAccess.Client.OracleConnectionStringBuilder
                     {
-                        DataSource=DataSource,
+                        DataSource = DataSource,
                         UserID = UserId,
                         Password = Password,
                         Pooling = true,

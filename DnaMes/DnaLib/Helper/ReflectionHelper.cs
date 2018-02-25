@@ -18,12 +18,9 @@ namespace DnaLib.Helper
     {
         #region 私有字段
 
-
         #endregion
 
         #region 公有属性
-
-        
 
         #endregion
 
@@ -47,7 +44,7 @@ namespace DnaLib.Helper
         /// <param name="path"></param>
         /// <param name="paras"></param>
         /// <returns></returns>
-        public static T CreateInstance<T>(string nameSpace,string path,params object[] paras) where T : class
+        public static T CreateInstance<T>(string nameSpace, string path, params object[] paras) where T : class
         {
             var fullPath = nameSpace + "." + path;
             var type = Assembly.Load(nameSpace).GetType(fullPath);
@@ -87,4 +84,3 @@ namespace DnaLib.Helper
         #endregion
     }
 }
-

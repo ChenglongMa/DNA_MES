@@ -9,7 +9,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DnaLib.Config;
-using DnaLib.Global;
 using DnaLib.Helper;
 
 namespace DnaMesServer
@@ -36,7 +35,7 @@ namespace DnaMesServer
         {
             if (page == pageMES)
             {
-                var info = DbConfigLib.GetDbInfo();
+                var info = DbConfigHelper.GetDbInfo();
                 var list = Enum.GetNames(typeof(SqlSugar.DbType));
                 cmbMES.DataSource = list;
                 cmbMES.SelectedIndex = list.ToList().IndexOf(info.DbType.ToString());
@@ -59,7 +58,7 @@ namespace DnaMesServer
                 UserId = txtMESUser.Text,
                 Password = txtMESPswd.Text
             };
-            if (DbConfigLib.TestConnection(dbInfo, out var errorMessage))
+            if (DbConfigHelper.TestConnection(dbInfo, out var errorMessage))
             {
                 MessageBoxHelper.ShowInformationOk("连接成功");
             }

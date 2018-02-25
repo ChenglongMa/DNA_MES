@@ -4,7 +4,7 @@ using System.IO;
 using DnaLib.Helper;
 using DnaMesUi.BasicInfo;
 using DnaMesUi.Templetes;
-using DnaMesUiBll.Config.Model;
+using DnaMesUiConfig.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DnaMesUnitTest
@@ -16,7 +16,7 @@ namespace DnaMesUnitTest
         public void TestMenuBuilding()
         {
             var cons = BuildControl();
-            var path = CreateLogDirectory(RootPath, "\\Config\\MESMenu.xml");
+            var path = CreateLogDirectory(RootPath, "\\Config\\Menu\\MESMenu.xml");
             XmlHelper.XmlSerializeToFile(cons, path);
             //Assert.IsTrue(path.ToUpper().Contains("UI"));
         }
@@ -103,7 +103,7 @@ namespace DnaMesUnitTest
                                 Name = "ProjectMant",
                                 Text = "项目管理",
                                 ShortCut = "P",
-                                FormPath = $"{nameof(DnaMesUi.BasicInfo)}.{nameof(NoTreeForm)}",
+                                FormPath = $"{nameof(DnaMesUi.BasicInfo)}.{nameof(ProjectMantForm)}",
                                 FormType = FormType.ChildForm,
                                 DomainId = 10001,
                                 CommandType = CommandType.Activate,
@@ -113,7 +113,7 @@ namespace DnaMesUnitTest
                                 Name = "ProcessMant",
                                 Text = "工艺管理",
                                 ShortCut = "R",
-                                FormPath = $"{nameof(DnaMesUi.BasicInfo)}.{nameof(WithTreeForm)}",
+                                FormPath = $"{nameof(DnaMesUi.BasicInfo)}.{nameof(ProcessMantForm)}",
                                 FormType = FormType.ChildForm,
                                 DomainId = 10002,
                                 CommandType = CommandType.Activate,

@@ -15,7 +15,6 @@ namespace DnaMesUi.BasicInfo
         public ProcessMantForm()
         {
             InitializeComponent();
-            ultraGrid1.DisplayLayout.Bands[0].Columns[0].DataType
         }
     }
 }
