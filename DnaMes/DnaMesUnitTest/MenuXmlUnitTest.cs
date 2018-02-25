@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using DnaLib.Helper;
 using DnaMesUi.BasicInfo;
-using DnaMesUi.Templetes;
 using DnaMesUiConfig.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

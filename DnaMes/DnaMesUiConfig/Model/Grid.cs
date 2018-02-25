@@ -38,7 +38,7 @@ namespace DnaMesUiConfig.Model
         /// 是否只读
         /// </summary>
         [XmlAttribute]
-        public bool Readonly { get; set; } = true;
+        public bool IsReadOnly { get; set; } = true;
 
         /// <summary>
         /// 宽度，默认120
