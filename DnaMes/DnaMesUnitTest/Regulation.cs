@@ -34,6 +34,11 @@ namespace DnaMesUnitTest
          * FormPath：{文件夹名}.{Form名}
          */
 
+        /* Grid.XML文件规范
+         * Name为属性名称
+         * 支持属性的属性($)、属性为List(#)、属性为Dictionary(!) 详见DnaPropertyDescriptor.cs
+         *
+         */
         #endregion
 
         #region Model设计

@@ -170,28 +170,25 @@ namespace DnaLib.Helper
             if (thisValue == null) return true;
             return !Regex.IsMatch(thisValue.ToString(), @"^\d+$");
         }
+        /// <summary>
+        /// 是 正数、负数、和小数？
+        /// </summary>
+        /// <param name="thisValue"></param>
+        /// <returns></returns>
+        public static bool IsNum(this object thisValue)
+        {
+            return thisValue != null && Regex.IsMatch(thisValue.ToString(), @"^(\-|\+)?\d+(\.\d+)?$");
+        }
 
-        ///// <summary>
-        ///// 是金钱?
-        ///// </summary>
-        ///// <param name="thisValue"></param>
-        ///// <returns></returns>
-        //public static bool IsMoney(this object thisValue)
-        //{
-        //    return thisValue != null && double.TryParse(thisValue.ToString(), out _);
-        //}
-
-        ///// <summary>
-        ///// 是时间?
-        ///// </summary>
-        ///// <param name="thisValue"></param>
-        ///// <returns></returns>
-        //public static bool IsDate(this object thisValue)
-        //{
-        //    if (thisValue == null) return false;
-        //    DateTime outValue = DateTime.MinValue;
-        //    return DateTime.TryParse(thisValue.ToString(), out outValue);
-        //}
+        /// <summary>
+        /// 是时间?
+        /// </summary>
+        /// <param name="thisValue"></param>
+        /// <returns></returns>
+        public static bool IsDate(this object thisValue)
+        {
+            return thisValue != null && DateTime.TryParse(thisValue.ToString(), out _);
+        }
 
         /// <summary>
         /// 是邮箱?
