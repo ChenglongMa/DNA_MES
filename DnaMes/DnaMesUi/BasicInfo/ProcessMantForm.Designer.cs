@@ -42,16 +42,18 @@
             Infragistics.Win.Appearance appearance10 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance11 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance12 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance13 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance14 = new Infragistics.Win.Appearance();
             this.ultraToolbarsManager1 = new Infragistics.Win.UltraWinToolbars.UltraToolbarsManager(this.components);
             this.BaseForm_Fill_Panel = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.uTree = new Infragistics.Win.UltraWinTree.UltraTree();
             this.ultraGrid1 = new Infragistics.Win.UltraWinGrid.UltraGrid();
             this._BaseForm_Toolbars_Dock_Area_Left = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this._BaseForm_Toolbars_Dock_Area_Right = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this._BaseForm_Toolbars_Dock_Area_Top = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this._BaseForm_Toolbars_Dock_Area_Bottom = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
-            this.uTree = new Infragistics.Win.UltraWinTree.UltraTree();
             ((System.ComponentModel.ISupportInitialize)(this.ultraToolbarsManager1)).BeginInit();
             this.BaseForm_Fill_Panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -61,8 +63,8 @@
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ultraGrid1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uTree)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ultraGrid1)).BeginInit();
             this.SuspendLayout();
             // 
             // ultraToolbarsManager1
@@ -146,6 +148,14 @@
             this.splitContainer2.SplitterDistance = 287;
             this.splitContainer2.TabIndex = 0;
             // 
+            // uTree
+            // 
+            this.uTree.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uTree.Location = new System.Drawing.Point(0, 0);
+            this.uTree.Name = "uTree";
+            this.uTree.Size = new System.Drawing.Size(287, 487);
+            this.uTree.TabIndex = 1;
+            // 
             // ultraGrid1
             // 
             appearance1.BackColor = System.Drawing.SystemColors.Window;
@@ -201,11 +211,16 @@
             appearance11.BackColor = System.Drawing.SystemColors.Window;
             appearance11.BorderColor = System.Drawing.Color.Silver;
             this.ultraGrid1.DisplayLayout.Override.RowAppearance = appearance11;
+            appearance12.TextVAlignAsString = "Middle";
+            this.ultraGrid1.DisplayLayout.Override.RowSelectorAppearance = appearance12;
+            appearance13.TextVAlignAsString = "Middle";
+            this.ultraGrid1.DisplayLayout.Override.RowSelectorHeaderAppearance = appearance13;
             this.ultraGrid1.DisplayLayout.Override.RowSelectorHeaderStyle = Infragistics.Win.UltraWinGrid.RowSelectorHeaderStyle.SeparateElement;
+            this.ultraGrid1.DisplayLayout.Override.RowSelectorNumberStyle = Infragistics.Win.UltraWinGrid.RowSelectorNumberStyle.RowIndex;
             this.ultraGrid1.DisplayLayout.Override.RowSelectors = Infragistics.Win.DefaultableBoolean.True;
             this.ultraGrid1.DisplayLayout.Override.SupportDataErrorInfo = Infragistics.Win.UltraWinGrid.SupportDataErrorInfo.RowsAndCells;
-            appearance12.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ultraGrid1.DisplayLayout.Override.TemplateAddRowAppearance = appearance12;
+            appearance14.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.ultraGrid1.DisplayLayout.Override.TemplateAddRowAppearance = appearance14;
             this.ultraGrid1.DisplayLayout.ScrollBounds = Infragistics.Win.UltraWinGrid.ScrollBounds.ScrollToFill;
             this.ultraGrid1.DisplayLayout.ScrollStyle = Infragistics.Win.UltraWinGrid.ScrollStyle.Immediate;
             this.ultraGrid1.DisplayLayout.UseFixedHeaders = true;
@@ -266,14 +281,6 @@
             this._BaseForm_Toolbars_Dock_Area_Bottom.Size = new System.Drawing.Size(863, 0);
             this._BaseForm_Toolbars_Dock_Area_Bottom.ToolbarsManager = this.ultraToolbarsManager1;
             // 
-            // uTree
-            // 
-            this.uTree.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uTree.Location = new System.Drawing.Point(0, 0);
-            this.uTree.Name = "uTree";
-            this.uTree.Size = new System.Drawing.Size(287, 487);
-            this.uTree.TabIndex = 1;
-            // 
             // ProcessMantForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -296,8 +303,8 @@
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ultraGrid1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.uTree)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ultraGrid1)).EndInit();
             this.ResumeLayout(false);
 
         }
