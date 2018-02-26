@@ -18,10 +18,10 @@ namespace DnaMesUiConfig.Model
     /// <summary>
     /// Grid控件模型
     /// </summary>
-    [XmlType]
-    public class Grid : ControlItem
+    [XmlType("Grid")]
+    public class GridConfig : ControlItem
     {
-        [XmlArrayItem(typeof(Column))] public List<Column> Columns { get; set; }
+        [XmlArrayItem(typeof(Column))] public List<Column> Columns { get; set; }=new List<Column>();
     }
 
     /// <inheritdoc />
@@ -53,12 +53,13 @@ namespace DnaMesUiConfig.Model
         /// 列格式
         /// </summary>
         [XmlAttribute]
-        public ColumnStyle ColumnStyle { get; set; }
+        public ColumnStyle ColumnStyle { get; set; } = ColumnStyle.Default;
 
         /// <summary>
         /// 数据类型
         /// </summary>
-        public Type DataType { get; set; } = typeof(string);
+        [XmlAttribute]
+        public string DataType { get; set; } = typeof(string).FullName;
 
         /// <summary>
         /// 显示格式
@@ -78,7 +79,7 @@ namespace DnaMesUiConfig.Model
                 return "";
             if (Format.IsNullOrEmpty())
             {
-                return o;
+                return o.ToString();
             }
             string result = o.ToString();
             if (result.IsNum())

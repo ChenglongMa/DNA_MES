@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using DnaLib.Helper;
 using DnaMesUi.BasicInfo;
+using DnaMesUi.Templetes;
 using DnaMesUiConfig.Model;
+using Infragistics.Win.UltraWinGrid;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DnaMesUnitTest
@@ -19,7 +21,13 @@ namespace DnaMesUnitTest
             XmlHelper.XmlSerializeToFile(cons, path);
             //Assert.IsTrue(path.ToUpper().Contains("UI"));
         }
-
+        [TestMethod]
+        public void TestGridBinding()
+        {
+            var cons = BuildGrid();
+            var path = CreateLogDirectory(RootPath, "\\Config\\BasicInfo\\Domain.xml");
+            XmlHelper.XmlSerializeToFile(cons,path);
+        }
         private static readonly string
             RootPath = Directory.GetCurrentDirectory(); //AppDomain.CurrentDomain.BaseDirectory;
 
@@ -102,7 +110,7 @@ namespace DnaMesUnitTest
                                 Name = "ProjectMant",
                                 Text = "项目管理",
                                 ShortCut = "P",
-                                FormPath = $"{nameof(DnaMesUi.BasicInfo)}.{nameof(ProjectMantForm)}",
+                                FormPath = $"{nameof(DnaMesUi.Templetes)}.{nameof(NoTreeForm)}",
                                 FormType = FormType.ChildForm,
                                 DomainId = 10001,
                                 CommandType = CommandType.Activate,
@@ -177,6 +185,59 @@ namespace DnaMesUnitTest
                     //        },
                     //    }
                 },
+            };
+        }
+
+        private static GridConfig BuildGrid()
+        {
+            return new GridConfig
+            {
+                Name = "ug",
+                Text = "权限管理",
+                Columns = new List<Column>
+                {
+                    new Column
+                    {
+                        Name = "Check",
+                        Text = "选择",
+                        DataType = typeof(bool).FullName,
+                        ColumnStyle = ColumnStyle.CheckBox,
+                        IsReadOnly = false,
+                        Visible = true,
+                        Width = 100,
+                    },
+                    new Column
+                    {
+                        Name = "FunctionCode",
+                        Text = "功能码",
+                        DataType = typeof(int).FullName,
+                        ColumnStyle = ColumnStyle.Integer,
+                        IsReadOnly = true,
+                        Visible = true,
+                        Width = 220,
+                    },
+                    new Column
+                    {
+                        Name = "Creator",
+                        Text = "创建者",
+                        DataType = typeof(string).FullName,
+                        ColumnStyle = ColumnStyle.EditButton,
+                        IsReadOnly = false,
+                        Visible = true,
+                        Width = 30,
+                    },
+                    new Column
+                    {
+                        Name = "CreationTime",
+                        Text = "创建时间",
+                        DataType = typeof(DateTime).FullName,
+                        ColumnStyle = ColumnStyle.DateTime,
+                        IsReadOnly = false,
+                        Visible = true,
+                        Width = 100,
+                    },
+
+                }
             };
         }
     }

@@ -125,7 +125,7 @@ namespace DnaLib.Helper
                 throw new ArgumentNullException(nameof(path));
             if (encoding == null)
                 encoding = Encoding.UTF8;
-            if (!File.Exists(path)) return Activator.CreateInstance<T>();
+            if (!File.Exists(path)) throw new FileNotFoundException();
             var xml = File.ReadAllText(path, encoding);
             return xml.Trim().IsNullOrEmpty() ? Activator.CreateInstance<T>() : XmlDeserialize<T>(xml, encoding);
         }

@@ -127,7 +127,7 @@ namespace DnaMesUiConfig.Helper
                 var type = ComponentType.GetProperty(_column.Name)?.PropertyType;
                 if (type == null)
                 {
-                    type = _column.DataType;
+                    type = Type.GetType(_column.DataType);
                 }
 
                 return type ?? typeof(string);
@@ -154,7 +154,7 @@ namespace DnaMesUiConfig.Helper
         {
             var propInfo = component?.GetType().GetProperty(propertyName);
             var value = propInfo?.GetValue(component, null);
-            if (_column.DataType == typeof(bool) && bool.TryParse(value?.ToString(), out var result))
+            if (_column.DataType == typeof(bool).FullName&& bool.TryParse(value?.ToString(), out var result))
             {
                 return result ? "是" : "否"; //将True或False转换为“是”“否”，使之支持中文布尔值
             }
@@ -180,6 +180,10 @@ namespace DnaMesUiConfig.Helper
         /// <returns></returns>
         public override object GetValue(object component)
         {
+            if (!_column.Visible)
+            {
+                return null;
+            }
             //ConfigFieldType为非默认值时适用
             PropertyInfo prop;
             object obj;

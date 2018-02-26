@@ -5,8 +5,11 @@
 //  Copyright © DNA Studio 2018. All rights reserved.
 // ****************************************************
 
+using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
+using System.Reflection;
+using System.Xml;
 using DnaLib.Helper;
 using DnaMesModel.Shared;
 using DnaMesUiConfig.Model;
@@ -20,7 +23,7 @@ namespace DnaMesUiConfig.Helper
     {
         #region 私有字段
 
-        private static readonly string Path = SysInfo.BinPath;
+        private static readonly string Path = SysInfo.BinPath+"Config\\";
         private static readonly string MenuFileName = ConfigurationManager.AppSettings["MainFormMenu"];
 
         #endregion
@@ -31,6 +34,19 @@ namespace DnaMesUiConfig.Helper
 
         #region 私有方法
 
+        /// <summary>
+        /// 根据配置文件获取控件类
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        private static T GetConfig<T>(string fileName) where T: ControlItem
+        {
+            var path = System.IO.Path.Combine(Path, fileName);
+            if (!File.Exists(path)) throw new FileNotFoundException();
+
+            return XmlHelper.XmlDeserializeFromFile<T>(path);
+        }
         #endregion
 
         #region 公有方法
@@ -43,13 +59,7 @@ namespace DnaMesUiConfig.Helper
         /// <returns></returns>
         public static Menu GetMenu()
         {
-            var path = System.IO.Path.Combine(Path, MenuFileName);
-            if (!File.Exists(path))
-            {
-                throw new FileNotFoundException();
-            }
-
-            return XmlHelper.XmlDeserializeFromFile<Menu>(path);
+            return GetConfig<Menu>(MenuFileName);
         }
 
         #endregion
@@ -63,13 +73,32 @@ namespace DnaMesUiConfig.Helper
         /// <returns></returns>
         public static string GetIsl(string fileName = "IG.isl")
         {
-            var path = Path + "\\Config\\StyleLibraries";
+            var path = System.IO.Path.Combine(Path, "StyleLibraries");
+            path = System.IO.Path.Combine(path, fileName);
 
-            return System.IO.Path.Combine(path, fileName);
+            if (!File.Exists(path))
+            {
+                throw new FileNotFoundException();
+            }
+
+            return path;
         }
 
         #endregion
 
+        #region Grid配置
+
+        /// <summary>
+        /// 加载字段信息
+        /// </summary>
+        /// <param name="fileName">文件路径 格式：{文件夹名}\{文件名}</param>
+        /// <returns></returns>
+        public static List<Column> GetColumns(string fileName)
+        {
+            return GetConfig<GridConfig>(fileName).Columns;
+        }
+
+        #endregion
         #endregion
     }
 }
