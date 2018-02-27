@@ -43,7 +43,7 @@ namespace DnaMesUiConfig.Helper
         private static T GetConfig<T>(string fileName) where T: ControlItem
         {
             var path = System.IO.Path.Combine(Path, fileName);
-            if (!File.Exists(path)) throw new FileNotFoundException();
+            if (!File.Exists(path)) throw new FileNotFoundException($"找不到指定文件：路径：{path}");
 
             return XmlHelper.XmlDeserializeFromFile<T>(path);
         }
@@ -78,7 +78,7 @@ namespace DnaMesUiConfig.Helper
 
             if (!File.Exists(path))
             {
-                throw new FileNotFoundException();
+                throw new FileNotFoundException($"找不到指定文件：路径：{path}");
             }
 
             return path;
