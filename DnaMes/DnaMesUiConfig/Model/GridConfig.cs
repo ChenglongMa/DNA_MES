@@ -93,8 +93,8 @@ namespace DnaMesUiConfig.Model
             else if (result.IsDate())
             {
                 var dt = System.Convert.ToDateTime(result);
-                if (DateTime.Compare(dt, new DateTime(1949)) < 0) //默认时间返回空字符串
-                    return "";
+                if (DateTime.Compare(dt, new DateTime(1949,1,1)) < 0) //默认时间返回空字符串
+                    return null;
                 result = dt.ToString(Format);
             }
 

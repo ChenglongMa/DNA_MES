@@ -63,10 +63,11 @@ namespace DnaMesUiConfig.Helper
                     return;
                 var col = ug.DisplayLayout.Bands[0].Columns[field.Name];
 
-                if (field.DataType.IsIn(typeof(int).FullName,typeof(decimal).FullName,typeof(double).FullName,typeof(float).FullName))
-                {
-                    col.CellAppearance.TextHAlign = HAlign.Right;
-                }
+                col.CellAppearance.TextHAlign = field.DataType.IsIn(typeof(int).FullName, typeof(decimal).FullName,
+                    typeof(double).FullName, typeof(float).FullName)
+                    ? HAlign.Right
+                    : HAlign.Center;
+
                 if (field.Width > 0)
                 {
                     col.Width = field.Width;
@@ -107,7 +108,7 @@ namespace DnaMesUiConfig.Helper
                 #endregion
 
                 col.Style = field.ColumnStyle;
-
+                col.CellActivation = field.IsReadOnly ? Activation.NoEdit : Activation.AllowEdit;
                 col.Hidden = !field.Visible;
 
             }
