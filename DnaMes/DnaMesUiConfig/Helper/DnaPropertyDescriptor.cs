@@ -19,7 +19,7 @@ namespace DnaMesUiConfig.Helper
     /// <summary>
     /// 重写属性描述类
     /// </summary>
-    public class DnaPropertyDescriptor : PropertyDescriptor
+    public class DnaPropertyDescriptor<T> : PropertyDescriptor
     {
         #region 构造函数
 
@@ -117,7 +117,7 @@ namespace DnaMesUiConfig.Helper
 
         #region 公有属性
 
-        public override Type ComponentType => typeof(BaseModel);
+        public override Type ComponentType => typeof(T);
         public override bool IsReadOnly => _column.IsReadOnly;
 
         public override Type PropertyType
@@ -153,7 +153,11 @@ namespace DnaMesUiConfig.Helper
         private dynamic GetValue(object component, string propertyName)
         {
             var propInfo = component?.GetType().GetProperty(propertyName);
-            var value = propInfo?.GetValue(component, null);
+            if (propInfo == null)
+            {
+                throw new ArgumentException($"{propertyName}不是{component}的属性", propertyName);
+            }
+            var value = propInfo.GetValue(component, null);
             if (_column.DataType == typeof(bool).FullName&& bool.TryParse(value?.ToString(), out var result))
             {
                 return result ? "是" : "否"; //将True或False转换为“是”“否”，使之支持中文布尔值

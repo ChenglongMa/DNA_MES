@@ -15,7 +15,7 @@ namespace DnaMesUiConfig.Helper
     /// <summary>
     /// 重写类型描述类
     /// </summary>
-    public class DnaTypeDescriptor : CustomTypeDescriptor
+    public class DnaTypeDescriptor<T> : CustomTypeDescriptor
     {
         public DnaTypeDescriptor(List<Column> fields)
         {
@@ -52,7 +52,7 @@ namespace DnaMesUiConfig.Helper
                 //得到当前对象的属性
                 foreach (var col in _fields)
                 {
-                    var item = new DnaPropertyDescriptor(col);
+                    var item = new DnaPropertyDescriptor<T>(col);
                     _descriptors.Add(item);
                 }
             }

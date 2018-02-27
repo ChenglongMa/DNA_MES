@@ -77,14 +77,14 @@ namespace DnaMesUiConfig.Model
         {
             if (o == null)
                 return "";
-            if (Format.IsNullOrEmpty())
-            {
-                return o.ToString();
-            }
+            //if (Format.IsNullOrEmpty())
+            //{
+            //    return o.ToString();
+            //}
             string result = o.ToString();
             if (result.IsNum())
             {
-                if (Format.ToLower() == "p") // 如果是百分数
+                if (Format?.ToLower() == "p") // 如果是百分数
                 {
                     return System.Convert.ToDouble(result).ToString("P");
                 }
@@ -93,7 +93,7 @@ namespace DnaMesUiConfig.Model
             else if (result.IsDate())
             {
                 var dt = System.Convert.ToDateTime(result);
-                if (dt < new DateTime(1949)) //默认时间返回空字符串
+                if (DateTime.Compare(dt, new DateTime(1949)) < 0) //默认时间返回空字符串
                     return "";
                 result = dt.ToString(Format);
             }

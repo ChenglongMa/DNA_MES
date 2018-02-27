@@ -62,7 +62,7 @@ namespace DnaMesUiConfig.Helper
 
         public override PropertyDescriptorCollection GetItemProperties(PropertyDescriptor[] listAccessors)
         {
-            var typeDesc = new DnaTypeDescriptor(_fields);
+            var typeDesc = new DnaTypeDescriptor<T>(_fields);
             var itemProperties = typeDesc.GetProperties();
 
             if (_specFields != null)
