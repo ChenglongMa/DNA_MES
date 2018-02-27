@@ -53,9 +53,9 @@ namespace DnaMesUi
 
             #region 加载UI Style
 
-            var islFile = UiConfigHelper.GetIsl();
+            //var islFile = UiConfigHelper.GetIsl();
 
-            StyleManager.Load(islFile);
+            //StyleManager.Load(islFile);
 
             #endregion
 

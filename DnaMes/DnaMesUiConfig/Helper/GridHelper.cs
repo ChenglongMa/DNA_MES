@@ -43,7 +43,7 @@ namespace DnaMesUiConfig.Helper
         {
             ug.DisplayLayout.Override.CellClickAction =
                 isRowSelect ? CellClickAction.RowSelect : CellClickAction.EditAndSelectText;
-            //throw new System.NotImplementedException();
+            
         }
         /// <summary>
         /// 根据配置文件设置Grid样式

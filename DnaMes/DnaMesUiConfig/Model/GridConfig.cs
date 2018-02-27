@@ -21,7 +21,7 @@ namespace DnaMesUiConfig.Model
     [XmlType("Grid")]
     public class GridConfig : ControlItem
     {
-        [XmlArrayItem(typeof(Column))] public List<Column> Columns { get; set; }=new List<Column>();
+        [XmlArrayItem(typeof(Column))] public List<Column> Columns { get; set; } = new List<Column>();
     }
 
     /// <inheritdoc />
@@ -73,32 +73,21 @@ namespace DnaMesUiConfig.Model
         /// </summary>
         /// <param name="o">待转换对象</param>
         /// <returns>转换后的字符串</returns>
-        public string Convert(dynamic o)
+        public dynamic Convert(dynamic o)
         {
             if (o == null)
                 return "";
-            //if (Format.IsNullOrEmpty())
-            //{
-            //    return o.ToString();
-            //}
             string result = o.ToString();
             if (result.IsNum())
             {
-                if (Format?.ToLower() == "p") // 如果是百分数
-                {
-                    return System.Convert.ToDouble(result).ToString("P");
-                }
-                result = System.Convert.ToDouble(result).ToString(Format);
-            }
-            else if (result.IsDate())
-            {
-                var dt = System.Convert.ToDateTime(result);
-                if (DateTime.Compare(dt, new DateTime(1949,1,1)) < 0) //默认时间返回空字符串
-                    return null;
-                result = dt.ToString(Format);
+                return System.Convert.ToDouble(Format?.ToLower() == "p"
+                    ? System.Convert.ToDouble(result).ToString("P")
+                    : System.Convert.ToDouble(result).ToString(Format));
             }
 
-            return result;
+            if (!result.IsDate()) return result;
+            var dt = System.Convert.ToDateTime(result);
+            return DateTime.Compare(dt, new DateTime(1949, 1, 1)) < 0 ? null : dt.ToString(Format);
         }
     }
 }
