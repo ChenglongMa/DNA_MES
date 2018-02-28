@@ -41,7 +41,7 @@ namespace DnaMesUiConfig.Model
         /// 是否只读
         /// </summary>
         [XmlAttribute]
-        public bool IsReadOnly { get; set; } = true;
+        public bool IsReadOnly { get; set; }
 
         /// <summary>
         /// 宽度，默认120
@@ -71,23 +71,32 @@ namespace DnaMesUiConfig.Model
         /// <summary>
         /// 根据格式 <see cref="Format"/> 转换为相应字符串
         /// </summary>
-        /// <param name="o">待转换对象</param>
+        /// <param name="value">待转换对象</param>
         /// <returns>转换后的字符串</returns>
-        public dynamic Convert(dynamic o)
+        public dynamic ToUiValue(object value)
         {
-            if (o == null)
+            if (value == null)
                 return "";
-            string result = o.ToString();
-            if (result.IsNum())
+            var resStr = value.ToString();
+            if (resStr.IsNum())
             {
-                return System.Convert.ToDouble(Format?.ToLower() == "p"
-                    ? System.Convert.ToDouble(result).ToString("P")
-                    : System.Convert.ToDouble(result).ToString(Format));
+                return Convert.ToDouble(Format?.ToLower() == "p"
+                    ? Convert.ToDouble(resStr).ToString("P")
+                    : Convert.ToDouble(resStr).ToString(Format));
             }
 
-            if (!result.IsDate()) return result;
-            var dt = System.Convert.ToDateTime(result);
+            if (DataType == typeof(bool).FullName && bool.TryParse(value.ToString(), out var resBool))
+            {
+                return resBool ? "是" : "否"; //将True或False转换为“是”“否”，使之支持中文布尔值
+            }
+            if (!resStr.IsDate()) return resStr;
+            var dt = Convert.ToDateTime(resStr);
             return DateTime.Compare(dt, new DateTime(1949, 1, 1)) < 0 ? null : dt.ToString(Format);
+        }
+
+        private dynamic ToModelValue(dynamic value)
+        {
+            //TODO:待完成
         }
     }
 }

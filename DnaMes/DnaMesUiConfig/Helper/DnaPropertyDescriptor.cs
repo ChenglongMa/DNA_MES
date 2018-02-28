@@ -152,20 +152,39 @@ namespace DnaMesUiConfig.Helper
         /// <returns></returns>
         private dynamic GetValue(object component, string propertyName)
         {
-            var propInfo = component?.GetType().GetProperty(propertyName);
+            if (component == null) return null;
+            //如果component为基本类型或字符串则直接返回该值
+            if (component.GetType().IsPrimitive || component is string)
+            {
+                return _column.ToUiValue(component);
+            }
+            var propInfo = component.GetType().GetProperty(propertyName);
             if (propInfo == null)
             {
                 throw new ArgumentException($"{propertyName}不是{component}的属性", propertyName);
             }
             var value = propInfo.GetValue(component, null);
-            if (_column.DataType == typeof(bool).FullName&& bool.TryParse(value?.ToString(), out var result))
-            {
-                return result ? "是" : "否"; //将True或False转换为“是”“否”，使之支持中文布尔值
-            }
 
-            return _column.Convert(value);
+
+            return _column.ToUiValue(value);
         }
 
+        private void SetValue(object component,string propertyName, dynamic value)
+        {
+            if (component == null) return;
+            //如果component为基本类型或字符串则直接返回该值
+            if (component.GetType().IsPrimitive || component is string)
+            {
+                component = value;
+            }
+            var propInfo = component?.GetType().GetProperty(propertyName);
+            if (propInfo == null)
+            {
+                throw new ArgumentException($"{propertyName}不是{component}的属性", propertyName);
+            }
+
+            propInfo.SetValue(component, value);
+        }
         #endregion
 
         #region 公有方法
@@ -198,26 +217,33 @@ namespace DnaMesUiConfig.Helper
                     return GetValue(component, Name);
                 case ConfigFieldType.List:
                     prop = component.GetType().GetProperty(_field1);
-                    obj = prop?.GetValue(component, null);
+                    if (prop == null)
+                    {
+                        throw new ArgumentException($"{_field1}不是{component}的属性", _field1);
+                    }
+                    obj = prop.GetValue(component, null);
                     if (!(obj is IList list) || list.Count < _listIndex + 1) return null;
                     var element = list[_listIndex];
                     return GetValue(element, _field2);
 
                 case ConfigFieldType.Property:
                     prop = component.GetType().GetProperty(_field1);
-                    obj = prop?.GetValue(component, null);
+                    if (prop == null)
+                    {
+                        throw new ArgumentException($"{_field1}不是{component}的属性", _field1);
+                    }
+                    obj = prop.GetValue(component, null);
                     return GetValue(obj, _field2);
                 case ConfigFieldType.Dict:
                     prop = component.GetType().GetProperty(_field1);
-                    obj = prop?.GetValue(component, null);
-                    if (!(obj is IDictionary dic) || !dic.Contains(_keyfield)) return null;
-                    var objInDic = dic[_keyfield];
-                    if (objInDic.GetType().IsPrimitive || objInDic is string)
+                    if (prop == null)
                     {
-                        return objInDic;
+                        throw new ArgumentException($"{_field1}不是{component}的属性", _field1);
                     }
-
-                    return GetValue(objInDic, _field2);
+                    obj = prop.GetValue(component, null);
+                    if (!(obj is IDictionary dic) || !dic.Contains(_keyfield)) return null;
+                    var value = dic[_keyfield];
+                    return GetValue(value, _field2);
             }
         }
 
@@ -228,7 +254,54 @@ namespace DnaMesUiConfig.Helper
 
         public override void SetValue(object component, object value)
         {
-            throw new NotImplementedException();
+            if (_column.IsReadOnly) return;
+            //ConfigFieldType为非默认值时适用
+            PropertyInfo prop;
+            object obj;
+            switch (_fieldType)
+            {
+                default:
+                case ConfigFieldType.Default:
+                    SetValue(component,Name,value);
+                    break;
+                case ConfigFieldType.List:
+                    prop = component.GetType().GetProperty(_field1);
+                    if (prop == null)
+                    {
+                        throw new ArgumentException($"{_field1}不是{component}的属性", _field1);
+                    }
+                    obj = prop.GetValue(component, null);
+                    if (!(obj is IList list) || list.Count < _listIndex + 1) return;
+                    SetValue(list[_listIndex], _field2,value);
+                    break;
+                case ConfigFieldType.Property:
+                    prop = component.GetType().GetProperty(_field1);
+                    if (prop == null)
+                    {
+                        throw new ArgumentException($"{_field1}不是{component}的属性", _field1);
+                    }
+                    obj = prop.GetValue(component, null);
+                    SetValue(obj, _field2, value);
+                    break;
+                case ConfigFieldType.Dict:
+                    prop = component.GetType().GetProperty(_field1);
+                    if (prop == null)
+                    {
+                        throw new ArgumentException($"{_field1}不是{component}的属性", _field1);
+                    }
+                    obj = prop.GetValue(component, null);
+                    if (!(obj is IDictionary dic) || !dic.Contains(_keyfield)) return;
+                    var objInDic = dic[_keyfield];
+                    if (objInDic.GetType().IsPrimitive || objInDic is string)
+                    {
+                        dic[_keyfield] = value;
+                    }
+                    else
+                    {
+                        SetValue(objInDic, _field2, value);
+                    }
+                    break;
+            }
         }
 
         public override bool ShouldSerializeValue(object component)
