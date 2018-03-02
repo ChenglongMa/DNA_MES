@@ -12,7 +12,7 @@ namespace DnaMesUi.Templetes
             InitializeComponent();
             var list = new List<Domain>
             {
-                new Domain {FunctionCode = 52, Creator = "admin", CreationTime = DateTime.Now},
+                new Domain {FunctionCode = 52, Creator = "admin", CreationTime = DateTime.Now,},
                 new Domain {FunctionCode = 666, Creator = "张三", CreationTime = DateTime.Now.AddYears(-100)},
                 new Domain {FunctionCode = 52, Creator = "admin", CreationTime = DateTime.Now},
                 new Domain {FunctionCode = 99, Creator = "我", CreationTime = DateTime.Now.AddDays(-96)},

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Grid Name="ug" Text="权限管理">
   <Columns>
-    <Column Name="ValueDict!Check" Text="选择" Visible="true" IsReadOnly="false" Width="20" ColumnStyle="EditButton" DataType="System.Boolean" />
+    <Column Name="ValueDict!Check" Text="选择" Visible="true" IsReadOnly="false" Width="20" ColumnStyle="CheckBox" DataType="System.Boolean" Format="BoolCHN"/>
     <Column Name="FunctionCode" Text="功能码" Visible="true" IsReadOnly="false" Width="50" ColumnStyle="Integer" DataType="System.Int32" />
     <Column Name="Creator" Text="创建者" Visible="true" IsReadOnly="false" Width="60" ColumnStyle="EditButton" DataType="System.String" />
     <Column Name="CreationTime" Text="创建时间" Visible="true" IsReadOnly="false" Width="80" ColumnStyle="DateTime" DataType="System.DateTime" />

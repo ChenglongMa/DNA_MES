@@ -7,6 +7,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Xml.Serialization;
 using DnaLib.Helper;
@@ -69,10 +70,10 @@ namespace DnaMesUiConfig.Model
         public string Format { get; set; }
 
         /// <summary>
-        /// 根据格式 <see cref="Format"/> 转换为相应字符串
+        /// 根据格式 <see cref="Format"/> 转换为相应格式数据
         /// </summary>
         /// <param name="value">待转换对象</param>
-        /// <returns>转换后的字符串</returns>
+        /// <returns>转换后的值</returns>
         public dynamic ToUiValue(object value)
         {
             if (value == null)
@@ -85,18 +86,65 @@ namespace DnaMesUiConfig.Model
                     : Convert.ToDouble(resStr).ToString(Format));
             }
 
-            if (DataType == typeof(bool).FullName && bool.TryParse(value.ToString(), out var resBool))
+            if (DataType == typeof(string).FullName && Format == BoolFormat.BoolCHN.ToString() &&
+                bool.TryParse(value.ToString(), out var resBool))
             {
                 return resBool ? "是" : "否"; //将True或False转换为“是”“否”，使之支持中文布尔值
             }
+
             if (!resStr.IsDate()) return resStr;
             var dt = Convert.ToDateTime(resStr);
             return DateTime.Compare(dt, new DateTime(1949, 1, 1)) < 0 ? null : dt.ToString(Format);
         }
 
-        private dynamic ToModelValue(dynamic value)
+        /// <summary>
+        /// 将UI显示内容转化为Model数据
+        /// </summary>
+        /// <param name="value">从UI获取的值</param>
+        /// <returns>转换后的值</returns>
+        public dynamic ToModelValue(object value)
         {
-            //TODO:待完成
+            if (value == null)
+            {
+                return null;
+            }
+
+            var res = value.ToString().Trim().ToLower();
+            var type = Type.GetType(DataType ?? throw new InvalidOperationException($"{nameof(DataType)}未赋值"));
+            if (type == typeof(string) && Format == BoolFormat.BoolCHN.ToString())
+            {
+                if (res.IsIn("是", "true"))
+                {
+                    return true;
+                }
+
+                if (res.IsIn("否", "false"))
+                {
+                    return false;
+                }
+            }
+
+            if (type == value.GetType())
+                return value;
+
+            return type == null ? value : TypeDescriptor.GetConverter(type).ConvertFrom(value);
+        }
+
+        /// <summary>
+        /// 布尔值格式
+        /// 英文，中文
+        /// </summary>
+        public enum BoolFormat
+        {
+            /// <summary>
+            /// 英文
+            /// </summary>
+            BoolENG,
+
+            /// <summary>
+            /// 中文
+            /// </summary>
+            BoolCHN,
         }
     }
 }

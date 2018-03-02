@@ -124,12 +124,13 @@ namespace DnaMesUiConfig.Helper
         {
             get
             {
-                var type = ComponentType.GetProperty(_column.Name)?.PropertyType;
-                if (type == null)
-                {
-                    type = Type.GetType(_column.DataType);
-                }
-
+                //var type = ComponentType.GetProperty(_column.Name)?.PropertyType;
+                //if (type == null)
+                //{
+                //    type = Type.GetType(_column.DataType);
+                //}
+                //以XML配置为准
+                var type = Type.GetType(_column.DataType);
                 return type ?? typeof(string);
             }
         }
@@ -169,14 +170,8 @@ namespace DnaMesUiConfig.Helper
             return _column.ToUiValue(value);
         }
 
-        private void SetValue(object component,string propertyName, dynamic value)
+        private static void SetValue(object component,string propertyName, dynamic value)
         {
-            if (component == null) return;
-            //如果component为基本类型或字符串则直接返回该值
-            if (component.GetType().IsPrimitive || component is string)
-            {
-                component = value;
-            }
             var propInfo = component?.GetType().GetProperty(propertyName);
             if (propInfo == null)
             {
@@ -272,7 +267,16 @@ namespace DnaMesUiConfig.Helper
                     }
                     obj = prop.GetValue(component, null);
                     if (!(obj is IList list) || list.Count < _listIndex + 1) return;
-                    SetValue(list[_listIndex], _field2,value);
+                    var objInList = list[_listIndex];
+                    //如果objInList为基本类型或字符串则直接返回该值
+                    if (objInList.GetType().IsPrimitive || objInList is string)
+                    {
+                        list[_listIndex] = _column.ToModelValue(value);
+                    }
+                    else
+                    {
+                        SetValue(objInList, _field2, value);
+                    }
                     break;
                 case ConfigFieldType.Property:
                     prop = component.GetType().GetProperty(_field1);
@@ -292,9 +296,10 @@ namespace DnaMesUiConfig.Helper
                     obj = prop.GetValue(component, null);
                     if (!(obj is IDictionary dic) || !dic.Contains(_keyfield)) return;
                     var objInDic = dic[_keyfield];
+                    //如果objInList为基本类型或字符串则直接返回该值
                     if (objInDic.GetType().IsPrimitive || objInDic is string)
                     {
-                        dic[_keyfield] = value;
+                        dic[_keyfield] = _column.ToModelValue(value);
                     }
                     else
                     {

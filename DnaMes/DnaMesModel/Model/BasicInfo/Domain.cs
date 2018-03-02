@@ -5,6 +5,7 @@
 //  Copyright © DNA Studio 2018. All rights reserved.
 // ****************************************************
 
+using System.Collections.Generic;
 using DnaLib.Config;
 using SqlSugar;
 
@@ -27,7 +28,6 @@ namespace DnaMesModel.Model.BasicInfo
 
         [DnaColumn(IsNullable = true, Length = 45)]
         public string Name { get; set; }
-
         #endregion
 
         #region 私有方法
