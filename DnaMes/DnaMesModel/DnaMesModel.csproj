@@ -74,6 +74,7 @@
     <Compile Include="Link\BasicInfo\UserDomain.cs" />
     <Compile Include="BaseModel.cs" />
     <Compile Include="Model\BasicInfo\Domain.cs" />
+    <Compile Include="Model\BasicInfo\Project.cs" />
     <Compile Include="Model\BasicInfo\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shared\SysInfo.cs" />

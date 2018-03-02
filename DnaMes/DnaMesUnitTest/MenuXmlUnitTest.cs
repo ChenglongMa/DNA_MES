@@ -120,7 +120,7 @@ namespace DnaMesUnitTest
                                 Name = "ProcessMant",
                                 Text = "工艺管理",
                                 ShortCut = "R",
-                                FormPath = $"{nameof(DnaMesUi.BasicInfo)}.{nameof(ProcessMantForm)}",
+                                FormPath = $"{nameof(DnaMesUi.Templetes)}.{nameof(WithTreeForm)}",
                                 FormType = FormType.ChildForm,
                                 DomainId = 10002,
                                 CommandType = CommandType.Activate,

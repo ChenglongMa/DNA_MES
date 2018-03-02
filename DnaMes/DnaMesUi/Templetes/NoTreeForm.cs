@@ -18,7 +18,7 @@ namespace DnaMesUi.Templetes
                 new Domain {FunctionCode = 99, Creator = "我", CreationTime = DateTime.Now.AddDays(-96)},
                 new Domain {FunctionCode = -9, Creator = null, CreationTime = DateTime.Now.AddDays(-96)},
             };
-            GridBindingBll<Domain>.DataBindingToGrid(ultraGrid1,list,"BasicInfo\\Domain.xml",false);
+            GridBindingBll<Domain>.DataBindingToGrid(ug1,list,"BasicInfo\\Domain.xml",false);
         }
     }
 }

@@ -103,6 +103,26 @@ namespace DnaMesUi.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap TreeNotSelect {
+            get {
+                object obj = ResourceManager.GetObject("TreeNotSelect", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap TreeSelected {
+            get {
+                object obj = ResourceManager.GetObject("TreeSelected", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap 产品16 {
             get {
                 object obj = ResourceManager.GetObject("产品16", resourceCulture);

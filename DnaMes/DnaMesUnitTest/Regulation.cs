@@ -16,7 +16,8 @@ namespace DnaMesUnitTest
 
         //TODO：完善登录窗口逻辑
         //TODO完结：确定MDI窗体动态加载逻辑 2018/02/24
-        //TODO：设计默认Grid格式
+        //TODO完结：设计默认Grid格式 2018/03/02
+        //TODO完结：完成数据绑定逻辑 2018/03/02
 
         #endregion
 
@@ -27,7 +28,7 @@ namespace DnaMesUnitTest
         //每个模块窗体toolBar先导致默认配置再添加按钮
 
         /* Form命名规范：
-         * Mant:Management
+         * Mgt:Management
          */
 
         /* Menu.XML文件规范：

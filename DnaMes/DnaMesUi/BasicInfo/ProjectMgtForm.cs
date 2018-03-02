@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace DnaMesUi.BasicInfo
 {
-    public partial class ProjectMantForm : BaseForm
+    public partial class ProjectMgtForm : BaseForm
     {
-        public ProjectMantForm()
+        public ProjectMgtForm()
         {
             InitializeComponent();
         }

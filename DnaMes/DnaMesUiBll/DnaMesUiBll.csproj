@@ -46,8 +46,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BasicInfo\ProjectMgtBll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shared\GridBindingBll.cs" />
+    <Compile Include="Shared\TreeBll.cs" />
     <Compile Include="Sys\LoginBll.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -68,8 +70,6 @@
       <Name>DnaMesUiConfig</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BasicInfo\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

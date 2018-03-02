@@ -45,17 +45,20 @@
             this.ultraToolbarsManager1 = new Infragistics.Win.UltraWinToolbars.UltraToolbarsManager(this.components);
             this.BaseForm_Fill_Panel = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.ultraGrid1 = new Infragistics.Win.UltraWinGrid.UltraGrid();
+            this.ug1 = new Infragistics.Win.UltraWinGrid.UltraGrid();
             this._BaseForm_Toolbars_Dock_Area_Left = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this._BaseForm_Toolbars_Dock_Area_Right = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this._BaseForm_Toolbars_Dock_Area_Top = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this._BaseForm_Toolbars_Dock_Area_Bottom = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
+            this.ultraPanel1 = new Infragistics.Win.Misc.UltraPanel();
             ((System.ComponentModel.ISupportInitialize)(this.ultraToolbarsManager1)).BeginInit();
             this.BaseForm_Fill_Panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ultraGrid1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ug1)).BeginInit();
+            this.ultraPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // ultraToolbarsManager1
@@ -118,89 +121,90 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.ultraPanel1);
             this.splitContainer1.Panel1.Font = new System.Drawing.Font("宋体", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.ultraGrid1);
+            this.splitContainer1.Panel2.Controls.Add(this.ug1);
             this.splitContainer1.Size = new System.Drawing.Size(975, 652);
             this.splitContainer1.SplitterDistance = 70;
             this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 0;
             // 
-            // ultraGrid1
+            // ug1
             // 
             appearance1.BackColor = System.Drawing.SystemColors.Window;
             appearance1.BorderColor = System.Drawing.SystemColors.InactiveCaption;
-            this.ultraGrid1.DisplayLayout.Appearance = appearance1;
-            this.ultraGrid1.DisplayLayout.AutoFitStyle = Infragistics.Win.UltraWinGrid.AutoFitStyle.ResizeAllColumns;
-            this.ultraGrid1.DisplayLayout.BorderStyle = Infragistics.Win.UIElementBorderStyle.Solid;
-            this.ultraGrid1.DisplayLayout.CaptionVisible = Infragistics.Win.DefaultableBoolean.False;
-            this.ultraGrid1.DisplayLayout.EmptyRowSettings.ShowEmptyRows = true;
+            this.ug1.DisplayLayout.Appearance = appearance1;
+            this.ug1.DisplayLayout.AutoFitStyle = Infragistics.Win.UltraWinGrid.AutoFitStyle.ResizeAllColumns;
+            this.ug1.DisplayLayout.BorderStyle = Infragistics.Win.UIElementBorderStyle.Solid;
+            this.ug1.DisplayLayout.CaptionVisible = Infragistics.Win.DefaultableBoolean.False;
+            this.ug1.DisplayLayout.EmptyRowSettings.ShowEmptyRows = true;
             appearance2.BackColor = System.Drawing.SystemColors.ActiveBorder;
             appearance2.BackColor2 = System.Drawing.SystemColors.ControlDark;
             appearance2.BackGradientStyle = Infragistics.Win.GradientStyle.Vertical;
             appearance2.BorderColor = System.Drawing.SystemColors.Window;
-            this.ultraGrid1.DisplayLayout.GroupByBox.Appearance = appearance2;
+            this.ug1.DisplayLayout.GroupByBox.Appearance = appearance2;
             appearance3.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.ultraGrid1.DisplayLayout.GroupByBox.BandLabelAppearance = appearance3;
-            this.ultraGrid1.DisplayLayout.GroupByBox.BorderStyle = Infragistics.Win.UIElementBorderStyle.Solid;
+            this.ug1.DisplayLayout.GroupByBox.BandLabelAppearance = appearance3;
+            this.ug1.DisplayLayout.GroupByBox.BorderStyle = Infragistics.Win.UIElementBorderStyle.Solid;
             appearance4.BackColor = System.Drawing.SystemColors.ControlLightLight;
             appearance4.BackColor2 = System.Drawing.SystemColors.Control;
             appearance4.BackGradientStyle = Infragistics.Win.GradientStyle.Horizontal;
             appearance4.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.ultraGrid1.DisplayLayout.GroupByBox.PromptAppearance = appearance4;
-            this.ultraGrid1.DisplayLayout.MaxColScrollRegions = 1;
-            this.ultraGrid1.DisplayLayout.MaxRowScrollRegions = 1;
+            this.ug1.DisplayLayout.GroupByBox.PromptAppearance = appearance4;
+            this.ug1.DisplayLayout.MaxColScrollRegions = 1;
+            this.ug1.DisplayLayout.MaxRowScrollRegions = 1;
             appearance5.BackColor = System.Drawing.SystemColors.Window;
             appearance5.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.ultraGrid1.DisplayLayout.Override.ActiveCellAppearance = appearance5;
+            this.ug1.DisplayLayout.Override.ActiveCellAppearance = appearance5;
             appearance6.BackColor = System.Drawing.SystemColors.Highlight;
             appearance6.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.ultraGrid1.DisplayLayout.Override.ActiveRowAppearance = appearance6;
-            this.ultraGrid1.DisplayLayout.Override.BorderStyleCell = Infragistics.Win.UIElementBorderStyle.Dotted;
-            this.ultraGrid1.DisplayLayout.Override.BorderStyleRow = Infragistics.Win.UIElementBorderStyle.Dotted;
+            this.ug1.DisplayLayout.Override.ActiveRowAppearance = appearance6;
+            this.ug1.DisplayLayout.Override.BorderStyleCell = Infragistics.Win.UIElementBorderStyle.Dotted;
+            this.ug1.DisplayLayout.Override.BorderStyleRow = Infragistics.Win.UIElementBorderStyle.Dotted;
             appearance7.BackColor = System.Drawing.SystemColors.Window;
-            this.ultraGrid1.DisplayLayout.Override.CardAreaAppearance = appearance7;
+            this.ug1.DisplayLayout.Override.CardAreaAppearance = appearance7;
             appearance8.BorderColor = System.Drawing.Color.Silver;
             appearance8.TextHAlignAsString = "Center";
             appearance8.TextTrimming = Infragistics.Win.TextTrimming.EllipsisCharacter;
-            this.ultraGrid1.DisplayLayout.Override.CellAppearance = appearance8;
-            this.ultraGrid1.DisplayLayout.Override.CellClickAction = Infragistics.Win.UltraWinGrid.CellClickAction.EditAndSelectText;
-            this.ultraGrid1.DisplayLayout.Override.CellPadding = 0;
-            this.ultraGrid1.DisplayLayout.Override.ColumnHeaderTextOrientation = new Infragistics.Win.TextOrientationInfo(0, Infragistics.Win.TextFlowDirection.Horizontal);
-            this.ultraGrid1.DisplayLayout.Override.FilterClearButtonLocation = Infragistics.Win.UltraWinGrid.FilterClearButtonLocation.Row;
-            this.ultraGrid1.DisplayLayout.Override.FilterUIType = Infragistics.Win.UltraWinGrid.FilterUIType.FilterRow;
-            this.ultraGrid1.DisplayLayout.Override.FixedRowStyle = Infragistics.Win.UltraWinGrid.FixedRowStyle.Top;
+            this.ug1.DisplayLayout.Override.CellAppearance = appearance8;
+            this.ug1.DisplayLayout.Override.CellClickAction = Infragistics.Win.UltraWinGrid.CellClickAction.EditAndSelectText;
+            this.ug1.DisplayLayout.Override.CellPadding = 0;
+            this.ug1.DisplayLayout.Override.ColumnHeaderTextOrientation = new Infragistics.Win.TextOrientationInfo(0, Infragistics.Win.TextFlowDirection.Horizontal);
+            this.ug1.DisplayLayout.Override.FilterClearButtonLocation = Infragistics.Win.UltraWinGrid.FilterClearButtonLocation.Row;
+            this.ug1.DisplayLayout.Override.FilterUIType = Infragistics.Win.UltraWinGrid.FilterUIType.FilterRow;
+            this.ug1.DisplayLayout.Override.FixedRowStyle = Infragistics.Win.UltraWinGrid.FixedRowStyle.Top;
             appearance9.BackColor = System.Drawing.SystemColors.Control;
             appearance9.BackColor2 = System.Drawing.SystemColors.ControlDark;
             appearance9.BackGradientAlignment = Infragistics.Win.GradientAlignment.Element;
             appearance9.BackGradientStyle = Infragistics.Win.GradientStyle.Horizontal;
             appearance9.BorderColor = System.Drawing.SystemColors.Window;
-            this.ultraGrid1.DisplayLayout.Override.GroupByRowAppearance = appearance9;
+            this.ug1.DisplayLayout.Override.GroupByRowAppearance = appearance9;
             appearance10.TextHAlignAsString = "Center";
-            this.ultraGrid1.DisplayLayout.Override.HeaderAppearance = appearance10;
-            this.ultraGrid1.DisplayLayout.Override.HeaderClickAction = Infragistics.Win.UltraWinGrid.HeaderClickAction.SortMulti;
-            this.ultraGrid1.DisplayLayout.Override.HeaderStyle = Infragistics.Win.HeaderStyle.WindowsXPCommand;
+            this.ug1.DisplayLayout.Override.HeaderAppearance = appearance10;
+            this.ug1.DisplayLayout.Override.HeaderClickAction = Infragistics.Win.UltraWinGrid.HeaderClickAction.SortMulti;
+            this.ug1.DisplayLayout.Override.HeaderStyle = Infragistics.Win.HeaderStyle.WindowsXPCommand;
             appearance11.BackColor = System.Drawing.SystemColors.Window;
             appearance11.BorderColor = System.Drawing.Color.Silver;
-            this.ultraGrid1.DisplayLayout.Override.RowAppearance = appearance11;
-            this.ultraGrid1.DisplayLayout.Override.RowSelectorHeaderStyle = Infragistics.Win.UltraWinGrid.RowSelectorHeaderStyle.SeparateElement;
-            this.ultraGrid1.DisplayLayout.Override.RowSelectors = Infragistics.Win.DefaultableBoolean.True;
-            this.ultraGrid1.DisplayLayout.Override.SupportDataErrorInfo = Infragistics.Win.UltraWinGrid.SupportDataErrorInfo.RowsAndCells;
+            this.ug1.DisplayLayout.Override.RowAppearance = appearance11;
+            this.ug1.DisplayLayout.Override.RowSelectorHeaderStyle = Infragistics.Win.UltraWinGrid.RowSelectorHeaderStyle.SeparateElement;
+            this.ug1.DisplayLayout.Override.RowSelectors = Infragistics.Win.DefaultableBoolean.True;
+            this.ug1.DisplayLayout.Override.SupportDataErrorInfo = Infragistics.Win.UltraWinGrid.SupportDataErrorInfo.RowsAndCells;
             appearance12.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ultraGrid1.DisplayLayout.Override.TemplateAddRowAppearance = appearance12;
-            this.ultraGrid1.DisplayLayout.ScrollBounds = Infragistics.Win.UltraWinGrid.ScrollBounds.ScrollToFill;
-            this.ultraGrid1.DisplayLayout.ScrollStyle = Infragistics.Win.UltraWinGrid.ScrollStyle.Immediate;
-            this.ultraGrid1.DisplayLayout.UseFixedHeaders = true;
-            this.ultraGrid1.DisplayLayout.ViewStyle = Infragistics.Win.UltraWinGrid.ViewStyle.SingleBand;
-            this.ultraGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ultraGrid1.Location = new System.Drawing.Point(0, 0);
-            this.ultraGrid1.Name = "ultraGrid1";
-            this.ultraGrid1.Size = new System.Drawing.Size(975, 577);
-            this.ultraGrid1.TabIndex = 0;
-            this.ultraGrid1.Text = "ultraGrid1";
-            this.ultraGrid1.UpdateMode = Infragistics.Win.UltraWinGrid.UpdateMode.OnCellChangeOrLostFocus;
+            this.ug1.DisplayLayout.Override.TemplateAddRowAppearance = appearance12;
+            this.ug1.DisplayLayout.ScrollBounds = Infragistics.Win.UltraWinGrid.ScrollBounds.ScrollToFill;
+            this.ug1.DisplayLayout.ScrollStyle = Infragistics.Win.UltraWinGrid.ScrollStyle.Immediate;
+            this.ug1.DisplayLayout.UseFixedHeaders = true;
+            this.ug1.DisplayLayout.ViewStyle = Infragistics.Win.UltraWinGrid.ViewStyle.SingleBand;
+            this.ug1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ug1.Location = new System.Drawing.Point(0, 0);
+            this.ug1.Name = "ug1";
+            this.ug1.Size = new System.Drawing.Size(975, 577);
+            this.ug1.TabIndex = 0;
+            this.ug1.Text = "ultraGrid1";
+            this.ug1.UpdateMode = Infragistics.Win.UltraWinGrid.UpdateMode.OnCellChangeOrLostFocus;
             // 
             // _BaseForm_Toolbars_Dock_Area_Left
             // 
@@ -250,6 +254,14 @@
             this._BaseForm_Toolbars_Dock_Area_Bottom.Size = new System.Drawing.Size(975, 0);
             this._BaseForm_Toolbars_Dock_Area_Bottom.ToolbarsManager = this.ultraToolbarsManager1;
             // 
+            // ultraPanel1
+            // 
+            this.ultraPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ultraPanel1.Location = new System.Drawing.Point(0, 0);
+            this.ultraPanel1.Name = "ultraPanel1";
+            this.ultraPanel1.Size = new System.Drawing.Size(975, 70);
+            this.ultraPanel1.TabIndex = 0;
+            // 
             // NoTreeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -265,10 +277,12 @@
             this.Text = "ProjectMantForm";
             ((System.ComponentModel.ISupportInitialize)(this.ultraToolbarsManager1)).EndInit();
             this.BaseForm_Fill_Panel.ResumeLayout(false);
+            this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ultraGrid1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ug1)).EndInit();
+            this.ultraPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -282,6 +296,7 @@
         private Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _BaseForm_Toolbars_Dock_Area_Bottom;
         private Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _BaseForm_Toolbars_Dock_Area_Top;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private Infragistics.Win.UltraWinGrid.UltraGrid ultraGrid1;
+        private Infragistics.Win.UltraWinGrid.UltraGrid ug1;
+        private Infragistics.Win.Misc.UltraPanel ultraPanel1;
     }
 }
