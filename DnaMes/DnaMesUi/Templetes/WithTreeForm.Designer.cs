@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             Infragistics.Win.UltraWinToolbars.UltraToolbar ultraToolbar1 = new Infragistics.Win.UltraWinToolbars.UltraToolbar("SysToolBar");
             Infragistics.Win.UltraWinTree.UltraTreeNode ultraTreeNode1 = new Infragistics.Win.UltraWinTree.UltraTreeNode();
+            Infragistics.Win.UltraWinTree.UltraTreeNode ultraTreeNode2 = new Infragistics.Win.UltraWinTree.UltraTreeNode();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WithTreeForm));
             Infragistics.Win.Appearance appearance1 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance2 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance3 = new Infragistics.Win.Appearance();
@@ -43,19 +45,18 @@
             Infragistics.Win.Appearance appearance10 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance11 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance12 = new Infragistics.Win.Appearance();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WithTreeForm));
             this.ultraToolbarsManager1 = new Infragistics.Win.UltraWinToolbars.UltraToolbarsManager(this.components);
             this.BaseForm_Fill_Panel = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.ultraPanel1 = new Infragistics.Win.Misc.UltraPanel();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.uTree = new Infragistics.Win.UltraWinTree.UltraTree();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.ug1 = new Infragistics.Win.UltraWinGrid.UltraGrid();
             this._BaseForm_Toolbars_Dock_Area_Left = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this._BaseForm_Toolbars_Dock_Area_Right = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this._BaseForm_Toolbars_Dock_Area_Top = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this._BaseForm_Toolbars_Dock_Area_Bottom = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ultraToolbarsManager1)).BeginInit();
             this.BaseForm_Fill_Panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -174,11 +175,29 @@
             this.uTree.NodeConnectorColor = System.Drawing.SystemColors.ControlDark;
             ultraTreeNode1.Key = "root";
             ultraTreeNode1.LeftImages.Add("部门32.png");
+            ultraTreeNode2.LeftImages.Add("公司32.png");
+            ultraTreeNode2.Text = "Node0";
+            ultraTreeNode1.Nodes.AddRange(new Infragistics.Win.UltraWinTree.UltraTreeNode[] {
+            ultraTreeNode2});
             ultraTreeNode1.Text = "Node0";
             this.uTree.Nodes.AddRange(new Infragistics.Win.UltraWinTree.UltraTreeNode[] {
             ultraTreeNode1});
             this.uTree.Size = new System.Drawing.Size(406, 586);
             this.uTree.TabIndex = 0;
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "TreeSelected.png");
+            this.imageList1.Images.SetKeyName(1, "TreeNotSelect.png");
+            this.imageList1.Images.SetKeyName(2, "部门32.png");
+            this.imageList1.Images.SetKeyName(3, "集团32.png");
+            this.imageList1.Images.SetKeyName(4, "公司32.png");
+            this.imageList1.Images.SetKeyName(5, "产品大类32.png");
+            this.imageList1.Images.SetKeyName(6, "产品32.png");
+            this.imageList1.Images.SetKeyName(7, "标准件32.png");
+            this.imageList1.Images.SetKeyName(8, "部件32.png");
             // 
             // ug1
             // 
@@ -301,20 +320,6 @@
             this._BaseForm_Toolbars_Dock_Area_Bottom.Name = "_BaseForm_Toolbars_Dock_Area_Bottom";
             this._BaseForm_Toolbars_Dock_Area_Bottom.Size = new System.Drawing.Size(1222, 0);
             this._BaseForm_Toolbars_Dock_Area_Bottom.ToolbarsManager = this.ultraToolbarsManager1;
-            // 
-            // imageList1
-            // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "TreeSelected.png");
-            this.imageList1.Images.SetKeyName(1, "TreeNotSelect.png");
-            this.imageList1.Images.SetKeyName(2, "部门32.png");
-            this.imageList1.Images.SetKeyName(3, "集团32.png");
-            this.imageList1.Images.SetKeyName(4, "公司32.png");
-            this.imageList1.Images.SetKeyName(5, "产品大类32.png");
-            this.imageList1.Images.SetKeyName(6, "产品32.png");
-            this.imageList1.Images.SetKeyName(7, "标准件32.png");
-            this.imageList1.Images.SetKeyName(8, "部件32.png");
             // 
             // WithTreeForm
             // 
