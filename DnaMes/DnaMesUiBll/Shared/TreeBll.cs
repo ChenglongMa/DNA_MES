@@ -7,6 +7,8 @@
 
 using System.Collections.Generic;
 using DnaMesModel;
+using DnaMesModel.Model.BasicInfo;
+using DnaMesUiBll.BasicInfo;
 using Infragistics.Win.UltraWinTree;
 
 namespace DnaMesUiBll.Shared

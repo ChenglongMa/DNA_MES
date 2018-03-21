@@ -35,6 +35,7 @@
     <Reference Include="Infragistics4.Win.UltraWinToolbars.v12.1, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
     <Reference Include="Infragistics4.Win.UltraWinTree.v12.1, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
     <Reference Include="Infragistics4.Win.v12.1, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
+    <Reference Include="SqlSugar, Version=4.6.4.6, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -51,6 +52,7 @@
     <Compile Include="BasicInfo\ProjectMgtBll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shared\GridBindingBll.cs" />
+    <Compile Include="Shared\ITree.cs" />
     <Compile Include="Shared\TreeBll.cs" />
     <Compile Include="Sys\LoginBll.cs" />
   </ItemGroup>
@@ -72,6 +74,8 @@
       <Name>DnaMesUiConfig</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
