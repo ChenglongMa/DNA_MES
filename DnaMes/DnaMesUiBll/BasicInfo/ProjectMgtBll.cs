@@ -46,7 +46,7 @@ namespace DnaMesUiBll.BasicInfo
         /// <param name="uTree"></param>
         /// <param name="images"></param>
         /// <param name="exp"></param>
-        public void BuildTree(ref UltraTree uTree, ImagesCollection images, Expression<Func<Project, bool>> exp = null)
+        public void BuildTree(ref UltraTree uTree, ImageList.ImageCollection images, Expression<Func<Project, bool>> exp = null)
         {
             var children = _dal.Get(exp);
             var root = uTree.TopNode;
@@ -60,8 +60,13 @@ namespace DnaMesUiBll.BasicInfo
         /// <param name="pNode"></param>
         /// <param name="children"></param>
         /// <param name="images"></param>
-        private void BuildSubTree(UltraTreeNode pNode, IEnumerable<Project> children, ImagesCollection images)
+        private void BuildSubTree(UltraTreeNode pNode, IEnumerable<Project> children, ImageList.ImageCollection images)
         {
+            if (children == null)
+            {
+                return;
+            }
+
             foreach (var model in children)
             {
                 var cNode = pNode.Nodes.Add(model.Code, model.Name);

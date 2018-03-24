@@ -15,45 +15,46 @@ namespace DnaMesModel.Model.BasicInfo
     /// 项目管理
     /// </summary>
     [SugarTable("BasicInfo_Project")]
-    public class Project:BaseModel
+    public class Project : BaseModel
     {
         #region 私有字段
-
 
         #endregion
 
         #region 公有属性
+
         /// <summary>
         /// 项目编号
         /// </summary>
-        [DnaColumn(IsKey = true,IsNullable = false,Length = 10)]
+        [DnaColumn(IsKey = true, IsNullable = false, Length = 25)]
         public string Code { get; set; }
+
         /// <summary>
         /// 项目名称
         /// </summary>
-        [DnaColumn(IsNullable = false,Length = 45)]
+        [DnaColumn(IsNullable = false, Length = 45)]
         public string Name { get; set; }
+
         /// <summary>
         /// 开始时间
         /// </summary>
         [DnaColumn]
         public DateTime StartingTime { get; set; }
+
         /// <summary>
         /// 结束时间
         /// </summary>
         [DnaColumn]
         public DateTime EndingTime { get; set; }
+
         #endregion
 
         #region 私有方法
-
 
         #endregion
 
         #region 公有方法
 
-
         #endregion
     }
 }
-

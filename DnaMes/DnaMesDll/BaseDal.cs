@@ -77,7 +77,7 @@ namespace DnaMesDal
         /// <returns></returns>
         public List<T> Get(Expression<Func<T, bool>> exp)
         {
-            return DbClient.Queryable<T>().Where(exp).ToList();
+            return exp == null ? DbClient.Queryable<T>().ToList() : DbClient.Queryable<T>().Where(exp).ToList();
         }
 
         /// <summary>
@@ -182,6 +182,19 @@ namespace DnaMesDal
             }
         }
 
+        private static SqlSugarClient DbSysClient
+        {
+            get
+            {
+                var dbInfo = DbConfigHelper.GetDbInfo();
+                return new SqlSugarClient(new ConnectionConfig
+                {
+                    ConnectionString = dbInfo.ToString(),
+                    DbType = dbInfo.DbType,
+                    InitKeyType = InitKeyType.Attribute //从数据库读取主键
+                });
+            }
+        }
         /// <summary>
         /// 获取某属性是否为关键属性
         /// </summary>
@@ -216,7 +229,7 @@ namespace DnaMesDal
             foreach (var ppt in ppts)
             {
                 var value = ppt.GetValue(model, null);
-                whereStr += " AND " + ppt.Name + "=" + value;
+                whereStr += " AND " + ppt.Name + " = '" + value+"'";
             }
 
             return whereStr;
@@ -241,6 +254,20 @@ namespace DnaMesDal
 
         #region 增
 
+        /// <summary>
+        /// 在数据库中增加表
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        public void CreateTable<T>() where T: new()
+        {
+            DbSysClient.CodeFirst.InitTables(typeof(T));
+        }
+
+        public void CreateLinkTable<TA, TB>() where TA:BaseModel,new() where TB:BaseModel,new()
+        {
+            throw new NotImplementedException();
+            //DbSysClient
+        }
         /// <summary>
         /// 插入并返回bool, 并将identity赋值到实体
         /// </summary>
@@ -403,6 +430,7 @@ namespace DnaMesDal
         /// <summary>
         /// 建立关系
         /// </summary>
+        /// bug:objid=-1
         /// <typeparam name="TA"></typeparam>
         /// <typeparam name="TB"></typeparam>
         /// <param name="roleA"></param>

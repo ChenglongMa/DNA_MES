@@ -71,6 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseLink.cs" />
+    <Compile Include="Link\BasicInfo\ProjectProject.cs" />
     <Compile Include="Link\BasicInfo\UserDomain.cs" />
     <Compile Include="BaseModel.cs" />
     <Compile Include="Model\BasicInfo\Domain.cs" />
