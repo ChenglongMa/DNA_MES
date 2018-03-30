@@ -7,7 +7,7 @@ namespace DnaMesUi.Templetes
         public WithTreeForm()
         {
             InitializeComponent();
-            _bll.BuildTree(ref uTree,imageList1.Images);
+            _bll.BuildTree(ref uTree, imageList1.Images);
         }
 
         private readonly ProjectMgtBll _bll=new ProjectMgtBll();

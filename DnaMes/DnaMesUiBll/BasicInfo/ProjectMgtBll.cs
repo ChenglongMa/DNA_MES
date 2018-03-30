@@ -40,20 +40,35 @@ namespace DnaMesUiBll.BasicInfo
         #region 公有方法
 
         #endregion
+
         /// <summary>
         /// 构建树
         /// </summary>
         /// <param name="uTree"></param>
         /// <param name="images"></param>
         /// <param name="exp"></param>
-        public void BuildTree(ref UltraTree uTree, ImageList.ImageCollection images, Expression<Func<Project, bool>> exp = null)
+        public void BuildTree(ref UltraTree uTree, ImageList.ImageCollection images,
+            Expression<Func<Project, bool>> exp = null)
         {
             var children = _dal.Get(exp);
             var root = uTree.TopNode;
+            if (root == null)
+            {
+                root = new UltraTreeNode("root", "项目");
+                if (!images.IsNullOrEmpty() && images.Count > 2)
+                {
+                    root.LeftImages.Clear();
+                    root.LeftImages.Add(images[2]);
+                }
+
+                uTree.Nodes.Add(root);
+            }
+
             root.Nodes.Clear();
             BuildSubTree(root, children, images);
             uTree.ExpandAll();
         }
+
         /// <summary>
         /// 构建子树
         /// </summary>
@@ -69,9 +84,15 @@ namespace DnaMesUiBll.BasicInfo
 
             foreach (var model in children)
             {
+                if (pNode.Control.GetNodeByKey(model.Code) != null)
+                {
+                    continue;
+                }
+
                 var cNode = pNode.Nodes.Add(model.Code, model.Name);
+                cNode.Tag = model;
                 //设置图片
-                if (!images.IsNullOrEmpty() && images.Count >= cNode.Level + 2)
+                if (!images.IsNullOrEmpty() && images.Count > cNode.Level + 2)
                 {
                     cNode.LeftImages.Clear();
                     cNode.LeftImages.Add(images[cNode.Level + 2]);

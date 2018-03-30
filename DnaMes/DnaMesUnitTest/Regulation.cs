@@ -47,6 +47,7 @@ namespace DnaMesUnitTest
         //关系[类名]格式：{roleA.className}{roleB.className}
         //关系[表名]格式：L_{roleA.className}{roleB.className}
 
+
         #endregion
 
         #endregion

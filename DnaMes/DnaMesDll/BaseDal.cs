@@ -444,7 +444,8 @@ namespace DnaMesDal
                 throw new ArgumentException($"{typeof(TA).Name}[{roleA.ObjId}]与{typeof(TB).Name}[{roleB.ObjId}]关系已存在",
                     tableName);
             }
-
+            Get(ref roleA);
+            Get(ref roleB);
             var link = new BaseLink
             {
                 RoleAId = roleA.ObjId,
