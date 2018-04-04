@@ -60,7 +60,7 @@
             Infragistics.Win.Appearance appearance11 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance12 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance13 = new Infragistics.Win.Appearance();
-            this.ultraToolbarsManager1 = new Infragistics.Win.UltraWinToolbars.UltraToolbarsManager(this.components);
+            this.toolBarManager = new Infragistics.Win.UltraWinToolbars.UltraToolbarsManager(this.components);
             this.BaseForm_Fill_Panel = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.ultraPanel1 = new Infragistics.Win.Misc.UltraPanel();
@@ -82,7 +82,7 @@
             this._BaseForm_Toolbars_Dock_Area_Right = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this._BaseForm_Toolbars_Dock_Area_Top = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this._BaseForm_Toolbars_Dock_Area_Bottom = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
-            ((System.ComponentModel.ISupportInitialize)(this.ultraToolbarsManager1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.toolBarManager)).BeginInit();
             this.BaseForm_Fill_Panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -104,18 +104,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.ug1)).BeginInit();
             this.SuspendLayout();
             // 
-            // ultraToolbarsManager1
+            // toolBarManager
             // 
-            this.ultraToolbarsManager1.DesignerFlags = 1;
-            this.ultraToolbarsManager1.DockWithinContainer = this;
-            this.ultraToolbarsManager1.DockWithinContainerBaseType = typeof(DnaMesUi.BaseForm);
-            this.ultraToolbarsManager1.FormDisplayStyle = Infragistics.Win.UltraWinToolbars.FormDisplayStyle.Standard;
-            this.ultraToolbarsManager1.LockToolbars = true;
-            this.ultraToolbarsManager1.MenuSettings.ShowToolTips = Infragistics.Win.DefaultableBoolean.True;
-            this.ultraToolbarsManager1.RuntimeCustomizationOptions = Infragistics.Win.UltraWinToolbars.RuntimeCustomizationOptions.None;
-            this.ultraToolbarsManager1.ShowFullMenusDelay = 200;
-            this.ultraToolbarsManager1.ShowShortcutsInToolTips = true;
-            this.ultraToolbarsManager1.Style = Infragistics.Win.UltraWinToolbars.ToolbarStyle.Office2007;
+            this.toolBarManager.DesignerFlags = 1;
+            this.toolBarManager.DockWithinContainer = this;
+            this.toolBarManager.DockWithinContainerBaseType = typeof(DnaMesUi.BaseForm);
+            this.toolBarManager.FormDisplayStyle = Infragistics.Win.UltraWinToolbars.FormDisplayStyle.Standard;
+            this.toolBarManager.LockToolbars = true;
+            this.toolBarManager.MenuSettings.ShowToolTips = Infragistics.Win.DefaultableBoolean.True;
+            this.toolBarManager.RuntimeCustomizationOptions = Infragistics.Win.UltraWinToolbars.RuntimeCustomizationOptions.None;
+            this.toolBarManager.ShowFullMenusDelay = 200;
+            this.toolBarManager.ShowShortcutsInToolTips = true;
+            this.toolBarManager.Style = Infragistics.Win.UltraWinToolbars.ToolbarStyle.Office2007;
             ultraToolbar1.DockedColumn = 0;
             ultraToolbar1.DockedRow = 0;
             ultraToolbar1.FloatingSize = new System.Drawing.Size(142, 27);
@@ -137,38 +137,43 @@
             ultraToolbar1.Settings.ToolDisplayStyle = Infragistics.Win.UltraWinToolbars.ToolDisplayStyle.ImageAndText;
             ultraToolbar1.Settings.UseLargeImages = Infragistics.Win.DefaultableBoolean.True;
             ultraToolbar1.Text = "工具栏";
-            this.ultraToolbarsManager1.Toolbars.AddRange(new Infragistics.Win.UltraWinToolbars.UltraToolbar[] {
+            this.toolBarManager.Toolbars.AddRange(new Infragistics.Win.UltraWinToolbars.UltraToolbar[] {
             ultraToolbar1});
-            this.ultraToolbarsManager1.ToolbarSettings.AllowCustomize = Infragistics.Win.DefaultableBoolean.False;
-            this.ultraToolbarsManager1.ToolbarSettings.AllowDockBottom = Infragistics.Win.DefaultableBoolean.False;
-            this.ultraToolbarsManager1.ToolbarSettings.AllowDockLeft = Infragistics.Win.DefaultableBoolean.False;
-            this.ultraToolbarsManager1.ToolbarSettings.AllowDockRight = Infragistics.Win.DefaultableBoolean.False;
-            this.ultraToolbarsManager1.ToolbarSettings.AllowDockTop = Infragistics.Win.DefaultableBoolean.True;
-            this.ultraToolbarsManager1.ToolbarSettings.AllowFloating = Infragistics.Win.DefaultableBoolean.False;
-            this.ultraToolbarsManager1.ToolbarSettings.AllowHiding = Infragistics.Win.DefaultableBoolean.False;
-            this.ultraToolbarsManager1.ToolbarSettings.ShowToolTips = Infragistics.Win.DefaultableBoolean.True;
+            this.toolBarManager.ToolbarSettings.AllowCustomize = Infragistics.Win.DefaultableBoolean.False;
+            this.toolBarManager.ToolbarSettings.AllowDockBottom = Infragistics.Win.DefaultableBoolean.False;
+            this.toolBarManager.ToolbarSettings.AllowDockLeft = Infragistics.Win.DefaultableBoolean.False;
+            this.toolBarManager.ToolbarSettings.AllowDockRight = Infragistics.Win.DefaultableBoolean.False;
+            this.toolBarManager.ToolbarSettings.AllowDockTop = Infragistics.Win.DefaultableBoolean.True;
+            this.toolBarManager.ToolbarSettings.AllowFloating = Infragistics.Win.DefaultableBoolean.False;
+            this.toolBarManager.ToolbarSettings.AllowHiding = Infragistics.Win.DefaultableBoolean.False;
+            this.toolBarManager.ToolbarSettings.ShowToolTips = Infragistics.Win.DefaultableBoolean.True;
             appearance14.Image = global::DnaMesUi.Properties.Resources.report_add;
             buttonTool5.SharedPropsInternal.AppearancesLarge.Appearance = appearance14;
             buttonTool5.SharedPropsInternal.Caption = "新建";
+            buttonTool5.SharedPropsInternal.Enabled = false;
             appearance15.Image = global::DnaMesUi.Properties.Resources.report_edit;
             buttonTool6.SharedPropsInternal.AppearancesLarge.Appearance = appearance15;
             buttonTool6.SharedPropsInternal.Caption = "编辑";
+            buttonTool6.SharedPropsInternal.Enabled = false;
             appearance16.Image = global::DnaMesUi.Properties.Resources.report_delete;
             buttonTool7.SharedPropsInternal.AppearancesLarge.Appearance = appearance16;
             buttonTool7.SharedPropsInternal.Caption = "删除";
+            buttonTool7.SharedPropsInternal.Enabled = false;
             appearance17.Image = global::DnaMesUi.Properties.Resources.刷新32;
             buttonTool8.SharedPropsInternal.AppearancesLarge.Appearance = appearance17;
             buttonTool8.SharedPropsInternal.Caption = "刷新";
             appearance18.Image = global::DnaMesUi.Properties.Resources.cpptb;
             buttonTool10.SharedPropsInternal.AppearancesLarge.Appearance = appearance18;
             buttonTool10.SharedPropsInternal.Caption = "添加子项目";
-            this.ultraToolbarsManager1.Tools.AddRange(new Infragistics.Win.UltraWinToolbars.ToolBase[] {
+            buttonTool10.SharedPropsInternal.Enabled = false;
+            this.toolBarManager.Tools.AddRange(new Infragistics.Win.UltraWinToolbars.ToolBase[] {
             buttonTool5,
             buttonTool6,
             buttonTool7,
             buttonTool8,
             buttonTool10});
-            this.ultraToolbarsManager1.ToolTipDisplayStyle = Infragistics.Win.UltraWinToolbars.ToolTipDisplayStyle.Standard;
+            this.toolBarManager.ToolTipDisplayStyle = Infragistics.Win.UltraWinToolbars.ToolTipDisplayStyle.Standard;
+            this.toolBarManager.ToolClick += new Infragistics.Win.UltraWinToolbars.ToolClickEventHandler(this.toolBarManager_ToolClick);
             // 
             // BaseForm_Fill_Panel
             // 
@@ -443,7 +448,7 @@
             this._BaseForm_Toolbars_Dock_Area_Left.Location = new System.Drawing.Point(0, 44);
             this._BaseForm_Toolbars_Dock_Area_Left.Name = "_BaseForm_Toolbars_Dock_Area_Left";
             this._BaseForm_Toolbars_Dock_Area_Left.Size = new System.Drawing.Size(0, 523);
-            this._BaseForm_Toolbars_Dock_Area_Left.ToolbarsManager = this.ultraToolbarsManager1;
+            this._BaseForm_Toolbars_Dock_Area_Left.ToolbarsManager = this.toolBarManager;
             // 
             // _BaseForm_Toolbars_Dock_Area_Right
             // 
@@ -454,7 +459,7 @@
             this._BaseForm_Toolbars_Dock_Area_Right.Location = new System.Drawing.Point(1408, 44);
             this._BaseForm_Toolbars_Dock_Area_Right.Name = "_BaseForm_Toolbars_Dock_Area_Right";
             this._BaseForm_Toolbars_Dock_Area_Right.Size = new System.Drawing.Size(0, 523);
-            this._BaseForm_Toolbars_Dock_Area_Right.ToolbarsManager = this.ultraToolbarsManager1;
+            this._BaseForm_Toolbars_Dock_Area_Right.ToolbarsManager = this.toolBarManager;
             // 
             // _BaseForm_Toolbars_Dock_Area_Top
             // 
@@ -465,7 +470,7 @@
             this._BaseForm_Toolbars_Dock_Area_Top.Location = new System.Drawing.Point(0, 0);
             this._BaseForm_Toolbars_Dock_Area_Top.Name = "_BaseForm_Toolbars_Dock_Area_Top";
             this._BaseForm_Toolbars_Dock_Area_Top.Size = new System.Drawing.Size(1408, 44);
-            this._BaseForm_Toolbars_Dock_Area_Top.ToolbarsManager = this.ultraToolbarsManager1;
+            this._BaseForm_Toolbars_Dock_Area_Top.ToolbarsManager = this.toolBarManager;
             // 
             // _BaseForm_Toolbars_Dock_Area_Bottom
             // 
@@ -476,7 +481,7 @@
             this._BaseForm_Toolbars_Dock_Area_Bottom.Location = new System.Drawing.Point(0, 567);
             this._BaseForm_Toolbars_Dock_Area_Bottom.Name = "_BaseForm_Toolbars_Dock_Area_Bottom";
             this._BaseForm_Toolbars_Dock_Area_Bottom.Size = new System.Drawing.Size(1408, 0);
-            this._BaseForm_Toolbars_Dock_Area_Bottom.ToolbarsManager = this.ultraToolbarsManager1;
+            this._BaseForm_Toolbars_Dock_Area_Bottom.ToolbarsManager = this.toolBarManager;
             // 
             // WithTreeForm
             // 
@@ -490,7 +495,7 @@
             this.Controls.Add(this._BaseForm_Toolbars_Dock_Area_Top);
             this.Name = "WithTreeForm";
             this.Text = "WithTreeForm";
-            ((System.ComponentModel.ISupportInitialize)(this.ultraToolbarsManager1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.toolBarManager)).EndInit();
             this.BaseForm_Fill_Panel.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -517,7 +522,7 @@
 
         #endregion
 
-        private Infragistics.Win.UltraWinToolbars.UltraToolbarsManager ultraToolbarsManager1;
+        private Infragistics.Win.UltraWinToolbars.UltraToolbarsManager toolBarManager;
         private System.Windows.Forms.Panel BaseForm_Fill_Panel;
         private Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _BaseForm_Toolbars_Dock_Area_Left;
         private Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _BaseForm_Toolbars_Dock_Area_Right;

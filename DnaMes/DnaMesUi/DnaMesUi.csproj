@@ -58,6 +58,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaseDialog.Designer.cs">
+      <DependentUpon>BaseDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="BaseForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +84,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shared\Dialog\ProjectMgtAddEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Shared\Dialog\ProjectMgtAddEdit.Designer.cs">
+      <DependentUpon>ProjectMgtAddEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Shared\Sys\HomeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,6 +114,9 @@
     <Compile Include="Templetes\NoTreeForm.Designer.cs">
       <DependentUpon>NoTreeForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="BaseDialog.resx">
+      <DependentUpon>BaseDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BaseForm.resx">
       <DependentUpon>BaseForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -122,6 +137,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Shared\Dialog\ProjectMgtAddEdit.resx">
+      <DependentUpon>ProjectMgtAddEdit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Shared\Sys\HomeForm.resx">
       <DependentUpon>HomeForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -165,9 +183,7 @@
       <Name>DnaMesUiConfig</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Shared\Dialog\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Resources\增加用户32.png" />
   </ItemGroup>
