@@ -15,7 +15,7 @@ namespace DnaMesUi.Templetes
             InitializeComponent();
             dteStartTime.Enabled = ckStartTime.Checked;
             dteEndTime.Enabled = ckEndTime.Checked;
-            _bll.BuildTree(ref uTree, imageList1.Images);
+            _bll.BuildTree(ref uTree, imageList1.Images,p=>p.IsMain);
             GridBindingBll<Project>.BindingStyleAndData(ug1, null, "BasicInfo\\Project.xml");
         }
 
@@ -23,6 +23,11 @@ namespace DnaMesUi.Templetes
 
         private void uTree_AfterSelect(object sender, Infragistics.Win.UltraWinTree.SelectEventArgs e)
         {
+            foreach (var node in e.NewSelections)
+            {
+                node.Expanded = true;
+            }
+
             _bll.AfterSelect(ref ug1, e);
         }
 
@@ -54,6 +59,11 @@ namespace DnaMesUi.Templetes
             ckEndTime.ResetChecked();
             dteStartTime.ResetDateTime();
             dteEndTime.ResetDateTime();
+        }
+
+        private void uTree_AfterExpand(object sender, Infragistics.Win.UltraWinTree.NodeEventArgs e)
+        {
+            _bll.AfterExpand(e.TreeNode,imageList1.Images);
         }
     }
 }

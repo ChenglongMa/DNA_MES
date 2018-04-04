@@ -298,6 +298,7 @@
             this.uTree.Override = _override1;
             this.uTree.Size = new System.Drawing.Size(267, 474);
             this.uTree.TabIndex = 0;
+            this.uTree.AfterExpand += new Infragistics.Win.UltraWinTree.AfterNodeChangedEventHandler(this.uTree_AfterExpand);
             this.uTree.AfterSelect += new Infragistics.Win.UltraWinTree.AfterNodeSelectEventHandler(this.uTree_AfterSelect);
             // 
             // imageList1

@@ -242,6 +242,17 @@ namespace DnaMesUnitTest
                         Visible = true,
                         Width = 120,
                     },
+                    new Column
+                    {
+                        Name = "IsMain",
+                        Text = "主项目",
+                        DataType = typeof(string).FullName,
+                        ColumnStyle = ColumnStyle.Default,
+                        IsReadOnly = false,
+                        Visible = true,
+                        Width = 80,
+                        Format = Column.BoolFormat.BoolCHN.ToString(),
+                    },
                 }
             };
         }

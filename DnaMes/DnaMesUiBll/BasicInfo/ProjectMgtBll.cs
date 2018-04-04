@@ -28,6 +28,7 @@ namespace DnaMesUiBll.BasicInfo
         #region 私有字段
 
         private readonly BaseDal<Project> _dal = new BaseDal<Project>();
+        private readonly Dictionary<string, List<Project>> _nodes = new Dictionary<string, List<Project>>();
 
         #endregion
 
@@ -57,17 +58,31 @@ namespace DnaMesUiBll.BasicInfo
                     continue;
                 }
 
-                var cNode = pNode.Nodes.Add(model.Code, model.Name + " [" + model.Code + "]");
-                cNode.Tag = model;
+                var mainNode = pNode.Nodes.Add(model.Code, model.Name + " [" + model.Code + "]");
+                mainNode.Tag = model;
                 //设置图片
-                if (!images.IsNullOrEmpty() && images.Count > cNode.Level + 2)
+                if (!images.IsNullOrEmpty() && images.Count > mainNode.Level + 2)
                 {
-                    cNode.LeftImages.Clear();
-                    cNode.LeftImages.Add(images[cNode.Level + 2]);
+                    mainNode.LeftImages.Clear();
+                    mainNode.LeftImages.Add(images[mainNode.Level + 2]);
                 }
 
-                var grandChildren = _dal.GetLinkWith<Project>(model);
-                BuildSubTree(cNode, grandChildren, images);
+                List<Project> grandChildern;
+
+                if (!_nodes.ContainsKey(model.Code))
+                {
+                    grandChildern = _dal.GetLinkWith<Project>(model);
+                    _nodes.Add(model.Code, grandChildern);
+                }
+                else
+                {
+                    grandChildern = _nodes[model.Code];
+                }
+
+                if (!grandChildern.IsNullOrEmpty())
+                {
+                    mainNode.Nodes.Add("null"); //增加空子树以显示剪头标志
+                }
             }
         }
 
@@ -103,7 +118,7 @@ namespace DnaMesUiBll.BasicInfo
 
             root.Nodes.Clear();
             BuildSubTree(root, children, images);
-            uTree.ExpandAll();
+            root.Expanded = true;
         }
 
         /// <summary>
@@ -114,9 +129,18 @@ namespace DnaMesUiBll.BasicInfo
         public void AfterSelect(ref UltraGrid ug1, SelectEventArgs e)
         {
             var children = new List<Project>();
-            if (!e.NewSelections.IsNullOrEmpty() && e.NewSelections[0]?.Tag is Project selectedProject)
+            if (!e.NewSelections.IsNullOrEmpty())
             {
-                children = _dal.GetLinkWith<Project>(selectedProject);
+                foreach (var node in e.NewSelections)
+                {
+                    foreach (var p in node.Nodes)
+                    {
+                        if (p.Tag is Project project)
+                        {
+                            children.Add(project);
+                        }
+                    }
+                }
             }
 
             GridBindingBll<Project>.BindingData(ug1, children, "BasicInfo\\Project.xml");
@@ -138,6 +162,13 @@ namespace DnaMesUiBll.BasicInfo
             expTemp.AndIF(startTime.IsLegalDate(), p => p.StartingTime >= startTime);
             expTemp.AndIF(endTime.IsLegalDate(), p => p.EndingTime <= endTime);
             return expTemp.ToExpression();
+        }
+
+        public void AfterExpand(UltraTreeNode node, ImageList.ImageCollection images)
+        {
+            if (!_nodes.ContainsKey(node.Key) || _nodes[node.Key].IsNullOrEmpty()) return;
+            node.Nodes.Clear();
+            BuildSubTree(node, _nodes[node.Key], images);
         }
     }
 }

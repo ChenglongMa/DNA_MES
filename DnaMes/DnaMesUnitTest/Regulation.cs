@@ -40,16 +40,28 @@ namespace DnaMesUnitTest
          * 支持属性的属性($)、属性为List(#)、属性为Dictionary(!) 详见DnaPropertyDescriptor.cs
          *
          */
-        #endregion
+        //将单元格设置成中文显示
+        //new Column
+        //{
+        //    Name = "IsMain",
+        //    Text = "主项目",
+        //    DataType = typeof(string).FullName,//此处用string，若为Boolean则为CheckBox显示
+        //    ColumnStyle = ColumnStyle.Default, //此处用Default即可
+        //    IsReadOnly = false,
+        //    Visible = true,
+        //    Width = 80,
+        //    Format = Column.BoolFormat.BoolCHN.ToString(),//此处设置中英文显示
+        //}
+    #endregion
 
-        #region Model设计
+    #region Model设计
 
-        //关系[类名]格式：{roleA.className}{roleB.className}
-        //关系[表名]格式：L_{roleA.className}{roleB.className}
+    //关系[类名]格式：{roleA.className}{roleB.className}
+    //关系[表名]格式：L_{roleA.className}{roleB.className}
 
 
-        #endregion
+    #endregion
 
-        #endregion
-    }
+    #endregion
+}
 }

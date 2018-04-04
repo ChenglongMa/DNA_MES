@@ -47,6 +47,12 @@ namespace DnaMesModel.Model.BasicInfo
         [DnaColumn]
         public DateTime EndingTime { get; set; }
 
+        /// <summary>
+        /// 是否为主项目，默认为否
+        /// </summary>
+        [DnaColumn(IsNullable = true)]
+        public bool IsMain { get; set; } = false;
+
         #endregion
 
         #region 私有方法
