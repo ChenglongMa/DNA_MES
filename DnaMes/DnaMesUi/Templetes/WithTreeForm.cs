@@ -1,4 +1,5 @@
-﻿using DnaLib.Helper;
+﻿using System;
+using DnaLib.Helper;
 using DnaMesModel.Model.BasicInfo;
 using DnaMesModel.Shared;
 using DnaMesUiBll.BasicInfo;
@@ -43,6 +44,16 @@ namespace DnaMesUi.Templetes
         private void ckEndTime_CheckedChanged(object sender, System.EventArgs e)
         {
             dteEndTime.Enabled = ((UltraCheckEditor)sender).Checked;
+        }
+
+        private void btnClear_Click(object sender, System.EventArgs e)
+        {
+            txtCode.Clear();
+            txtName.Clear();
+            ckStartTime.ResetChecked();
+            ckEndTime.ResetChecked();
+            dteStartTime.ResetDateTime();
+            dteEndTime.ResetDateTime();
         }
     }
 }

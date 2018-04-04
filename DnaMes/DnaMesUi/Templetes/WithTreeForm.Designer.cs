@@ -49,12 +49,15 @@
             this.BaseForm_Fill_Panel = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.ultraPanel1 = new Infragistics.Win.Misc.UltraPanel();
+            this.ckEndTime = new Infragistics.Win.UltraWinEditors.UltraCheckEditor();
+            this.ckStartTime = new Infragistics.Win.UltraWinEditors.UltraCheckEditor();
             this.dteEndTime = new Infragistics.Win.UltraWinEditors.UltraDateTimeEditor();
             this.dteStartTime = new Infragistics.Win.UltraWinEditors.UltraDateTimeEditor();
             this.txtName = new Infragistics.Win.UltraWinEditors.UltraTextEditor();
             this.txtCode = new Infragistics.Win.UltraWinEditors.UltraTextEditor();
             this.lblName = new Infragistics.Win.Misc.UltraLabel();
             this.lblCode = new Infragistics.Win.Misc.UltraLabel();
+            this.btnClear = new Infragistics.Win.Misc.UltraButton();
             this.btnSearch = new Infragistics.Win.Misc.UltraButton();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.uTree = new Infragistics.Win.UltraWinTree.UltraTree();
@@ -64,8 +67,6 @@
             this._BaseForm_Toolbars_Dock_Area_Right = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this._BaseForm_Toolbars_Dock_Area_Top = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this._BaseForm_Toolbars_Dock_Area_Bottom = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
-            this.ckStartTime = new Infragistics.Win.UltraWinEditors.UltraCheckEditor();
-            this.ckEndTime = new Infragistics.Win.UltraWinEditors.UltraCheckEditor();
             ((System.ComponentModel.ISupportInitialize)(this.ultraToolbarsManager1)).BeginInit();
             this.BaseForm_Fill_Panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -74,6 +75,8 @@
             this.splitContainer1.SuspendLayout();
             this.ultraPanel1.ClientArea.SuspendLayout();
             this.ultraPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ckEndTime)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ckStartTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dteEndTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dteStartTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName)).BeginInit();
@@ -84,8 +87,6 @@
             this.splitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uTree)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ug1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ckStartTime)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ckEndTime)).BeginInit();
             this.SuspendLayout();
             // 
             // ultraToolbarsManager1
@@ -170,6 +171,7 @@
             this.ultraPanel1.ClientArea.Controls.Add(this.txtCode);
             this.ultraPanel1.ClientArea.Controls.Add(this.lblName);
             this.ultraPanel1.ClientArea.Controls.Add(this.lblCode);
+            this.ultraPanel1.ClientArea.Controls.Add(this.btnClear);
             this.ultraPanel1.ClientArea.Controls.Add(this.btnSearch);
             this.ultraPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ultraPanel1.Location = new System.Drawing.Point(0, 0);
@@ -177,6 +179,26 @@
             this.ultraPanel1.Name = "ultraPanel1";
             this.ultraPanel1.Size = new System.Drawing.Size(1408, 70);
             this.ultraPanel1.TabIndex = 0;
+            // 
+            // ckEndTime
+            // 
+            this.ckEndTime.AutoSize = true;
+            this.ckEndTime.Location = new System.Drawing.Point(739, 29);
+            this.ckEndTime.Name = "ckEndTime";
+            this.ckEndTime.Size = new System.Drawing.Size(83, 22);
+            this.ckEndTime.TabIndex = 4;
+            this.ckEndTime.Text = "结束时间";
+            this.ckEndTime.CheckedChanged += new System.EventHandler(this.ckEndTime_CheckedChanged);
+            // 
+            // ckStartTime
+            // 
+            this.ckStartTime.AutoSize = true;
+            this.ckStartTime.Location = new System.Drawing.Point(496, 29);
+            this.ckStartTime.Name = "ckStartTime";
+            this.ckStartTime.Size = new System.Drawing.Size(83, 22);
+            this.ckStartTime.TabIndex = 4;
+            this.ckStartTime.Text = "开始时间";
+            this.ckStartTime.CheckedChanged += new System.EventHandler(this.ckStartTime_CheckedChanged);
             // 
             // dteEndTime
             // 
@@ -224,10 +246,20 @@
             this.lblCode.TabIndex = 1;
             this.lblCode.Text = "项目编号";
             // 
+            // btnClear
+            // 
+            this.btnClear.AutoSize = true;
+            this.btnClear.Location = new System.Drawing.Point(1084, 26);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(46, 29);
+            this.btnClear.TabIndex = 0;
+            this.btnClear.Text = "清空";
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
             // btnSearch
             // 
             this.btnSearch.AutoSize = true;
-            this.btnSearch.Location = new System.Drawing.Point(982, 26);
+            this.btnSearch.Location = new System.Drawing.Point(1032, 26);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(46, 29);
             this.btnSearch.TabIndex = 0;
@@ -401,26 +433,6 @@
             this._BaseForm_Toolbars_Dock_Area_Bottom.Size = new System.Drawing.Size(1408, 0);
             this._BaseForm_Toolbars_Dock_Area_Bottom.ToolbarsManager = this.ultraToolbarsManager1;
             // 
-            // ckStartTime
-            // 
-            this.ckStartTime.AutoSize = true;
-            this.ckStartTime.Location = new System.Drawing.Point(496, 29);
-            this.ckStartTime.Name = "ckStartTime";
-            this.ckStartTime.Size = new System.Drawing.Size(83, 22);
-            this.ckStartTime.TabIndex = 4;
-            this.ckStartTime.Text = "开始时间";
-            this.ckStartTime.CheckedChanged += new System.EventHandler(this.ckStartTime_CheckedChanged);
-            // 
-            // ckEndTime
-            // 
-            this.ckEndTime.AutoSize = true;
-            this.ckEndTime.Location = new System.Drawing.Point(739, 29);
-            this.ckEndTime.Name = "ckEndTime";
-            this.ckEndTime.Size = new System.Drawing.Size(83, 22);
-            this.ckEndTime.TabIndex = 4;
-            this.ckEndTime.Text = "结束时间";
-            this.ckEndTime.CheckedChanged += new System.EventHandler(this.ckEndTime_CheckedChanged);
-            // 
             // WithTreeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -442,6 +454,8 @@
             this.ultraPanel1.ClientArea.ResumeLayout(false);
             this.ultraPanel1.ClientArea.PerformLayout();
             this.ultraPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ckEndTime)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ckStartTime)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dteEndTime)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dteStartTime)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName)).EndInit();
@@ -452,8 +466,6 @@
             this.splitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.uTree)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ug1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ckStartTime)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ckEndTime)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -481,5 +493,6 @@
         private Infragistics.Win.Misc.UltraLabel lblName;
         private Infragistics.Win.UltraWinEditors.UltraCheckEditor ckEndTime;
         private Infragistics.Win.UltraWinEditors.UltraCheckEditor ckStartTime;
+        private Infragistics.Win.Misc.UltraButton btnClear;
     }
 }
