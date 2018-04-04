@@ -30,6 +30,14 @@
         {
             this.components = new System.ComponentModel.Container();
             Infragistics.Win.UltraWinToolbars.UltraToolbar ultraToolbar1 = new Infragistics.Win.UltraWinToolbars.UltraToolbar("SysToolBar");
+            Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool1 = new Infragistics.Win.UltraWinToolbars.ButtonTool("Add");
+            Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool2 = new Infragistics.Win.UltraWinToolbars.ButtonTool("Edit");
+            Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool3 = new Infragistics.Win.UltraWinToolbars.ButtonTool("Delete");
+            Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool4 = new Infragistics.Win.UltraWinToolbars.ButtonTool("Refresh");
+            Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool5 = new Infragistics.Win.UltraWinToolbars.ButtonTool("Add");
+            Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool6 = new Infragistics.Win.UltraWinToolbars.ButtonTool("Edit");
+            Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool7 = new Infragistics.Win.UltraWinToolbars.ButtonTool("Delete");
+            Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool8 = new Infragistics.Win.UltraWinToolbars.ButtonTool("Refresh");
             Infragistics.Win.UltraWinTree.Override _override1 = new Infragistics.Win.UltraWinTree.Override();
             Infragistics.Win.Appearance appearance1 = new Infragistics.Win.Appearance();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WithTreeForm));
@@ -91,7 +99,7 @@
             // 
             // ultraToolbarsManager1
             // 
-            this.ultraToolbarsManager1.DesignerFlags = 1;
+            this.ultraToolbarsManager1.DesignerFlags = 0;
             this.ultraToolbarsManager1.DockWithinContainer = this;
             this.ultraToolbarsManager1.DockWithinContainerBaseType = typeof(DnaMesUi.BaseForm);
             this.ultraToolbarsManager1.FormDisplayStyle = Infragistics.Win.UltraWinToolbars.FormDisplayStyle.Standard;
@@ -104,6 +112,11 @@
             ultraToolbar1.DockedColumn = 0;
             ultraToolbar1.DockedRow = 0;
             ultraToolbar1.FloatingSize = new System.Drawing.Size(142, 27);
+            ultraToolbar1.NonInheritedTools.AddRange(new Infragistics.Win.UltraWinToolbars.ToolBase[] {
+            buttonTool1,
+            buttonTool2,
+            buttonTool3,
+            buttonTool4});
             ultraToolbar1.Settings.AllowCustomize = Infragistics.Win.DefaultableBoolean.False;
             ultraToolbar1.Settings.AllowDockBottom = Infragistics.Win.DefaultableBoolean.False;
             ultraToolbar1.Settings.AllowDockLeft = Infragistics.Win.DefaultableBoolean.False;
@@ -124,6 +137,15 @@
             this.ultraToolbarsManager1.ToolbarSettings.AllowFloating = Infragistics.Win.DefaultableBoolean.False;
             this.ultraToolbarsManager1.ToolbarSettings.AllowHiding = Infragistics.Win.DefaultableBoolean.False;
             this.ultraToolbarsManager1.ToolbarSettings.ShowToolTips = Infragistics.Win.DefaultableBoolean.True;
+            buttonTool5.SharedPropsInternal.Caption = "增加";
+            buttonTool6.SharedPropsInternal.Caption = "编辑";
+            buttonTool7.SharedPropsInternal.Caption = "删除";
+            buttonTool8.SharedPropsInternal.Caption = "刷新";
+            this.ultraToolbarsManager1.Tools.AddRange(new Infragistics.Win.UltraWinToolbars.ToolBase[] {
+            buttonTool5,
+            buttonTool6,
+            buttonTool7,
+            buttonTool8});
             this.ultraToolbarsManager1.ToolTipDisplayStyle = Infragistics.Win.UltraWinToolbars.ToolTipDisplayStyle.Standard;
             // 
             // BaseForm_Fill_Panel
@@ -131,9 +153,9 @@
             this.BaseForm_Fill_Panel.Controls.Add(this.splitContainer1);
             this.BaseForm_Fill_Panel.Cursor = System.Windows.Forms.Cursors.Default;
             this.BaseForm_Fill_Panel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BaseForm_Fill_Panel.Location = new System.Drawing.Point(0, 20);
+            this.BaseForm_Fill_Panel.Location = new System.Drawing.Point(0, 44);
             this.BaseForm_Fill_Panel.Name = "BaseForm_Fill_Panel";
-            this.BaseForm_Fill_Panel.Size = new System.Drawing.Size(1408, 547);
+            this.BaseForm_Fill_Panel.Size = new System.Drawing.Size(1408, 523);
             this.BaseForm_Fill_Panel.TabIndex = 0;
             // 
             // splitContainer1
@@ -153,7 +175,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(1408, 547);
+            this.splitContainer1.Size = new System.Drawing.Size(1408, 523);
             this.splitContainer1.SplitterDistance = 70;
             this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 0;
@@ -280,7 +302,7 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.ug1);
-            this.splitContainer2.Size = new System.Drawing.Size(1408, 474);
+            this.splitContainer2.Size = new System.Drawing.Size(1408, 450);
             this.splitContainer2.SplitterDistance = 267;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -296,7 +318,7 @@
             appearance1.Image = "TreeSelected.png";
             _override1.SelectedNodeAppearance = appearance1;
             this.uTree.Override = _override1;
-            this.uTree.Size = new System.Drawing.Size(267, 474);
+            this.uTree.Size = new System.Drawing.Size(267, 450);
             this.uTree.TabIndex = 0;
             this.uTree.AfterExpand += new Infragistics.Win.UltraWinTree.AfterNodeChangedEventHandler(this.uTree_AfterExpand);
             this.uTree.AfterSelect += new Infragistics.Win.UltraWinTree.AfterNodeSelectEventHandler(this.uTree_AfterSelect);
@@ -385,7 +407,7 @@
             this.ug1.Location = new System.Drawing.Point(0, 0);
             this.ug1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ug1.Name = "ug1";
-            this.ug1.Size = new System.Drawing.Size(1137, 474);
+            this.ug1.Size = new System.Drawing.Size(1137, 450);
             this.ug1.TabIndex = 1;
             this.ug1.Text = "ultraGrid1";
             this.ug1.UpdateMode = Infragistics.Win.UltraWinGrid.UpdateMode.OnCellChangeOrLostFocus;
@@ -396,9 +418,9 @@
             this._BaseForm_Toolbars_Dock_Area_Left.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
             this._BaseForm_Toolbars_Dock_Area_Left.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Left;
             this._BaseForm_Toolbars_Dock_Area_Left.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._BaseForm_Toolbars_Dock_Area_Left.Location = new System.Drawing.Point(0, 20);
+            this._BaseForm_Toolbars_Dock_Area_Left.Location = new System.Drawing.Point(0, 44);
             this._BaseForm_Toolbars_Dock_Area_Left.Name = "_BaseForm_Toolbars_Dock_Area_Left";
-            this._BaseForm_Toolbars_Dock_Area_Left.Size = new System.Drawing.Size(0, 547);
+            this._BaseForm_Toolbars_Dock_Area_Left.Size = new System.Drawing.Size(0, 523);
             this._BaseForm_Toolbars_Dock_Area_Left.ToolbarsManager = this.ultraToolbarsManager1;
             // 
             // _BaseForm_Toolbars_Dock_Area_Right
@@ -407,9 +429,9 @@
             this._BaseForm_Toolbars_Dock_Area_Right.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
             this._BaseForm_Toolbars_Dock_Area_Right.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Right;
             this._BaseForm_Toolbars_Dock_Area_Right.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._BaseForm_Toolbars_Dock_Area_Right.Location = new System.Drawing.Point(1408, 20);
+            this._BaseForm_Toolbars_Dock_Area_Right.Location = new System.Drawing.Point(1408, 44);
             this._BaseForm_Toolbars_Dock_Area_Right.Name = "_BaseForm_Toolbars_Dock_Area_Right";
-            this._BaseForm_Toolbars_Dock_Area_Right.Size = new System.Drawing.Size(0, 547);
+            this._BaseForm_Toolbars_Dock_Area_Right.Size = new System.Drawing.Size(0, 523);
             this._BaseForm_Toolbars_Dock_Area_Right.ToolbarsManager = this.ultraToolbarsManager1;
             // 
             // _BaseForm_Toolbars_Dock_Area_Top
@@ -420,7 +442,7 @@
             this._BaseForm_Toolbars_Dock_Area_Top.ForeColor = System.Drawing.SystemColors.ControlText;
             this._BaseForm_Toolbars_Dock_Area_Top.Location = new System.Drawing.Point(0, 0);
             this._BaseForm_Toolbars_Dock_Area_Top.Name = "_BaseForm_Toolbars_Dock_Area_Top";
-            this._BaseForm_Toolbars_Dock_Area_Top.Size = new System.Drawing.Size(1408, 20);
+            this._BaseForm_Toolbars_Dock_Area_Top.Size = new System.Drawing.Size(1408, 44);
             this._BaseForm_Toolbars_Dock_Area_Top.ToolbarsManager = this.ultraToolbarsManager1;
             // 
             // _BaseForm_Toolbars_Dock_Area_Bottom
