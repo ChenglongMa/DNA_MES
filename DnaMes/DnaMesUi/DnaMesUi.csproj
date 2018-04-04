@@ -315,5 +315,74 @@
   <ItemGroup>
     <None Include="Resources\TreeSelected.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book_delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book_edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book_key.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\brick_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\brick_delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\brick_edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\building_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\building_delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\building_edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\building_error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar_delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar_edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cog_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cog_delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cog_edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\login.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cpptb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report_delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report_edit.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

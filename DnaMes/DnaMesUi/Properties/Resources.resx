@@ -265,4 +265,73 @@
   <data name="TreeSelected" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TreeSelected.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="book_add" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\book_add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="book_delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\book_delete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="book_edit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\book_edit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="book_key" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\book_key.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="brick_add" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\brick_add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="brick_delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\brick_delete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="brick_edit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\brick_edit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="building_add" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\building_add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="building_delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\building_delete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="building_edit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\building_edit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="building_error" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\building_error.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="calendar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\calendar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="calendar_add" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\calendar_add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="calendar_delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\calendar_delete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="calendar_edit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\calendar_edit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cog_add" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cog_add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cog_delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cog_delete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cog_edit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cog_edit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cpptb" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cpptb.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="login" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\login.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="report_add" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\report_add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="report_delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\report_delete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="report_edit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\report_edit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

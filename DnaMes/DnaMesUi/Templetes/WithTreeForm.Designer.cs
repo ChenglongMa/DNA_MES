@@ -30,14 +30,21 @@
         {
             this.components = new System.ComponentModel.Container();
             Infragistics.Win.UltraWinToolbars.UltraToolbar ultraToolbar1 = new Infragistics.Win.UltraWinToolbars.UltraToolbar("SysToolBar");
+            Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool4 = new Infragistics.Win.UltraWinToolbars.ButtonTool("Refresh");
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool1 = new Infragistics.Win.UltraWinToolbars.ButtonTool("Add");
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool2 = new Infragistics.Win.UltraWinToolbars.ButtonTool("Edit");
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool3 = new Infragistics.Win.UltraWinToolbars.ButtonTool("Delete");
-            Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool4 = new Infragistics.Win.UltraWinToolbars.ButtonTool("Refresh");
+            Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool9 = new Infragistics.Win.UltraWinToolbars.ButtonTool("AddChild");
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool5 = new Infragistics.Win.UltraWinToolbars.ButtonTool("Add");
+            Infragistics.Win.Appearance appearance14 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool6 = new Infragistics.Win.UltraWinToolbars.ButtonTool("Edit");
+            Infragistics.Win.Appearance appearance15 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool7 = new Infragistics.Win.UltraWinToolbars.ButtonTool("Delete");
+            Infragistics.Win.Appearance appearance16 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool8 = new Infragistics.Win.UltraWinToolbars.ButtonTool("Refresh");
+            Infragistics.Win.Appearance appearance17 = new Infragistics.Win.Appearance();
+            Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool10 = new Infragistics.Win.UltraWinToolbars.ButtonTool("AddChild");
+            Infragistics.Win.Appearance appearance18 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinTree.Override _override1 = new Infragistics.Win.UltraWinTree.Override();
             Infragistics.Win.Appearance appearance1 = new Infragistics.Win.Appearance();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WithTreeForm));
@@ -99,24 +106,27 @@
             // 
             // ultraToolbarsManager1
             // 
-            this.ultraToolbarsManager1.DesignerFlags = 0;
+            this.ultraToolbarsManager1.DesignerFlags = 1;
             this.ultraToolbarsManager1.DockWithinContainer = this;
             this.ultraToolbarsManager1.DockWithinContainerBaseType = typeof(DnaMesUi.BaseForm);
             this.ultraToolbarsManager1.FormDisplayStyle = Infragistics.Win.UltraWinToolbars.FormDisplayStyle.Standard;
             this.ultraToolbarsManager1.LockToolbars = true;
             this.ultraToolbarsManager1.MenuSettings.ShowToolTips = Infragistics.Win.DefaultableBoolean.True;
             this.ultraToolbarsManager1.RuntimeCustomizationOptions = Infragistics.Win.UltraWinToolbars.RuntimeCustomizationOptions.None;
-            this.ultraToolbarsManager1.ShowFullMenusDelay = 500;
+            this.ultraToolbarsManager1.ShowFullMenusDelay = 200;
             this.ultraToolbarsManager1.ShowShortcutsInToolTips = true;
             this.ultraToolbarsManager1.Style = Infragistics.Win.UltraWinToolbars.ToolbarStyle.Office2007;
             ultraToolbar1.DockedColumn = 0;
             ultraToolbar1.DockedRow = 0;
             ultraToolbar1.FloatingSize = new System.Drawing.Size(142, 27);
+            buttonTool4.InstanceProps.IsFirstInGroup = true;
+            buttonTool9.InstanceProps.IsFirstInGroup = true;
             ultraToolbar1.NonInheritedTools.AddRange(new Infragistics.Win.UltraWinToolbars.ToolBase[] {
+            buttonTool4,
             buttonTool1,
             buttonTool2,
             buttonTool3,
-            buttonTool4});
+            buttonTool9});
             ultraToolbar1.Settings.AllowCustomize = Infragistics.Win.DefaultableBoolean.False;
             ultraToolbar1.Settings.AllowDockBottom = Infragistics.Win.DefaultableBoolean.False;
             ultraToolbar1.Settings.AllowDockLeft = Infragistics.Win.DefaultableBoolean.False;
@@ -137,15 +147,27 @@
             this.ultraToolbarsManager1.ToolbarSettings.AllowFloating = Infragistics.Win.DefaultableBoolean.False;
             this.ultraToolbarsManager1.ToolbarSettings.AllowHiding = Infragistics.Win.DefaultableBoolean.False;
             this.ultraToolbarsManager1.ToolbarSettings.ShowToolTips = Infragistics.Win.DefaultableBoolean.True;
-            buttonTool5.SharedPropsInternal.Caption = "增加";
+            appearance14.Image = global::DnaMesUi.Properties.Resources.report_add;
+            buttonTool5.SharedPropsInternal.AppearancesLarge.Appearance = appearance14;
+            buttonTool5.SharedPropsInternal.Caption = "新建";
+            appearance15.Image = global::DnaMesUi.Properties.Resources.report_edit;
+            buttonTool6.SharedPropsInternal.AppearancesLarge.Appearance = appearance15;
             buttonTool6.SharedPropsInternal.Caption = "编辑";
+            appearance16.Image = global::DnaMesUi.Properties.Resources.report_delete;
+            buttonTool7.SharedPropsInternal.AppearancesLarge.Appearance = appearance16;
             buttonTool7.SharedPropsInternal.Caption = "删除";
+            appearance17.Image = global::DnaMesUi.Properties.Resources.刷新32;
+            buttonTool8.SharedPropsInternal.AppearancesLarge.Appearance = appearance17;
             buttonTool8.SharedPropsInternal.Caption = "刷新";
+            appearance18.Image = global::DnaMesUi.Properties.Resources.cpptb;
+            buttonTool10.SharedPropsInternal.AppearancesLarge.Appearance = appearance18;
+            buttonTool10.SharedPropsInternal.Caption = "添加子项目";
             this.ultraToolbarsManager1.Tools.AddRange(new Infragistics.Win.UltraWinToolbars.ToolBase[] {
             buttonTool5,
             buttonTool6,
             buttonTool7,
-            buttonTool8});
+            buttonTool8,
+            buttonTool10});
             this.ultraToolbarsManager1.ToolTipDisplayStyle = Infragistics.Win.UltraWinToolbars.ToolTipDisplayStyle.Standard;
             // 
             // BaseForm_Fill_Panel
