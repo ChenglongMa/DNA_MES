@@ -284,7 +284,16 @@ namespace DnaLib.Helper
                 action();
             }
         }
-
+        /// <summary>
+        /// 检查日期是否合法
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        public static bool IsLegalDate(this DateTime dt)
+        {
+            return DateTime.Compare(dt, new DateTime(1949, 1, 1)) > 0 &&
+                   DateTime.Compare(dt, new DateTime(9999, 1, 1)) < 0;
+        }
         #endregion
     }
 }

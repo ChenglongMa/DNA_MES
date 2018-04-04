@@ -21,13 +21,19 @@ namespace DnaMesUnitTest
             XmlHelper.XmlSerializeToFile(cons, path);
             //Assert.IsTrue(path.ToUpper().Contains("UI"));
         }
+
         [TestMethod]
-        public void TestGridBinding()
+        public void TestProjectGrid()
         {
-            var cons = BuildGrid();
-            var path = CreateLogDirectory(RootPath, "\\Config\\BasicInfo\\Domain.xml");
-            XmlHelper.XmlSerializeToFile(cons,path);
+            TestGridBinding(BuildProjectGrid(), "BasicInfo\\Project.xml");
         }
+
+        private void TestGridBinding(GridConfig cons, string fileName)
+        {
+            var path = CreateLogDirectory(RootPath, "\\Config\\" + fileName);
+            XmlHelper.XmlSerializeToFile(cons, path);
+        }
+
         private static readonly string
             RootPath = Directory.GetCurrentDirectory(); //AppDomain.CurrentDomain.BaseDirectory;
 
@@ -188,6 +194,58 @@ namespace DnaMesUnitTest
             };
         }
 
+        private static GridConfig BuildProjectGrid()
+        {
+            return new GridConfig
+            {
+                Name = "ug",
+                Text = "项目管理",
+                Columns = new List<Column>
+                {
+                    new Column
+                    {
+                        Name = "Code",
+                        Text = "项目编号",
+                        DataType = typeof(string).FullName,
+                        ColumnStyle = ColumnStyle.Default,
+                        IsReadOnly = true,
+                        Visible = true,
+                        Width = 120,
+                    },
+                    new Column
+                    {
+                        Name = "Name",
+                        Text = "项目名称",
+                        DataType = typeof(string).FullName,
+                        ColumnStyle = ColumnStyle.Default,
+                        IsReadOnly = true,
+                        Visible = true,
+                        Width = 120,
+                    },
+                    new Column
+                    {
+                        Name = "StartingTime",
+                        Text = "开始时间",
+                        DataType = typeof(DateTime).FullName,
+                        ColumnStyle = ColumnStyle.DateTime,
+                        IsReadOnly = true,
+                        Visible = true,
+                        Width = 120,
+                    },
+                    new Column
+                    {
+                        Name = "EndingTime",
+                        Text = "结束时间",
+                        DataType = typeof(DateTime).FullName,
+                        ColumnStyle = ColumnStyle.DateTime,
+                        IsReadOnly = true,
+                        Visible = true,
+                        Width = 120,
+                    },
+                }
+            };
+        }
+
         private static GridConfig BuildGrid()
         {
             return new GridConfig
@@ -236,7 +294,6 @@ namespace DnaMesUnitTest
                         Visible = true,
                         Width = 100,
                     },
-
                 }
             };
         }

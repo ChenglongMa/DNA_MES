@@ -93,7 +93,7 @@ namespace DnaMesUiConfig.Model
 
             if (!resStr.IsDate()) return resStr;
             var dt = Convert.ToDateTime(resStr);
-            return DateTime.Compare(dt, new DateTime(1949, 1, 1)) < 0 ? null : dt.ToString(Format);
+            return dt.IsLegalDate() ? dt.ToString(Format) : null;
         }
 
         /// <summary>

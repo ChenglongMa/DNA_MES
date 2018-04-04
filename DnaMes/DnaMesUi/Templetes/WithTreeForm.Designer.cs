@@ -49,6 +49,13 @@
             this.BaseForm_Fill_Panel = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.ultraPanel1 = new Infragistics.Win.Misc.UltraPanel();
+            this.dteEndTime = new Infragistics.Win.UltraWinEditors.UltraDateTimeEditor();
+            this.dteStartTime = new Infragistics.Win.UltraWinEditors.UltraDateTimeEditor();
+            this.txtName = new Infragistics.Win.UltraWinEditors.UltraTextEditor();
+            this.txtCode = new Infragistics.Win.UltraWinEditors.UltraTextEditor();
+            this.lblName = new Infragistics.Win.Misc.UltraLabel();
+            this.lblCode = new Infragistics.Win.Misc.UltraLabel();
+            this.btnSearch = new Infragistics.Win.Misc.UltraButton();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.uTree = new Infragistics.Win.UltraWinTree.UltraTree();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
@@ -57,19 +64,28 @@
             this._BaseForm_Toolbars_Dock_Area_Right = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this._BaseForm_Toolbars_Dock_Area_Top = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this._BaseForm_Toolbars_Dock_Area_Bottom = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
+            this.ckStartTime = new Infragistics.Win.UltraWinEditors.UltraCheckEditor();
+            this.ckEndTime = new Infragistics.Win.UltraWinEditors.UltraCheckEditor();
             ((System.ComponentModel.ISupportInitialize)(this.ultraToolbarsManager1)).BeginInit();
             this.BaseForm_Fill_Panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.ultraPanel1.ClientArea.SuspendLayout();
             this.ultraPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dteEndTime)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dteStartTime)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uTree)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ug1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ckStartTime)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ckEndTime)).BeginInit();
             this.SuspendLayout();
             // 
             // ultraToolbarsManager1
@@ -116,7 +132,7 @@
             this.BaseForm_Fill_Panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BaseForm_Fill_Panel.Location = new System.Drawing.Point(0, 20);
             this.BaseForm_Fill_Panel.Name = "BaseForm_Fill_Panel";
-            this.BaseForm_Fill_Panel.Size = new System.Drawing.Size(1086, 547);
+            this.BaseForm_Fill_Panel.Size = new System.Drawing.Size(1408, 547);
             this.BaseForm_Fill_Panel.TabIndex = 0;
             // 
             // splitContainer1
@@ -136,19 +152,87 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(1086, 547);
+            this.splitContainer1.Size = new System.Drawing.Size(1408, 547);
             this.splitContainer1.SplitterDistance = 70;
             this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 0;
             // 
             // ultraPanel1
             // 
+            // 
+            // ultraPanel1.ClientArea
+            // 
+            this.ultraPanel1.ClientArea.Controls.Add(this.ckEndTime);
+            this.ultraPanel1.ClientArea.Controls.Add(this.ckStartTime);
+            this.ultraPanel1.ClientArea.Controls.Add(this.dteEndTime);
+            this.ultraPanel1.ClientArea.Controls.Add(this.dteStartTime);
+            this.ultraPanel1.ClientArea.Controls.Add(this.txtName);
+            this.ultraPanel1.ClientArea.Controls.Add(this.txtCode);
+            this.ultraPanel1.ClientArea.Controls.Add(this.lblName);
+            this.ultraPanel1.ClientArea.Controls.Add(this.lblCode);
+            this.ultraPanel1.ClientArea.Controls.Add(this.btnSearch);
             this.ultraPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ultraPanel1.Location = new System.Drawing.Point(0, 0);
             this.ultraPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ultraPanel1.Name = "ultraPanel1";
-            this.ultraPanel1.Size = new System.Drawing.Size(1086, 70);
+            this.ultraPanel1.Size = new System.Drawing.Size(1408, 70);
             this.ultraPanel1.TabIndex = 0;
+            // 
+            // dteEndTime
+            // 
+            this.dteEndTime.Location = new System.Drawing.Point(830, 28);
+            this.dteEndTime.Name = "dteEndTime";
+            this.dteEndTime.Size = new System.Drawing.Size(144, 24);
+            this.dteEndTime.TabIndex = 3;
+            // 
+            // dteStartTime
+            // 
+            this.dteStartTime.Location = new System.Drawing.Point(587, 28);
+            this.dteStartTime.Name = "dteStartTime";
+            this.dteStartTime.Size = new System.Drawing.Size(144, 24);
+            this.dteStartTime.TabIndex = 3;
+            // 
+            // txtName
+            // 
+            this.txtName.Location = new System.Drawing.Point(346, 28);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(142, 24);
+            this.txtName.TabIndex = 2;
+            // 
+            // txtCode
+            // 
+            this.txtCode.Location = new System.Drawing.Point(122, 28);
+            this.txtCode.Name = "txtCode";
+            this.txtCode.Size = new System.Drawing.Size(142, 24);
+            this.txtCode.TabIndex = 2;
+            // 
+            // lblName
+            // 
+            this.lblName.AutoSize = true;
+            this.lblName.Location = new System.Drawing.Point(272, 31);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(66, 19);
+            this.lblName.TabIndex = 1;
+            this.lblName.Text = "项目名称";
+            // 
+            // lblCode
+            // 
+            this.lblCode.AutoSize = true;
+            this.lblCode.Location = new System.Drawing.Point(48, 31);
+            this.lblCode.Name = "lblCode";
+            this.lblCode.Size = new System.Drawing.Size(66, 19);
+            this.lblCode.TabIndex = 1;
+            this.lblCode.Text = "项目编号";
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.AutoSize = true;
+            this.btnSearch.Location = new System.Drawing.Point(982, 26);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(46, 29);
+            this.btnSearch.TabIndex = 0;
+            this.btnSearch.Text = "查询";
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // splitContainer2
             // 
@@ -164,8 +248,8 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.ug1);
-            this.splitContainer2.Size = new System.Drawing.Size(1086, 474);
-            this.splitContainer2.SplitterDistance = 360;
+            this.splitContainer2.Size = new System.Drawing.Size(1408, 474);
+            this.splitContainer2.SplitterDistance = 267;
             this.splitContainer2.TabIndex = 0;
             // 
             // uTree
@@ -180,8 +264,9 @@
             appearance1.Image = "TreeSelected.png";
             _override1.SelectedNodeAppearance = appearance1;
             this.uTree.Override = _override1;
-            this.uTree.Size = new System.Drawing.Size(360, 474);
+            this.uTree.Size = new System.Drawing.Size(267, 474);
             this.uTree.TabIndex = 0;
+            this.uTree.AfterSelect += new Infragistics.Win.UltraWinTree.AfterNodeSelectEventHandler(this.uTree_AfterSelect);
             // 
             // imageList1
             // 
@@ -267,7 +352,7 @@
             this.ug1.Location = new System.Drawing.Point(0, 0);
             this.ug1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ug1.Name = "ug1";
-            this.ug1.Size = new System.Drawing.Size(722, 474);
+            this.ug1.Size = new System.Drawing.Size(1137, 474);
             this.ug1.TabIndex = 1;
             this.ug1.Text = "ultraGrid1";
             this.ug1.UpdateMode = Infragistics.Win.UltraWinGrid.UpdateMode.OnCellChangeOrLostFocus;
@@ -289,7 +374,7 @@
             this._BaseForm_Toolbars_Dock_Area_Right.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
             this._BaseForm_Toolbars_Dock_Area_Right.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Right;
             this._BaseForm_Toolbars_Dock_Area_Right.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._BaseForm_Toolbars_Dock_Area_Right.Location = new System.Drawing.Point(1086, 20);
+            this._BaseForm_Toolbars_Dock_Area_Right.Location = new System.Drawing.Point(1408, 20);
             this._BaseForm_Toolbars_Dock_Area_Right.Name = "_BaseForm_Toolbars_Dock_Area_Right";
             this._BaseForm_Toolbars_Dock_Area_Right.Size = new System.Drawing.Size(0, 547);
             this._BaseForm_Toolbars_Dock_Area_Right.ToolbarsManager = this.ultraToolbarsManager1;
@@ -302,7 +387,7 @@
             this._BaseForm_Toolbars_Dock_Area_Top.ForeColor = System.Drawing.SystemColors.ControlText;
             this._BaseForm_Toolbars_Dock_Area_Top.Location = new System.Drawing.Point(0, 0);
             this._BaseForm_Toolbars_Dock_Area_Top.Name = "_BaseForm_Toolbars_Dock_Area_Top";
-            this._BaseForm_Toolbars_Dock_Area_Top.Size = new System.Drawing.Size(1086, 20);
+            this._BaseForm_Toolbars_Dock_Area_Top.Size = new System.Drawing.Size(1408, 20);
             this._BaseForm_Toolbars_Dock_Area_Top.ToolbarsManager = this.ultraToolbarsManager1;
             // 
             // _BaseForm_Toolbars_Dock_Area_Bottom
@@ -313,14 +398,34 @@
             this._BaseForm_Toolbars_Dock_Area_Bottom.ForeColor = System.Drawing.SystemColors.ControlText;
             this._BaseForm_Toolbars_Dock_Area_Bottom.Location = new System.Drawing.Point(0, 567);
             this._BaseForm_Toolbars_Dock_Area_Bottom.Name = "_BaseForm_Toolbars_Dock_Area_Bottom";
-            this._BaseForm_Toolbars_Dock_Area_Bottom.Size = new System.Drawing.Size(1086, 0);
+            this._BaseForm_Toolbars_Dock_Area_Bottom.Size = new System.Drawing.Size(1408, 0);
             this._BaseForm_Toolbars_Dock_Area_Bottom.ToolbarsManager = this.ultraToolbarsManager1;
+            // 
+            // ckStartTime
+            // 
+            this.ckStartTime.AutoSize = true;
+            this.ckStartTime.Location = new System.Drawing.Point(496, 29);
+            this.ckStartTime.Name = "ckStartTime";
+            this.ckStartTime.Size = new System.Drawing.Size(83, 22);
+            this.ckStartTime.TabIndex = 4;
+            this.ckStartTime.Text = "开始时间";
+            this.ckStartTime.CheckedChanged += new System.EventHandler(this.ckStartTime_CheckedChanged);
+            // 
+            // ckEndTime
+            // 
+            this.ckEndTime.AutoSize = true;
+            this.ckEndTime.Location = new System.Drawing.Point(739, 29);
+            this.ckEndTime.Name = "ckEndTime";
+            this.ckEndTime.Size = new System.Drawing.Size(83, 22);
+            this.ckEndTime.TabIndex = 4;
+            this.ckEndTime.Text = "结束时间";
+            this.ckEndTime.CheckedChanged += new System.EventHandler(this.ckEndTime_CheckedChanged);
             // 
             // WithTreeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1086, 567);
+            this.ClientSize = new System.Drawing.Size(1408, 567);
             this.Controls.Add(this.BaseForm_Fill_Panel);
             this.Controls.Add(this._BaseForm_Toolbars_Dock_Area_Left);
             this.Controls.Add(this._BaseForm_Toolbars_Dock_Area_Right);
@@ -334,13 +439,21 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.ultraPanel1.ClientArea.ResumeLayout(false);
+            this.ultraPanel1.ClientArea.PerformLayout();
             this.ultraPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dteEndTime)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dteStartTime)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCode)).EndInit();
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.uTree)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ug1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ckStartTime)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ckEndTime)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -359,5 +472,14 @@
         private Infragistics.Win.Misc.UltraPanel ultraPanel1;
         private Infragistics.Win.UltraWinGrid.UltraGrid ug1;
         private System.Windows.Forms.ImageList imageList1;
+        private Infragistics.Win.Misc.UltraLabel lblCode;
+        private Infragistics.Win.Misc.UltraButton btnSearch;
+        private Infragistics.Win.UltraWinEditors.UltraDateTimeEditor dteEndTime;
+        private Infragistics.Win.UltraWinEditors.UltraDateTimeEditor dteStartTime;
+        private Infragistics.Win.UltraWinEditors.UltraTextEditor txtName;
+        private Infragistics.Win.UltraWinEditors.UltraTextEditor txtCode;
+        private Infragistics.Win.Misc.UltraLabel lblName;
+        private Infragistics.Win.UltraWinEditors.UltraCheckEditor ckEndTime;
+        private Infragistics.Win.UltraWinEditors.UltraCheckEditor ckStartTime;
     }
 }

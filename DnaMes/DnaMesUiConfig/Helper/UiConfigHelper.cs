@@ -95,7 +95,7 @@ namespace DnaMesUiConfig.Helper
         /// <returns></returns>
         public static List<Column> GetColumns(string fileName)
         {
-            return GetConfig<GridConfig>(fileName).Columns;
+            return GetConfig<GridConfig>(fileName)?.Columns;
         }
 
         #endregion

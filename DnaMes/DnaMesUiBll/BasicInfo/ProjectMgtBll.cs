@@ -14,7 +14,9 @@ using DnaMesDal;
 using DnaMesModel;
 using DnaMesModel.Model.BasicInfo;
 using DnaMesUiBll.Shared;
+using Infragistics.Win.UltraWinGrid;
 using Infragistics.Win.UltraWinTree;
+using SqlSugar;
 
 namespace DnaMesUiBll.BasicInfo
 {
@@ -60,7 +62,7 @@ namespace DnaMesUiBll.BasicInfo
                     root.LeftImages.Clear();
                     root.LeftImages.Add(images[2]);
                 }
-
+                uTree.Nodes.Clear();
                 uTree.Nodes.Add(root);
             }
 
@@ -100,6 +102,53 @@ namespace DnaMesUiBll.BasicInfo
 
                 var grandChildren = _dal.GetLinkWith<Project>(model);
                 BuildSubTree(cNode, grandChildren, images);
+            }
+        }
+        /// <summary>
+        /// AfterSelect事件方法
+        /// </summary>
+        /// <param name="ug1"></param>
+        /// <param name="e"></param>
+        public void AfterSelect(ref UltraGrid ug1, SelectEventArgs e)
+        {
+            var children=new List<Project>();
+            if (e.NewSelections[0]?.Tag is Project selectedProject)
+            {
+                children = _dal.GetLinkWith<Project>(selectedProject);
+            }
+            GridBindingBll<Project>.BindingData(ug1, children, "BasicInfo\\Project.xml");
+        }
+        /// <summary>
+        /// 根据条件构造表达式
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="name"></param>
+        /// <param name="startTime"></param>
+        /// <param name="endTime"></param>
+        /// <returns></returns>
+        public Expression<Func<Project, bool>> BuildExp(string code, string name, DateTime startTime, DateTime endTime)
+        {
+            var expTemp = new Expressionable<Project>();
+            expTemp.AndIF(!code.IsNullOrEmpty(), p => p.Code == code);
+            expTemp.AndIF(!name.IsNullOrEmpty(), p => p.Name == name);
+            expTemp.AndIF(startTime.IsLegalDate(), p => p.StartingTime>= startTime);
+            expTemp.AndIF(endTime.IsLegalDate(), p => p.EndingTime<= endTime);
+            return expTemp.ToExpression();
+        }
+        /// <summary>
+        /// 控件根据查询结果执行动作
+        /// </summary>
+        /// <param name="uTree"></param>
+        /// <param name="ug1"></param>
+        /// <param name="dataSource"></param>
+        public void AfterSearch(UltraTree uTree, UltraGrid ug1, List<Project> dataSource)
+        {
+
+            foreach (var project in dataSource)
+            {
+                var node=uTree.GetNodeByKey(project.Code);
+                //node.Selected = true;
+                node.Toggle();
             }
         }
     }

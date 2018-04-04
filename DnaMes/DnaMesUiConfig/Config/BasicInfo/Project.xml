@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Grid Name="ug" Text="项目管理">
+  <Columns>
+    <Column Name="Code" Text="项目编号" Visible="true" IsReadOnly="true" Width="120" ColumnStyle="Default"
+            DataType="System.String" />
+    <Column Name="Name" Text="项目名称" Visible="true" IsReadOnly="true" Width="120" ColumnStyle="Default"
+            DataType="System.String" />
+    <Column Name="StartingTime" Text="开始时间" Visible="true" IsReadOnly="true" Width="120" ColumnStyle="DateTime"
+            DataType="System.DateTime" />
+    <Column Name="EndingTime" Text="结束时间" Visible="true" IsReadOnly="true" Width="120" ColumnStyle="DateTime"
+            DataType="System.DateTime" />
+  </Columns>
+</Grid>
