@@ -37,6 +37,40 @@ namespace DnaMesUiBll.BasicInfo
 
         #region 私有方法
 
+        /// <summary>
+        /// 构建子树
+        /// </summary>
+        /// <param name="pNode"></param>
+        /// <param name="children"></param>
+        /// <param name="images"></param>
+        private void BuildSubTree(UltraTreeNode pNode, IEnumerable<Project> children, ImageList.ImageCollection images)
+        {
+            if (children == null)
+            {
+                return;
+            }
+
+            foreach (var model in children)
+            {
+                if (pNode.Control.GetNodeByKey(model.Code) != null)
+                {
+                    continue;
+                }
+
+                var cNode = pNode.Nodes.Add(model.Code, model.Name + " [" + model.Code + "]");
+                cNode.Tag = model;
+                //设置图片
+                if (!images.IsNullOrEmpty() && images.Count > cNode.Level + 2)
+                {
+                    cNode.LeftImages.Clear();
+                    cNode.LeftImages.Add(images[cNode.Level + 2]);
+                }
+
+                var grandChildren = _dal.GetLinkWith<Project>(model);
+                BuildSubTree(cNode, grandChildren, images);
+            }
+        }
+
         #endregion
 
         #region 公有方法
@@ -62,6 +96,7 @@ namespace DnaMesUiBll.BasicInfo
                     root.LeftImages.Clear();
                     root.LeftImages.Add(images[2]);
                 }
+
                 uTree.Nodes.Clear();
                 uTree.Nodes.Add(root);
             }
@@ -72,52 +107,21 @@ namespace DnaMesUiBll.BasicInfo
         }
 
         /// <summary>
-        /// 构建子树
-        /// </summary>
-        /// <param name="pNode"></param>
-        /// <param name="children"></param>
-        /// <param name="images"></param>
-        private void BuildSubTree(UltraTreeNode pNode, IEnumerable<Project> children, ImageList.ImageCollection images)
-        {
-            if (children == null)
-            {
-                return;
-            }
-
-            foreach (var model in children)
-            {
-                if (pNode.Control.GetNodeByKey(model.Code) != null)
-                {
-                    continue;
-                }
-
-                var cNode = pNode.Nodes.Add(model.Code, model.Name);
-                cNode.Tag = model;
-                //设置图片
-                if (!images.IsNullOrEmpty() && images.Count > cNode.Level + 2)
-                {
-                    cNode.LeftImages.Clear();
-                    cNode.LeftImages.Add(images[cNode.Level + 2]);
-                }
-
-                var grandChildren = _dal.GetLinkWith<Project>(model);
-                BuildSubTree(cNode, grandChildren, images);
-            }
-        }
-        /// <summary>
         /// AfterSelect事件方法
         /// </summary>
         /// <param name="ug1"></param>
         /// <param name="e"></param>
         public void AfterSelect(ref UltraGrid ug1, SelectEventArgs e)
         {
-            var children=new List<Project>();
-            if (e.NewSelections[0]?.Tag is Project selectedProject)
+            var children = new List<Project>();
+            if (!e.NewSelections.IsNullOrEmpty() && e.NewSelections[0]?.Tag is Project selectedProject)
             {
                 children = _dal.GetLinkWith<Project>(selectedProject);
             }
+
             GridBindingBll<Project>.BindingData(ug1, children, "BasicInfo\\Project.xml");
         }
+
         /// <summary>
         /// 根据条件构造表达式
         /// </summary>
@@ -131,25 +135,9 @@ namespace DnaMesUiBll.BasicInfo
             var expTemp = new Expressionable<Project>();
             expTemp.AndIF(!code.IsNullOrEmpty(), p => p.Code == code);
             expTemp.AndIF(!name.IsNullOrEmpty(), p => p.Name == name);
-            expTemp.AndIF(startTime.IsLegalDate(), p => p.StartingTime>= startTime);
-            expTemp.AndIF(endTime.IsLegalDate(), p => p.EndingTime<= endTime);
+            expTemp.AndIF(startTime.IsLegalDate(), p => p.StartingTime >= startTime);
+            expTemp.AndIF(endTime.IsLegalDate(), p => p.EndingTime <= endTime);
             return expTemp.ToExpression();
-        }
-        /// <summary>
-        /// 控件根据查询结果执行动作
-        /// </summary>
-        /// <param name="uTree"></param>
-        /// <param name="ug1"></param>
-        /// <param name="dataSource"></param>
-        public void AfterSearch(UltraTree uTree, UltraGrid ug1, List<Project> dataSource)
-        {
-
-            foreach (var project in dataSource)
-            {
-                var node=uTree.GetNodeByKey(project.Code);
-                //node.Selected = true;
-                node.Toggle();
-            }
         }
     }
 }

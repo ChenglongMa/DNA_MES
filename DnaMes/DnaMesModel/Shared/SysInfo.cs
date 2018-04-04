@@ -67,6 +67,7 @@ namespace DnaMesModel.Shared
             }
         }
 
+        public static DateTime IllegalDateTime =>new DateTime(1949,01,01);
         #endregion
 
         #region 私有方法

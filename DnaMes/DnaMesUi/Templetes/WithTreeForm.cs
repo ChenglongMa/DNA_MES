@@ -1,5 +1,6 @@
 ﻿using DnaLib.Helper;
 using DnaMesModel.Model.BasicInfo;
+using DnaMesModel.Shared;
 using DnaMesUiBll.BasicInfo;
 using DnaMesUiBll.Shared;
 using Infragistics.Win.UltraWinEditors;
@@ -28,8 +29,8 @@ namespace DnaMesUi.Templetes
         {
             var code = txtCode.Text.Trim();
             var name = txtName.Text.Trim();
-            var startTime = dteStartTime.DateTime;
-            var endTime = dteEndTime.DateTime;
+            var startTime = dteStartTime.Enabled?dteStartTime.DateTime:SysInfo.IllegalDateTime;
+            var endTime = dteEndTime.Enabled ? dteEndTime.DateTime : SysInfo.IllegalDateTime;
             var exp=_bll.BuildExp(code, name, startTime, endTime);
             _bll.BuildTree(ref uTree, imageList1.Images, exp);
         }
