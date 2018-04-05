@@ -28,113 +28,187 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProjectMgtAddEdit));
             this.btnCancel = new Infragistics.Win.Misc.UltraButton();
             this.btnOk = new Infragistics.Win.Misc.UltraButton();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.ultraLabel1 = new Infragistics.Win.Misc.UltraLabel();
-            this.ultraLabel2 = new Infragistics.Win.Misc.UltraLabel();
-            this.ultraLabel3 = new Infragistics.Win.Misc.UltraLabel();
+            this.dteEndTime = new Infragistics.Win.UltraWinEditors.UltraDateTimeEditor();
+            this.dteStartTime = new Infragistics.Win.UltraWinEditors.UltraDateTimeEditor();
+            this.txtName = new Infragistics.Win.UltraWinEditors.UltraTextEditor();
+            this.txtCode = new Infragistics.Win.UltraWinEditors.UltraTextEditor();
+            this.lblName = new Infragistics.Win.Misc.UltraLabel();
+            this.lblCode = new Infragistics.Win.Misc.UltraLabel();
+            this.ckIsMain = new Infragistics.Win.UltraWinEditors.UltraCheckEditor();
             this.ultraLabel4 = new Infragistics.Win.Misc.UltraLabel();
-            this.ultraCheckEditor1 = new Infragistics.Win.UltraWinEditors.UltraCheckEditor();
+            this.ultraLabel3 = new Infragistics.Win.Misc.UltraLabel();
+            this.tipForIsMain = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ultraCheckEditor1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dteEndTime)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dteStartTime)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCode)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ckIsMain)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tipForIsMain)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancel
             // 
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(453, 28);
+            this.btnCancel.Location = new System.Drawing.Point(379, 18);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(82, 29);
-            this.btnCancel.TabIndex = 0;
+            this.btnCancel.Size = new System.Drawing.Size(92, 35);
+            this.btnCancel.TabIndex = 1;
             this.btnCancel.Text = "取消";
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnOk
             // 
-            this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOk.Location = new System.Drawing.Point(130, 28);
+            this.btnOk.Location = new System.Drawing.Point(146, 18);
+            this.btnOk.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(82, 29);
+            this.btnOk.Size = new System.Drawing.Size(92, 35);
             this.btnOk.TabIndex = 0;
             this.btnOk.Text = "确定";
+            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.ultraCheckEditor1);
+            this.splitContainer1.Panel1.Controls.Add(this.dteEndTime);
+            this.splitContainer1.Panel1.Controls.Add(this.dteStartTime);
+            this.splitContainer1.Panel1.Controls.Add(this.txtName);
+            this.splitContainer1.Panel1.Controls.Add(this.txtCode);
+            this.splitContainer1.Panel1.Controls.Add(this.lblName);
+            this.splitContainer1.Panel1.Controls.Add(this.lblCode);
+            this.splitContainer1.Panel1.Controls.Add(this.ckIsMain);
             this.splitContainer1.Panel1.Controls.Add(this.ultraLabel4);
             this.splitContainer1.Panel1.Controls.Add(this.ultraLabel3);
-            this.splitContainer1.Panel1.Controls.Add(this.ultraLabel2);
-            this.splitContainer1.Panel1.Controls.Add(this.ultraLabel1);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.btnCancel);
             this.splitContainer1.Panel2.Controls.Add(this.btnOk);
-            this.splitContainer1.Size = new System.Drawing.Size(672, 573);
-            this.splitContainer1.SplitterDistance = 485;
+            this.splitContainer1.Size = new System.Drawing.Size(625, 646);
+            this.splitContainer1.SplitterDistance = 566;
+            this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 1;
             // 
-            // ultraLabel1
+            // dteEndTime
             // 
-            this.ultraLabel1.AutoSize = true;
-            this.ultraLabel1.Location = new System.Drawing.Point(103, 112);
-            this.ultraLabel1.Name = "ultraLabel1";
-            this.ultraLabel1.Size = new System.Drawing.Size(66, 19);
-            this.ultraLabel1.TabIndex = 0;
-            this.ultraLabel1.Text = "项目编号";
+            this.dteEndTime.Location = new System.Drawing.Point(293, 287);
+            this.dteEndTime.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dteEndTime.Name = "dteEndTime";
+            this.dteEndTime.Size = new System.Drawing.Size(162, 28);
+            this.dteEndTime.TabIndex = 3;
             // 
-            // ultraLabel2
+            // dteStartTime
             // 
-            this.ultraLabel2.AutoSize = true;
-            this.ultraLabel2.Location = new System.Drawing.Point(103, 152);
-            this.ultraLabel2.Name = "ultraLabel2";
-            this.ultraLabel2.Size = new System.Drawing.Size(66, 19);
-            this.ultraLabel2.TabIndex = 0;
-            this.ultraLabel2.Text = "项目名称";
+            this.dteStartTime.Location = new System.Drawing.Point(293, 239);
+            this.dteStartTime.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dteStartTime.Name = "dteStartTime";
+            this.dteStartTime.Size = new System.Drawing.Size(162, 28);
+            this.dteStartTime.TabIndex = 2;
             // 
-            // ultraLabel3
+            // txtName
             // 
-            this.ultraLabel3.AutoSize = true;
-            this.ultraLabel3.Location = new System.Drawing.Point(103, 190);
-            this.ultraLabel3.Name = "ultraLabel3";
-            this.ultraLabel3.Size = new System.Drawing.Size(66, 19);
-            this.ultraLabel3.TabIndex = 0;
-            this.ultraLabel3.Text = "开始时间";
+            this.txtName.Location = new System.Drawing.Point(293, 191);
+            this.txtName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(160, 28);
+            this.txtName.TabIndex = 1;
+            // 
+            // txtCode
+            // 
+            this.txtCode.Location = new System.Drawing.Point(293, 143);
+            this.txtCode.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtCode.Name = "txtCode";
+            this.txtCode.Size = new System.Drawing.Size(160, 28);
+            this.txtCode.TabIndex = 0;
+            // 
+            // lblName
+            // 
+            this.lblName.AutoSize = true;
+            this.lblName.Location = new System.Drawing.Point(155, 193);
+            this.lblName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(82, 24);
+            this.lblName.TabIndex = 5;
+            this.lblName.Text = "项目名称";
+            // 
+            // lblCode
+            // 
+            this.lblCode.AutoSize = true;
+            this.lblCode.Location = new System.Drawing.Point(155, 145);
+            this.lblCode.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.lblCode.Name = "lblCode";
+            this.lblCode.Size = new System.Drawing.Size(82, 24);
+            this.lblCode.TabIndex = 6;
+            this.lblCode.Text = "项目编号";
+            // 
+            // ckIsMain
+            // 
+            this.ckIsMain.AutoSize = true;
+            this.ckIsMain.Location = new System.Drawing.Point(155, 333);
+            this.ckIsMain.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ckIsMain.Name = "ckIsMain";
+            this.ckIsMain.Size = new System.Drawing.Size(80, 27);
+            this.ckIsMain.TabIndex = 4;
+            this.ckIsMain.Text = "主项目";
             // 
             // ultraLabel4
             // 
             this.ultraLabel4.AutoSize = true;
-            this.ultraLabel4.Location = new System.Drawing.Point(103, 230);
+            this.ultraLabel4.Location = new System.Drawing.Point(155, 287);
+            this.ultraLabel4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ultraLabel4.Name = "ultraLabel4";
-            this.ultraLabel4.Size = new System.Drawing.Size(66, 19);
+            this.ultraLabel4.Size = new System.Drawing.Size(82, 24);
             this.ultraLabel4.TabIndex = 0;
             this.ultraLabel4.Text = "结束时间";
             // 
-            // ultraCheckEditor1
+            // ultraLabel3
             // 
-            this.ultraCheckEditor1.Location = new System.Drawing.Point(103, 266);
-            this.ultraCheckEditor1.Name = "ultraCheckEditor1";
-            this.ultraCheckEditor1.Size = new System.Drawing.Size(120, 20);
-            this.ultraCheckEditor1.TabIndex = 1;
-            this.ultraCheckEditor1.Text = "主项目";
+            this.ultraLabel3.AutoSize = true;
+            this.ultraLabel3.Location = new System.Drawing.Point(155, 239);
+            this.ultraLabel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ultraLabel3.Name = "ultraLabel3";
+            this.ultraLabel3.Size = new System.Drawing.Size(82, 24);
+            this.ultraLabel3.TabIndex = 0;
+            this.ultraLabel3.Text = "开始时间";
+            // 
+            // tipForIsMain
+            // 
+            this.tipForIsMain.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.tipForIsMain.ContainerControl = this;
+            this.tipForIsMain.Icon = ((System.Drawing.Icon)(resources.GetObject("tipForIsMain.Icon")));
+            // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
             // 
             // ProjectMgtAddEdit
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(672, 573);
+            this.CancelButton = this.btnCancel;
+            this.ClientSize = new System.Drawing.Size(625, 646);
             this.Controls.Add(this.splitContainer1);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "ProjectMgtAddEdit";
             this.Text = "ProjectMgt_AddEdit";
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -142,7 +216,13 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ultraCheckEditor1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dteEndTime)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dteStartTime)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCode)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ckIsMain)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tipForIsMain)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -152,10 +232,16 @@
         private Infragistics.Win.Misc.UltraButton btnCancel;
         private Infragistics.Win.Misc.UltraButton btnOk;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private Infragistics.Win.UltraWinEditors.UltraCheckEditor ultraCheckEditor1;
+        private Infragistics.Win.UltraWinEditors.UltraCheckEditor ckIsMain;
         private Infragistics.Win.Misc.UltraLabel ultraLabel4;
         private Infragistics.Win.Misc.UltraLabel ultraLabel3;
-        private Infragistics.Win.Misc.UltraLabel ultraLabel2;
-        private Infragistics.Win.Misc.UltraLabel ultraLabel1;
+        private Infragistics.Win.UltraWinEditors.UltraDateTimeEditor dteEndTime;
+        private Infragistics.Win.UltraWinEditors.UltraDateTimeEditor dteStartTime;
+        private Infragistics.Win.UltraWinEditors.UltraTextEditor txtName;
+        private Infragistics.Win.UltraWinEditors.UltraTextEditor txtCode;
+        private Infragistics.Win.Misc.UltraLabel lblName;
+        private Infragistics.Win.Misc.UltraLabel lblCode;
+        private System.Windows.Forms.ErrorProvider tipForIsMain;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }

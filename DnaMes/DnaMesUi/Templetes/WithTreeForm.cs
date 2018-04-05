@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Windows.Forms;
 using DnaLib.Helper;
 using DnaMesModel.Model.BasicInfo;
 using DnaMesModel.Shared;
+using DnaMesUi.Shared.Dialog;
 using DnaMesUiBll.BasicInfo;
 using DnaMesUiBll.Shared;
 using Infragistics.Win.UltraWinEditors;
@@ -87,10 +89,19 @@ namespace DnaMesUi.Templetes
             switch (e.Tool.Key)
             {
                 case "Add":
-                    if (SelectedNode?.Tag is Project proj)
+                    if (SelectedNode?.Tag is Project)
                     {
-                        //_bll.AddProject()
+                        var pProj = SelectedNode.Parent?.Tag as Project;
+                        var form = new ProjectMgtAddEdit("新增项目");
+                        if (form.ShowDialog(this)==DialogResult.OK)
+                        {
+                            if (_bll.AddProject(form.Project,pProj))
+                            {
+                                MessageBoxHelper.ShowInformationOk("操作成功！");
+                            }
+                        }
                     }
+
                     break;
 
                 case "Edit":
