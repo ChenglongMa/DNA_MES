@@ -32,17 +32,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Devart.Data, Version=5.0.1878.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL">
-      <HintPath>..\packages\dotConnect.Express.for.PostgreSQL.7.10.1086\lib\Devart.Data.dll</HintPath>
+    <Reference Include="Devart.Data, Version=5.0.1907.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL">
+      <HintPath>..\packages\dotConnect.Express.for.PostgreSQL.7.10.1115\lib\Devart.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Devart.Data.PostgreSql, Version=7.10.1086.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL">
-      <HintPath>..\packages\dotConnect.Express.for.PostgreSQL.7.10.1086\lib\Devart.Data.PostgreSql.dll</HintPath>
+    <Reference Include="Devart.Data.PostgreSql, Version=7.10.1115.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL">
+      <HintPath>..\packages\dotConnect.Express.for.PostgreSQL.7.10.1115\lib\Devart.Data.PostgreSql.dll</HintPath>
     </Reference>
     <Reference Include="MySql.Data, Version=6.10.6.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.6.10.6\lib\net452\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="SqlSugar, Version=4.6.4.7, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\sqlSugar.4.6.4.7\lib\SqlSugar.dll</HintPath>

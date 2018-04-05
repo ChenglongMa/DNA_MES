@@ -37,7 +37,7 @@
             this.ClientSize = new System.Drawing.Size(948, 709);
             this.Font = new System.Drawing.Font("宋体", 11F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "BaseDialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
