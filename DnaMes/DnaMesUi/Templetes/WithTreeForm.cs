@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using DnaLib.Control;
@@ -28,6 +29,8 @@ namespace DnaMesUi.Templetes
 
         private readonly ProjectMgtBll _bll = new ProjectMgtBll();
         private const string FieldName = "BasicInfo\\Project.xml";
+        private Queue<UltraTreeNode> NodesWithColor = new Queue<UltraTreeNode>();
+
         #region 其他
 
         private void RefreshData()
@@ -83,7 +86,7 @@ namespace DnaMesUi.Templetes
 
         private void uTree_AfterSelect(object sender, SelectEventArgs e)
         {
-            ResetNodeAppearance();
+            ResetNodeBackColor();
             SetToolsEnable(SelectedNode?.Tag is Project, "Add", "Delete", "Edit", "AddChild");
 
             foreach (var node in uTree.SelectedNodes)
@@ -95,9 +98,13 @@ namespace DnaMesUi.Templetes
             GridBindingBll<Project>.BindingData(ug1, children, FieldName);
         }
 
-        private void ResetNodeAppearance()
+        private void ResetNodeBackColor()
         {
-            uTree.Override.NodeAppearance.ResetBackColor();
+            while (NodesWithColor.Count>0)
+            {
+                var node = NodesWithColor.Dequeue();
+                node.Override.NodeAppearance.ResetBackColor();
+            }
         }
         #endregion
 
@@ -156,16 +163,17 @@ namespace DnaMesUi.Templetes
 
         private void ug1_DoubleClickRow(object sender, DoubleClickRowEventArgs e)
         {
-            ResetNodeAppearance();
+            ResetNodeBackColor();
             if (!(e.Row.ListObject is Project proj)) return;
             var node=_bll.FindNode(uTree, proj);
             if (node==null)
             {
-                MsgBoxLib.ShowStop("未找到该项目结构");
+                MsgBoxLib.ShowWarning("未找到该项目结构");
             }
             else
             {
                 node.Override.NodeAppearance.BackColor=Color.DarkTurquoise;
+                NodesWithColor.Enqueue(node);
             }
         }
 
