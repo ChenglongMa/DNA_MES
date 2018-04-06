@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using DnaLib.Control;
 using DnaLib.Helper;
@@ -8,6 +9,7 @@ using DnaMesUi.Shared.Dialog;
 using DnaMesUiBll.BasicInfo;
 using DnaMesUiBll.Shared;
 using Infragistics.Win.UltraWinEditors;
+using Infragistics.Win.UltraWinGrid;
 using Infragistics.Win.UltraWinToolbars;
 using Infragistics.Win.UltraWinTree;
 
@@ -21,11 +23,20 @@ namespace DnaMesUi.Templetes
             dteStartTime.Enabled = ckStartTime.Checked;
             dteEndTime.Enabled = ckEndTime.Checked;
             _bll.BuildTree(ref uTree, imageList1.Images, p => p.IsMain);
-            GridBindingBll<Project>.BindingStyleAndData(ug1, null, "BasicInfo\\Project.xml");
+            GridBindingBll<Project>.BindingStyleAndData(ug1, null, FieldName);
         }
 
         private readonly ProjectMgtBll _bll = new ProjectMgtBll();
+        private const string FieldName = "BasicInfo\\Project.xml";
+        #region 其他
 
+        private void RefreshData()
+        {
+            _bll.BuildTree(ref uTree, imageList1.Images, p => p.IsMain);
+            GridBindingBll<Project>.BindingData(ug1, null, FieldName);
+        }
+
+        #endregion
         #region 查询区
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -35,7 +46,8 @@ namespace DnaMesUi.Templetes
             var startTime = dteStartTime.Enabled ? dteStartTime.DateTime : SysInfo.IllegalDateTime;
             var endTime = dteEndTime.Enabled ? dteEndTime.DateTime : SysInfo.IllegalDateTime;
             var exp = _bll.BuildExp(code, name, startTime, endTime);
-            _bll.BuildTree(ref uTree, imageList1.Images, exp);
+            var projs = _bll.GetDataSource(exp);
+            GridBindingBll<Project>.BindingData(ug1, projs, FieldName);
         }
 
         private void ckStartTime_CheckedChanged(object sender, EventArgs e)
@@ -71,16 +83,22 @@ namespace DnaMesUi.Templetes
 
         private void uTree_AfterSelect(object sender, SelectEventArgs e)
         {
+            ResetNodeAppearance();
             SetToolsEnable(SelectedNode?.Tag is Project, "Add", "Delete", "Edit", "AddChild");
 
-            foreach (var node in e.NewSelections)
+            foreach (var node in uTree.SelectedNodes)
             {
                 node.Expanded = true;
             }
 
-            _bll.AfterSelect(ref ug1, e);
+            var children = _bll.GetChildren(uTree.SelectedNodes);
+            GridBindingBll<Project>.BindingData(ug1, children, FieldName);
         }
 
+        private void ResetNodeAppearance()
+        {
+            uTree.Override.NodeAppearance.ResetBackColor();
+        }
         #endregion
 
         #region 工具栏区
@@ -102,7 +120,7 @@ namespace DnaMesUi.Templetes
                             }
                         }
                     }
-
+                    RefreshData();
                     break;
 
                 case "Edit":
@@ -112,8 +130,7 @@ namespace DnaMesUi.Templetes
                     break;
 
                 case "Refresh":
-                    _bll.BuildTree(ref uTree, imageList1.Images, p => p.IsMain);
-                    GridBindingBll<Project>.BindingData(ug1, null, "BasicInfo\\Project.xml");
+                    RefreshData();
                     break;
 
                 case "AddChild":
@@ -130,6 +147,25 @@ namespace DnaMesUi.Templetes
                 {
                     tools[key].SharedProps.Enabled = enable;
                 }
+            }
+        }
+
+        #endregion
+
+        #region Grid区
+
+        private void ug1_DoubleClickRow(object sender, DoubleClickRowEventArgs e)
+        {
+            ResetNodeAppearance();
+            if (!(e.Row.ListObject is Project proj)) return;
+            var node=_bll.FindNode(uTree, proj);
+            if (node==null)
+            {
+                MsgBoxLib.ShowStop("未找到该项目结构");
+            }
+            else
+            {
+                node.Override.NodeAppearance.BackColor=Color.DarkTurquoise;
             }
         }
 

@@ -116,7 +116,7 @@ namespace DnaMesDal
         /// <param name="roleA">已知对象</param>
         /// <param name="exp">额外条件表达式</param>
         /// <returns>所求对象集合</returns>
-        protected virtual List<TB> GetLinkWith<TB, TLink>(T roleA, Expression<Func<TB, bool>> exp = null)
+        protected virtual List<TB> GetChildren<TB, TLink>(T roleA, Expression<Func<TB, bool>> exp = null)
             where TB : BaseModel, new() where TLink : BaseLink, new()
         {
             if (!IsExist(roleA))
@@ -125,33 +125,60 @@ namespace DnaMesDal
             }
 
             Get(ref roleA);
-            var links = DbClient.Queryable<TLink>().AS("L_" + typeof(T).Name + typeof(TB).Name)
+            var children = DbClient.Queryable<TLink>().AS("L_" + typeof(T).Name + typeof(TB).Name)
                 .Where(l => l.RoleAId == roleA.ObjId).ToList();
-            if (links.IsNullOrEmpty())
+            if (children.IsNullOrEmpty())
             {
                 return null;
             }
 
             var expTemp = new Expressionable<TB>();
-            foreach (var link in links)
+            foreach (var link in children)
             {
                 expTemp.Or(b => b.ObjId == link.RoleBId);
             }
 
-            return DbClient.Queryable<TB>().Where(expTemp.AndIF(!exp.IsNullOrEmpty(), exp).ToExpression()).ToList();
+            return DbClient.Queryable<TB>().Where(expTemp.AndIF(exp != null, exp).ToExpression()).ToList();
         }
 
         /// <summary>
-        /// 通过关系获取另一实体类
+        /// 通过关系获取子类
         /// </summary>
         /// <typeparam name="TB">要获得的对象</typeparam>
         /// <param name="roleA">已知对象</param>
         /// <param name="exp">额外条件表达式</param>
         /// <returns>所求对象集合</returns>
-        public List<TB> GetLinkWith<TB>(T roleA, Expression<Func<TB, bool>> exp = null)
+        public List<TB> GetChildren<TB>(T roleA, Expression<Func<TB, bool>> exp = null)
             where TB : BaseModel, new()
         {
-            return GetLinkWith<TB, BaseLink>(roleA, exp);
+            return GetChildren<TB, BaseLink>(roleA, exp);
+        }
+
+        protected T GetParent<TB, TLink>(TB roleB, Expression<Func<TB, bool>> exp = null)
+            where TB : BaseModel, new() where TLink : BaseLink, new()
+        {
+            if (!IsExist(roleB))
+            {
+                throw new ArgumentException($"{typeof(T).Name}[{roleB.ObjId}]不存在", nameof(roleB));
+            }
+
+            Get(ref roleB);
+            var parent = DbClient.Queryable<TLink>().AS("L_" + typeof(T).Name + typeof(TB).Name)
+                .Where(l => l.RoleBId == roleB.ObjId).First();
+            return parent == null ? null : DbClient.Queryable<T>().Where(p => p.ObjId == parent.RoleAId).First();
+        }
+
+        /// <summary>
+        /// 通过关系获取父类
+        /// </summary>
+        /// <typeparam name="TB"></typeparam>
+        /// <param name="roleB"></param>
+        /// <param name="exp"></param>
+        /// <returns></returns>
+        public T GetParent<TB>(TB roleB, Expression<Func<TB, bool>> exp = null)
+            where TB : BaseModel, new()
+        {
+            return GetParent<TB, BaseLink>(roleB, exp);
         }
 
         #endregion
@@ -195,6 +222,7 @@ namespace DnaMesDal
                 });
             }
         }
+
         /// <summary>
         /// 获取某属性是否为关键属性
         /// </summary>
@@ -229,7 +257,7 @@ namespace DnaMesDal
             foreach (var ppt in ppts)
             {
                 var value = ppt.GetValue(model, null);
-                whereStr += " AND " + ppt.Name + " = '" + value+"'";
+                whereStr += " AND " + ppt.Name + " = '" + value + "'";
             }
 
             return whereStr;
@@ -258,16 +286,17 @@ namespace DnaMesDal
         /// 在数据库中增加表
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        public void CreateTable<T>() where T: new()
+        public void CreateTable<T>() where T : new()
         {
             DbSysClient.CodeFirst.InitTables(typeof(T));
         }
 
-        public void CreateLinkTable<TA, TB>() where TA:BaseModel,new() where TB:BaseModel,new()
+        public void CreateLinkTable<TA, TB>() where TA : BaseModel, new() where TB : BaseModel, new()
         {
             throw new NotImplementedException();
             //DbSysClient
         }
+
         /// <summary>
         /// 插入并返回bool, 并将identity赋值到实体
         /// </summary>
@@ -444,6 +473,7 @@ namespace DnaMesDal
                 throw new ArgumentException($"{typeof(TA).Name}[{roleA.ObjId}]与{typeof(TB).Name}[{roleB.ObjId}]关系已存在",
                     tableName);
             }
+
             Get(ref roleA);
             Get(ref roleB);
             var link = new BaseLink

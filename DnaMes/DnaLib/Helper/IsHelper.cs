@@ -95,6 +95,7 @@ namespace DnaLib.Helper
         /// 是null或""?
         /// </summary>
         /// <returns></returns>
+        [Obsolete("不确定该方法是否可用",true)]
         public static bool IsNullOrEmpty(this object thisValue)
         {
             if (thisValue == null || thisValue == DBNull.Value) return true;

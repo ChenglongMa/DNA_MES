@@ -53,39 +53,18 @@ namespace DnaMesUi.Shared.Dialog
 
         private Project BuildProject()
         {
-            //if (txtCode.Text.IsNullOrEmpty())
-            //{
-            //    errorProvider.SetError(txtCode, "项目编号不允许为空");
-            //    return null;
-            //}
-            if (txtName.Text.IsNullOrEmpty())
-            {
-                errorProvider.SetError(txtName, "项目名称不允许为空");
-                return null;
-            }
-
-            if (!dteStartTime.DateTime.IsLegalDate())
-            {
-                errorProvider.SetError(dteStartTime, "指定日期不合法");
-                return null;
-            }
-
-            if (!dteEndTime.DateTime.IsLegalDate())
-            {
-                errorProvider.SetError(dteEndTime, "指定日期不合法");
-                return null;
-            }
-
             var code = txtCode.Text.Trim();
             var name = txtName.Text.Trim();
             var startTime = dteStartTime.DateTime;
             var endTime = dteEndTime.DateTime;
+            var isMain = ckIsMain.Checked;
             return new Project
             {
                 Code = code,
                 Name = name,
                 StartingTime = startTime,
                 EndingTime = endTime,
+                IsMain = isMain,
             };
         }
 
@@ -110,62 +89,25 @@ namespace DnaMesUi.Shared.Dialog
         {
             //Close();
         }
-        /// <summary>
-        /// 验证控制值
-        /// </summary>
-        /// <param name="control"></param>
-        /// <param name="fun"></param>
-        /// <param name="errorMsg"></param>
-        private void ValidateControl(Control control,Func<Control, bool> fun, string errorMsg)
-        {
-            errorProvider.SetError(control, fun(control) ? null : errorMsg);
-        }
+
         private void txtCode_Validating(object sender, CancelEventArgs e)
         {
-            if (txtCode.Text.IsNullOrEmpty())
-            {
-                errorProvider.SetError(txtCode, "项目编号不允许为空");
-            }
-            else
-            {
-                errorProvider.SetError(txtCode, "");
-            }
+            errorProvider.SetError(txtCode, txtCode.Text.IsNullOrEmpty() ? "项目编号不允许为空" : null);
         }
 
         private void txtName_Validating(object sender, CancelEventArgs e)
         {
-            if (txtName.Text.IsNullOrEmpty())
-            {
-                errorProvider.SetError(txtName, "项目编号不允许为空");
-            }
-            else
-            {
-                errorProvider.SetError(txtName, null);
-            }
+            errorProvider.SetError(txtName, txtName.Text.IsNullOrEmpty() ? "项目名称不允许为空" : null);
         }
 
         private void dteStartTime_Validating(object sender, CancelEventArgs e)
         {
-            if (!dteStartTime.DateTime.IsLegalDate())
-            {
-                errorProvider.SetError(dteStartTime, "指定日期不合法");
-            }
-            else
-            {
-                errorProvider.SetError(dteStartTime, string.Empty);
-            }
+            errorProvider.SetError(dteStartTime, dteStartTime.DateTime.IsLegalDate() ? null : "指定日期不合法");
         }
 
         private void dteEndTime_Validating(object sender, CancelEventArgs e)
         {
-            if (!dteEndTime.DateTime.IsLegalDate())
-            {
-                errorProvider.SetError(dteEndTime, "指定日期不合法");
-            }
-            else
-            {
-                errorProvider.SetError(dteEndTime, string.Empty);
-            }
+            errorProvider.SetError(dteEndTime, dteEndTime.DateTime.IsLegalDate() ? null : "指定日期不合法");
         }
     }
 }

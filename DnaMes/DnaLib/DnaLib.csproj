@@ -78,7 +78,6 @@
   <ItemGroup>
     <Compile Include="Config\DbConfig.cs" />
     <Compile Include="Config\DnaColumnAttribute.cs" />
-    <Compile Include="Control\ErrorProviderLib.cs" />
     <Compile Include="Control\MsgBoxLib.cs" />
     <Compile Include="Helper\DbConfigHelper.cs" />
     <Compile Include="Helper\EncryptHelper.cs" />

@@ -71,7 +71,7 @@ namespace DnaMesUiBll.BasicInfo
 
                 if (!_nodes.ContainsKey(model.Code))
                 {
-                    grandChildern = _dal.GetLinkWith<Project>(model);
+                    grandChildern = _dal.GetChildren<Project>(model);
                     _nodes.Add(model.Code, grandChildern);
                 }
                 else
@@ -81,7 +81,10 @@ namespace DnaMesUiBll.BasicInfo
 
                 if (!grandChildern.IsNullOrEmpty())
                 {
-                    mainNode.Nodes.Add("null"); //增加空子树以显示剪头标志
+                    //bug:重复key
+                    mainNode.Nodes.Add(); //增加空子树以显示剪头标志
+                    //mainNode.HasExpansionIndicator = true;
+                    //mainNode
                 }
             }
         }
@@ -122,28 +125,26 @@ namespace DnaMesUiBll.BasicInfo
         }
 
         /// <summary>
-        /// AfterSelect事件方法
+        /// 获取子类集合
         /// </summary>
-        /// <param name="ug1"></param>
-        /// <param name="e"></param>
-        public void AfterSelect(ref UltraGrid ug1, SelectEventArgs e)
+        /// <param name="selectedNodes"></param>
+        /// 
+        public List<Project> GetChildren(SelectedNodesCollection selectedNodes)
         {
             var children = new List<Project>();
-            if (!e.NewSelections.IsNullOrEmpty())
+
+            foreach (var node in selectedNodes)
             {
-                foreach (var node in e.NewSelections)
+                foreach (var p in node.Nodes)
                 {
-                    foreach (var p in node.Nodes)
+                    if (p.Tag is Project project)
                     {
-                        if (p.Tag is Project project)
-                        {
-                            children.Add(project);
-                        }
+                        children.Add(project);
                     }
                 }
             }
 
-            GridBindingBll<Project>.BindingData(ug1, children, "BasicInfo\\Project.xml");
+            return children;
         }
 
         /// <summary>
@@ -175,7 +176,7 @@ namespace DnaMesUiBll.BasicInfo
         /// 添加项目
         /// </summary>
         /// <param name="proj"></param>
-        /// <param name="parentProj"></param>
+        /// <param name="parentProj">指定父节点</param>
         /// <returns></returns>
         public bool AddProject(Project proj, Project parentProj = null)
         {
@@ -191,6 +192,69 @@ namespace DnaMesUiBll.BasicInfo
         public bool IsExist(Project proj)
         {
             return _dal.IsExist(proj);
+        }
+
+        /// <summary>
+        /// Grid绑定查询结果
+        /// </summary>
+        /// <param name="exp"></param>
+        /// 
+        public List<Project> GetDataSource(Expression<Func<Project, bool>> exp)
+        {
+            return _dal.Get(exp);
+        }
+        /// <summary>
+        /// 根据选中Project查找树中节点
+        /// </summary>
+        /// <param name="uTree"></param>
+        /// <param name="proj"></param>
+        /// <returns></returns>
+        public UltraTreeNode FindNode(UltraTree uTree, Project proj)
+        {
+            while (true)
+            {
+                var node = uTree.GetNodeByKey(proj.Code);
+                if (node != null)
+                {
+                    return node; //Have found it!
+                }
+
+                //Continue finding.
+                var sP = new Stack<Project>();
+                var tmpProj = proj;
+                var foundParentNode = false;
+                while (!foundParentNode)
+                {
+                    var pProj = _dal.GetParent(tmpProj);
+                    if (pProj == null)
+                    {
+                        return null; //待定
+                    }
+
+                    var pNode = uTree.GetNodeByKey(pProj.Code);
+                    if (pNode == null)
+                    {
+                        sP.Push(pProj);
+                        tmpProj = pProj;
+                        continue;
+                    }
+
+                    foundParentNode = true;
+                    pNode.Expanded = true;
+                }
+
+                //已经找到在树节点
+                while (sP.Count > 0)
+                {
+                    var n = uTree.GetNodeByKey(sP.Pop().Code);
+                    if (n == null)
+                    {
+                        return null; //待定
+                    }
+
+                    n.Expanded = true;
+                }
+            }
         }
     }
 }
