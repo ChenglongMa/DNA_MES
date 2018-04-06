@@ -40,6 +40,7 @@ namespace DnaMesUi.Templetes
         }
 
         #endregion
+
         #region 查询区
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -100,48 +101,60 @@ namespace DnaMesUi.Templetes
 
         private void ResetNodeBackColor()
         {
-            while (NodesWithColor.Count>0)
+            while (NodesWithColor.Count > 0)
             {
                 var node = NodesWithColor.Dequeue();
                 node.Override.NodeAppearance.ResetBackColor();
             }
         }
+
         #endregion
 
         #region 工具栏区
 
         private void toolBarManager_ToolClick(object sender, ToolClickEventArgs e)
         {
+            var pProj = SelectedNode.Parent?.Tag as Project;
+            ProjectMgtAddEdit form;
             switch (e.Tool.Key)
             {
+                case "Refresh":
+                default:
+                    RefreshData();
+                    break;
                 case "Add":
-                    if (SelectedNode?.Tag is Project)
+
+                    form = new ProjectMgtAddEdit("新增项目");
+                    if (form.ShowDialog(this) == DialogResult.OK)
                     {
-                        var pProj = SelectedNode.Parent?.Tag as Project;
-                        var form = new ProjectMgtAddEdit("新增项目");
-                        if (form.ShowDialog(this) == DialogResult.OK)
+                        if (_bll.AddProject(form.Project, pProj))
                         {
-                            if (_bll.AddProject(form.Project, pProj))
-                            {
-                                MsgBoxLib.ShowInformationOk("操作成功！");
-                            }
+                            MsgBoxLib.ShowInformationOk("操作成功！");
                         }
                     }
-                    RefreshData();
-                    break;
+
+                    goto default;
 
                 case "Edit":
-                    break;
+                    form = new ProjectMgtAddEdit("编辑项目", SelectedNode.Tag as Project);
+                    if (form.ShowDialog(this) == DialogResult.OK)
+                    {
+                        if (_bll.UpdateProject(form.Project))
+                        {
+                            MsgBoxLib.ShowInformationOk("操作成功！");
+                        }
+                    }
+
+                    RefreshData();
+                    goto default;
 
                 case "Delete":
-                    break;
-
-                case "Refresh":
                     RefreshData();
-                    break;
+                    goto default;
 
                 case "AddChild":
-                    break;
+                    RefreshData();
+                    goto default;
             }
         }
 
@@ -165,14 +178,14 @@ namespace DnaMesUi.Templetes
         {
             ResetNodeBackColor();
             if (!(e.Row.ListObject is Project proj)) return;
-            var node=_bll.FindNode(uTree, proj);
-            if (node==null)
+            var node = _bll.FindNode(uTree, proj);
+            if (node == null)
             {
                 MsgBoxLib.ShowWarning("未找到该项目结构");
             }
             else
             {
-                node.Override.NodeAppearance.BackColor=Color.DarkTurquoise;
+                node.Override.NodeAppearance.BackColor = Color.DarkTurquoise;
                 NodesWithColor.Enqueue(node);
             }
         }

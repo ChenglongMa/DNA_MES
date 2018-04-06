@@ -63,20 +63,18 @@
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(379, 18);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnCancel.Location = new System.Drawing.Point(337, 15);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(92, 35);
+            this.btnCancel.Size = new System.Drawing.Size(82, 29);
             this.btnCancel.TabIndex = 1;
             this.btnCancel.Text = "取消";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(146, 18);
-            this.btnOk.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnOk.Location = new System.Drawing.Point(130, 15);
             this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(92, 35);
+            this.btnOk.Size = new System.Drawing.Size(82, 29);
             this.btnOk.TabIndex = 0;
             this.btnOk.Text = "确定";
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
@@ -86,7 +84,6 @@
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -106,102 +103,94 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.btnCancel);
             this.splitContainer1.Panel2.Controls.Add(this.btnOk);
-            this.splitContainer1.Size = new System.Drawing.Size(625, 646);
-            this.splitContainer1.SplitterDistance = 562;
-            this.splitContainer1.SplitterWidth = 5;
+            this.splitContainer1.Size = new System.Drawing.Size(556, 538);
+            this.splitContainer1.SplitterDistance = 454;
             this.splitContainer1.TabIndex = 1;
             // 
             // dteEndTime
             // 
-            this.dteEndTime.Location = new System.Drawing.Point(293, 287);
-            this.dteEndTime.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dteEndTime.Location = new System.Drawing.Point(244, 239);
+            this.dteEndTime.MaskInput = "{date} {time}";
             this.dteEndTime.Name = "dteEndTime";
-            this.dteEndTime.Size = new System.Drawing.Size(162, 28);
+            this.dteEndTime.Size = new System.Drawing.Size(160, 24);
             this.dteEndTime.TabIndex = 3;
             this.dteEndTime.Validating += new System.ComponentModel.CancelEventHandler(this.dteEndTime_Validating);
             // 
             // dteStartTime
             // 
-            this.dteStartTime.Location = new System.Drawing.Point(293, 239);
-            this.dteStartTime.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dteStartTime.Location = new System.Drawing.Point(244, 199);
+            this.dteStartTime.MaskInput = "{date} {time}";
             this.dteStartTime.Name = "dteStartTime";
-            this.dteStartTime.Size = new System.Drawing.Size(162, 28);
+            this.dteStartTime.Size = new System.Drawing.Size(160, 24);
             this.dteStartTime.TabIndex = 2;
             this.dteStartTime.Validating += new System.ComponentModel.CancelEventHandler(this.dteStartTime_Validating);
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(293, 191);
-            this.txtName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtName.Location = new System.Drawing.Point(244, 159);
             this.txtName.Name = "txtName";
             appearance1.FontData.ItalicAsString = "True";
             appearance1.ForeColor = System.Drawing.Color.Silver;
             appearance1.ForeColorDisabled = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.txtName.NullTextAppearance = appearance1;
-            this.txtName.Size = new System.Drawing.Size(160, 28);
+            this.txtName.Size = new System.Drawing.Size(158, 24);
             this.txtName.TabIndex = 1;
             this.txtName.Validating += new System.ComponentModel.CancelEventHandler(this.txtName_Validating);
             // 
             // txtCode
             // 
-            this.txtCode.Location = new System.Drawing.Point(293, 143);
-            this.txtCode.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtCode.Location = new System.Drawing.Point(244, 119);
             this.txtCode.Name = "txtCode";
             appearance2.FontData.ItalicAsString = "True";
             appearance2.ForeColor = System.Drawing.Color.Silver;
             appearance2.ForeColorDisabled = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.txtCode.NullTextAppearance = appearance2;
-            this.txtCode.Size = new System.Drawing.Size(160, 28);
+            this.txtCode.Size = new System.Drawing.Size(158, 24);
             this.txtCode.TabIndex = 0;
             this.txtCode.Validating += new System.ComponentModel.CancelEventHandler(this.txtCode_Validating);
             // 
             // lblName
             // 
             this.lblName.AutoSize = true;
-            this.lblName.Location = new System.Drawing.Point(155, 193);
-            this.lblName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.lblName.Location = new System.Drawing.Point(164, 161);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(82, 24);
+            this.lblName.Size = new System.Drawing.Size(66, 19);
             this.lblName.TabIndex = 5;
             this.lblName.Text = "项目名称";
             // 
             // lblCode
             // 
             this.lblCode.AutoSize = true;
-            this.lblCode.Location = new System.Drawing.Point(155, 145);
-            this.lblCode.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.lblCode.Location = new System.Drawing.Point(164, 121);
             this.lblCode.Name = "lblCode";
-            this.lblCode.Size = new System.Drawing.Size(82, 24);
+            this.lblCode.Size = new System.Drawing.Size(66, 19);
             this.lblCode.TabIndex = 6;
             this.lblCode.Text = "项目编号";
             // 
             // ckIsMain
             // 
             this.ckIsMain.AutoSize = true;
-            this.ckIsMain.Location = new System.Drawing.Point(155, 333);
-            this.ckIsMain.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ckIsMain.Location = new System.Drawing.Point(164, 277);
             this.ckIsMain.Name = "ckIsMain";
-            this.ckIsMain.Size = new System.Drawing.Size(80, 27);
+            this.ckIsMain.Size = new System.Drawing.Size(68, 22);
             this.ckIsMain.TabIndex = 4;
             this.ckIsMain.Text = "主项目";
             // 
             // ultraLabel4
             // 
             this.ultraLabel4.AutoSize = true;
-            this.ultraLabel4.Location = new System.Drawing.Point(155, 287);
-            this.ultraLabel4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ultraLabel4.Location = new System.Drawing.Point(164, 239);
             this.ultraLabel4.Name = "ultraLabel4";
-            this.ultraLabel4.Size = new System.Drawing.Size(82, 24);
+            this.ultraLabel4.Size = new System.Drawing.Size(66, 19);
             this.ultraLabel4.TabIndex = 0;
             this.ultraLabel4.Text = "结束时间";
             // 
             // ultraLabel3
             // 
             this.ultraLabel3.AutoSize = true;
-            this.ultraLabel3.Location = new System.Drawing.Point(155, 239);
-            this.ultraLabel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ultraLabel3.Location = new System.Drawing.Point(164, 199);
             this.ultraLabel3.Name = "ultraLabel3";
-            this.ultraLabel3.Size = new System.Drawing.Size(82, 24);
+            this.ultraLabel3.Size = new System.Drawing.Size(66, 19);
             this.ultraLabel3.TabIndex = 0;
             this.ultraLabel3.Text = "开始时间";
             // 
@@ -217,12 +206,11 @@
             // 
             // ProjectMgtAddEdit
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(625, 646);
+            this.ClientSize = new System.Drawing.Size(556, 538);
             this.Controls.Add(this.splitContainer1);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "ProjectMgtAddEdit";
             this.Text = "ProjectMgt_AddEdit";
             this.splitContainer1.Panel1.ResumeLayout(false);

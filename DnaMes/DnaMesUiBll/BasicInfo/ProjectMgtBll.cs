@@ -69,7 +69,7 @@ namespace DnaMesUiBll.BasicInfo
 
                 List<Project> grandChildern;
 
-                if (!_nodes.ContainsKey(model.Code))
+                if (!_nodes.ContainsKey(model.Code))//bug:编辑后无法更新到UI
                 {
                     grandChildern = _dal.GetChildren<Project>(model);
                     _nodes.Add(model.Code, grandChildern);
@@ -81,10 +81,7 @@ namespace DnaMesUiBll.BasicInfo
 
                 if (!grandChildern.IsNullOrEmpty())
                 {
-                    //bug:重复key
                     mainNode.Nodes.Add(); //增加空子树以显示剪头标志
-                    //mainNode.HasExpansionIndicator = true;
-                    //mainNode
                 }
             }
         }
@@ -255,6 +252,15 @@ namespace DnaMesUiBll.BasicInfo
                     n.Expanded = true;
                 }
             }
+        }
+        /// <summary>
+        /// 更新项目
+        /// </summary>
+        /// <param name="project"></param>
+        /// <returns></returns>
+        public bool UpdateProject(Project project)
+        {
+            return _dal.Update(project);
         }
     }
 }
