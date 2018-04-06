@@ -8,8 +8,10 @@
 using System;
 using System.Threading;
 using System.Windows.Forms;
+using DnaLib.Control;
 using DnaLib.Helper;
 using DnaMesUi.Shared.Sys;
+using DnaMesUiBll.Shared;
 using DnaMesUiConfig.Helper;
 using Infragistics.Win.AppStyling;
 
@@ -67,14 +69,14 @@ namespace DnaMesUi
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             var ex = (Exception) e.ExceptionObject;
-            MessageBoxHelper.ShowError(ex.Message);
+            MsgBoxLib.ShowError(ex.Message);
             LogHelper.WriteErrorLog(ex, "non-UI Exception", $"Runtime terminating: {e.IsTerminating}");
         }
 
         private static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
         {
             var ex = e.Exception;
-            MessageBoxHelper.ShowError(ex.Message);
+            MsgBoxLib.ShowError(ex.Message);
             LogHelper.WriteErrorLog(ex, "UI Exception");
         }
 

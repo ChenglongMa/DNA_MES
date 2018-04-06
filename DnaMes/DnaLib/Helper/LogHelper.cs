@@ -24,15 +24,8 @@ namespace DnaLib.Helper
         /// <returns></returns>
         private static void CreateLogDirectory(string path, string strfile)
         {
-            try
-            {
-                if (!Directory.Exists(path)) Directory.CreateDirectory(path);
-                if (!File.Exists(path + strfile)) File.Create(path + strfile).Dispose();
-            }
-            catch (Exception ex)
-            {
-                MessageBoxHelper.ShowError(ex.Message);
-            }
+            if (!Directory.Exists(path)) Directory.CreateDirectory(path);
+            if (!File.Exists(path + strfile)) File.Create(path + strfile).Dispose();
         }
 
         public static void WriteErrorLog(Exception ex, string fileName, string description = null)

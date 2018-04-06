@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DnaLib.Config;
+using DnaLib.Control;
 using DnaLib.Helper;
 
 namespace DnaMesServer
@@ -60,11 +61,11 @@ namespace DnaMesServer
             };
             if (DbConfigHelper.TestConnection(dbInfo, out var errorMessage))
             {
-                MessageBoxHelper.ShowInformationOk("连接成功");
+                MsgBoxLib.ShowInformationOk("连接成功");
             }
             else
             {
-                MessageBoxHelper.ShowError($"连接失败\n错误信息：{errorMessage}");
+                MsgBoxLib.ShowError($"连接失败\n错误信息：{errorMessage}");
             }
         }
 
@@ -85,11 +86,11 @@ namespace DnaMesServer
             try
             {
                 dbInfo.Update();
-                MessageBoxHelper.ShowInformationOk("保存成功，重启后生效");
+                MsgBoxLib.ShowInformationOk("保存成功，重启后生效");
             }
             catch (Exception ex)
             {
-                MessageBoxHelper.ShowError($"保存失败\n错误信息：{ex.Message}");
+                MsgBoxLib.ShowError($"保存失败\n错误信息：{ex.Message}");
             }
         }
     }

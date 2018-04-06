@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using DnaLib.Control;
 using DnaLib.Helper;
 using DnaMesUi.BasicInfo;
 using DnaMesUi.Templetes;
+using DnaMesUiBll.Shared;
 using DnaMesUiConfig.Model;
 using Infragistics.Win.UltraWinGrid;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -51,7 +53,7 @@ namespace DnaMesUnitTest
             }
             catch (Exception ex)
             {
-                MessageBoxHelper.ShowError(ex.Message);
+                MsgBoxLib.ShowError(ex.Message);
                 return null;
             }
         }

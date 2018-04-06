@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using DnaLib.Control;
 using DnaLib.Helper;
 
 namespace DnaMesServer
@@ -20,19 +21,19 @@ namespace DnaMesServer
 
         private void btnDBInitial_Click(object sender, EventArgs e)
         {
-            if (MessageBoxHelper.ShowQuestion("该操作将删除现有的数据，是否继续？"))
+            if (MsgBoxLib.ShowQuestion("该操作将删除现有的数据，是否继续？"))
             {
                 Cursor.Current = Cursors.WaitCursor;
                 try
                 {
                     Application.DoEvents();
                     //bslMesDbInit.InitialMESDatabase();                    
-                    MessageBoxHelper.ShowInformationOk("操作结束！");
+                    MsgBoxLib.ShowInformationOk("操作结束！");
                 }
                 catch (Exception ex)
                 {
                     Cursor.Current = Cursors.Default;
-                    MessageBoxHelper.ShowError(ex.Message);
+                    MsgBoxLib.ShowError(ex.Message);
                 }
                 finally
                 {
@@ -44,7 +45,7 @@ namespace DnaMesServer
         private void btnBackupRestore_Click(object sender, EventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;
-            if (MessageBoxHelper.ShowInformation("是否删除之前的设备信息"))
+            if (MsgBoxLib.ShowInformation("是否删除之前的设备信息"))
             {
                 Application.DoEvents();
             }

@@ -170,16 +170,27 @@ namespace DnaMesUiBll.BasicInfo
             node.Nodes.Clear();
             BuildSubTree(node, _nodes[node.Key], images);
         }
+
         /// <summary>
         /// 添加项目
         /// </summary>
         /// <param name="proj"></param>
         /// <param name="parentProj"></param>
         /// <returns></returns>
-        public bool AddProject(Project proj,Project parentProj=null)
+        public bool AddProject(Project proj, Project parentProj = null)
         {
-            var res=_dal.Insert(proj);
+            var res = _dal.Insert(proj);
             return parentProj == null ? res : _dal.SetLinkWith(parentProj, proj);
+        }
+
+        /// <summary>
+        /// 验证Project是否存在
+        /// </summary>
+        /// <param name="proj"></param>
+        /// <returns></returns>
+        public bool IsExist(Project proj)
+        {
+            return _dal.IsExist(proj);
         }
     }
 }

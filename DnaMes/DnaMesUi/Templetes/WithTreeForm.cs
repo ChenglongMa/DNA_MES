@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using DnaLib.Control;
 using DnaLib.Helper;
 using DnaMesModel.Model.BasicInfo;
 using DnaMesModel.Shared;
@@ -61,7 +62,7 @@ namespace DnaMesUi.Templetes
 
         #region 树控件区
 
-        private UltraTreeNode SelectedNode => uTree.SelectedNodes?[0];
+        private UltraTreeNode SelectedNode => uTree.SelectedNodes.IsNullOrEmpty() ? null : uTree.SelectedNodes[0];
 
         private void uTree_AfterExpand(object sender, NodeEventArgs e)
         {
@@ -93,11 +94,11 @@ namespace DnaMesUi.Templetes
                     {
                         var pProj = SelectedNode.Parent?.Tag as Project;
                         var form = new ProjectMgtAddEdit("新增项目");
-                        if (form.ShowDialog(this)==DialogResult.OK)
+                        if (form.ShowDialog(this) == DialogResult.OK)
                         {
-                            if (_bll.AddProject(form.Project,pProj))
+                            if (_bll.AddProject(form.Project, pProj))
                             {
-                                MessageBoxHelper.ShowInformationOk("操作成功！");
+                                MsgBoxLib.ShowInformationOk("操作成功！");
                             }
                         }
                     }

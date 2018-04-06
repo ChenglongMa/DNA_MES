@@ -23,9 +23,6 @@ namespace DnaMesUiBll.Shared
     {
         #region 私有字段
 
-        private static List<Column> _fields;
-        private static UltraGrid _ug;
-
         #endregion
 
         #region 公有属性

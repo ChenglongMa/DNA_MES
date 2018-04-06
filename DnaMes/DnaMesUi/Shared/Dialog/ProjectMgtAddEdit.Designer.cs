@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            Infragistics.Win.Appearance appearance1 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance2 = new Infragistics.Win.Appearance();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProjectMgtAddEdit));
             this.btnCancel = new Infragistics.Win.Misc.UltraButton();
             this.btnOk = new Infragistics.Win.Misc.UltraButton();
@@ -105,7 +107,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.btnCancel);
             this.splitContainer1.Panel2.Controls.Add(this.btnOk);
             this.splitContainer1.Size = new System.Drawing.Size(625, 646);
-            this.splitContainer1.SplitterDistance = 566;
+            this.splitContainer1.SplitterDistance = 562;
             this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 1;
             // 
@@ -116,6 +118,7 @@
             this.dteEndTime.Name = "dteEndTime";
             this.dteEndTime.Size = new System.Drawing.Size(162, 28);
             this.dteEndTime.TabIndex = 3;
+            this.dteEndTime.Validating += new System.ComponentModel.CancelEventHandler(this.dteEndTime_Validating);
             // 
             // dteStartTime
             // 
@@ -124,22 +127,33 @@
             this.dteStartTime.Name = "dteStartTime";
             this.dteStartTime.Size = new System.Drawing.Size(162, 28);
             this.dteStartTime.TabIndex = 2;
+            this.dteStartTime.Validating += new System.ComponentModel.CancelEventHandler(this.dteStartTime_Validating);
             // 
             // txtName
             // 
             this.txtName.Location = new System.Drawing.Point(293, 191);
             this.txtName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtName.Name = "txtName";
+            appearance1.FontData.ItalicAsString = "True";
+            appearance1.ForeColor = System.Drawing.Color.Silver;
+            appearance1.ForeColorDisabled = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.txtName.NullTextAppearance = appearance1;
             this.txtName.Size = new System.Drawing.Size(160, 28);
             this.txtName.TabIndex = 1;
+            this.txtName.Validating += new System.ComponentModel.CancelEventHandler(this.txtName_Validating);
             // 
             // txtCode
             // 
             this.txtCode.Location = new System.Drawing.Point(293, 143);
             this.txtCode.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtCode.Name = "txtCode";
+            appearance2.FontData.ItalicAsString = "True";
+            appearance2.ForeColor = System.Drawing.Color.Silver;
+            appearance2.ForeColorDisabled = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.txtCode.NullTextAppearance = appearance2;
             this.txtCode.Size = new System.Drawing.Size(160, 28);
             this.txtCode.TabIndex = 0;
+            this.txtCode.Validating += new System.ComponentModel.CancelEventHandler(this.txtCode_Validating);
             // 
             // lblName
             // 
