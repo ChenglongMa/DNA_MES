@@ -449,14 +449,9 @@ namespace DnaMesDal
                 {
                     RoleAId = roleA.ObjId,
                     RoleBId = roleB.ObjId,
-                    //Creator = SysInfo.EmpId + "@" + SysInfo.UserName,
-                    //CreationTime = DateTime.Now,
-                    //Modifier = SysInfo.EmpId + "@" + SysInfo.UserName,
-                    //ModifiedTime = DateTime.Now,
-                }; //bug:无法删除
+                };
                 Refresh(ref link);
                 return DbClient.Deleteable(link).ExecuteCommandHasChange();
-                //return DbClient.Deleteable(link).AS(tableName).Where(BuildWhereString(link)).ExecuteCommandHasChange();
             }
 
             throw new ArgumentException($"{typeof(TA).Name}[{roleA.ObjId}]与{typeof(TB).Name}[{roleB.ObjId}]关系不存在",
