@@ -11,7 +11,7 @@ namespace DnaMesUnitTest
     [TestClass]
     public class DbProjectTest
     {
-        private readonly BaseDal _dal = new BaseDal<Project>();
+        private readonly BaseDal<Project> _dal = new BaseDal<Project>();
         private readonly List<Project> _dataList = new List<Project>();
 
         [TestInitialize]
@@ -60,6 +60,28 @@ namespace DnaMesUnitTest
                 var p2 = _dataList[i + 1];
                 _dal.SetLinkWith(p1, p2);
             }
+        }
+        [TestMethod]
+        public void DeleteProject()
+        {
+            var proj = new Project
+            {
+                Code = "P00017",
+            };
+            Assert.IsTrue(_dal.Delete(proj));
+        }
+        [TestMethod]
+        public void DeleteLink()
+        {
+            var pA = new Project
+            {
+                Code = "P00013"
+            };
+            var pB = new Project
+            {
+                Code = "P00014"
+            };
+            Assert.IsTrue(_dal.DeleteLinkWith<Project,Project,ProjectProject>(pA, pB));
         }
     }
 }

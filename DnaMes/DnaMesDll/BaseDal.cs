@@ -59,6 +59,7 @@ namespace DnaMesDal
                 throw new ArgumentException($"删：{typeof(T).Name}[{model.ObjId}],该数据不存在");
             }
 
+            Refresh(ref model);
             return DbClient.Deleteable<T>().Where(BuildWhereString(model)).ExecuteCommandHasChange();
         }
 
@@ -124,7 +125,7 @@ namespace DnaMesDal
                 throw new ArgumentException($"{typeof(T).Name}[{roleA.ObjId}]不存在", nameof(roleA));
             }
 
-            Get(ref roleA);
+            Refresh(ref roleA);
             var children = DbClient.Queryable<TLink>().AS("L_" + typeof(T).Name + typeof(TB).Name)
                 .Where(l => l.RoleAId == roleA.ObjId).ToList();
             if (children.IsNullOrEmpty())
@@ -162,7 +163,7 @@ namespace DnaMesDal
                 throw new ArgumentException($"{typeof(T).Name}[{roleB.ObjId}]不存在", nameof(roleB));
             }
 
-            Get(ref roleB);
+            Refresh(ref roleB);
             var parent = DbClient.Queryable<TLink>().AS("L_" + typeof(T).Name + typeof(TB).Name)
                 .Where(l => l.RoleBId == roleB.ObjId).First();
             return parent == null ? null : DbClient.Queryable<T>().Where(p => p.ObjId == parent.RoleAId).First();
@@ -218,7 +219,7 @@ namespace DnaMesDal
                 {
                     ConnectionString = dbInfo.ToString(),
                     DbType = dbInfo.DbType,
-                    InitKeyType = InitKeyType.Attribute //从数据库读取主键
+                    InitKeyType = InitKeyType.Attribute //从特性中读取主键
                 });
             }
         }
@@ -291,12 +292,6 @@ namespace DnaMesDal
             DbSysClient.CodeFirst.InitTables(typeof(T));
         }
 
-        public void CreateLinkTable<TA, TB>() where TA : BaseModel, new() where TB : BaseModel, new()
-        {
-            throw new NotImplementedException();
-            //DbSysClient
-        }
-
         /// <summary>
         /// 插入并返回bool, 并将identity赋值到实体
         /// </summary>
@@ -330,6 +325,7 @@ namespace DnaMesDal
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
+        //TODO:效率较低
         public bool Update<T>(T model) where T : BaseModel, new()
         {
             if (model == null) throw new ArgumentNullException(nameof(model));
@@ -338,7 +334,8 @@ namespace DnaMesDal
                 throw new ArgumentException($"改：{typeof(T).Name}[{model.ObjId}]:该数据不存在");
             }
 
-            var m = DbClient.Queryable<T>().Where(BuildWhereString(model)).Single(); //查询库内该数据ObjId并赋值给新model
+            //查询库内该数据ObjId并赋值给新model
+            var m = DbClient.Queryable<T>().Where(BuildWhereString(model)).Single();
             model.ObjId = m.ObjId;
             model.ModifiedTime = DateTime.Now;
             model.Creator = m.Creator;
@@ -364,7 +361,7 @@ namespace DnaMesDal
         /// 根据关键属性查询库内数据并将其他属性更新
         /// </summary>
         /// <param name="model"></param>
-        public void Get<T>(ref T model) where T : BaseModel, new()
+        public void Refresh<T>(ref T model) where T : BaseModel, new()
         {
             model = DbClient.Queryable<T>().Where(BuildWhereString(model)).Single();
         }
@@ -409,15 +406,16 @@ namespace DnaMesDal
         /// <param name="roleA"></param>
         /// <param name="roleB"></param>
         /// <returns></returns>
-        private bool IsExistLink<TA, TB>(TA roleA, TB roleB) where TA : BaseModel, new() where TB : BaseModel, new()
+        private bool IsExistLink<TA, TB>(ref TA roleA, ref TB roleB)
+            where TA : BaseModel, new() where TB : BaseModel, new()
         {
             if (!IsExist(roleA) || !IsExist(roleB))
             {
                 return false;
             }
 
-            Get(ref roleA);
-            Get(ref roleB);
+            Refresh(ref roleA);
+            Refresh(ref roleB);
             var link = new BaseLink
             {
                 RoleAId = roleA.ObjId,
@@ -435,12 +433,19 @@ namespace DnaMesDal
         /// <param name="roleA"></param>
         /// <param name="roleB"></param>
         /// <returns></returns>
-        public bool DeleteLinkWith<TA, TB>(TA roleA, TB roleB) where TA : BaseModel, new() where TB : BaseModel, new()
+        //public bool DeleteLinkWith<TA, TB>(TA roleA, TB roleB) where TA : BaseModel, new() where TB : BaseModel, new()
+        //{
+        //    return DeleteLinkWih<>()
+        //}
+        public bool DeleteLinkWith<TA, TB, TLink>(TA roleA, TB roleB)
+            where TA : BaseModel, new()
+            where TB : BaseModel, new()
+            where TLink : BaseLink, new()
         {
             var tableName = "L_" + typeof(TA).Name + typeof(TB).Name;
-            if (IsExistLink(roleA, roleB))
+            if (IsExistLink(ref roleA, ref roleB))
             {
-                var link = new BaseLink
+                var link = new TLink
                 {
                     RoleAId = roleA.ObjId,
                     RoleBId = roleB.ObjId,
@@ -448,8 +453,10 @@ namespace DnaMesDal
                     //CreationTime = DateTime.Now,
                     //Modifier = SysInfo.EmpId + "@" + SysInfo.UserName,
                     //ModifiedTime = DateTime.Now,
-                };
-                return DbClient.Deleteable(link).AS(tableName).Where(BuildWhereString(link)).ExecuteCommandHasChange();
+                }; //bug:无法删除
+                Refresh(ref link);
+                return DbClient.Deleteable(link).ExecuteCommandHasChange();
+                //return DbClient.Deleteable(link).AS(tableName).Where(BuildWhereString(link)).ExecuteCommandHasChange();
             }
 
             throw new ArgumentException($"{typeof(TA).Name}[{roleA.ObjId}]与{typeof(TB).Name}[{roleB.ObjId}]关系不存在",
@@ -459,7 +466,6 @@ namespace DnaMesDal
         /// <summary>
         /// 建立关系
         /// </summary>
-        /// bug:objid=-1
         /// <typeparam name="TA"></typeparam>
         /// <typeparam name="TB"></typeparam>
         /// <param name="roleA"></param>
@@ -468,14 +474,14 @@ namespace DnaMesDal
         public bool SetLinkWith<TA, TB>(TA roleA, TB roleB) where TA : BaseModel, new() where TB : BaseModel, new()
         {
             var tableName = "L_" + typeof(TA).Name + typeof(TB).Name;
-            if (IsExistLink(roleA, roleB))
+            if (IsExistLink(ref roleA, ref roleB))
             {
                 throw new ArgumentException($"{typeof(TA).Name}[{roleA.ObjId}]与{typeof(TB).Name}[{roleB.ObjId}]关系已存在",
                     tableName);
             }
 
-            Get(ref roleA);
-            Get(ref roleB);
+            Refresh(ref roleA);
+            Refresh(ref roleB);
             var link = new BaseLink
             {
                 RoleAId = roleA.ObjId,

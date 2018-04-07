@@ -23,19 +23,20 @@ namespace DnaMesUi.Templetes
             InitializeComponent();
             dteStartTime.Enabled = ckStartTime.Checked;
             dteEndTime.Enabled = ckEndTime.Checked;
-            _bll.BuildTree(ref uTree, imageList1.Images, p => p.IsMain);
+            _bll.BuildTree(ref uTree, imageList1.Images, _projectsNeedRefresh, p => p.IsMain);
             GridBindingBll<Project>.BindingStyleAndData(ug1, null, FieldName);
         }
 
         private readonly ProjectMgtBll _bll = new ProjectMgtBll();
         private const string FieldName = "BasicInfo\\Project.xml";
-        private Queue<UltraTreeNode> NodesWithColor = new Queue<UltraTreeNode>();
+        private readonly Queue<UltraTreeNode> _nodesWithColor = new Queue<UltraTreeNode>();
+        private readonly LinkedList<string> _projectsNeedRefresh = new LinkedList<string>();
 
         #region 其他
 
         private void RefreshData()
         {
-            _bll.BuildTree(ref uTree, imageList1.Images, p => p.IsMain);
+            _bll.BuildTree(ref uTree, imageList1.Images, _projectsNeedRefresh, p => p.IsMain);
             GridBindingBll<Project>.BindingData(ug1, null, FieldName);
         }
 
@@ -82,7 +83,7 @@ namespace DnaMesUi.Templetes
 
         private void uTree_AfterExpand(object sender, NodeEventArgs e)
         {
-            _bll.AfterExpand(e.TreeNode, imageList1.Images);
+            _bll.AfterExpand(e.TreeNode, imageList1.Images, _projectsNeedRefresh);
         }
 
         private void uTree_AfterSelect(object sender, SelectEventArgs e)
@@ -95,15 +96,16 @@ namespace DnaMesUi.Templetes
                 node.Expanded = true;
             }
 
-            var children = _bll.GetChildren(uTree.SelectedNodes);
-            GridBindingBll<Project>.BindingData(ug1, children, FieldName);
+            var dataSource = new List<Project> {SelectedNode?.Tag as Project};
+            dataSource.AddRange(_bll.GetChildren(uTree.SelectedNodes));
+            GridBindingBll<Project>.BindingData(ug1, dataSource, FieldName);
         }
 
         private void ResetNodeBackColor()
         {
-            while (NodesWithColor.Count > 0)
+            while (_nodesWithColor.Count > 0)
             {
-                var node = NodesWithColor.Dequeue();
+                var node = _nodesWithColor.Dequeue();
                 node.Override.NodeAppearance.ResetBackColor();
             }
         }
@@ -114,7 +116,7 @@ namespace DnaMesUi.Templetes
 
         private void toolBarManager_ToolClick(object sender, ToolClickEventArgs e)
         {
-            var pProj = SelectedNode.Parent?.Tag as Project;
+            var pProj = SelectedNode?.Parent?.Tag as Project;
             ProjectMgtAddEdit form;
             switch (e.Tool.Key)
             {
@@ -130,30 +132,32 @@ namespace DnaMesUi.Templetes
                         if (_bll.AddProject(form.Project, pProj))
                         {
                             MsgBoxLib.ShowInformationOk("操作成功！");
+                            //将父类加入List，表示需要从数据库中更新子类数据
+                            if (pProj != null) _projectsNeedRefresh.AddFirst(pProj.Code);
                         }
                     }
 
                     goto default;
 
                 case "Edit":
-                    form = new ProjectMgtAddEdit("编辑项目", SelectedNode.Tag as Project);
+                    form = new ProjectMgtAddEdit("编辑项目", SelectedNode?.Tag as Project);
                     if (form.ShowDialog(this) == DialogResult.OK)
                     {
-                        if (_bll.UpdateProject(form.Project))
+                        if (_bll.UpdateProject(form.Project,pProj))
                         {
                             MsgBoxLib.ShowInformationOk("操作成功！");
+                            //将父类加入List，表示需要从数据库中更新子类数据
+                            if (pProj != null) _projectsNeedRefresh.AddFirst(pProj.Code);
                         }
                     }
 
-                    RefreshData();
                     goto default;
 
                 case "Delete":
-                    RefreshData();
                     goto default;
 
                 case "AddChild":
-                    RefreshData();
+
                     goto default;
             }
         }
@@ -186,7 +190,7 @@ namespace DnaMesUi.Templetes
             else
             {
                 node.Override.NodeAppearance.BackColor = Color.DarkTurquoise;
-                NodesWithColor.Enqueue(node);
+                _nodesWithColor.Enqueue(node);
             }
         }
 

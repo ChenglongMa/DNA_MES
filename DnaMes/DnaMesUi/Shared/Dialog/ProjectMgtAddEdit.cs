@@ -30,7 +30,7 @@ namespace DnaMesUi.Shared.Dialog
             Text = text;
             if (proj == null)
             {
-                IsEdit = false;
+                _isEditable = false;
                 //项目无父节点时只能为主项目
                 ckIsMain.Checked = true;
                 ckIsMain.Enabled = false;
@@ -38,7 +38,7 @@ namespace DnaMesUi.Shared.Dialog
             }
             else
             {
-                IsEdit = true;
+                _isEditable = true;
                 BindingProject(proj);
                 //txtCode.Enabled = false;
                 txtCode.ReadOnly = true;
@@ -47,7 +47,7 @@ namespace DnaMesUi.Shared.Dialog
         }
 
         private readonly ProjectMgtBll _bll = new ProjectMgtBll();
-        private readonly bool IsEdit;
+        private readonly bool _isEditable;//true为“编辑”状态，false为“新增”状态
 
         public sealed override string Text
         {
@@ -78,7 +78,7 @@ namespace DnaMesUi.Shared.Dialog
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            if (!IsEdit && _bll.IsExist(Project))
+            if (!_isEditable && _bll.IsExist(Project))
             {
                 MsgBoxLib.ShowError("该项目已存在");
                 return;

@@ -7,11 +7,13 @@
 
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using DnaLib.Helper;
 using DnaMesModel;
 using DnaMesUiConfig.Helper;
 using DnaMesUiConfig.Model;
+using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
 
 namespace DnaMesUiBll.Shared
@@ -88,6 +90,16 @@ namespace DnaMesUiBll.Shared
             }
 
             ug.DataSource = new DnaBindingSource<T>(dataSource, fields);
+            //将第一行着色
+            foreach (var row in ug.Rows)
+            {
+                row.Appearance.Reset(); 
+            }
+            if (!ug.Rows.IsNullOrEmpty())
+            {
+                ug.Rows[0].Appearance.BackColor = Color.CadetBlue;
+                ug.Rows[0].Appearance.FontData.Bold = DefaultableBoolean.True;
+            }
         }
 
         #endregion

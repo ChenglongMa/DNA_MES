@@ -7,6 +7,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using DnaLib.Helper;
 using DnaMesUiConfig.Model;
 using Infragistics.Win;
@@ -43,7 +44,6 @@ namespace DnaMesUiConfig.Helper
         {
             ug.DisplayLayout.Override.CellClickAction =
                 isRowSelect ? CellClickAction.RowSelect : CellClickAction.EditAndSelectText;
-            
         }
         /// <summary>
         /// 根据配置文件设置Grid样式

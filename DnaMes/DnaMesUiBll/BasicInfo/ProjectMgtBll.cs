@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using DnaLib.Helper;
 using DnaMesDal;
 using DnaMesModel;
+using DnaMesModel.Link.BasicInfo;
 using DnaMesModel.Model.BasicInfo;
 using DnaMesUiBll.Shared;
 using Infragistics.Win.UltraWinGrid;
@@ -44,7 +45,8 @@ namespace DnaMesUiBll.BasicInfo
         /// <param name="pNode"></param>
         /// <param name="children"></param>
         /// <param name="images"></param>
-        private void BuildSubTree(UltraTreeNode pNode, IEnumerable<Project> children, ImageList.ImageCollection images)
+        /// <param name="needUpdateProjects"></param>
+        private void BuildSubTree(UltraTreeNode pNode, IEnumerable<Project> children, ImageList.ImageCollection images,LinkedList<string> needUpdateProjects)
         {
             if (children == null)
             {
@@ -68,8 +70,19 @@ namespace DnaMesUiBll.BasicInfo
                 }
 
                 List<Project> grandChildern;
+                var needUpdate = needUpdateProjects.Find(model.Code) != null;
+                if (needUpdate)
+                {
+                    needUpdateProjects.Remove(model.Code);
+                    grandChildern = _dal.GetChildren<Project>(model);
+                    //更新内存中对象集合
+                    if (_nodes.ContainsKey(model.Code))
+                    {
+                        _nodes[model.Code] = grandChildern;
+                    }
 
-                if (!_nodes.ContainsKey(model.Code))//bug:编辑后无法更新到UI
+                }
+                else if (!_nodes.ContainsKey(model.Code))
                 {
                     grandChildern = _dal.GetChildren<Project>(model);
                     _nodes.Add(model.Code, grandChildern);
@@ -97,8 +110,9 @@ namespace DnaMesUiBll.BasicInfo
         /// </summary>
         /// <param name="uTree"></param>
         /// <param name="images"></param>
+        /// <param name="needUpdate">是否需要从数据库更新数据</param>
         /// <param name="exp"></param>
-        public void BuildTree(ref UltraTree uTree, ImageList.ImageCollection images,
+        public void BuildTree(ref UltraTree uTree, ImageList.ImageCollection images,LinkedList<string> needUpdate,
             Expression<Func<Project, bool>> exp = null)
         {
             var children = _dal.Get(exp);
@@ -117,7 +131,7 @@ namespace DnaMesUiBll.BasicInfo
             }
 
             root.Nodes.Clear();
-            BuildSubTree(root, children, images);
+            BuildSubTree(root, children, images, needUpdate);
             root.Expanded = true;
         }
 
@@ -162,11 +176,11 @@ namespace DnaMesUiBll.BasicInfo
             return expTemp.ToExpression();
         }
 
-        public void AfterExpand(UltraTreeNode node, ImageList.ImageCollection images)
+        public void AfterExpand(UltraTreeNode node, ImageList.ImageCollection images,LinkedList<string> needUpdate)
         {
             if (!_nodes.ContainsKey(node.Key) || _nodes[node.Key].IsNullOrEmpty()) return;
             node.Nodes.Clear();
-            BuildSubTree(node, _nodes[node.Key], images);
+            BuildSubTree(node, _nodes[node.Key], images, needUpdate);
         }
 
         /// <summary>
@@ -253,14 +267,24 @@ namespace DnaMesUiBll.BasicInfo
                 }
             }
         }
+
         /// <summary>
         /// 更新项目
+        /// 若更新为主项目并存在父级则将关系删除
         /// </summary>
         /// <param name="project"></param>
+        /// <param name="parent"></param>
         /// <returns></returns>
-        public bool UpdateProject(Project project)
+        public bool UpdateProject(Project project,Project parent=null)
         {
-            return _dal.Update(project);
+            var res = true;
+            //修改为主项目后将原来与父级关系删除
+            if (project.IsMain&&parent!=null)
+            {
+                res=_dal.DeleteLinkWith<Project,Project,ProjectProject>(parent, project);
+            }
+
+            return res && _dal.Update(project);
         }
     }
 }
