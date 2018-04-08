@@ -5,6 +5,11 @@ using DnaMesUiBll.Shared;
 
 namespace DnaMesUi.Templetes
 {
+    /// <summary>
+    /// Info:迁移步骤：
+    /// 1、修改namespace
+    /// 2、重命名Form
+    /// </summary>
     public partial class NoTreeForm : BaseForm
     {
         public NoTreeForm()

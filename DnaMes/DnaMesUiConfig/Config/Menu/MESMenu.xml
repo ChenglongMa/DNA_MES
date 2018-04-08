@@ -22,7 +22,7 @@
       <FormType>ChildForm</FormType>
     </MenuItems>    
     <MenuItems Name="ProjectMant" Text="项目管理" ShortCut="P" CommandType="Activate" DomainId="10001">
-      <FormPath>Templetes.NoTreeForm</FormPath>
+      <FormPath>BasicInfo.ProjectMgtForm</FormPath>
       <FormType>ChildForm</FormType>
     </MenuItems>
     <MenuItems Name="ProcessMant" Text="工艺管理" ShortCut="R" CommandType="Activate" DomainId="10002">

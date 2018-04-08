@@ -28,6 +28,8 @@ namespace DnaLib.Config
         /// </summary>
         public bool IsKey { get; set; } = false;
 
+        public new int Length { get; set; } = 45;
+
         #endregion
 
         #region 私有方法

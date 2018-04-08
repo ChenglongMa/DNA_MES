@@ -9,6 +9,7 @@ using DnaMesUiBll.Shared;
 using DnaMesUiConfig.Model;
 using Infragistics.Win.UltraWinGrid;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ProcessMgtForm = DnaMesUi.BasicInfo.ProcessMgtForm;
 
 namespace DnaMesUnitTest
 {
@@ -128,7 +129,7 @@ namespace DnaMesUnitTest
                                 Name = "ProcessMant",
                                 Text = "工艺管理",
                                 ShortCut = "R",
-                                FormPath = $"{nameof(DnaMesUi.Templetes)}.{nameof(WithTreeForm)}",
+                                FormPath = $"{nameof(DnaMesUi.Templetes)}.{nameof(ProcessMgtForm)}",
                                 FormType = FormType.ChildForm,
                                 DomainId = 10002,
                                 CommandType = CommandType.Activate,

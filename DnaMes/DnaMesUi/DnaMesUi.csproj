@@ -70,17 +70,17 @@
     <Compile Include="BaseForm.Designer.cs">
       <DependentUpon>BaseForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="BasicInfo\ProcessMantForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BasicInfo\ProcessMantForm.Designer.cs">
-      <DependentUpon>ProcessMantForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="BasicInfo\ProjectMgtForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="BasicInfo\ProjectMgtForm.Designer.cs">
       <DependentUpon>ProjectMgtForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BasicInfo\ProcessMgtForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BasicInfo\ProcessMgtForm.Designer.cs">
+      <DependentUpon>ProcessMgtForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -120,11 +120,11 @@
     <EmbeddedResource Include="BaseForm.resx">
       <DependentUpon>BaseForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BasicInfo\ProcessMantForm.resx">
-      <DependentUpon>ProcessMantForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="BasicInfo\ProjectMgtForm.resx">
       <DependentUpon>ProjectMgtForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BasicInfo\ProcessMgtForm.resx">
+      <DependentUpon>ProcessMgtForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

@@ -1,10 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Grid Name="ug" Text="项目管理">
+<Grid Name="ug" Text="工艺管理">
   <Columns>
-    <Column Name="Code" Text="项目编号" Visible="true" IsReadOnly="true" Width="120" ColumnStyle="Default" DataType="System.String" />
-    <Column Name="Name" Text="项目名称" Visible="true" IsReadOnly="true" Width="120" ColumnStyle="Default" DataType="System.String" />
-    <Column Name="StartingTime" Text="开始时间" Visible="true" IsReadOnly="true" Width="120" ColumnStyle="DateTime" DataType="System.DateTime" />
-    <Column Name="EndingTime" Text="结束时间" Visible="true" IsReadOnly="true" Width="120" ColumnStyle="DateTime" DataType="System.DateTime" />
-    <Column Name="IsMain" Text="主项目" Visible="true" IsReadOnly="false" Width="80" ColumnStyle="Default" DataType="System.String" Format="BoolCHN" />
+    <Column Name="Code" Text="工艺编号" Visible="true" IsReadOnly="true" Width="120" ColumnStyle="Default" DataType="System.String" />
+    <Column Name="Name" Text="工艺名称" Visible="true" IsReadOnly="true" Width="120" ColumnStyle="Default" DataType="System.String" />
+    <Column Name="IsValid" Text="是否有效" Visible="true" IsReadOnly="true" Width="80" ColumnStyle="Default" DataType="System.String" Format="BoolCHN" />
+    <Column Name="Description" Text="工艺描述" Visible="true" IsReadOnly="true" Width="200" ColumnStyle="Default" DataType="System.String" />
   </Columns>
 </Grid>

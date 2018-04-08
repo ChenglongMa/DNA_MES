@@ -16,28 +16,28 @@ using Infragistics.Win.UltraWinTree;
 
 namespace DnaMesUi.BasicInfo
 {
-    public partial class ProjectMgtForm : BaseForm
+    public partial class ProcessMgtForm : BaseForm
     {
-        public ProjectMgtForm()
+        public ProcessMgtForm()
         {
             InitializeComponent();
             dteStartTime.Enabled = ckStartTime.Checked;
             dteEndTime.Enabled = ckEndTime.Checked;
-            _bll.BuildTree(ref uTree, imageList1.Images, _projectsNeedRefresh, p => p.IsMain);
-            GridBindingBll<Project>.BindingStyleAndData(ug1, null, FieldName);
+            _bll.BuildTree(ref uTree, imageList1.Images);
+            GridBindingBll<Process>.BindingStyleAndData(ug1, null, FieldName);
         }
 
-        private readonly ProjectMgtBll _bll = new ProjectMgtBll();
-        private const string FieldName = "BasicInfo\\Project.xml";
-        private readonly Queue<UltraTreeNode> _nodesWithColor = new Queue<UltraTreeNode>();
-        private readonly LinkedList<string> _projectsNeedRefresh = new LinkedList<string>();
+        private readonly ProcessMgtBll _bll = new ProcessMgtBll();
+        private const string FieldName = "BasicInfo\\Process.xml";
+        //private readonly Queue<UltraTreeNode> _nodesWithColor = new Queue<UltraTreeNode>();
+        //private readonly LinkedList<string> _projectsNeedRefresh = new LinkedList<string>();
 
         #region 其他
 
         private void RefreshData()
         {
-            _bll.BuildTree(ref uTree, imageList1.Images, _projectsNeedRefresh, p => p.IsMain);
-            GridBindingBll<Project>.BindingData(ug1, null, FieldName);
+            _bll.BuildTree(ref uTree, imageList1.Images);
+            GridBindingBll<Process>.BindingData(ug1, null, FieldName);
         }
 
         #endregion
@@ -52,7 +52,8 @@ namespace DnaMesUi.BasicInfo
             var endTime = dteEndTime.Enabled ? dteEndTime.DateTime : SysInfo.IllegalDateTime;
             var exp = _bll.BuildExp(code, name, startTime, endTime);
             var projs = _bll.GetDataSource(exp);
-            GridBindingBll<Project>.BindingData(ug1, projs, FieldName);
+            //GridBindingBll<Process>.BindingData(ug1, projs, FieldName);
+            //TODO:更新逻辑
         }
 
         private void ckStartTime_CheckedChanged(object sender, EventArgs e)
@@ -83,12 +84,11 @@ namespace DnaMesUi.BasicInfo
 
         private void uTree_AfterExpand(object sender, NodeEventArgs e)
         {
-            _bll.AfterExpand(e.TreeNode, imageList1.Images, _projectsNeedRefresh);
+            _bll.AfterExpand(e.TreeNode, imageList1.Images);
         }
 
         private void uTree_AfterSelect(object sender, SelectEventArgs e)
         {
-            ResetNodeBackColor();
             SetToolsEnable(SelectedNode?.Tag is Project, "Add", "Delete", "Edit", "AddChild");
 
             foreach (var node in uTree.SelectedNodes)
@@ -96,19 +96,18 @@ namespace DnaMesUi.BasicInfo
                 node.Expanded = true;
             }
 
-            var dataSource = new List<Project> {SelectedNode?.Tag as Project};
-            dataSource.AddRange(_bll.GetChildren(uTree.SelectedNodes));
-            GridBindingBll<Project>.BindingData(ug1, dataSource, FieldName);
+            var dataSource = _bll.GetProcesses(uTree.SelectedNodes);
+            GridBindingBll<Process>.BindingData(ug1, dataSource, FieldName);
         }
 
-        private void ResetNodeBackColor()
-        {
-            while (_nodesWithColor.Count > 0)
-            {
-                var node = _nodesWithColor.Dequeue();
-                node.Override.NodeAppearance.ResetBackColor();
-            }
-        }
+        //private void ResetNodeBackColor()
+        //{
+        //    while (_nodesWithColor.Count > 0)
+        //    {
+        //        var node = _nodesWithColor.Dequeue();
+        //        node.Override.NodeAppearance.ResetBackColor();
+        //    }
+        //}
 
         #endregion
 
@@ -116,8 +115,8 @@ namespace DnaMesUi.BasicInfo
 
         private void toolBarManager_ToolClick(object sender, ToolClickEventArgs e)
         {
-            var pProj = SelectedNode?.Parent?.Tag as Project;
-            ProjectMgtAddEdit form;
+            var pProj = SelectedNode?.Parent?.Tag as Process;
+            ProcessMgtAddEdit form;
             switch (e.Tool.Key)
             {
                 case "Refresh":
@@ -126,10 +125,10 @@ namespace DnaMesUi.BasicInfo
                     break;
                 case "Add":
 
-                    form = new ProjectMgtAddEdit("新增项目");
+                    form = new ProcessMgtAddEdit("新增项目");
                     if (form.ShowDialog(this) == DialogResult.OK)
                     {
-                        if (_bll.AddProject(form.Project, pProj))
+                        if (_bll.AddProcess(form.Process, pProj))
                         {
                             MsgBoxLib.ShowInformationOk("操作成功！");
                             //将父类加入List，表示需要从数据库中更新子类数据
@@ -144,10 +143,10 @@ namespace DnaMesUi.BasicInfo
                     goto default;
 
                 case "Edit":
-                    form = new ProjectMgtAddEdit("编辑项目", SelectedNode?.Tag as Project);
+                    form = new ProcessMgtAddEdit("编辑项目", SelectedNode?.Tag as Process);
                     if (form.ShowDialog(this) == DialogResult.OK)
                     {
-                        if (_bll.UpdateProject(form.Project,pProj))
+                        if (_bll.UpdateProcess(form.Process,pProj))
                         {
                             MsgBoxLib.ShowInformationOk("操作成功！");
                             //将父类加入List，表示需要从数据库中更新子类数据
@@ -162,9 +161,9 @@ namespace DnaMesUi.BasicInfo
                     goto default;
 
                 case "Delete":
-                    if (SelectedNode?.Tag is Project proj)
+                    if (SelectedNode?.Tag is Process proj)
                     {
-                        if (_bll.DeleteProject(proj, pProj))
+                        if (_bll.DeleteProcess(proj, pProj))
                         {
                             MsgBoxLib.ShowInformationOk("操作成功");
                             //将父类加入List，表示需要从数据库中更新子类数据
@@ -187,7 +186,7 @@ namespace DnaMesUi.BasicInfo
                     goto default;
             }
         }
-
+        //TODO:修改逻辑
         private void SetToolsEnable(bool enable, params string[] keys)
         {
             foreach (var key in keys)
@@ -207,7 +206,7 @@ namespace DnaMesUi.BasicInfo
         private void ug1_DoubleClickRow(object sender, DoubleClickRowEventArgs e)
         {
             ResetNodeBackColor();
-            if (!(e.Row.ListObject is Project proj)) return;
+            if (!(e.Row.ListObject is Process proj)) return;
             var node = _bll.FindNode(uTree, proj);
             if (node == null)
             {
