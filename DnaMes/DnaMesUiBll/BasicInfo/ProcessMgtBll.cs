@@ -56,7 +56,7 @@ namespace DnaMesUiBll.BasicInfo
 
         public void AfterExpand(UltraTreeNode node, ImageList.ImageCollection images)
         {
-            _projBll.AfterExpand(node, images, null);
+            _projBll.AfterExpand(node, images);
         }
 
         public List<Process> GetProcesses(SelectedNodesCollection nodes)
