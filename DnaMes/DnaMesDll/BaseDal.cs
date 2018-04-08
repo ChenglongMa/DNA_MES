@@ -48,6 +48,7 @@ namespace DnaMesDal
 
         /// <summary>
         /// 根据关键属性删除Model
+        /// TODO:如何删除依赖关系
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
@@ -430,13 +431,10 @@ namespace DnaMesDal
         /// </summary>
         /// <typeparam name="TA"></typeparam>
         /// <typeparam name="TB"></typeparam>
+        /// <typeparam name="TLink">roleA,roleB关系类</typeparam>
         /// <param name="roleA"></param>
         /// <param name="roleB"></param>
         /// <returns></returns>
-        //public bool DeleteLinkWith<TA, TB>(TA roleA, TB roleB) where TA : BaseModel, new() where TB : BaseModel, new()
-        //{
-        //    return DeleteLinkWih<>()
-        //}
         public bool DeleteLinkWith<TA, TB, TLink>(TA roleA, TB roleB)
             where TA : BaseModel, new()
             where TB : BaseModel, new()

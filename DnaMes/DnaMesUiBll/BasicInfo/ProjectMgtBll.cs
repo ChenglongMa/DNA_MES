@@ -286,5 +286,21 @@ namespace DnaMesUiBll.BasicInfo
 
             return res && _dal.Update(project);
         }
+        /// <summary>
+        /// 先删除依赖关系，再删除实体
+        /// </summary>
+        /// <param name="proj"></param>
+        /// <param name="pProj"></param>
+        /// <returns></returns>
+        public bool DeleteProject(Project proj, Project pProj=null)
+        {
+            var res = true;
+            if (pProj != null)
+            {
+                res=_dal.DeleteLinkWith<Project, Project, ProjectProject>(pProj, proj);
+            }
+
+            return res && _dal.Delete(proj);
+        }
     }
 }

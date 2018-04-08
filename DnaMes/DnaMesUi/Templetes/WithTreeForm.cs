@@ -135,6 +135,10 @@ namespace DnaMesUi.Templetes
                             //将父类加入List，表示需要从数据库中更新子类数据
                             if (pProj != null) _projectsNeedRefresh.AddFirst(pProj.Code);
                         }
+                        else
+                        {
+                            MsgBoxLib.ShowStop("操作失败");
+                        }
                     }
 
                     goto default;
@@ -149,15 +153,37 @@ namespace DnaMesUi.Templetes
                             //将父类加入List，表示需要从数据库中更新子类数据
                             if (pProj != null) _projectsNeedRefresh.AddFirst(pProj.Code);
                         }
+                        else
+                        {
+                            MsgBoxLib.ShowStop("操作失败");
+                        }
                     }
 
                     goto default;
 
                 case "Delete":
+                    if (SelectedNode?.Tag is Project proj)
+                    {
+                        if (_bll.DeleteProject(proj, pProj))
+                        {
+                            MsgBoxLib.ShowInformationOk("操作成功");
+                            //将父类加入List，表示需要从数据库中更新子类数据
+                            if (pProj != null) _projectsNeedRefresh.AddFirst(pProj.Code);
+                        }
+                        else
+                        {
+                            MsgBoxLib.ShowStop("操作失败");
+                        }
+                    }
+                    else
+                    {
+                        MsgBoxLib.ShowWarning("请先选择要删除的项目");
+
+                    }
                     goto default;
 
                 case "AddChild":
-
+                    //TODO：还未想出解决方案
                     goto default;
             }
         }
