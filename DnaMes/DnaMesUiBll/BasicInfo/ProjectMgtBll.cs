@@ -11,6 +11,7 @@ using System.Linq.Expressions;
 using System.Windows.Forms;
 using DnaLib.Helper;
 using DnaMesDal;
+using DnaMesModel;
 using DnaMesModel.Link.BasicInfo;
 using DnaMesModel.Model.BasicInfo;
 using DnaMesUiBll.Shared;
@@ -67,7 +68,7 @@ namespace DnaMesUiBll.BasicInfo
                 }
             }
         }
-
+        
         #endregion
 
         #region 公有方法
@@ -102,6 +103,10 @@ namespace DnaMesUiBll.BasicInfo
         {
             while (true)
             {
+                if (proj == null)
+                {
+                    return null;
+                }
                 var node = uTree.GetNodeByKey(proj.Code);
                 if (node != null)
                 {
@@ -146,6 +151,7 @@ namespace DnaMesUiBll.BasicInfo
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// 更新项目
         /// 若更新为主项目并存在父级则将关系删除
@@ -153,18 +159,17 @@ namespace DnaMesUiBll.BasicInfo
         /// <param name="project"></param>
         /// <param name="parent"></param>
         /// <returns></returns>
-        public bool UpdateProject(Project project, Project parent = null)
+        public override bool UpdateModel<TParent>(Project project, TParent parent = null)
         {
             var res = true;
             //修改为主项目后将原来与父级关系删除
-            if (project.IsMain && parent != null)
+            if (project.IsMain && parent is Project p)
             {
-                res = Dal.DeleteLinkWith<Project, Project, ProjectProject>(parent, project);
+                res = Dal.DeleteLinkWith<Project, Project, ProjectProject>(p, project);
             }
 
             return res && Dal.Update(project);
         }
-
 
     }
 }

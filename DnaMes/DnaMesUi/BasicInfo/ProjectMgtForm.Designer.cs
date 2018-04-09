@@ -512,7 +512,7 @@
             this.Controls.Add(this._BaseForm_Toolbars_Dock_Area_Top);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "ProjectMgtForm";
-            this.Text = "ProjectMgtForm";
+            this.Text = "项目管理";
             ((System.ComponentModel.ISupportInitialize)(this.toolBarManager)).EndInit();
             this.BaseForm_Fill_Panel.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);

@@ -1,6 +1,6 @@
 ﻿namespace DnaMesUi
 {
-    partial class BaseDialog
+    partial class BaseDialog<T>
     {
         /// <summary>
         /// Required designer variable.

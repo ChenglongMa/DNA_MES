@@ -88,12 +88,21 @@ namespace DnaMesUiBll.Shared
             var res = Dal.Insert(model);
             return parent == null ? res : Dal.SetLinkWith(parent, model);
         }
+        /// <summary>
+        /// 更新Model
+        /// </summary>
+        /// <typeparam name="TParent"></typeparam>
+        /// <param name="model"></param>
+        /// <param name="parent"></param>
+        /// <returns></returns>
+        public abstract bool UpdateModel<TParent>(T model, TParent parent = null) where TParent : BaseModel, new();
 
         /// <summary>
         /// 获取子类集合
         /// </summary>
         /// <param name="selectedNodes"></param>
-        public List<T> GetChildren(SelectedNodesCollection selectedNodes)
+        /// <param name="getChildren"></param>
+        public List<T> GetChildren(SelectedNodesCollection selectedNodes, Func<List<T>> getChildren = null)
         {
             var children = new List<T>();
 
@@ -102,6 +111,10 @@ namespace DnaMesUiBll.Shared
                 if (ChildrenDic.ContainsKey(node.Key))
                 {
                     children.AddRange(ChildrenDic[node.Key]);
+                }
+                else if (getChildren != null && !getChildren().IsNullOrEmpty())
+                {
+                    ChildrenDic.Add(node.Key, getChildren());
                 }
             }
 
@@ -112,6 +125,7 @@ namespace DnaMesUiBll.Shared
         /// Grid绑定查询结果
         /// </summary>
         /// <param name="exp"></param>
+        [Obsolete("待更新")]
         public List<T> GetDataSource(Expression<Func<T, bool>> exp)
         {
             return Dal.Get(exp);
@@ -196,7 +210,7 @@ namespace DnaMesUiBll.Shared
         /// <param name="children"></param>
         /// <param name="images"></param>
         protected virtual void BuildSubTree(UltraTreeNode pNode, IEnumerable<T> children,
-            ImageList.ImageCollection images)
+            ImageList.ImageCollection images) //where TC:BaseModel,new()
         {
             throw new NotImplementedException("该方法为虚方法，调用前需重写");
         }

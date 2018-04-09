@@ -10,26 +10,24 @@ using System.Windows.Forms;
 using DnaLib.Control;
 using DnaLib.Helper;
 using DnaMesModel.Model.BasicInfo;
-using DnaMesModel.Shared;
 using DnaMesUiBll.BasicInfo;
 using DnaMesUiBll.Shared;
 
 namespace DnaMesUi.Shared.Dialog
 {
-    public partial class ProjectMgtAddEdit : BaseDialog<Project>
+    public partial class ProcessMgtAddEdit : BaseDialog<Process>
     {
-        public ProjectMgtAddEdit()
+        public ProcessMgtAddEdit()
         {
             InitializeComponent();
             txtCode.NullText = "必填项";
             txtName.NullText = "必填项";
             txtDescription.NullText = "项目描述(选填项)";
         }
-
-        public ProjectMgtAddEdit(string text, Project proj = null) : this()
+        public ProcessMgtAddEdit(string text, Process proc = null) : this()
         {
             Text = text;
-            if (proj == null)
+            if (proc == null)
             {
                 _isEditable = false;
                 //项目无父节点时只能为主项目
@@ -40,15 +38,20 @@ namespace DnaMesUi.Shared.Dialog
             else
             {
                 _isEditable = true;
-                BindingModel(proj);
+                BindingModel(proc);
                 //txtCode.Enabled = false;
                 txtCode.ReadOnly = true;
                 tipForIsMain.SetError(txtCode, "该值不可修改");
             }
         }
 
-        //private readonly ProjectMgtBll _bll = new ProjectMgtBll();
-        private readonly bool _isEditable; //true为“编辑”状态，false为“新增”状态
+        protected override BaseBll<Process> Bll => new ProcessMgtBll();
+        private readonly bool _isEditable;//true为“编辑”状态，false为“新增”状态
+        public override Process TransModel { get; }//TODO:通过控件构建该属性
+        protected sealed override void BindingModel(Process model)
+        {
+            throw new NotImplementedException();
+        }
 
         public sealed override string Text
         {
@@ -59,33 +62,20 @@ namespace DnaMesUi.Shared.Dialog
         /// <summary>
         /// 界面间传递值
         /// </summary>
-        public Project Project => new Project
+        public Process Project => new Process
         {
             Code = txtCode.Text.Trim(),
             Name = txtName.Text.Trim(),
-            StartingTime = dteStartTime.DateTime,
-            EndingTime = dteEndTime.DateTime,
-            IsMain = ckIsMain.Checked,
+            IsValid= ckIsMain.Checked,
         };
 
-        protected override BaseBll<Project> Bll => new ProjectMgtBll();
-
-        public override Project TransModel => new Project
+        private void BindingProject(Project proc)
         {
-            Code = txtCode.Text.Trim(),
-            Name = txtName.Text.Trim(),
-            StartingTime = dteStartTime.DateTime,
-            EndingTime = dteEndTime.DateTime,
-            IsMain = ckIsMain.Checked,
-        };
-
-        protected sealed override void BindingModel(Project proj)
-        {
-            txtCode.Text = proj.Code;
-            txtName.Text = proj.Name;
-            dteStartTime.DateTime = proj.StartingTime;
-            dteEndTime.DateTime = proj.EndingTime;
-            ckIsMain.Checked = proj.IsMain;
+            txtCode.Text = proc.Code;
+            txtName.Text = proc.Name;
+            dteStartTime.DateTime = proc.StartingTime;
+            dteEndTime.DateTime = proc.EndingTime;
+            ckIsMain.Checked = proc.IsMain;
         }
 
         private void btnOk_Click(object sender, EventArgs e)

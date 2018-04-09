@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using DnaLib.Control;
 using DnaLib.Helper;
@@ -29,8 +30,6 @@ namespace DnaMesUi.BasicInfo
 
         private readonly ProcessMgtBll _bll = new ProcessMgtBll();
         private const string FieldName = "BasicInfo\\Process.xml";
-        //private readonly Queue<UltraTreeNode> _nodesWithColor = new Queue<UltraTreeNode>();
-        //private readonly LinkedList<string> _projectsNeedRefresh = new LinkedList<string>();
 
         #region 其他
 
@@ -51,9 +50,17 @@ namespace DnaMesUi.BasicInfo
             var startTime = dteStartTime.Enabled ? dteStartTime.DateTime : SysInfo.IllegalDateTime;
             var endTime = dteEndTime.Enabled ? dteEndTime.DateTime : SysInfo.IllegalDateTime;
             var exp = _bll.BuildExp(code, name, startTime, endTime);
-            var projs = _bll.GetDataSource(exp);
-            //GridBindingBll<Process>.BindingData(ug1, projs, FieldName);
-            //TODO:更新逻辑
+            var proj = _bll.GetDataSource(exp).FirstOrDefault();//只能查询单个项目
+            var node = _bll.FindNode(uTree, proj);
+            if (node != null)
+            {
+                node.Override.NodeAppearance.BackColor = Color.DarkTurquoise;
+                NodesWithColor.Enqueue(node);
+            }
+            else
+            {
+                MsgBoxLib.ShowWarning("无查询结果");
+            }
         }
 
         private void ckStartTime_CheckedChanged(object sender, EventArgs e)
@@ -89,25 +96,14 @@ namespace DnaMesUi.BasicInfo
 
         private void uTree_AfterSelect(object sender, SelectEventArgs e)
         {
-            SetToolsEnable(SelectedNode?.Tag is Project, "Add", "Delete", "Edit", "AddChild");
-
             foreach (var node in uTree.SelectedNodes)
             {
                 node.Expanded = true;
             }
 
-            var dataSource = _bll.GetProcesses(uTree.SelectedNodes);
+            var dataSource = _bll.GetChildren(uTree.SelectedNodes);
             GridBindingBll<Process>.BindingData(ug1, dataSource, FieldName);
         }
-
-        //private void ResetNodeBackColor()
-        //{
-        //    while (_nodesWithColor.Count > 0)
-        //    {
-        //        var node = _nodesWithColor.Dequeue();
-        //        node.Override.NodeAppearance.ResetBackColor();
-        //    }
-        //}
 
         #endregion
 
@@ -115,7 +111,7 @@ namespace DnaMesUi.BasicInfo
 
         private void toolBarManager_ToolClick(object sender, ToolClickEventArgs e)
         {
-            var pProj = SelectedNode?.Parent?.Tag as Process;
+            var pProj = SelectedNode?.Parent?.Tag as Project;
             ProcessMgtAddEdit form;
             switch (e.Tool.Key)
             {
@@ -125,14 +121,14 @@ namespace DnaMesUi.BasicInfo
                     break;
                 case "Add":
 
-                    form = new ProcessMgtAddEdit("新增项目");
+                    form = new ProcessMgtAddEdit("新增工艺");
                     if (form.ShowDialog(this) == DialogResult.OK)
                     {
-                        if (_bll.AddProcess(form.Process, pProj))
+                        if (_bll.AddModel(form.TransModel, pProj))
                         {
                             MsgBoxLib.ShowInformationOk("操作成功！");
                             //将父类加入List，表示需要从数据库中更新子类数据
-                            if (pProj != null) _projectsNeedRefresh.AddFirst(pProj.Code);
+                            if (pProj != null) _bll.ParentsToBeUpdated.AddFirst(pProj.Code);
                         }
                         else
                         {
@@ -143,14 +139,14 @@ namespace DnaMesUi.BasicInfo
                     goto default;
 
                 case "Edit":
-                    form = new ProcessMgtAddEdit("编辑项目", SelectedNode?.Tag as Process);
+                    form = new ProcessMgtAddEdit("编辑工艺", SelectedNode?.Tag as Process);
                     if (form.ShowDialog(this) == DialogResult.OK)
                     {
-                        if (_bll.UpdateProcess(form.Process,pProj))
+                        if (_bll.UpdateProcess(form.TransModel,pProj))
                         {
                             MsgBoxLib.ShowInformationOk("操作成功！");
                             //将父类加入List，表示需要从数据库中更新子类数据
-                            if (pProj != null) _projectsNeedRefresh.AddFirst(pProj.Code);
+                            if (pProj != null) _bll.ParentsToBeUpdated.AddFirst(pProj.Code);
                         }
                         else
                         {
@@ -215,7 +211,7 @@ namespace DnaMesUi.BasicInfo
             else
             {
                 node.Override.NodeAppearance.BackColor = Color.DarkTurquoise;
-                _nodesWithColor.Enqueue(node);
+                NodesWithColor.Enqueue(node);
             }
         }
 

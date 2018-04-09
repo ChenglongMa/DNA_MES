@@ -51,17 +51,26 @@ namespace DnaMesUiBll.BasicInfo
             return _projBll.BuildExp(code, name, startTime, endTime);
         }
 
+        public override bool UpdateModel<TParent>(Process model, TParent parent =null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public new void AfterExpand(UltraTreeNode node, ImageList.ImageCollection images)
+        {
+            _projBll.AfterExpand(node, images);
+        }
+
+        public UltraTreeNode FindNode(UltraTree uTree, Project proj)
+        {
+            return _projBll.FindNode(uTree, proj);
+        }
         public List<Project> GetDataSource(Expression<Func<Project, bool>> exp)
         {
             return _projBll.GetDataSource(exp);
         }
 
-        public void AfterExpand(UltraTreeNode node, ImageList.ImageCollection images)
-        {
-            _projBll.AfterExpand(node, images);
-        }
-
-        public List<Process> GetProcesses(SelectedNodesCollection nodes)
+        public bool UpdateProcess(Process process, Project pProj)
         {
             throw new NotImplementedException();
         }

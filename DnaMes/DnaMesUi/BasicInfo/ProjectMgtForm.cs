@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using DnaLib.Control;
 using DnaLib.Helper;
+using DnaMesModel.Link.BasicInfo;
 using DnaMesModel.Model.BasicInfo;
 using DnaMesModel.Shared;
 using DnaMesUi.Shared.Dialog;
@@ -29,7 +30,7 @@ namespace DnaMesUi.BasicInfo
 
         private readonly ProjectMgtBll _bll = new ProjectMgtBll();
         private const string FieldName = "BasicInfo\\Project.xml";
-        private readonly Queue<UltraTreeNode> _nodesWithColor = new Queue<UltraTreeNode>();
+        
 
         #region 其他
 
@@ -52,6 +53,10 @@ namespace DnaMesUi.BasicInfo
             var exp = _bll.BuildExp(code, name, startTime, endTime);
             var projs = _bll.GetDataSource(exp);
             GridBindingBll<Project>.BindingData(ug1, projs, FieldName);
+            if (projs.IsNullOrEmpty())
+            {
+                MsgBoxLib.ShowWarning("无查询结果");
+            }
         }
 
         private void ckStartTime_CheckedChanged(object sender, EventArgs e)
@@ -100,14 +105,7 @@ namespace DnaMesUi.BasicInfo
             GridBindingBll<Project>.BindingData(ug1, dataSource, FieldName);
         }
 
-        private void ResetNodeBackColor()
-        {
-            while (_nodesWithColor.Count > 0)
-            {
-                var node = _nodesWithColor.Dequeue();
-                node.Override.NodeAppearance.ResetBackColor();
-            }
-        }
+
 
         #endregion
 
@@ -128,7 +126,7 @@ namespace DnaMesUi.BasicInfo
                     form = new ProjectMgtAddEdit("新增项目");
                     if (form.ShowDialog(this) == DialogResult.OK)
                     {
-                        if (_bll.AddModel(form.Project, pProj))
+                        if (_bll.AddModel(form.TransModel, pProj))
                         {
                             MsgBoxLib.ShowInformationOk("操作成功！");
                             //将父类加入List，表示需要从数据库中更新子类数据
@@ -146,7 +144,7 @@ namespace DnaMesUi.BasicInfo
                     form = new ProjectMgtAddEdit("编辑项目", SelectedNode?.Tag as Project);
                     if (form.ShowDialog(this) == DialogResult.OK)
                     {
-                        if (_bll.UpdateProject(form.Project, pProj))
+                        if (_bll.UpdateModel(form.TransModel, pProj))
                         {
                             MsgBoxLib.ShowInformationOk("操作成功！");
                             //将父类加入List，表示需要从数据库中更新子类数据
@@ -163,7 +161,7 @@ namespace DnaMesUi.BasicInfo
                 case "Delete":
                     if (SelectedNode?.Tag is Project proj)
                     {
-                        if (_bll.DeleteModel(proj, pProj))
+                        if (_bll.DeleteModel<Project,ProjectProject>(proj, pProj))
                         {
                             MsgBoxLib.ShowInformationOk("操作成功");
                             //将父类加入List，表示需要从数据库中更新子类数据
@@ -215,7 +213,7 @@ namespace DnaMesUi.BasicInfo
             else
             {
                 node.Override.NodeAppearance.BackColor = Color.DarkTurquoise;
-                _nodesWithColor.Enqueue(node);
+                NodesWithColor.Enqueue(node);
             }
         }
 
