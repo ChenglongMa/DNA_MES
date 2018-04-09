@@ -23,20 +23,19 @@ namespace DnaMesUi.BasicInfo
             InitializeComponent();
             dteStartTime.Enabled = ckStartTime.Checked;
             dteEndTime.Enabled = ckEndTime.Checked;
-            _bll.BuildTree(ref uTree, imageList1.Images, _projectsNeedRefresh, p => p.IsMain);
+            _bll.BuildTree(ref uTree, imageList1.Images, _bll.ParentsToBeUpdated, p => p.IsMain);
             GridBindingBll<Project>.BindingStyleAndData(ug1, null, FieldName);
         }
 
         private readonly ProjectMgtBll _bll = new ProjectMgtBll();
         private const string FieldName = "BasicInfo\\Project.xml";
         private readonly Queue<UltraTreeNode> _nodesWithColor = new Queue<UltraTreeNode>();
-        private readonly LinkedList<string> _projectsNeedRefresh = new LinkedList<string>();
 
         #region 其他
 
         private void RefreshData()
         {
-            _bll.BuildTree(ref uTree, imageList1.Images, _projectsNeedRefresh, p => p.IsMain);
+            _bll.BuildTree(ref uTree, imageList1.Images, _bll.ParentsToBeUpdated, p => p.IsMain);
             GridBindingBll<Project>.BindingData(ug1, null, FieldName);
         }
 
@@ -83,7 +82,7 @@ namespace DnaMesUi.BasicInfo
 
         private void uTree_AfterExpand(object sender, NodeEventArgs e)
         {
-            _bll.AfterExpand(e.TreeNode, imageList1.Images, _projectsNeedRefresh);
+            _bll.AfterExpand(e.TreeNode, imageList1.Images);
         }
 
         private void uTree_AfterSelect(object sender, SelectEventArgs e)
@@ -129,11 +128,11 @@ namespace DnaMesUi.BasicInfo
                     form = new ProjectMgtAddEdit("新增项目");
                     if (form.ShowDialog(this) == DialogResult.OK)
                     {
-                        if (_bll.AddProject(form.Project, pProj))
+                        if (_bll.AddModel(form.Project, pProj))
                         {
                             MsgBoxLib.ShowInformationOk("操作成功！");
                             //将父类加入List，表示需要从数据库中更新子类数据
-                            if (pProj != null) _projectsNeedRefresh.AddFirst(pProj.Code);
+                            if (pProj != null) _bll.ParentsToBeUpdated.AddFirst(pProj.Code);
                         }
                         else
                         {
@@ -147,11 +146,11 @@ namespace DnaMesUi.BasicInfo
                     form = new ProjectMgtAddEdit("编辑项目", SelectedNode?.Tag as Project);
                     if (form.ShowDialog(this) == DialogResult.OK)
                     {
-                        if (_bll.UpdateProject(form.Project,pProj))
+                        if (_bll.UpdateProject(form.Project, pProj))
                         {
                             MsgBoxLib.ShowInformationOk("操作成功！");
                             //将父类加入List，表示需要从数据库中更新子类数据
-                            if (pProj != null) _projectsNeedRefresh.AddFirst(pProj.Code);
+                            if (pProj != null) _bll.ParentsToBeUpdated.AddFirst(pProj.Code);
                         }
                         else
                         {
@@ -164,11 +163,11 @@ namespace DnaMesUi.BasicInfo
                 case "Delete":
                     if (SelectedNode?.Tag is Project proj)
                     {
-                        if (_bll.DeleteProject(proj, pProj))
+                        if (_bll.DeleteModel(proj, pProj))
                         {
                             MsgBoxLib.ShowInformationOk("操作成功");
                             //将父类加入List，表示需要从数据库中更新子类数据
-                            if (pProj != null) _projectsNeedRefresh.AddFirst(pProj.Code);
+                            if (pProj != null) _bll.ParentsToBeUpdated.AddFirst(pProj.Code);
                         }
                         else
                         {
@@ -178,8 +177,8 @@ namespace DnaMesUi.BasicInfo
                     else
                     {
                         MsgBoxLib.ShowWarning("请先选择要删除的项目");
-
                     }
+
                     goto default;
 
                 case "AddChild":

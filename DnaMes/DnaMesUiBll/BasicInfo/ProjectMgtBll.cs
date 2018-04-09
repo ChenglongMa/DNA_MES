@@ -11,29 +11,21 @@ using System.Linq.Expressions;
 using System.Windows.Forms;
 using DnaLib.Helper;
 using DnaMesDal;
-using DnaMesModel;
 using DnaMesModel.Link.BasicInfo;
 using DnaMesModel.Model.BasicInfo;
 using DnaMesUiBll.Shared;
-using Infragistics.Win.UltraWinGrid;
 using Infragistics.Win.UltraWinTree;
 using SqlSugar;
 
 namespace DnaMesUiBll.BasicInfo
 {
+    /// <inheritdoc />
     /// <summary>
     /// 项目管理窗体操作
     /// </summary>
-    public class ProjectMgtBll //: ITree<Project>
+    public class ProjectMgtBll : BaseBll<Project>
     {
         #region 私有字段
-
-        private readonly BaseDal<Project> _dal = new BaseDal<Project>();
-
-        /// <summary>
-        /// 存放节点及其子类字典
-        /// </summary>
-        private readonly Dictionary<string, List<Project>> _nodesWithChildren = new Dictionary<string, List<Project>>();
 
         #endregion
 
@@ -43,15 +35,7 @@ namespace DnaMesUiBll.BasicInfo
 
         #region 私有方法
 
-        /// <summary>
-        /// 构建子树
-        /// </summary>
-        /// <param name="pNode"></param>
-        /// <param name="children"></param>
-        /// <param name="images"></param>
-        /// <param name="needUpdateProjects"></param>
-        private void BuildSubTree(UltraTreeNode pNode, IEnumerable<Project> children, ImageList.ImageCollection images,
-            LinkedList<string> needUpdateProjects = null)
+        protected override void BuildSubTree(UltraTreeNode pNode, IEnumerable<Project> children, ImageList.ImageCollection images)
         {
             if (children == null)
             {
@@ -74,28 +58,9 @@ namespace DnaMesUiBll.BasicInfo
                     mainNode.LeftImages.Add(images[mainNode.Level + 2]);
                 }
 
-                List<Project> grandChildern;
-                var needUpdate = needUpdateProjects?.Find(model.Code) != null;
-                if (needUpdate)
-                {
-                    needUpdateProjects.Remove(model.Code);
-                    grandChildern = _dal.GetChildren<Project>(model);
-                    //更新内存中对象集合
-                    if (_nodesWithChildren.ContainsKey(model.Code))
-                    {
-                        _nodesWithChildren[model.Code] = grandChildern;
-                    }
-                }
-                else if (!_nodesWithChildren.ContainsKey(model.Code))
-                {
-                    grandChildern = _dal.GetChildren<Project>(model);
-                    _nodesWithChildren.Add(model.Code, grandChildern);
-                }
-                else
-                {
-                    grandChildern = _nodesWithChildren[model.Code];
-                }
 
+                UpdateDic(model.Code, () => Dal.GetChildren<Project>(model));
+                var grandChildern = ChildrenDic[model.Code];
                 if (!grandChildern.IsNullOrEmpty())
                 {
                     mainNode.Nodes.Add(); //增加空子树以显示剪头标志
@@ -108,56 +73,6 @@ namespace DnaMesUiBll.BasicInfo
         #region 公有方法
 
         #endregion
-
-        /// <summary>
-        /// 构建树
-        /// </summary>
-        /// <param name="uTree"></param>
-        /// <param name="images"></param>
-        /// <param name="needUpdate">是否需要从数据库更新数据</param>
-        /// <param name="exp"></param>
-        public void BuildTree(ref UltraTree uTree, ImageList.ImageCollection images, LinkedList<string> needUpdate,
-            Expression<Func<Project, bool>> exp = null)
-        {
-            var children = _dal.Get(exp);
-            var root = uTree.TopNode;
-            if (root == null)
-            {
-                root = new UltraTreeNode("root", "项目");
-                if (!images.IsNullOrEmpty() && images.Count > 2)
-                {
-                    root.LeftImages.Clear();
-                    root.LeftImages.Add(images[2]);
-                }
-
-                uTree.Nodes.Clear();
-                uTree.Nodes.Add(root);
-            }
-
-            root.Nodes.Clear();
-            BuildSubTree(root, children, images, needUpdate);
-            root.Expanded = true;
-        }
-
-        /// <summary>
-        /// 获取子类集合
-        /// </summary>
-        /// <param name="selectedNodes"></param>
-        /// 
-        public List<Project> GetChildren(SelectedNodesCollection selectedNodes)
-        {
-            var children = new List<Project>();
-
-            foreach (var node in selectedNodes)
-            {
-                if (_nodesWithChildren.ContainsKey(node.Key))
-                {
-                    children.AddRange(_nodesWithChildren[node.Key]);
-                }
-            }
-
-            return children;
-        }
 
         /// <summary>
         /// 根据条件构造表达式
@@ -175,46 +90,6 @@ namespace DnaMesUiBll.BasicInfo
             expTemp.AndIF(startTime.IsLegalDate(), p => p.StartingTime >= startTime);
             expTemp.AndIF(endTime.IsLegalDate(), p => p.EndingTime <= endTime);
             return expTemp.ToExpression();
-        }
-
-        public void AfterExpand(UltraTreeNode node, ImageList.ImageCollection images,
-            LinkedList<string> needUpdate = null)
-        {
-            if (!_nodesWithChildren.ContainsKey(node.Key) || _nodesWithChildren[node.Key].IsNullOrEmpty()) return;
-            node.Nodes.Clear();
-            BuildSubTree(node, _nodesWithChildren[node.Key], images, needUpdate);
-        }
-
-        /// <summary>
-        /// 添加项目
-        /// </summary>
-        /// <param name="proj"></param>
-        /// <param name="parentProj">指定父节点</param>
-        /// <returns></returns>
-        public bool AddProject(Project proj, Project parentProj = null)
-        {
-            var res = _dal.Insert(proj);
-            return parentProj == null ? res : _dal.SetLinkWith(parentProj, proj);
-        }
-
-        /// <summary>
-        /// 验证Project是否存在
-        /// </summary>
-        /// <param name="proj"></param>
-        /// <returns></returns>
-        public bool IsExist(Project proj)
-        {
-            return _dal.IsExist(proj);
-        }
-
-        /// <summary>
-        /// Grid绑定查询结果
-        /// </summary>
-        /// <param name="exp"></param>
-        /// 
-        public List<Project> GetDataSource(Expression<Func<Project, bool>> exp)
-        {
-            return _dal.Get(exp);
         }
 
         /// <summary>
@@ -239,7 +114,7 @@ namespace DnaMesUiBll.BasicInfo
                 var foundParentNode = false;
                 while (!foundParentNode)
                 {
-                    var pProj = _dal.GetParent(tmpProj);
+                    var pProj = Dal.GetParent(tmpProj);
                     if (pProj == null)
                     {
                         return null; //待定
@@ -284,27 +159,12 @@ namespace DnaMesUiBll.BasicInfo
             //修改为主项目后将原来与父级关系删除
             if (project.IsMain && parent != null)
             {
-                res = _dal.DeleteLinkWith<Project, Project, ProjectProject>(parent, project);
+                res = Dal.DeleteLinkWith<Project, Project, ProjectProject>(parent, project);
             }
 
-            return res && _dal.Update(project);
+            return res && Dal.Update(project);
         }
 
-        /// <summary>
-        /// 先删除依赖关系，再删除实体
-        /// </summary>
-        /// <param name="proj"></param>
-        /// <param name="pProj"></param>
-        /// <returns></returns>
-        public bool DeleteProject(Project proj, Project pProj = null)
-        {
-            var res = true;
-            if (pProj != null)
-            {
-                res = _dal.DeleteLinkWith<Project, Project, ProjectProject>(pProj, proj);
-            }
 
-            return res && _dal.Delete(proj);
-        }
     }
 }

@@ -52,9 +52,8 @@
     <Compile Include="BasicInfo\ProcessMgtBll.cs" />
     <Compile Include="BasicInfo\ProjectMgtBll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shared\BaseBll.cs" />
     <Compile Include="Shared\GridBindingBll.cs" />
-    <Compile Include="Shared\ITree.cs" />
-    <Compile Include="Shared\TreeBll.cs" />
     <Compile Include="Sys\LoginBll.cs" />
   </ItemGroup>
   <ItemGroup>

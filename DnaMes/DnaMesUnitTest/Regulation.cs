@@ -15,6 +15,7 @@ namespace DnaMesUnitTest
         #region ToDoList
 
         //TODO：完善登录窗口逻辑
+        //TODO: 删除时依赖关系管理
         //TODO完结：确定MDI窗体动态加载逻辑 2018/02/24
         //TODO完结：设计默认Grid格式 2018/03/02
         //TODO完结：完成数据绑定逻辑 2018/03/02

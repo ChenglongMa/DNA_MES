@@ -88,7 +88,7 @@ namespace DnaMesUi.Templetes
 
         private void uTree_AfterExpand(object sender, NodeEventArgs e)
         {
-            _bll.AfterExpand(e.TreeNode, imageList1.Images, _projectsNeedRefresh);
+            _bll.AfterExpand(e.TreeNode, imageList1.Images);
         }
 
         private void uTree_AfterSelect(object sender, SelectEventArgs e)
@@ -134,7 +134,7 @@ namespace DnaMesUi.Templetes
                     form = new ProjectMgtAddEdit("新增项目");
                     if (form.ShowDialog(this) == DialogResult.OK)
                     {
-                        if (_bll.AddProject(form.Project, pProj))
+                        if (_bll.AddModel(form.Project, pProj))
                         {
                             MsgBoxLib.ShowInformationOk("操作成功！");
                             //将父类加入List，表示需要从数据库中更新子类数据
@@ -169,7 +169,7 @@ namespace DnaMesUi.Templetes
                 case "Delete":
                     if (SelectedNode?.Tag is Project proj)
                     {
-                        if (_bll.DeleteProject(proj, pProj))
+                        if (_bll.DeleteModel(proj, pProj))
                         {
                             MsgBoxLib.ShowInformationOk("操作成功");
                             //将父类加入List，表示需要从数据库中更新子类数据

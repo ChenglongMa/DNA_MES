@@ -10,14 +10,16 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Windows.Forms;
 using DnaMesModel.Model.BasicInfo;
+using DnaMesUiBll.Shared;
 using Infragistics.Win.UltraWinTree;
 
 namespace DnaMesUiBll.BasicInfo
 {
+    /// <inheritdoc />
     /// <summary>
     /// 工艺管理业务类
     /// </summary>
-    public class ProcessMgtBll
+    public class ProcessMgtBll:BaseBll<Process>
     {
         #region 私有字段
         private readonly ProjectMgtBll _projBll=new ProjectMgtBll();
