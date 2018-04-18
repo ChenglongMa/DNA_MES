@@ -163,7 +163,7 @@ namespace DnaMesUi.BasicInfo
                         {
                             MsgBoxLib.ShowInformationOk("操作成功");
                             //将父类加入List，表示需要从数据库中更新子类数据
-                            if (pProj != null) _projectsNeedRefresh.AddFirst(pProj.Code);
+                            if (pProj != null) _projectsNeedRefresh.AddFirst(pProj.Code); 
                         }
                         else
                         {
