@@ -38,15 +38,15 @@
             Infragistics.Win.Appearance appearance2 = new Infragistics.Win.Appearance();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this._MainForm_Toolbars_Dock_Area_Left = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
+            this.toolBarManager = new Infragistics.Win.UltraWinToolbars.UltraToolbarsManager(this.components);
             this._MainForm_Toolbars_Dock_Area_Right = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this._MainForm_Toolbars_Dock_Area_Top = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this._MainForm_Toolbars_Dock_Area_Bottom = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this.tabbedMdiManager = new Infragistics.Win.UltraWinTabbedMdi.UltraTabbedMdiManager(this.components);
             this.ultraStatusBar1 = new Infragistics.Win.UltraWinStatusBar.UltraStatusBar();
-            this.toolBarManager = new Infragistics.Win.UltraWinToolbars.UltraToolbarsManager(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.toolBarManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedMdiManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ultraStatusBar1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.toolBarManager)).BeginInit();
             this.SuspendLayout();
             // 
             // _MainForm_Toolbars_Dock_Area_Left
@@ -55,61 +55,10 @@
             this._MainForm_Toolbars_Dock_Area_Left.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
             this._MainForm_Toolbars_Dock_Area_Left.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Left;
             this._MainForm_Toolbars_Dock_Area_Left.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._MainForm_Toolbars_Dock_Area_Left.Location = new System.Drawing.Point(0, 74);
+            this._MainForm_Toolbars_Dock_Area_Left.Location = new System.Drawing.Point(0, 44);
             this._MainForm_Toolbars_Dock_Area_Left.Name = "_MainForm_Toolbars_Dock_Area_Left";
-            this._MainForm_Toolbars_Dock_Area_Left.Size = new System.Drawing.Size(0, 426);
+            this._MainForm_Toolbars_Dock_Area_Left.Size = new System.Drawing.Size(0, 456);
             this._MainForm_Toolbars_Dock_Area_Left.ToolbarsManager = this.toolBarManager;
-            // 
-            // _MainForm_Toolbars_Dock_Area_Right
-            // 
-            this._MainForm_Toolbars_Dock_Area_Right.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this._MainForm_Toolbars_Dock_Area_Right.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
-            this._MainForm_Toolbars_Dock_Area_Right.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Right;
-            this._MainForm_Toolbars_Dock_Area_Right.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._MainForm_Toolbars_Dock_Area_Right.Location = new System.Drawing.Point(843, 74);
-            this._MainForm_Toolbars_Dock_Area_Right.Name = "_MainForm_Toolbars_Dock_Area_Right";
-            this._MainForm_Toolbars_Dock_Area_Right.Size = new System.Drawing.Size(0, 426);
-            this._MainForm_Toolbars_Dock_Area_Right.ToolbarsManager = this.toolBarManager;
-            // 
-            // _MainForm_Toolbars_Dock_Area_Top
-            // 
-            this._MainForm_Toolbars_Dock_Area_Top.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this._MainForm_Toolbars_Dock_Area_Top.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
-            this._MainForm_Toolbars_Dock_Area_Top.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Top;
-            this._MainForm_Toolbars_Dock_Area_Top.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._MainForm_Toolbars_Dock_Area_Top.Location = new System.Drawing.Point(0, 0);
-            this._MainForm_Toolbars_Dock_Area_Top.Name = "_MainForm_Toolbars_Dock_Area_Top";
-            this._MainForm_Toolbars_Dock_Area_Top.Size = new System.Drawing.Size(843, 74);
-            this._MainForm_Toolbars_Dock_Area_Top.ToolbarsManager = this.toolBarManager;
-            // 
-            // _MainForm_Toolbars_Dock_Area_Bottom
-            // 
-            this._MainForm_Toolbars_Dock_Area_Bottom.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this._MainForm_Toolbars_Dock_Area_Bottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
-            this._MainForm_Toolbars_Dock_Area_Bottom.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Bottom;
-            this._MainForm_Toolbars_Dock_Area_Bottom.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._MainForm_Toolbars_Dock_Area_Bottom.Location = new System.Drawing.Point(0, 500);
-            this._MainForm_Toolbars_Dock_Area_Bottom.Name = "_MainForm_Toolbars_Dock_Area_Bottom";
-            this._MainForm_Toolbars_Dock_Area_Bottom.Size = new System.Drawing.Size(843, 0);
-            this._MainForm_Toolbars_Dock_Area_Bottom.ToolbarsManager = this.toolBarManager;
-            // 
-            // tabbedMdiManager
-            // 
-            this.tabbedMdiManager.MdiParent = this;
-            this.tabbedMdiManager.TabGroupSettings.CloseButtonLocation = Infragistics.Win.UltraWinTabs.TabCloseButtonLocation.Tab;
-            this.tabbedMdiManager.TabSettings.CloseButtonVisibility = Infragistics.Win.UltraWinTabs.TabCloseButtonVisibility.WhenSelectedOrHotTracked;
-            this.tabbedMdiManager.ViewStyle = Infragistics.Win.UltraWinTabbedMdi.ViewStyle.Office2007;
-            this.tabbedMdiManager.InitializeContextMenu += new Infragistics.Win.UltraWinTabbedMdi.MdiTabContextMenuEventHandler(this.tabbedMdiManager_InitializeContextMenu);
-            this.tabbedMdiManager.TabClosing += new Infragistics.Win.UltraWinTabbedMdi.CancelableMdiTabEventHandler(this.tabbedMdiManager_TabClosing);
-            this.tabbedMdiManager.TabDisplayed += new Infragistics.Win.UltraWinTabbedMdi.MdiTabEventHandler(this.tabbedMdiManager_TabDisplayed);
-            // 
-            // ultraStatusBar1
-            // 
-            this.ultraStatusBar1.Location = new System.Drawing.Point(0, 500);
-            this.ultraStatusBar1.Name = "ultraStatusBar1";
-            this.ultraStatusBar1.Size = new System.Drawing.Size(843, 23);
-            this.ultraStatusBar1.TabIndex = 5;
-            this.ultraStatusBar1.Text = "ultraStatusBar1";
             // 
             // toolBarManager
             // 
@@ -161,6 +110,57 @@
             this.toolBarManager.ToolTipDisplayStyle = Infragistics.Win.UltraWinToolbars.ToolTipDisplayStyle.Standard;
             this.toolBarManager.ToolClick += new Infragistics.Win.UltraWinToolbars.ToolClickEventHandler(this.toolBarManager_ToolClick);
             // 
+            // _MainForm_Toolbars_Dock_Area_Right
+            // 
+            this._MainForm_Toolbars_Dock_Area_Right.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this._MainForm_Toolbars_Dock_Area_Right.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
+            this._MainForm_Toolbars_Dock_Area_Right.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Right;
+            this._MainForm_Toolbars_Dock_Area_Right.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._MainForm_Toolbars_Dock_Area_Right.Location = new System.Drawing.Point(843, 44);
+            this._MainForm_Toolbars_Dock_Area_Right.Name = "_MainForm_Toolbars_Dock_Area_Right";
+            this._MainForm_Toolbars_Dock_Area_Right.Size = new System.Drawing.Size(0, 456);
+            this._MainForm_Toolbars_Dock_Area_Right.ToolbarsManager = this.toolBarManager;
+            // 
+            // _MainForm_Toolbars_Dock_Area_Top
+            // 
+            this._MainForm_Toolbars_Dock_Area_Top.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this._MainForm_Toolbars_Dock_Area_Top.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
+            this._MainForm_Toolbars_Dock_Area_Top.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Top;
+            this._MainForm_Toolbars_Dock_Area_Top.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._MainForm_Toolbars_Dock_Area_Top.Location = new System.Drawing.Point(0, 0);
+            this._MainForm_Toolbars_Dock_Area_Top.Name = "_MainForm_Toolbars_Dock_Area_Top";
+            this._MainForm_Toolbars_Dock_Area_Top.Size = new System.Drawing.Size(843, 44);
+            this._MainForm_Toolbars_Dock_Area_Top.ToolbarsManager = this.toolBarManager;
+            // 
+            // _MainForm_Toolbars_Dock_Area_Bottom
+            // 
+            this._MainForm_Toolbars_Dock_Area_Bottom.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this._MainForm_Toolbars_Dock_Area_Bottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
+            this._MainForm_Toolbars_Dock_Area_Bottom.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Bottom;
+            this._MainForm_Toolbars_Dock_Area_Bottom.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._MainForm_Toolbars_Dock_Area_Bottom.Location = new System.Drawing.Point(0, 500);
+            this._MainForm_Toolbars_Dock_Area_Bottom.Name = "_MainForm_Toolbars_Dock_Area_Bottom";
+            this._MainForm_Toolbars_Dock_Area_Bottom.Size = new System.Drawing.Size(843, 0);
+            this._MainForm_Toolbars_Dock_Area_Bottom.ToolbarsManager = this.toolBarManager;
+            // 
+            // tabbedMdiManager
+            // 
+            this.tabbedMdiManager.MdiParent = this;
+            this.tabbedMdiManager.TabGroupSettings.CloseButtonLocation = Infragistics.Win.UltraWinTabs.TabCloseButtonLocation.Tab;
+            this.tabbedMdiManager.TabSettings.CloseButtonVisibility = Infragistics.Win.UltraWinTabs.TabCloseButtonVisibility.WhenSelectedOrHotTracked;
+            this.tabbedMdiManager.ViewStyle = Infragistics.Win.UltraWinTabbedMdi.ViewStyle.Office2007;
+            this.tabbedMdiManager.InitializeContextMenu += new Infragistics.Win.UltraWinTabbedMdi.MdiTabContextMenuEventHandler(this.tabbedMdiManager_InitializeContextMenu);
+            this.tabbedMdiManager.TabClosing += new Infragistics.Win.UltraWinTabbedMdi.CancelableMdiTabEventHandler(this.tabbedMdiManager_TabClosing);
+            this.tabbedMdiManager.TabDisplayed += new Infragistics.Win.UltraWinTabbedMdi.MdiTabEventHandler(this.tabbedMdiManager_TabDisplayed);
+            // 
+            // ultraStatusBar1
+            // 
+            this.ultraStatusBar1.Location = new System.Drawing.Point(0, 500);
+            this.ultraStatusBar1.Name = "ultraStatusBar1";
+            this.ultraStatusBar1.Size = new System.Drawing.Size(843, 23);
+            this.ultraStatusBar1.TabIndex = 5;
+            this.ultraStatusBar1.Text = "ultraStatusBar1";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -179,9 +179,9 @@
             this.Text = "DNA 制造管理系统";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.MainForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.toolBarManager)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedMdiManager)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ultraStatusBar1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.toolBarManager)).EndInit();
             this.ResumeLayout(false);
 
         }

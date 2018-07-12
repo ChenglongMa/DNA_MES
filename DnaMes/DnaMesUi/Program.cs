@@ -10,6 +10,7 @@ using System.Threading;
 using System.Windows.Forms;
 using DnaLib.Control;
 using DnaLib.Helper;
+using DnaMesUi.Shared.Dialog;
 using DnaMesUi.Shared.Sys;
 using DnaMesUiBll.Shared;
 using DnaMesUiConfig.Helper;
@@ -47,9 +48,9 @@ namespace DnaMesUi
             #region 登录窗口
 
             //TODO:登录窗口逻辑待完善
-            //var loginDlg = new MESLoginDialog();
-            //if (loginDlg.ShowDialog() == DialogResult.Cancel)
-            //    return;//退出后程序退出
+            var loginDlg = new LoginDialog();
+            if (loginDlg.ShowDialog() == DialogResult.Cancel)
+                return;//退出后程序退出
 
             #endregion
 

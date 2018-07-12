@@ -26,6 +26,10 @@ namespace DnaMesUiBll.Sys
 
         #region 公有方法
 
+        public static bool Login()
+        {
+
+        }
         #endregion
     }
 }

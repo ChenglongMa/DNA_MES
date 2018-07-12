@@ -19,21 +19,19 @@ namespace DnaMesUiBll.BasicInfo
     /// <summary>
     /// 工艺管理业务类
     /// </summary>
-    public class ProcessMgtBll:BaseBll<Process>
+    public class ProcessMgtBll : BaseBll<Process>
     {
         #region 私有字段
-        private readonly ProjectMgtBll _projBll=new ProjectMgtBll();
+
+        private readonly ProjectMgtBll _projBll = new ProjectMgtBll();
 
         #endregion
 
         #region 公有属性
 
-        
-
         #endregion
 
         #region 私有方法
-
 
         #endregion
 
@@ -51,7 +49,7 @@ namespace DnaMesUiBll.BasicInfo
             return _projBll.BuildExp(code, name, startTime, endTime);
         }
 
-        public override bool UpdateModel<TParent>(Process model, TParent parent =null)
+        public override bool UpdateModel<TParent>(Process model, TParent parent = null)
         {
             throw new NotImplementedException();
         }
@@ -65,6 +63,7 @@ namespace DnaMesUiBll.BasicInfo
         {
             return _projBll.FindNode(uTree, proj);
         }
+
         public List<Project> GetDataSource(Expression<Func<Project, bool>> exp)
         {
             return _projBll.GetDataSource(exp);
@@ -76,4 +75,3 @@ namespace DnaMesUiBll.BasicInfo
         }
     }
 }
-
