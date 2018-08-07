@@ -30,7 +30,7 @@
         {
             this.btnLogin = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtName = new System.Windows.Forms.TextBox();
+            this.txtId = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtPwd = new System.Windows.Forms.TextBox();
             this.btnCancel = new System.Windows.Forms.Button();
@@ -58,13 +58,13 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "用户名";
             // 
-            // txtName
+            // txtId
             // 
-            this.txtName.Location = new System.Drawing.Point(341, 107);
-            this.txtName.Margin = new System.Windows.Forms.Padding(4);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(376, 34);
-            this.txtName.TabIndex = 0;
+            this.txtId.Location = new System.Drawing.Point(341, 107);
+            this.txtId.Margin = new System.Windows.Forms.Padding(4);
+            this.txtId.Name = "txtId";
+            this.txtId.Size = new System.Drawing.Size(376, 34);
+            this.txtId.TabIndex = 0;
             // 
             // label2
             // 
@@ -115,7 +115,7 @@
             this.ClientSize = new System.Drawing.Size(963, 465);
             this.Controls.Add(this.txtPwd);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtName);
+            this.Controls.Add(this.txtId);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnScan);
@@ -137,7 +137,7 @@
 
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtPwd;
         private System.Windows.Forms.Button btnCancel;

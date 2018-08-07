@@ -88,6 +88,7 @@ namespace DnaMesUiBll.Shared
             var res = Dal.Insert(model);
             return parent == null ? res : Dal.SetLinkWith(parent, model);
         }
+
         /// <summary>
         /// 更新Model
         /// </summary>
@@ -108,11 +109,11 @@ namespace DnaMesUiBll.Shared
 
             foreach (var node in selectedNodes)
             {
-                if (ChildrenDic.ContainsKey(node.Key))
+                if (ChildrenDic.ContainsKey(node.Key) && ChildrenDic[node.Key].IsNotNullorEmpty())
                 {
                     children.AddRange(ChildrenDic[node.Key]);
                 }
-                else if (getChildren != null && !getChildren().IsNullOrEmpty())
+                else if (getChildren != null && getChildren().IsNotNullorEmpty())
                 {
                     ChildrenDic.Add(node.Key, getChildren());
                 }

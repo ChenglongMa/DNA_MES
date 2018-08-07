@@ -48,7 +48,7 @@ namespace DnaMesModel.Shared
         /// <summary>
         /// 权限点集合
         /// </summary>
-        public static List<int> Domains { get; set; } = new List<int> {-1, 10001, 10002}; //-1为默认权限，所有用户都拥有
+        public static List<int> Domains { get; set; } = new List<int> {-1, 10001, 10002}; //TODO:-1为默认权限，所有用户都拥有
 
         /// <summary>
         /// 输出目录
@@ -67,7 +67,11 @@ namespace DnaMesModel.Shared
             }
         }
 
-        public static DateTime IllegalDateTime =>new DateTime(1949,01,01);
+        /// <summary>
+        /// 非法日期
+        /// </summary>
+        public static DateTime IllegalDateTime => new DateTime(1949, 01, 01);
+
         #endregion
 
         #region 私有方法

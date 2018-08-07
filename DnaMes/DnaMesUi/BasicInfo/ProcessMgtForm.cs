@@ -19,6 +19,9 @@ namespace DnaMesUi.BasicInfo
 {
     public partial class ProcessMgtForm : BaseForm
     {
+        private readonly ProcessMgtBll _bll = new ProcessMgtBll();
+        private const string FieldName = "BasicInfo\\Process.xml";
+
         public ProcessMgtForm()
         {
             InitializeComponent();
@@ -28,8 +31,6 @@ namespace DnaMesUi.BasicInfo
             GridBindingBll<Process>.BindingStyleAndData(ug1, null, FieldName);
         }
 
-        private readonly ProcessMgtBll _bll = new ProcessMgtBll();
-        private const string FieldName = "BasicInfo\\Process.xml";
 
         #region 其他
 
@@ -50,7 +51,7 @@ namespace DnaMesUi.BasicInfo
             var startTime = dteStartTime.Enabled ? dteStartTime.DateTime : SysInfo.IllegalDateTime;
             var endTime = dteEndTime.Enabled ? dteEndTime.DateTime : SysInfo.IllegalDateTime;
             var exp = _bll.BuildExp(code, name, startTime, endTime);
-            var proj = _bll.GetDataSource(exp).FirstOrDefault();//只能查询单个项目
+            var proj = _bll.GetDataSource(exp).FirstOrDefault(); //只能查询单个项目
             var node = _bll.FindNode(uTree, proj);
             if (node != null)
             {
@@ -142,7 +143,7 @@ namespace DnaMesUi.BasicInfo
                     form = new ProcessMgtAddEdit("编辑工艺", SelectedNode?.Tag as Process);
                     if (form.ShowDialog(this) == DialogResult.OK)
                     {
-                        if (_bll.UpdateProcess(form.TransModel,pProj))
+                        if (_bll.UpdateProcess(form.TransModel, pProj))
                         {
                             MsgBoxLib.ShowInformationOk("操作成功！");
                             //将父类加入List，表示需要从数据库中更新子类数据
@@ -157,13 +158,13 @@ namespace DnaMesUi.BasicInfo
                     goto default;
 
                 case "Delete":
-                    if (SelectedNode?.Tag is Process proj)
+                    if (SelectedNode?.Tag is Process proc)
                     {
-                        if (_bll.DeleteProcess(proj, pProj))
+                        if (_bll.DeleteProcess(proc, pProj))
                         {
                             MsgBoxLib.ShowInformationOk("操作成功");
-                            //将父类加入List，表示需要从数据库中更新子类数据
-                            if (pProj != null) _projectsNeedRefresh.AddFirst(pProj.Code); 
+                            //TODO: 将父类加入List，表示需要从数据库中更新子类数据
+                            //if (pProj != null) _projectsNeedRefresh.AddFirst(pProj.Code);
                         }
                         else
                         {
@@ -172,9 +173,9 @@ namespace DnaMesUi.BasicInfo
                     }
                     else
                     {
-                        MsgBoxLib.ShowWarning("请先选择要删除的项目");
-
+                        MsgBoxLib.ShowWarning("请先选择要删除的工艺");
                     }
+
                     goto default;
 
                 case "AddChild":
@@ -182,6 +183,7 @@ namespace DnaMesUi.BasicInfo
                     goto default;
             }
         }
+
         //TODO:修改逻辑
         private void SetToolsEnable(bool enable, params string[] keys)
         {
@@ -203,7 +205,7 @@ namespace DnaMesUi.BasicInfo
         {
             ResetNodeBackColor();
             if (!(e.Row.ListObject is Process proj)) return;
-            var node = _bll.FindNode(uTree, proj);
+            var node = new UltraTreeNode(); //TODO: _bll.FindNode(uTree, proj);
             if (node == null)
             {
                 MsgBoxLib.ShowWarning("未找到该项目结构");

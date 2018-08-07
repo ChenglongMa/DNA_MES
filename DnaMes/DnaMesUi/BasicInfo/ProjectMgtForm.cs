@@ -19,6 +19,9 @@ namespace DnaMesUi.BasicInfo
 {
     public partial class ProjectMgtForm : BaseForm
     {
+        private readonly ProjectMgtBll _bll = new ProjectMgtBll();
+        private const string FieldName = "BasicInfo\\Project.xml";
+
         public ProjectMgtForm()
         {
             InitializeComponent();
@@ -28,9 +31,6 @@ namespace DnaMesUi.BasicInfo
             GridBindingBll<Project>.BindingStyleAndData(ug1, null, FieldName);
         }
 
-        private readonly ProjectMgtBll _bll = new ProjectMgtBll();
-        private const string FieldName = "BasicInfo\\Project.xml";
-        
 
         #region 其他
 
@@ -105,8 +105,6 @@ namespace DnaMesUi.BasicInfo
             GridBindingBll<Project>.BindingData(ug1, dataSource, FieldName);
         }
 
-
-
         #endregion
 
         #region 工具栏区
@@ -161,7 +159,7 @@ namespace DnaMesUi.BasicInfo
                 case "Delete":
                     if (SelectedNode?.Tag is Project proj)
                     {
-                        if (_bll.DeleteModel<Project,ProjectProject>(proj, pProj))
+                        if (_bll.DeleteModel<Project, ProjectProject>(proj, pProj))
                         {
                             MsgBoxLib.ShowInformationOk("操作成功");
                             //将父类加入List，表示需要从数据库中更新子类数据

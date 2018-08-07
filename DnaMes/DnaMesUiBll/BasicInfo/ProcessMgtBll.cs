@@ -73,5 +73,10 @@ namespace DnaMesUiBll.BasicInfo
         {
             throw new NotImplementedException();
         }
+
+        public bool DeleteProcess(Process proc, Project pProj)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

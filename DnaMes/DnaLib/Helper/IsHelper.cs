@@ -90,6 +90,15 @@ namespace DnaLib.Helper
         {
             return data == null || !data.GetEnumerator().MoveNext();
         }
+        /// <summary>
+        /// 判断值是否不为null或不含有任何元素
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public static bool IsNotNullorEmpty(this IEnumerable data)
+        {
+            return !IsNullOrEmpty(data);
+        }
 
         /// <summary>
         /// 是null或""?

@@ -12,7 +12,6 @@ using DnaLib.Control;
 using DnaLib.Helper;
 using DnaMesUi.Shared.Dialog;
 using DnaMesUi.Shared.Sys;
-using DnaMesUiBll.Shared;
 using DnaMesUiConfig.Helper;
 using Infragistics.Win.AppStyling;
 
@@ -49,8 +48,8 @@ namespace DnaMesUi
 
             //TODO:登录窗口逻辑待完善
             var loginDlg = new LoginDialog();
-            if (loginDlg.ShowDialog() == DialogResult.Cancel)
-                return;//退出后程序退出
+            if (loginDlg.ShowDialog() != DialogResult.OK)
+                return; //退出后程序退出
 
             #endregion
 

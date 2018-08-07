@@ -162,7 +162,7 @@ namespace DnaMesUiConfig.Helper
             var propInfo = component.GetType().GetProperty(propertyName);
             if (propInfo == null)
             {
-                throw new ArgumentException($"{propertyName}不是{component}的属性", propertyName);
+                throw new ArgumentException($"{propertyName} 不是 {component} 的属性", propertyName);
             }
             var value = propInfo.GetValue(component, null);
 
@@ -175,7 +175,7 @@ namespace DnaMesUiConfig.Helper
             var propInfo = component?.GetType().GetProperty(propertyName);
             if (propInfo == null)
             {
-                throw new ArgumentException($"{propertyName}不是{component}的属性", propertyName);
+                throw new ArgumentException($"{propertyName} 不是 {component} 的属性", propertyName);
             }
 
             propInfo.SetValue(component, value);
