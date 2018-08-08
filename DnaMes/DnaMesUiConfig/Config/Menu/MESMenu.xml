@@ -26,7 +26,7 @@
       <FormType>ChildForm</FormType>
     </MenuItems>
     <MenuItems Name="ProcessMant" Text="工艺管理" ShortCut="R" CommandType="Activate" DomainId="10002">
-      <FormPath>BasicInfo.ProcessMantForm</FormPath>
+      <FormPath>BasicInfo.ProcessMgtForm</FormPath>
       <FormType>ChildForm</FormType>
     </MenuItems>
   </PopMenus>

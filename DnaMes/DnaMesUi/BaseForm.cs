@@ -19,6 +19,7 @@ namespace DnaMesUi
         }
 
         protected readonly Queue<UltraTreeNode> NodesWithColor = new Queue<UltraTreeNode>();
+        protected string FieldName;
 
         protected void ResetNodeBackColor()
         {

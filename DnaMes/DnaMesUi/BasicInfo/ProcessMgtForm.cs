@@ -20,7 +20,7 @@ namespace DnaMesUi.BasicInfo
     public partial class ProcessMgtForm : BaseForm
     {
         private readonly ProcessMgtBll _bll = new ProcessMgtBll();
-        private const string FieldName = "BasicInfo\\Process.xml";
+        private const string FieldName2 = "BasicInfo\\Step.xml";
 
         public ProcessMgtForm()
         {
@@ -28,6 +28,7 @@ namespace DnaMesUi.BasicInfo
             dteStartTime.Enabled = ckStartTime.Checked;
             dteEndTime.Enabled = ckEndTime.Checked;
             _bll.BuildTree(ref uTree, imageList1.Images);
+            FieldName = "BasicInfo\\Process.xml";
             GridBindingBll<Process>.BindingStyleAndData(ug1, null, FieldName);
         }
 

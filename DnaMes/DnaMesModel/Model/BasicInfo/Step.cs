@@ -1,6 +1,6 @@
 ﻿// ****************************************************
 //  Author: Charles Ma
-//  Date: 2018/04/08 22:19
+//  Date: 2018/08/08 9:51
 // ****************************************************
 //  Copyright © DNA Studio 2018. All rights reserved.
 // ****************************************************
@@ -11,43 +11,36 @@ using SqlSugar;
 namespace DnaMesModel.Model.BasicInfo
 {
     /// <summary>
-    /// 工艺类
+    /// 工序类
     /// </summary>
-    [SugarTable("BasicInfo_Process")]
-    public class Process : BaseModel
+    [SugarTable("BasicInfo_Step")]
+    public class Step : BaseModel
     {
-        #region 私有字段
+        #region Private Property
 
         #endregion
 
-        #region 公有属性
+        #region Public Property
 
         /// <summary>
-        /// 工艺编号
+        /// 工序编号
         /// </summary>
         [DnaColumn(IsKey = true, IsNullable = false, Length = 25)]
         public string Code { get; set; }
 
         /// <summary>
-        /// 工艺名称
+        /// 工序名称
         /// </summary>
         [DnaColumn(IsNullable = false)]
         public string Name { get; set; }
 
-        /// <summary>
-        /// 是否为有效工艺
-        /// 即，该工艺是否处于在制状态
-        /// </summary>
-        [DnaColumn]
-        public bool IsValid { get; set; } = false;
+        #endregion
+
+        #region Private Method
 
         #endregion
 
-        #region 私有方法
-
-        #endregion
-
-        #region 公有方法
+        #region Public Method
 
         #endregion
     }

@@ -20,7 +20,7 @@ namespace DnaMesUi.BasicInfo
     public partial class ProjectMgtForm : BaseForm
     {
         private readonly ProjectMgtBll _bll = new ProjectMgtBll();
-        private const string FieldName = "BasicInfo\\Project.xml";
+//        private const string FieldName = "BasicInfo\\Project.xml";
 
         public ProjectMgtForm()
         {
@@ -28,6 +28,7 @@ namespace DnaMesUi.BasicInfo
             dteStartTime.Enabled = ckStartTime.Checked;
             dteEndTime.Enabled = ckEndTime.Checked;
             _bll.BuildTree(ref uTree, imageList1.Images, _bll.ParentsToBeUpdated, p => p.IsMain);
+            FieldName = "BasicInfo\\Project.xml";
             GridBindingBll<Project>.BindingStyleAndData(ug1, null, FieldName);
         }
 
