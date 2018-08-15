@@ -31,7 +31,7 @@ namespace DnaMesModel.Model.BasicInfo
         /// <summary>
         /// 工艺名称
         /// </summary>
-        [DnaColumn(IsNullable = false)]
+        [DnaColumn(IsNullable = false, Length = 45)]
         public string Name { get; set; }
 
         /// <summary>

@@ -76,11 +76,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseLink.cs" />
+    <Compile Include="Link\BasicInfo\ProjectProcess.cs" />
     <Compile Include="Link\BasicInfo\ProjectProject.cs" />
     <Compile Include="Link\BasicInfo\UserDomain.cs" />
     <Compile Include="BaseModel.cs" />
     <Compile Include="Model\BasicInfo\Domain.cs" />
     <Compile Include="Model\BasicInfo\Process.cs" />
+    <Compile Include="Link\BasicInfo\ProcessStep.cs" />
     <Compile Include="Model\BasicInfo\Project.cs" />
     <Compile Include="Model\BasicInfo\Step.cs" />
     <Compile Include="Model\BasicInfo\User.cs" />

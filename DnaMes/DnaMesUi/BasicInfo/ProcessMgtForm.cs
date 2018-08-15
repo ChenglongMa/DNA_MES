@@ -30,6 +30,8 @@ namespace DnaMesUi.BasicInfo
             _bll.BuildTree(ref uTree, imageList1.Images);
             FieldName = "BasicInfo\\Process.xml";
             GridBindingBll<Process>.BindingStyleAndData(ug1, null, FieldName);
+            GridBindingBll<Step>.BindingStyleAndData(ug2, null, FieldName2);
+
         }
 
 
@@ -39,6 +41,7 @@ namespace DnaMesUi.BasicInfo
         {
             _bll.BuildTree(ref uTree, imageList1.Images);
             GridBindingBll<Process>.BindingData(ug1, null, FieldName);
+            GridBindingBll<Step>.BindingData(ug2, null, FieldName2);
         }
 
         #endregion
@@ -91,6 +94,8 @@ namespace DnaMesUi.BasicInfo
 
         private UltraTreeNode SelectedNode => uTree.SelectedNodes.IsNullOrEmpty() ? null : uTree.SelectedNodes[0];
 
+        private UltraGridRow SelectedRow => ug1.Selected.Rows.IsNullOrEmpty() ? null : ug1.Selected.Rows[0];
+
         private void uTree_AfterExpand(object sender, NodeEventArgs e)
         {
             _bll.AfterExpand(e.TreeNode, imageList1.Images);
@@ -98,12 +103,18 @@ namespace DnaMesUi.BasicInfo
 
         private void uTree_AfterSelect(object sender, SelectEventArgs e)
         {
+            SetToolsEnable(SelectedNode?.Tag is Project, "Add");
             foreach (var node in uTree.SelectedNodes)
             {
                 node.Expanded = true;
             }
 
-            var dataSource = _bll.GetChildren(uTree.SelectedNodes);
+            if (SelectedNode?.Tag == null)
+            {
+                return;
+            }
+
+            var dataSource = _bll.GetProcesses(SelectedNode.Tag as Project);
             GridBindingBll<Process>.BindingData(ug1, dataSource, FieldName);
         }
 
@@ -141,7 +152,7 @@ namespace DnaMesUi.BasicInfo
                     goto default;
 
                 case "Edit":
-                    form = new ProcessMgtAddEdit("编辑工艺", SelectedNode?.Tag as Process);
+                    form = new ProcessMgtAddEdit("编辑工艺", SelectedNode?.Tag as Project);
                     if (form.ShowDialog(this) == DialogResult.OK)
                     {
                         if (_bll.UpdateProcess(form.TransModel, pProj))

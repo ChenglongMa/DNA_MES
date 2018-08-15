@@ -15,7 +15,7 @@ using DnaMesUiBll.Shared;
 
 namespace DnaMesUi.Shared.Dialog
 {
-    public partial class ProcessMgtAddEdit : BaseDialog<Process>
+    public partial class ProcessMgtAddEdit : BaseDialog<Process> //Form //
     {
         public ProcessMgtAddEdit()
         {
@@ -24,30 +24,33 @@ namespace DnaMesUi.Shared.Dialog
             txtName.NullText = "必填项";
             txtDescription.NullText = "项目描述(选填项)";
         }
-        public ProcessMgtAddEdit(string text, Process proc = null) : this()
+
+        public ProcessMgtAddEdit(string text, Project proj = null) : this()
         {
             Text = text;
-            if (proc == null)
+            if (proj == null)
             {
                 _isEditable = false;
                 //项目无父节点时只能为主项目
                 ckIsMain.Checked = true;
                 ckIsMain.Enabled = false;
-                tipForIsMain.SetError(ckIsMain, "该节点下只能添加主项目");
+                tipForIsValid.SetError(ckIsMain, "该节点下只能添加主项目");
             }
             else
             {
                 _isEditable = true;
-                BindingModel(proc);
+//                BindingModel(proj);
                 //txtCode.Enabled = false;
                 txtCode.ReadOnly = true;
-                tipForIsMain.SetError(txtCode, "该值不可修改");
+                tipForIsValid.SetError(txtCode, "该值不可修改");
             }
         }
 
+
         protected override BaseBll<Process> Bll => new ProcessMgtBll();
-        private readonly bool _isEditable;//true为“编辑”状态，false为“新增”状态
-        public override Process TransModel { get; }//TODO:通过控件构建该属性
+        private readonly bool _isEditable; //true为“编辑”状态，false为“新增”状态
+        public override Process TransModel { get; } //TODO:通过控件构建该属性
+
         protected sealed override void BindingModel(Process model)
         {
             throw new NotImplementedException();
@@ -66,7 +69,7 @@ namespace DnaMesUi.Shared.Dialog
         {
             Code = txtCode.Text.Trim(),
             Name = txtName.Text.Trim(),
-            IsValid= ckIsMain.Checked,
+            IsValid = ckIsMain.Checked,
         };
 
         private void BindingProject(Project proc)

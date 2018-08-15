@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Windows.Forms;
+using DnaMesDal;
 using DnaMesModel.Model.BasicInfo;
 using DnaMesUiBll.Shared;
 using Infragistics.Win.UltraWinTree;
@@ -77,6 +78,12 @@ namespace DnaMesUiBll.BasicInfo
         public bool DeleteProcess(Process proc, Project pProj)
         {
             throw new NotImplementedException();
+        }
+
+        public List<Process> GetProcesses(Project proj)
+        {
+            var dal = new BaseDal<Project>();
+            return dal.GetChildren<Process>(proj);
         }
     }
 }

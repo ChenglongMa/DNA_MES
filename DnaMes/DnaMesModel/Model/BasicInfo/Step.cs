@@ -23,15 +23,21 @@ namespace DnaMesModel.Model.BasicInfo
         #region Public Property
 
         /// <summary>
-        /// 工序编号
+        /// 工序编码
         /// </summary>
         [DnaColumn(IsKey = true, IsNullable = false, Length = 25)]
         public string Code { get; set; }
 
         /// <summary>
-        /// 工序名称
+        /// 工序号
         /// </summary>
         [DnaColumn(IsNullable = false)]
+        public double Index { get; set; }
+
+        /// <summary>
+        /// 工序名称
+        /// </summary>
+        [DnaColumn(IsNullable = false, Length = 45)]
         public string Name { get; set; }
 
         #endregion

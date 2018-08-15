@@ -101,7 +101,7 @@ namespace DnaMesUiBll.Shared
         /// <summary>
         /// 获取子类集合
         /// </summary>
-        /// <param name="selectedNodes"></param>
+        /// <param name="selectedNodes">选中的树节点集合</param>
         /// <param name="getChildren"></param>
         public List<T> GetChildren(SelectedNodesCollection selectedNodes, Func<List<T>> getChildren = null)
         {

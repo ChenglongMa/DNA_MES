@@ -30,6 +30,11 @@ namespace DnaMesUnitTest
         {
             TestGridBinding(BuildProjectGrid(), "BasicInfo\\Project.xml");
         }
+        [TestMethod]
+        public void TestStepGrid()
+        {
+            TestGridBinding(BuildStepGrid(), "BasicInfo\\Step.xml");
+        }
 
         private void TestGridBinding(GridConfig cons, string fileName)
         {
@@ -197,6 +202,47 @@ namespace DnaMesUnitTest
             };
         }
 
+        private static GridConfig BuildStepGrid()
+        {
+            return new GridConfig
+            {
+                Name = "ug2",
+                Text = "工序管理",
+                Columns = new List<Column>
+                {
+                    new Column
+                    {
+                        Name = "Code",
+                        Text = "工序编码",
+                        DataType = typeof(string).FullName,
+                        ColumnStyle = ColumnStyle.Default,
+                        IsReadOnly = true,
+                        Visible = true,
+                        Width = 120,
+                    },
+                    new Column
+                    {
+                        Name = "Index",
+                        Text = "工序号",
+                        DataType = typeof(double).FullName,
+                        ColumnStyle = ColumnStyle.Default,
+                        IsReadOnly = true,
+                        Visible = true,
+                        Width = 120,
+                    },
+                    new Column
+                    {
+                        Name = "Name",
+                        Text = "工序名称",
+                        DataType = typeof(string).FullName,
+                        ColumnStyle = ColumnStyle.Default,
+                        IsReadOnly = true,
+                        Visible = true,
+                        Width = 120,
+                    },
+                }
+            };
+        }
         private static GridConfig BuildProjectGrid()
         {
             return new GridConfig

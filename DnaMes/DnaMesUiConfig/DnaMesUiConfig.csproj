@@ -141,6 +141,7 @@
     <Content Include="Config\BasicInfo\Process.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Config\BasicInfo\Step.xml" />
     <Content Include="Config\Menu\MESMenu.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -4,20 +4,18 @@ using DnaMesDal;
 using DnaMesModel.Link.BasicInfo;
 using DnaMesModel.Model.BasicInfo;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SqlSugar;
 
 namespace DnaMesUnitTest
 {
     [TestClass]
-    public class DbProjectTest
+    public class ProjectTest : BaseTest<Project>
     {
-        private readonly BaseDal<Project> _dal = new BaseDal<Project>();
         private readonly List<Project> _dataList = new List<Project>();
 
         [TestInitialize]
-        public void Init()
+        public new void Init()
         {
-            for (int i = 0; i < 10; i++)
+            for (var i = 0; i < 10; i++)
             {
                 var p = new Project
                 {
@@ -31,15 +29,20 @@ namespace DnaMesUnitTest
         }
 
         [TestMethod]
-        public void CreateTable()
+        public override void CreateTable()
         {
-            _dal.CreateTable<Project>();
+            base.CreateTable();
         }
 
         [TestMethod]
-        public void CreateLinkTable()
+        public override void CreateLinkTable()
         {
-            _dal.CreateTable<ProjectProject>();
+            Dal.CreateTable<ProjectProject>();
+        }
+
+        public override void Insert()
+        {
+            throw new NotImplementedException();
         }
 
         [TestMethod]
@@ -47,7 +50,7 @@ namespace DnaMesUnitTest
         {
             foreach (var p in _dataList)
             {
-                _dal.InsertOrUpdate(p);
+                Dal.InsertOrUpdate(p);
             }
         }
 
@@ -58,9 +61,10 @@ namespace DnaMesUnitTest
             {
                 var p1 = _dataList[i];
                 var p2 = _dataList[i + 1];
-                _dal.SetLinkWith(p1, p2);
+                Dal.SetLinkWith(p1, p2);
             }
         }
+
         [TestMethod]
         public void DeleteProject()
         {
@@ -68,8 +72,9 @@ namespace DnaMesUnitTest
             {
                 Code = "P00017",
             };
-            Assert.IsTrue(_dal.Delete(proj));
+            Assert.IsTrue(Dal.Delete(proj));
         }
+
         [TestMethod]
         public void DeleteLink()
         {
@@ -81,7 +86,7 @@ namespace DnaMesUnitTest
             {
                 Code = "P00014"
             };
-            Assert.IsTrue(_dal.DeleteLinkWith<Project,Project,ProjectProject>(pA, pB));
+            Assert.IsTrue(Dal.DeleteLinkWith<Project, Project, ProjectProject>(pA, pB));
         }
     }
 }
