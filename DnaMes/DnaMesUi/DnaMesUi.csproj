@@ -205,7 +205,9 @@
       <Name>DnaMesUiConfig</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\mail.png" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Resources\增加用户32.png" />
   </ItemGroup>
@@ -421,6 +423,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\report_edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail_down.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
