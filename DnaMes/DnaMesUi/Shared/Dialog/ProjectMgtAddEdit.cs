@@ -24,49 +24,36 @@ namespace DnaMesUi.Shared.Dialog
             txtCode.NullText = "必填项";
             txtName.NullText = "必填项";
             txtDescription.NullText = "项目描述(选填项)";
+            ckIsMain.Enabled = false;
         }
-
+        /// <summary>
+        /// 项目新增或编辑窗体
+        /// </summary>
+        /// <param name="text">窗体显示名称</param>
+        /// <param name="proj">待编辑项目，非父项目</param>
         public ProjectMgtAddEdit(string text, Project proj = null) : this()
         {
             Text = text;
-            if (proj == null)
+            //pproj==null即为新增
+            if (proj !=null)
             {
-                _isEditable = false;
-                //项目无父节点时只能为主项目
-                ckIsMain.Checked = true;
-                ckIsMain.Enabled = false;
-                tipForIsMain.SetError(ckIsMain, "该节点下只能添加主项目");
-            }
-            else
-            {
-                _isEditable = true;
-                BindingModel(proj);
-                //txtCode.Enabled = false;
                 txtCode.ReadOnly = true;
                 tipForIsMain.SetError(txtCode, "该值不可修改");
+                BindingModel(proj);
             }
-        }
 
-        //private readonly ProjectMgtBll _bll = new ProjectMgtBll();
-        private readonly bool _isEditable; //true为“编辑”状态，false为“新增”状态
+            _isEditable = proj != null;
+        }
+        /// <summary>
+        /// true为“编辑”状态，false为“新增”状态
+        /// </summary>
+        private readonly bool _isEditable; 
 
         public sealed override string Text
         {
             get => base.Text;
             set => base.Text = value;
         }
-
-        /// <summary>
-        /// 界面间传递值
-        /// </summary>
-        public Project Project => new Project
-        {
-            Code = txtCode.Text.Trim(),
-            Name = txtName.Text.Trim(),
-            StartingTime = dteStartTime.DateTime,
-            EndingTime = dteEndTime.DateTime,
-            IsMain = ckIsMain.Checked,
-        };
 
         protected override BaseBll<Project> Bll => new ProjectMgtBll();
 
@@ -77,6 +64,7 @@ namespace DnaMesUi.Shared.Dialog
             StartingTime = dteStartTime.DateTime,
             EndingTime = dteEndTime.DateTime,
             IsMain = ckIsMain.Checked,
+            Description = txtDescription.Text,
         };
 
         protected sealed override void BindingModel(Project proj)
@@ -86,6 +74,7 @@ namespace DnaMesUi.Shared.Dialog
             dteStartTime.DateTime = proj.StartingTime;
             dteEndTime.DateTime = proj.EndingTime;
             ckIsMain.Checked = proj.IsMain;
+            txtDescription.Text = proj.Description;
         }
 
         private void btnOk_Click(object sender, EventArgs e)

@@ -34,6 +34,10 @@
   <ItemGroup>
     <Reference Include="Infragistics4.Shared.v12.1, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
     <Reference Include="Infragistics4.Win.UltraWinGrid.v12.1, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
+    <Reference Include="Infragistics4.Win.UltraWinTree.v12.1, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files (x86)\Infragistics\NetAdvantage 2012.1\Windows Forms\CLR4.0\Bin\Infragistics4.Win.UltraWinTree.v12.1.dll</HintPath>
+    </Reference>
     <Reference Include="Infragistics4.Win.v12.1, Version=12.1.20121.2135, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -55,6 +59,7 @@
     <Compile Include="Helper\DnaTypeDescriptor.cs" />
     <Compile Include="Helper\DnaPropertyDescriptor.cs" />
     <Compile Include="Helper\GridHelper.cs" />
+    <Compile Include="Helper\UltraTreeDrawFilterHelper.cs" />
     <Compile Include="Model\ControlItem.cs" />
     <Compile Include="Model\GridConfig.cs" />
     <Compile Include="Model\Menu.cs" />

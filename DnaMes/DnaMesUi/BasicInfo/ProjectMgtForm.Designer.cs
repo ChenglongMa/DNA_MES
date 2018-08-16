@@ -337,6 +337,7 @@
             // 
             // uTree
             // 
+            this.uTree.AllowDrop = true;
             this.uTree.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uTree.ImageList = this.imageList1;
             this.uTree.ImageTransparentColor = System.Drawing.Color.Transparent;
@@ -346,11 +347,16 @@
             this.uTree.NodeConnectorColor = System.Drawing.SystemColors.ControlDark;
             appearance1.Image = "TreeSelected.png";
             _override1.SelectedNodeAppearance = appearance1;
+            _override1.SelectionType = Infragistics.Win.UltraWinTree.SelectType.ExtendedAutoDrag;
             this.uTree.Override = _override1;
             this.uTree.Size = new System.Drawing.Size(266, 450);
             this.uTree.TabIndex = 0;
             this.uTree.AfterExpand += new Infragistics.Win.UltraWinTree.AfterNodeChangedEventHandler(this.uTree_AfterExpand);
             this.uTree.AfterSelect += new Infragistics.Win.UltraWinTree.AfterNodeSelectEventHandler(this.uTree_AfterSelect);
+            this.uTree.SelectionDragStart += new System.EventHandler(this.uTree_SelectionDragStart);
+            this.uTree.DragDrop += new System.Windows.Forms.DragEventHandler(this.uTree_DragDrop);
+            this.uTree.DragOver += new System.Windows.Forms.DragEventHandler(this.uTree_DragOver);
+            this.uTree.DragLeave += new System.EventHandler(this.uTree_DragLeave);
             // 
             // imageList1
             // 

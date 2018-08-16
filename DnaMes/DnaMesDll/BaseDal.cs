@@ -429,11 +429,11 @@ namespace DnaMesDal
         /// <summary>
         /// 删除关系
         /// </summary>
-        /// <typeparam name="TA"></typeparam>
-        /// <typeparam name="TB"></typeparam>
+        /// <typeparam name="TA">父类类型</typeparam>
+        /// <typeparam name="TB">子类类型</typeparam>
         /// <typeparam name="TLink">roleA,roleB关系类</typeparam>
-        /// <param name="roleA"></param>
-        /// <param name="roleB"></param>
+        /// <param name="roleA">父类</param>
+        /// <param name="roleB">子类</param>
         /// <returns></returns>
         public bool DeleteLinkWith<TA, TB, TLink>(TA roleA, TB roleB)
             where TA : BaseModel, new()

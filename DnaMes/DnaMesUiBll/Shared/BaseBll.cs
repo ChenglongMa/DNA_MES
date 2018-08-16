@@ -83,7 +83,7 @@ namespace DnaMesUiBll.Shared
         /// <param name="model"></param>
         /// <param name="parent">指定父节点</param>
         /// <returns></returns>
-        public bool AddModel<TParent>(T model, TParent parent = null) where TParent : BaseModel, new()
+        public virtual bool AddModel<TParent>(T model, TParent parent = null) where TParent : BaseModel, new()
         {
             var res = Dal.Insert(model);
             return parent == null ? res : Dal.SetLinkWith(parent, model);

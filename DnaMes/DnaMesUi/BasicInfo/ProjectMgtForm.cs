@@ -10,6 +10,7 @@ using DnaMesModel.Shared;
 using DnaMesUi.Shared.Dialog;
 using DnaMesUiBll.BasicInfo;
 using DnaMesUiBll.Shared;
+using DnaMesUiConfig.Helper;
 using Infragistics.Win.UltraWinEditors;
 using Infragistics.Win.UltraWinGrid;
 using Infragistics.Win.UltraWinToolbars;
@@ -22,6 +23,7 @@ namespace DnaMesUi.BasicInfo
         private readonly ProjectMgtBll _bll = new ProjectMgtBll();
 //        private const string FieldName = "BasicInfo\\Project.xml";
 
+        private readonly UltraTreeDrawFilterHelper _drawFilter = new UltraTreeDrawFilterHelper();
         public ProjectMgtForm()
         {
             InitializeComponent();
@@ -30,7 +32,11 @@ namespace DnaMesUi.BasicInfo
             _bll.BuildTree(ref uTree, imageList1.Images, _bll.ParentsToBeUpdated, p => p.IsMain);
             FieldName = "BasicInfo\\Project.xml";
             GridBindingBll<Project>.BindingStyleAndData(ug1, null, FieldName);
+            uTree.DrawFilter = _drawFilter;
+            _drawFilter.Invalidate += DrawFilterInvalidate;
+            _drawFilter.QueryStateAllowedForNode += DrawFilterQueryStateAllowedForNode;
         }
+
 
 
         #region 其他
@@ -106,6 +112,120 @@ namespace DnaMesUi.BasicInfo
             GridBindingBll<Project>.BindingData(ug1, dataSource, FieldName);
         }
 
+        private void uTree_SelectionDragStart(object sender, EventArgs e)
+        {
+            uTree.DoDragDrop(uTree.SelectedNodes, DragDropEffects.Move);
+        }
+
+        private void DrawFilterQueryStateAllowedForNode(object sender, UltraTreeDrawFilterHelper.QueryStateAllowedForNodeEventArgs e)
+        {
+            e.StatesAllowed = DropLinePositionEnum.OnNode;
+
+        }
+
+        private void DrawFilterInvalidate(object sender, EventArgs e)
+        {
+            uTree.Invalidate();
+        }
+
+        private void uTree_DragDrop(object sender, DragEventArgs e)
+        {
+            UltraTreeNode aNode;
+
+            int i;
+            var dropNode = _drawFilter.DropHightLightNode;
+
+            var selectedNodes = (SelectedNodesCollection)e.Data.GetData(typeof(SelectedNodesCollection));
+            selectedNodes = selectedNodes.Clone() as SelectedNodesCollection;
+            if (selectedNodes==null)
+            {
+                return;
+            }
+            selectedNodes.SortByPosition();
+            switch (_drawFilter.DropLinePosition)
+            {
+                case DropLinePositionEnum.OnNode: 
+                    {
+                        var children=new List<Project>();
+                        for (i = 0; i <= selectedNodes.Count - 1; i++)
+                        {
+                            aNode = selectedNodes[i];
+                            aNode.Reposition(dropNode.Nodes);
+                            if (aNode.Tag is Project proj)
+                            {
+                                children.Add(proj);
+                            }
+                        }
+
+                        var pPorj = dropNode?.Tag as Project;
+                        _bll.ChangeParent(children, pPorj);
+                        break;
+                    }
+                case DropLinePositionEnum.BelowNode: 
+                    {
+                        for (i = 0; i <= selectedNodes.Count - 1; i++)
+                        {
+                            aNode = selectedNodes[i];
+                            aNode.Reposition(dropNode, NodePosition.Next);
+                            dropNode = aNode;
+                        }
+                        break;
+                    }
+                case DropLinePositionEnum.AboveNode: 
+                    {
+                        for (i = 0; i <= selectedNodes.Count - 1; i++)
+                        {
+                            aNode = selectedNodes[i];
+                            aNode.Reposition(dropNode, NodePosition.Previous);
+                        }
+                        break;
+                    }
+            }
+            _drawFilter.ClearDropHighlight();
+        }
+
+        private void uTree_DragLeave(object sender, EventArgs e)
+        {
+            _drawFilter.ClearDropHighlight();
+        }
+
+        private void uTree_DragOver(object sender, DragEventArgs e)
+        {
+            var pointInTree = uTree.PointToClient(new Point(e.X, e.Y));
+            var aNode = uTree.GetNodeFromPoint(pointInTree);
+            if (aNode == null)
+            {
+                e.Effect = DragDropEffects.None;
+                _drawFilter.ClearDropHighlight();
+                return;
+            }
+            if (IsAnyParentSelected(aNode))
+            {
+                e.Effect = DragDropEffects.None;
+                _drawFilter.ClearDropHighlight();
+                return;
+            }
+            _drawFilter.SetDropHighlightNode(aNode, pointInTree);
+            e.Effect = DragDropEffects.Move;
+        }
+        private static bool IsAnyParentSelected(UltraTreeNode node)
+        {
+            var returnValue = false;
+
+            var parentNode = node.Parent;
+            while (parentNode != null)
+            {
+                if (parentNode.Selected)
+                {
+                    returnValue = true;
+                    break;
+                }
+
+                parentNode = parentNode.Parent;
+            }
+
+            return returnValue;
+        }
         #endregion
 
         #region 工具栏区
@@ -158,7 +278,7 @@ namespace DnaMesUi.BasicInfo
                     goto default;
 
                 case "Delete":
-                    if (SelectedNode?.Tag is Project proj)
+                    if (SelectedNode?.Tag is Project proj && MsgBoxLib.ShowQuestion("确定要删除该项目吗？"))
                     {
                         if (_bll.DeleteModel<Project, ProjectProject>(proj, pProj))
                         {
@@ -179,7 +299,27 @@ namespace DnaMesUi.BasicInfo
                     goto default;
 
                 case "AddChild":
-                    //TODO：还未想出解决方案
+                    if (!(SelectedNode?.Tag is Project thisProj))
+                    {
+                        MsgBoxLib.ShowError("请选择父项目");
+                        break;
+                    }
+
+                    form = new ProjectMgtAddEdit("新增子项目");
+                    if (form.ShowDialog(this) == DialogResult.OK)
+                    {
+                        if (_bll.AddModel(form.TransModel, thisProj))
+                        {
+                            MsgBoxLib.ShowInformationOk("操作成功！");
+                            //将父类加入List，表示需要从数据库中更新子类数据
+                            _bll.ParentsToBeUpdated.AddFirst(thisProj.Code);
+                        }
+                        else
+                        {
+                            MsgBoxLib.ShowStop("操作失败");
+                        }
+                    }
+
                     goto default;
             }
         }
@@ -217,5 +357,6 @@ namespace DnaMesUi.BasicInfo
         }
 
         #endregion
+
     }
 }

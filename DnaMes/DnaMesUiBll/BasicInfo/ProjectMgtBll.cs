@@ -36,7 +36,8 @@ namespace DnaMesUiBll.BasicInfo
 
         #region 私有方法
 
-        protected override void BuildSubTree(UltraTreeNode pNode, IEnumerable<Project> children, ImageList.ImageCollection images)
+        protected override void BuildSubTree(UltraTreeNode pNode, IEnumerable<Project> children,
+            ImageList.ImageCollection images)
         {
             if (children == null)
             {
@@ -68,12 +69,22 @@ namespace DnaMesUiBll.BasicInfo
                 }
             }
         }
-        
+
         #endregion
 
         #region 公有方法
 
         #endregion
+
+        public override bool AddModel<TParent>(Project model, TParent parent = null)
+        {
+            if (parent != null)
+            {
+                model.IsMain = false;
+            }
+
+            return base.AddModel(model, parent);
+        }
 
         /// <summary>
         /// 根据条件构造表达式
@@ -107,6 +118,7 @@ namespace DnaMesUiBll.BasicInfo
                 {
                     return null;
                 }
+
                 var node = uTree.GetNodeByKey(proj.Code);
                 if (node != null)
                 {
@@ -171,5 +183,27 @@ namespace DnaMesUiBll.BasicInfo
             return res && Dal.Update(project);
         }
 
+        public void ChangeParent(List<Project> children, Project pPorj)
+        {
+            if (pPorj == null)
+            {
+                foreach (var proj in children)
+                {
+                    proj.IsMain = true;
+                    Dal.Update(proj);
+                    var parent = Dal.GetParent(proj);
+                    Dal.DeleteLinkWith<Project,Project,ProjectProject>(parent, proj);
+                }
+            }
+            else
+            {
+                foreach (var child in children)
+                {
+                    child.IsMain = false;
+                    Dal.Update(child);
+                    Dal.SetLinkWith(pPorj, child);
+                }
+            }
+        }
     }
 }
