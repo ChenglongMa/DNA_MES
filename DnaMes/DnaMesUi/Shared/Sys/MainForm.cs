@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DnaLib.Control;
 using DnaLib.Helper;
 using DnaMesModel.Shared;
 using DnaMesUiConfig.Helper;
@@ -25,7 +26,7 @@ namespace DnaMesUi.Shared.Sys
 {
     public partial class MainForm : Form
     {
-        private int childFormNumber = 0;
+        private int _childFormNumber;
 
         public MainForm()
         {
@@ -40,7 +41,7 @@ namespace DnaMesUi.Shared.Sys
         {
             Form childForm = new Form();
             childForm.MdiParent = this;
-            childForm.Text = "窗口 " + childFormNumber++;
+            childForm.Text = "窗口 " + _childFormNumber++;
             childForm.Show();
         }
 
@@ -206,7 +207,11 @@ namespace DnaMesUi.Shared.Sys
                 foreach (var item in pop.MenuItems)
                 {
                     //设置菜单项
-                    var menuItem = new ButtonTool(item.Name);
+                    ToolBase menuItem = new ButtonTool(item.Name);
+                    if (toolBarManager.Tools.Exists(item.Name))
+                    {
+                        menuItem = toolBarManager.Tools[item.Name];
+                    }
                     if (!item.ShortCut.IsNullOrEmpty())
                     {
                         item.Text += "(&" + item.ShortCut + ")";
@@ -316,8 +321,21 @@ namespace DnaMesUi.Shared.Sys
 
                         break;
                     case CommandType.Close:
+                        Close();
                         break;
                     case CommandType.Logout:
+                        break;
+                }
+            }
+            else
+            {
+                switch (e.Tool.Key.ToLower())
+                {
+                    case "exit":
+                        Close();
+                        break;
+
+                    case "logout":
                         break;
                 }
             }
@@ -335,5 +353,10 @@ namespace DnaMesUi.Shared.Sys
         }
 
         #endregion
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = !MsgBoxLib.ShowQuestion("确定要退出系统吗?");
+        }
     }
 }

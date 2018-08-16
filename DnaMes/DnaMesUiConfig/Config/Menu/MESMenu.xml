@@ -1,14 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+
 <Menu Name="MainMenuBar" Text="主菜单" IsLarge="false">
   <PopMenus Name="FilePop" Text="文件" ShortCut="F">
     <MenuItems Name="MyHome" Text="我的主页" ShortCut="H" CommandType="Activate" DomainId="-1">
       <FormPath>Shared.Sys.HomeForm</FormPath>
       <FormType>ChildForm</FormType>
     </MenuItems>
-    <MenuItems Name="Logout" Text="注销" ShortCut="L" CommandType="Logout" DomainId="-1">
+    <MenuItems Name="Logout" Text="注销" ShortCut="Z" CommandType="Logout" DomainId="-1">
       <FormType>Null</FormType>
     </MenuItems>
-    <MenuItems Name="Exit" Text="退出" ShortCut="E" CommandType="Close" DomainId="-1">
+    <MenuItems Name="Exit" Text="退出" ShortCut="T" CommandType="Close" DomainId="-1">
       <FormType>Null</FormType>
     </MenuItems>
   </PopMenus>
@@ -16,17 +17,61 @@
     <MenuItems Name="NoTree" Text="无树窗体" ShortCut="N" CommandType="Activate" DomainId="10001">
       <FormPath>Templetes.NoTreeForm</FormPath>
       <FormType>ChildForm</FormType>
-    </MenuItems>    
+    </MenuItems>
     <MenuItems Name="WithTree" Text="有树窗体" ShortCut="W" CommandType="Activate" DomainId="10001">
       <FormPath>Templetes.WithTreeForm</FormPath>
       <FormType>ChildForm</FormType>
-    </MenuItems>    
+    </MenuItems>
     <MenuItems Name="ProjectMant" Text="项目管理" ShortCut="P" CommandType="Activate" DomainId="10001">
       <FormPath>BasicInfo.ProjectMgtForm</FormPath>
       <FormType>ChildForm</FormType>
     </MenuItems>
     <MenuItems Name="ProcessMant" Text="工艺管理" ShortCut="R" CommandType="Activate" DomainId="10002">
       <FormPath>BasicInfo.ProcessMgtForm</FormPath>
+      <FormType>ChildForm</FormType>
+    </MenuItems>
+  </PopMenus>
+  <PopMenus Name="WorkshopPop" Text="车间管理" ShortCut="C">
+    <MenuItems Name="WorkPlan" Text="车间计划" ShortCut="J" CommandType="Activate" DomainId="20001">
+      <FormPath>Templetes.NoTreeForm</FormPath>
+      <FormType>ChildForm</FormType>
+    </MenuItems>
+    <MenuItems Name="WorkOrder" Text="生产工单" ShortCut="S" CommandType="Activate" DomainId="20002">
+      <FormPath>Templetes.WithTreeForm</FormPath>
+      <FormType>ChildForm</FormType>
+    </MenuItems>
+    <MenuItems Name="Dispatching" Text="派工领工" ShortCut="P" CommandType="Activate" DomainId="20003">
+      <FormPath>BasicInfo.ProjectMgtForm</FormPath>
+      <FormType>ChildForm</FormType>
+    </MenuItems>
+    <MenuItems Name="Report" Text="车间报工" ShortCut="B" CommandType="Activate" DomainId="20004">
+      <FormPath>BasicInfo.ProcessMgtForm</FormPath>
+      <FormType>ChildForm</FormType>
+    </MenuItems>
+  </PopMenus>
+  <PopMenus Name="Quality" Text="质检管理" ShortCut="Z">
+    <MenuItems Name="Handling" Text="问题处理" ShortCut="W" CommandType="Activate" DomainId="30001">
+      <FormPath>Templetes.NoTreeForm</FormPath>
+      <FormType>ChildForm</FormType>
+    </MenuItems>
+  </PopMenus>
+  <PopMenus Name="Analysis" Text="决策分析" ShortCut="J">
+    <MenuItems Name="Sum" Text="生产汇总" ShortCut="H" CommandType="Activate" DomainId="40001">
+      <FormPath>Templetes.NoTreeForm</FormPath>
+      <FormType>ChildForm</FormType>
+    </MenuItems>
+    <MenuItems Name="Board" Text="生产看板" ShortCut="K" CommandType="Activate" DomainId="40002">
+      <FormPath>Templetes.NoTreeForm</FormPath>
+      <FormType>ChildForm</FormType>
+    </MenuItems>
+  </PopMenus>
+  <PopMenus Name="Help" Text="帮助" ShortCut="H">
+    <MenuItems Name="ViewHelp" Text="查看帮助" ShortCut="V" CommandType="Activate" DomainId="-1">
+      <FormPath>Templetes.NoTreeForm</FormPath>
+      <FormType>ChildForm</FormType>
+    </MenuItems>
+    <MenuItems Name="About" Text="关于" ShortCut="A" CommandType="Activate" DomainId="-1">
+      <FormPath>Templetes.NoTreeForm</FormPath>
       <FormType>ChildForm</FormType>
     </MenuItems>
   </PopMenus>

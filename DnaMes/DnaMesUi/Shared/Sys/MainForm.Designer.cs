@@ -55,9 +55,10 @@
             this._MainForm_Toolbars_Dock_Area_Left.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
             this._MainForm_Toolbars_Dock_Area_Left.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Left;
             this._MainForm_Toolbars_Dock_Area_Left.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._MainForm_Toolbars_Dock_Area_Left.Location = new System.Drawing.Point(0, 44);
+            this._MainForm_Toolbars_Dock_Area_Left.Location = new System.Drawing.Point(0, 69);
+            this._MainForm_Toolbars_Dock_Area_Left.Margin = new System.Windows.Forms.Padding(2);
             this._MainForm_Toolbars_Dock_Area_Left.Name = "_MainForm_Toolbars_Dock_Area_Left";
-            this._MainForm_Toolbars_Dock_Area_Left.Size = new System.Drawing.Size(0, 456);
+            this._MainForm_Toolbars_Dock_Area_Left.Size = new System.Drawing.Size(0, 331);
             this._MainForm_Toolbars_Dock_Area_Left.ToolbarsManager = this.toolBarManager;
             // 
             // toolBarManager
@@ -116,9 +117,10 @@
             this._MainForm_Toolbars_Dock_Area_Right.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
             this._MainForm_Toolbars_Dock_Area_Right.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Right;
             this._MainForm_Toolbars_Dock_Area_Right.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._MainForm_Toolbars_Dock_Area_Right.Location = new System.Drawing.Point(843, 44);
+            this._MainForm_Toolbars_Dock_Area_Right.Location = new System.Drawing.Point(632, 69);
+            this._MainForm_Toolbars_Dock_Area_Right.Margin = new System.Windows.Forms.Padding(2);
             this._MainForm_Toolbars_Dock_Area_Right.Name = "_MainForm_Toolbars_Dock_Area_Right";
-            this._MainForm_Toolbars_Dock_Area_Right.Size = new System.Drawing.Size(0, 456);
+            this._MainForm_Toolbars_Dock_Area_Right.Size = new System.Drawing.Size(0, 331);
             this._MainForm_Toolbars_Dock_Area_Right.ToolbarsManager = this.toolBarManager;
             // 
             // _MainForm_Toolbars_Dock_Area_Top
@@ -128,8 +130,9 @@
             this._MainForm_Toolbars_Dock_Area_Top.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Top;
             this._MainForm_Toolbars_Dock_Area_Top.ForeColor = System.Drawing.SystemColors.ControlText;
             this._MainForm_Toolbars_Dock_Area_Top.Location = new System.Drawing.Point(0, 0);
+            this._MainForm_Toolbars_Dock_Area_Top.Margin = new System.Windows.Forms.Padding(2);
             this._MainForm_Toolbars_Dock_Area_Top.Name = "_MainForm_Toolbars_Dock_Area_Top";
-            this._MainForm_Toolbars_Dock_Area_Top.Size = new System.Drawing.Size(843, 44);
+            this._MainForm_Toolbars_Dock_Area_Top.Size = new System.Drawing.Size(632, 69);
             this._MainForm_Toolbars_Dock_Area_Top.ToolbarsManager = this.toolBarManager;
             // 
             // _MainForm_Toolbars_Dock_Area_Bottom
@@ -138,9 +141,10 @@
             this._MainForm_Toolbars_Dock_Area_Bottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
             this._MainForm_Toolbars_Dock_Area_Bottom.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Bottom;
             this._MainForm_Toolbars_Dock_Area_Bottom.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._MainForm_Toolbars_Dock_Area_Bottom.Location = new System.Drawing.Point(0, 500);
+            this._MainForm_Toolbars_Dock_Area_Bottom.Location = new System.Drawing.Point(0, 400);
+            this._MainForm_Toolbars_Dock_Area_Bottom.Margin = new System.Windows.Forms.Padding(2);
             this._MainForm_Toolbars_Dock_Area_Bottom.Name = "_MainForm_Toolbars_Dock_Area_Bottom";
-            this._MainForm_Toolbars_Dock_Area_Bottom.Size = new System.Drawing.Size(843, 0);
+            this._MainForm_Toolbars_Dock_Area_Bottom.Size = new System.Drawing.Size(632, 0);
             this._MainForm_Toolbars_Dock_Area_Bottom.ToolbarsManager = this.toolBarManager;
             // 
             // tabbedMdiManager
@@ -155,29 +159,31 @@
             // 
             // ultraStatusBar1
             // 
-            this.ultraStatusBar1.Location = new System.Drawing.Point(0, 500);
+            this.ultraStatusBar1.Location = new System.Drawing.Point(0, 400);
+            this.ultraStatusBar1.Margin = new System.Windows.Forms.Padding(2);
             this.ultraStatusBar1.Name = "ultraStatusBar1";
-            this.ultraStatusBar1.Size = new System.Drawing.Size(843, 23);
+            this.ultraStatusBar1.Size = new System.Drawing.Size(632, 18);
             this.ultraStatusBar1.TabIndex = 5;
             this.ultraStatusBar1.Text = "ultraStatusBar1";
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(843, 523);
+            this.ClientSize = new System.Drawing.Size(632, 418);
             this.Controls.Add(this._MainForm_Toolbars_Dock_Area_Left);
             this.Controls.Add(this._MainForm_Toolbars_Dock_Area_Right);
             this.Controls.Add(this._MainForm_Toolbars_Dock_Area_Bottom);
             this.Controls.Add(this.ultraStatusBar1);
             this.Controls.Add(this._MainForm_Toolbars_Dock_Area_Top);
             this.IsMdiContainer = true;
-            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.ultraStatusBar1.SetStatusBarText(this, "就绪");
             this.Text = "DNA 制造管理系统";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.toolBarManager)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedMdiManager)).EndInit();
