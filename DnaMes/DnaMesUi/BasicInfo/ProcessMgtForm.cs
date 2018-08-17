@@ -31,7 +31,6 @@ namespace DnaMesUi.BasicInfo
             FieldName = "BasicInfo\\Process.xml";
             GridBindingBll<Process>.BindingStyleAndData(ug1, null, FieldName);
             GridBindingBll<Step>.BindingStyleAndData(ug2, null, FieldName2);
-
         }
 
 
@@ -94,7 +93,8 @@ namespace DnaMesUi.BasicInfo
 
         private UltraTreeNode SelectedNode => uTree.SelectedNodes.IsNullOrEmpty() ? null : uTree.SelectedNodes[0];
 
-        private UltraGridRow SelectedRow => ug1.Selected.Rows.IsNullOrEmpty() ? null : ug1.Selected.Rows[0];
+        private UltraGridRow SelectedProcRow => ug1.Selected.Rows.IsNullOrEmpty() ? null : ug1.Selected.Rows[0];
+        private UltraGridRow SelectedStepRow => ug2.Selected.Rows.IsNullOrEmpty() ? null : ug2.Selected.Rows[0];
 
         private void uTree_AfterExpand(object sender, NodeEventArgs e)
         {
@@ -230,5 +230,54 @@ namespace DnaMesUi.BasicInfo
         }
 
         #endregion
+
+        #region 右键菜单
+
+        private void cmsProc_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            var proc = SelectedProcRow?.ListObject as Process;
+            编辑工艺ToolStripMenuItem.Enabled = proc != null;
+            激活工艺ToolStripMenuItem.Enabled = proc != null && !proc.IsValid;
+            删除工艺ToolStripMenuItem.Enabled = proc != null;
+        }
+
+        private void cmsStep_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            新增工序ToolStripMenuItem.Enabled = SelectedProcRow?.ListObject is Process;
+            var step = SelectedStepRow?.ListObject as Step;
+            编辑工序ToolStripMenuItem.Enabled = step != null;
+            删除工序ToolStripMenuItem.Enabled = step != null;
+        }
+
+        #endregion
+
+        private void 激活工艺ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (var row in ug1.Rows)
+            {
+                if (row == SelectedProcRow || !(row?.ListObject is Process proc))
+                {
+                    continue;
+                }
+
+                if (proc.IsValid)
+                {
+                    if (!MsgBoxLib.ShowQuestion("发现已激活工艺，确定要更改吗？"))
+                    {
+                        return;
+                    }
+
+                    proc.IsValid = false;
+                    _bll.UpdateProcess(proc);
+                }
+            }
+
+            if (SelectedProcRow?.ListObject is Process p)
+            {
+                p.IsValid = true;
+                _bll.UpdateProcess(p);
+                MsgBoxLib.ShowInformationOk("激活工艺设置成功");
+            }
+        }
     }
 }

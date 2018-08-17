@@ -27,13 +27,15 @@ namespace DnaMesUi
         {
             #region 全局异常处理
 
-            //TODO:项目完结后启用
-            ////设置应用程序处理异常方式：ThreadException处理  
-            //Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
-            ////处理UI线程异常  
-            //Application.ThreadException += Application_ThreadException;
-            ////处理非UI线程异常  
-            //AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+            #if RELEASE
+
+            //设置应用程序处理异常方式：ThreadException处理  
+            Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
+            //处理UI线程异常  
+            Application.ThreadException += Application_ThreadException;
+            //处理非UI线程异常  
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+            #endif
 
             #endregion
 

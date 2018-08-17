@@ -82,6 +82,11 @@ namespace DnaLib.Config
     /// </summary>
     public class DbInfo : ConfigurationElement // 集合中的每个元素
     {
+        public DbInfo()
+        {
+            Timeout = 300;
+        }
+
         /// <summary>
         ///     配置节名
         /// </summary>

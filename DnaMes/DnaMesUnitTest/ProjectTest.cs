@@ -12,6 +12,14 @@ namespace DnaMesUnitTest
     {
         private readonly List<Project> _dataList = new List<Project>();
 
+        private readonly Project _mainProj = new Project
+        {
+            Code = "P00000",
+            Name = "主项目",
+            IsMain = true,
+            StartingTime = DateTime.Today,
+            EndingTime = DateTime.Today.AddDays(60),
+        };
         [TestInitialize]
         public new void Init()
         {
@@ -39,15 +47,11 @@ namespace DnaMesUnitTest
         {
             Dal.CreateTable<ProjectProject>();
         }
-
+        [TestMethod]
         public override void Insert()
         {
-            throw new NotImplementedException();
-        }
+            Dal.InsertOrUpdate(_mainProj);
 
-        [TestMethod]
-        public void InsertData()
-        {
             foreach (var p in _dataList)
             {
                 Dal.InsertOrUpdate(p);
@@ -57,11 +61,9 @@ namespace DnaMesUnitTest
         [TestMethod]
         public void BuildLinks()
         {
-            for (var i = 0; i < _dataList.Count - 1; i++)
+            foreach (var project in _dataList)
             {
-                var p1 = _dataList[i];
-                var p2 = _dataList[i + 1];
-                Dal.SetLinkWith(p1, p2);
+                Dal.SetLinkWith(_mainProj, project);
             }
         }
 

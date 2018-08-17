@@ -75,12 +75,13 @@
   <ItemGroup>
     <Compile Include="BaseTest.cs" />
     <Compile Include="Regulation.cs" />
-    <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MenuXmlUnitTest.cs" />
     <Compile Include="ProjectTest.cs" />
     <Compile Include="ProcessTest.cs" />
     <Compile Include="StepTest.cs" />
+    <Compile Include="DomainTest.cs" />
+    <Compile Include="UserTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

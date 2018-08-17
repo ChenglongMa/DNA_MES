@@ -70,7 +70,7 @@ namespace DnaMesUiBll.BasicInfo
             return _projBll.GetDataSource(exp);
         }
 
-        public bool UpdateProcess(Process process, Project pProj)
+        public bool UpdateProcess(Process process, Project pProj=null)
         {
             throw new NotImplementedException();
         }

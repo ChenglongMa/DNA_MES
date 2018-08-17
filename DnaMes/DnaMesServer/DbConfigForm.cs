@@ -65,7 +65,7 @@ namespace DnaMesServer
             }
             else
             {
-                MsgBoxLib.ShowError($"连接失败\n错误信息：{errorMessage}");
+                MsgBoxLib.ShowError($"连接失败\n错误信息：\n{errorMessage}");
             }
         }
 
