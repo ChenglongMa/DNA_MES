@@ -46,7 +46,7 @@ namespace DnaMesUi.Shared.Dialog
         protected override BaseBll<Process> Bll => new ProcessMgtBll();
         private readonly bool _isEditable; //true为“编辑”状态，false为“新增”状态
 
-        protected override void BindingModel(Process proc)
+        protected sealed override void BindingModel(Process proc)
         {
             txtCode.Text = proc.Code;
             txtName.Text = proc.Name;

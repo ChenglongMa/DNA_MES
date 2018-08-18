@@ -25,7 +25,7 @@ namespace DnaMesUi.BasicInfo
         private readonly StepMgtBll _bllStep = new StepMgtBll();
         private List<Process> _procDataSrc;
         private List<Step> _stepDataSrc;
-        
+
         private const string FieldName2 = "BasicInfo\\Step.xml";
 
         public ProcessMgtForm()
@@ -44,16 +44,19 @@ namespace DnaMesUi.BasicInfo
 
         private void RefreshProc()
         {
+            _procDataSrc = _bll.GetChildren<Project, Process>(SelectedNode?.Tag as Project);
             GridBindingBll<Process>.BindingData(ug1, _procDataSrc, FieldName);
             _stepDataSrc = null;
         }
 
         private void RefreshStep()
         {
+            _stepDataSrc = _bllStep.GetChildren<Process, Step>(SelectedProcRow?.ListObject as Process);
             if (_stepDataSrc.IsNotNullorEmpty())
             {
-                _stepDataSrc.Sort((s1, s2) => (int)(100 * (s1.Index - s2.Index)));
+                _stepDataSrc.Sort((s1, s2) => (int) (100 * (s1.Index - s2.Index)));
             }
+
             GridBindingBll<Step>.BindingData(ug2, _stepDataSrc, FieldName2);
         }
 
@@ -128,9 +131,7 @@ namespace DnaMesUi.BasicInfo
                 return;
             }
 
-            _procDataSrc = _bll.GetChildren<Project, Process>(SelectedNode.Tag as Project);
             RefreshProc();
-
         }
 
         #endregion
@@ -175,7 +176,6 @@ namespace DnaMesUi.BasicInfo
             switch (e.Button)
             {
                 case MouseButtons.Left:
-                    _stepDataSrc = _bll.GetChildren<Process, Step>(proc);
                     RefreshStep();
                     //左击事件
                     break;
@@ -250,7 +250,7 @@ namespace DnaMesUi.BasicInfo
         {
             foreach (var row in ug1.Rows)
             {
-                if (row == SelectedProcRow || !(row?.ListObject is Process proc))
+                if (row == _activeProcRow || !(row?.ListObject is Process proc))
                 {
                     continue;
                 }
@@ -267,7 +267,7 @@ namespace DnaMesUi.BasicInfo
                 }
             }
 
-            if (SelectedProcRow?.ListObject is Process p)
+            if (_activeProcRow?.ListObject is Process p)
             {
                 p.IsValid = true;
                 _bll.UpdateModel(p);
@@ -288,7 +288,7 @@ namespace DnaMesUi.BasicInfo
                     MsgBoxLib.ShowInformationOk("操作成功！");
                     //将父类加入List，表示需要从数据库中更新子类数据
                     if (pProj != null) _bll.ParentsToBeUpdated.AddFirst(pProj.Code);
-                    RefreshProc();//TODO:待验证
+                    RefreshProc(); //TODO:待验证
                 }
                 else
                 {
