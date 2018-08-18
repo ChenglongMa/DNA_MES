@@ -24,8 +24,8 @@ namespace DnaMesUi.Shared.Dialog
             txtCode.NullText = "必填项";
             txtName.NullText = "必填项";
             txtDescription.NullText = "项目描述(选填项)";
-            ckIsMain.Enabled = false;
         }
+
         /// <summary>
         /// 项目新增或编辑窗体
         /// </summary>
@@ -35,7 +35,7 @@ namespace DnaMesUi.Shared.Dialog
         {
             Text = text;
             //pproj==null即为新增
-            if (proj !=null)
+            if (proj != null)
             {
                 txtCode.ReadOnly = true;
                 tipForIsMain.SetError(txtCode, "该值不可修改");
@@ -44,10 +44,26 @@ namespace DnaMesUi.Shared.Dialog
 
             _isEditable = proj != null;
         }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// 新增项目时使用
+        /// </summary>
+        /// <param name="isMain">是否从null节点新建</param>
+        public ProjectMgtAddEdit(bool isMain) : this("新增项目")
+        {
+            ckIsMain.Checked = isMain;
+            ckIsMain.Enabled = !isMain;
+            if (isMain)
+            {
+                tipForIsMain.SetError(ckIsMain, "该节点只能添加主项目");
+            }
+        }
+
         /// <summary>
         /// true为“编辑”状态，false为“新增”状态
         /// </summary>
-        private readonly bool _isEditable; 
+        private readonly bool _isEditable;
 
         public sealed override string Text
         {

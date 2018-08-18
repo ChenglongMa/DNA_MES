@@ -76,14 +76,10 @@ namespace DnaMesUiBll.BasicInfo
 
         #endregion
 
-        public override bool AddModel<TParent>(Project model, TParent parent = null)
+        public bool AddProject(Project child, Project parent)
         {
-            if (parent != null)
-            {
-                model.IsMain = false;
-            }
-
-            return base.AddModel(model, parent);
+            child.IsMain = parent == null;
+            return AddModel(child, parent);
         }
 
         /// <summary>

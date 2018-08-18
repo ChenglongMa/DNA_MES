@@ -34,7 +34,6 @@
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool1 = new Infragistics.Win.UltraWinToolbars.ButtonTool("Add");
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool2 = new Infragistics.Win.UltraWinToolbars.ButtonTool("Edit");
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool3 = new Infragistics.Win.UltraWinToolbars.ButtonTool("Delete");
-            Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool9 = new Infragistics.Win.UltraWinToolbars.ButtonTool("AddChild");
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool5 = new Infragistics.Win.UltraWinToolbars.ButtonTool("Add");
             Infragistics.Win.Appearance appearance14 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool6 = new Infragistics.Win.UltraWinToolbars.ButtonTool("Edit");
@@ -121,13 +120,11 @@
             ultraToolbar1.FloatingSize = new System.Drawing.Size(142, 27);
             buttonTool4.InstanceProps.IsFirstInGroup = true;
             buttonTool1.InstanceProps.IsFirstInGroup = true;
-            buttonTool9.InstanceProps.IsFirstInGroup = true;
             ultraToolbar1.NonInheritedTools.AddRange(new Infragistics.Win.UltraWinToolbars.ToolBase[] {
             buttonTool4,
             buttonTool1,
             buttonTool2,
-            buttonTool3,
-            buttonTool9});
+            buttonTool3});
             ultraToolbar1.Settings.AllowCustomize = Infragistics.Win.DefaultableBoolean.False;
             ultraToolbar1.Settings.AllowDockBottom = Infragistics.Win.DefaultableBoolean.False;
             ultraToolbar1.Settings.AllowDockLeft = Infragistics.Win.DefaultableBoolean.False;
@@ -181,10 +178,10 @@
             this.BaseForm_Fill_Panel.Controls.Add(this.splitContainer1);
             this.BaseForm_Fill_Panel.Cursor = System.Windows.Forms.Cursors.Default;
             this.BaseForm_Fill_Panel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BaseForm_Fill_Panel.Location = new System.Drawing.Point(0, 44);
+            this.BaseForm_Fill_Panel.Location = new System.Drawing.Point(0, 74);
             this.BaseForm_Fill_Panel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.BaseForm_Fill_Panel.Name = "BaseForm_Fill_Panel";
-            this.BaseForm_Fill_Panel.Size = new System.Drawing.Size(1584, 636);
+            this.BaseForm_Fill_Panel.Size = new System.Drawing.Size(1584, 606);
             this.BaseForm_Fill_Panel.TabIndex = 0;
             // 
             // splitContainer1
@@ -204,7 +201,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(1584, 636);
+            this.splitContainer1.Size = new System.Drawing.Size(1584, 606);
             this.splitContainer1.SplitterDistance = 70;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -292,7 +289,7 @@
             this.lblName.Location = new System.Drawing.Point(316, 37);
             this.lblName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(92, 29);
+            this.lblName.Size = new System.Drawing.Size(82, 24);
             this.lblName.TabIndex = 1;
             this.lblName.Text = "项目名称";
             // 
@@ -302,7 +299,7 @@
             this.lblCode.Location = new System.Drawing.Point(54, 37);
             this.lblCode.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lblCode.Name = "lblCode";
-            this.lblCode.Size = new System.Drawing.Size(92, 29);
+            this.lblCode.Size = new System.Drawing.Size(82, 24);
             this.lblCode.TabIndex = 1;
             this.lblCode.Text = "项目编号";
             // 
@@ -312,7 +309,7 @@
             this.btnClear.Location = new System.Drawing.Point(1281, 31);
             this.btnClear.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(61, 41);
+            this.btnClear.Size = new System.Drawing.Size(54, 34);
             this.btnClear.TabIndex = 0;
             this.btnClear.Text = "清空";
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
@@ -323,7 +320,7 @@
             this.btnSearch.Location = new System.Drawing.Point(1222, 31);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(61, 41);
+            this.btnSearch.Size = new System.Drawing.Size(54, 34);
             this.btnSearch.TabIndex = 0;
             this.btnSearch.Text = "查询";
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
@@ -342,7 +339,7 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.ug1);
-            this.splitContainer2.Size = new System.Drawing.Size(1584, 562);
+            this.splitContainer2.Size = new System.Drawing.Size(1584, 532);
             this.splitContainer2.SplitterDistance = 299;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -360,7 +357,7 @@
             _override1.SelectedNodeAppearance = appearance1;
             _override1.SelectionType = Infragistics.Win.UltraWinTree.SelectType.ExtendedAutoDrag;
             this.uTree.Override = _override1;
-            this.uTree.Size = new System.Drawing.Size(299, 562);
+            this.uTree.Size = new System.Drawing.Size(299, 532);
             this.uTree.TabIndex = 0;
             this.uTree.AfterExpand += new Infragistics.Win.UltraWinTree.AfterNodeChangedEventHandler(this.uTree_AfterExpand);
             this.uTree.AfterSelect += new Infragistics.Win.UltraWinTree.AfterNodeSelectEventHandler(this.uTree_AfterSelect);
@@ -453,7 +450,7 @@
             this.ug1.Location = new System.Drawing.Point(0, 0);
             this.ug1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ug1.Name = "ug1";
-            this.ug1.Size = new System.Drawing.Size(1281, 562);
+            this.ug1.Size = new System.Drawing.Size(1281, 532);
             this.ug1.TabIndex = 1;
             this.ug1.Text = "ultraGrid1";
             this.ug1.UpdateMode = Infragistics.Win.UltraWinGrid.UpdateMode.OnCellChangeOrLostFocus;
@@ -465,10 +462,10 @@
             this._BaseForm_Toolbars_Dock_Area_Left.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
             this._BaseForm_Toolbars_Dock_Area_Left.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Left;
             this._BaseForm_Toolbars_Dock_Area_Left.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._BaseForm_Toolbars_Dock_Area_Left.Location = new System.Drawing.Point(0, 44);
+            this._BaseForm_Toolbars_Dock_Area_Left.Location = new System.Drawing.Point(0, 74);
             this._BaseForm_Toolbars_Dock_Area_Left.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._BaseForm_Toolbars_Dock_Area_Left.Name = "_BaseForm_Toolbars_Dock_Area_Left";
-            this._BaseForm_Toolbars_Dock_Area_Left.Size = new System.Drawing.Size(0, 636);
+            this._BaseForm_Toolbars_Dock_Area_Left.Size = new System.Drawing.Size(0, 606);
             this._BaseForm_Toolbars_Dock_Area_Left.ToolbarsManager = this.toolBarManager;
             // 
             // _BaseForm_Toolbars_Dock_Area_Right
@@ -477,10 +474,10 @@
             this._BaseForm_Toolbars_Dock_Area_Right.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
             this._BaseForm_Toolbars_Dock_Area_Right.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Right;
             this._BaseForm_Toolbars_Dock_Area_Right.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._BaseForm_Toolbars_Dock_Area_Right.Location = new System.Drawing.Point(1584, 44);
+            this._BaseForm_Toolbars_Dock_Area_Right.Location = new System.Drawing.Point(1584, 74);
             this._BaseForm_Toolbars_Dock_Area_Right.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._BaseForm_Toolbars_Dock_Area_Right.Name = "_BaseForm_Toolbars_Dock_Area_Right";
-            this._BaseForm_Toolbars_Dock_Area_Right.Size = new System.Drawing.Size(0, 636);
+            this._BaseForm_Toolbars_Dock_Area_Right.Size = new System.Drawing.Size(0, 606);
             this._BaseForm_Toolbars_Dock_Area_Right.ToolbarsManager = this.toolBarManager;
             // 
             // _BaseForm_Toolbars_Dock_Area_Top
@@ -492,7 +489,7 @@
             this._BaseForm_Toolbars_Dock_Area_Top.Location = new System.Drawing.Point(0, 0);
             this._BaseForm_Toolbars_Dock_Area_Top.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._BaseForm_Toolbars_Dock_Area_Top.Name = "_BaseForm_Toolbars_Dock_Area_Top";
-            this._BaseForm_Toolbars_Dock_Area_Top.Size = new System.Drawing.Size(1584, 44);
+            this._BaseForm_Toolbars_Dock_Area_Top.Size = new System.Drawing.Size(1584, 74);
             this._BaseForm_Toolbars_Dock_Area_Top.ToolbarsManager = this.toolBarManager;
             // 
             // _BaseForm_Toolbars_Dock_Area_Bottom

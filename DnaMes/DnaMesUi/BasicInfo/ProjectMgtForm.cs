@@ -21,9 +21,9 @@ namespace DnaMesUi.BasicInfo
     public partial class ProjectMgtForm : BaseForm
     {
         private readonly ProjectMgtBll _bll = new ProjectMgtBll();
-//        private const string FieldName = "BasicInfo\\Project.xml";
 
         private readonly UltraTreeDrawFilterHelper _drawFilter = new UltraTreeDrawFilterHelper();
+
         public ProjectMgtForm()
         {
             InitializeComponent();
@@ -35,8 +35,8 @@ namespace DnaMesUi.BasicInfo
             uTree.DrawFilter = _drawFilter;
             _drawFilter.Invalidate += DrawFilterInvalidate;
             _drawFilter.QueryStateAllowedForNode += DrawFilterQueryStateAllowedForNode;
+            SetToolsEnable(true, "Add");
         }
-
 
 
         #region 其他
@@ -100,7 +100,7 @@ namespace DnaMesUi.BasicInfo
         private void uTree_AfterSelect(object sender, SelectEventArgs e)
         {
             ResetNodeBackColor();
-            SetToolsEnable(SelectedNode?.Tag is Project, "Add", "Delete", "Edit", "AddChild");
+            SetToolsEnable(SelectedNode?.Tag is Project, "Delete", "Edit");
 
             foreach (var node in uTree.SelectedNodes)
             {
@@ -117,10 +117,10 @@ namespace DnaMesUi.BasicInfo
             uTree.DoDragDrop(uTree.SelectedNodes, DragDropEffects.Move);
         }
 
-        private void DrawFilterQueryStateAllowedForNode(object sender, UltraTreeDrawFilterHelper.QueryStateAllowedForNodeEventArgs e)
+        private void DrawFilterQueryStateAllowedForNode(object sender,
+            UltraTreeDrawFilterHelper.QueryStateAllowedForNodeEventArgs e)
         {
             e.StatesAllowed = DropLinePositionEnum.OnNode;
-
         }
 
         private void DrawFilterInvalidate(object sender, EventArgs e)
@@ -135,52 +135,56 @@ namespace DnaMesUi.BasicInfo
             int i;
             var dropNode = _drawFilter.DropHightLightNode;
 
-            var selectedNodes = (SelectedNodesCollection)e.Data.GetData(typeof(SelectedNodesCollection));
+            var selectedNodes = (SelectedNodesCollection) e.Data.GetData(typeof(SelectedNodesCollection));
             selectedNodes = selectedNodes.Clone() as SelectedNodesCollection;
-            if (selectedNodes==null)
+            if (selectedNodes == null)
             {
                 return;
             }
+
             selectedNodes.SortByPosition();
             switch (_drawFilter.DropLinePosition)
             {
-                case DropLinePositionEnum.OnNode: 
+                case DropLinePositionEnum.OnNode:
+                {
+                    var children = new List<Project>();
+                    for (i = 0; i <= selectedNodes.Count - 1; i++)
                     {
-                        var children=new List<Project>();
-                        for (i = 0; i <= selectedNodes.Count - 1; i++)
+                        aNode = selectedNodes[i];
+                        aNode.Reposition(dropNode.Nodes);
+                        if (aNode.Tag is Project proj)
                         {
-                            aNode = selectedNodes[i];
-                            aNode.Reposition(dropNode.Nodes);
-                            if (aNode.Tag is Project proj)
-                            {
-                                children.Add(proj);
-                            }
+                            children.Add(proj);
                         }
+                    }
 
-                        var pPorj = dropNode?.Tag as Project;
-                        _bll.ChangeParent(children, pPorj);
-                        break;
-                    }
-                case DropLinePositionEnum.BelowNode: 
+                    var pPorj = dropNode?.Tag as Project;
+                    _bll.ChangeParent(children, pPorj);
+                    break;
+                }
+                case DropLinePositionEnum.BelowNode:
+                {
+                    for (i = 0; i <= selectedNodes.Count - 1; i++)
                     {
-                        for (i = 0; i <= selectedNodes.Count - 1; i++)
-                        {
-                            aNode = selectedNodes[i];
-                            aNode.Reposition(dropNode, NodePosition.Next);
-                            dropNode = aNode;
-                        }
-                        break;
+                        aNode = selectedNodes[i];
+                        aNode.Reposition(dropNode, NodePosition.Next);
+                        dropNode = aNode;
                     }
-                case DropLinePositionEnum.AboveNode: 
+
+                    break;
+                }
+                case DropLinePositionEnum.AboveNode:
+                {
+                    for (i = 0; i <= selectedNodes.Count - 1; i++)
                     {
-                        for (i = 0; i <= selectedNodes.Count - 1; i++)
-                        {
-                            aNode = selectedNodes[i];
-                            aNode.Reposition(dropNode, NodePosition.Previous);
-                        }
-                        break;
+                        aNode = selectedNodes[i];
+                        aNode.Reposition(dropNode, NodePosition.Previous);
                     }
+
+                    break;
+                }
             }
+
             _drawFilter.ClearDropHighlight();
         }
 
@@ -199,15 +203,18 @@ namespace DnaMesUi.BasicInfo
                 _drawFilter.ClearDropHighlight();
                 return;
             }
+
             if (IsAnyParentSelected(aNode))
             {
                 e.Effect = DragDropEffects.None;
                 _drawFilter.ClearDropHighlight();
                 return;
             }
+
             _drawFilter.SetDropHighlightNode(aNode, pointInTree);
             e.Effect = DragDropEffects.Move;
         }
+
         private static bool IsAnyParentSelected(UltraTreeNode node)
         {
             var returnValue = false;
@@ -226,6 +233,7 @@ namespace DnaMesUi.BasicInfo
 
             return returnValue;
         }
+
         #endregion
 
         #region 工具栏区
@@ -241,15 +249,15 @@ namespace DnaMesUi.BasicInfo
                     RefreshData();
                     break;
                 case "Add":
-
-                    form = new ProjectMgtAddEdit("新增项目");
+                    var thisProj = SelectedNode?.Tag as Project;
+                    form = new ProjectMgtAddEdit(thisProj == null);
                     if (form.ShowDialog(this) == DialogResult.OK)
                     {
-                        if (_bll.AddModel(form.TransModel, pProj))
+                        if (_bll.AddProject(form.TransModel, thisProj))
                         {
                             MsgBoxLib.ShowInformationOk("操作成功！");
                             //将父类加入List，表示需要从数据库中更新子类数据
-                            if (pProj != null) _bll.ParentsToBeUpdated.AddFirst(pProj.Code);
+                            if (thisProj?.Code != null) _bll.ParentsToBeUpdated.AddFirst(thisProj.Code);
                         }
                         else
                         {
@@ -297,30 +305,6 @@ namespace DnaMesUi.BasicInfo
                     }
 
                     goto default;
-
-                case "AddChild":
-                    if (!(SelectedNode?.Tag is Project thisProj))
-                    {
-                        MsgBoxLib.ShowError("请选择父项目");
-                        break;
-                    }
-
-                    form = new ProjectMgtAddEdit("新增子项目");
-                    if (form.ShowDialog(this) == DialogResult.OK)
-                    {
-                        if (_bll.AddModel(form.TransModel, thisProj))
-                        {
-                            MsgBoxLib.ShowInformationOk("操作成功！");
-                            //将父类加入List，表示需要从数据库中更新子类数据
-                            _bll.ParentsToBeUpdated.AddFirst(thisProj.Code);
-                        }
-                        else
-                        {
-                            MsgBoxLib.ShowStop("操作失败");
-                        }
-                    }
-
-                    goto default;
             }
         }
 
@@ -357,6 +341,5 @@ namespace DnaMesUi.BasicInfo
         }
 
         #endregion
-
     }
 }

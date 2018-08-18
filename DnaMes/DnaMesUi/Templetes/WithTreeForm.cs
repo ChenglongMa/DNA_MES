@@ -135,7 +135,7 @@ namespace DnaMesUi.Templetes
                     form = new ProjectMgtAddEdit("新增项目");
                     if (form.ShowDialog(this) == DialogResult.OK)
                     {
-                        if (_bll.AddModel(form.TransModel, pProj))
+                        if (_bll.AddProject(form.TransModel, pProj))
                         {
                             MsgBoxLib.ShowInformationOk("操作成功！");
                             //将父类加入List，表示需要从数据库中更新子类数据
