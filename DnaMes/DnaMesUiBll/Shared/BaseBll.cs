@@ -124,6 +124,24 @@ namespace DnaMesUiBll.Shared
         }
 
         /// <summary>
+        /// 根据父类获取子类集合
+        /// </summary>
+        /// <typeparam name="TP">父类类型</typeparam>
+        /// <typeparam name="TC">子类类型</typeparam>
+        /// <param name="parent"></param>
+        /// <returns></returns>
+        public List<TC> GetChildren<TP, TC>(TP parent) where TP : BaseModel, new() where TC : BaseModel, new()
+        {
+            if (parent == null)
+            {
+                return null;
+            }
+
+            var dal = new BaseDal<TP>();
+            return dal.GetChildren<TC>(parent);
+        }
+
+        /// <summary>
         /// Grid绑定查询结果
         /// </summary>
         /// <param name="exp"></param>
@@ -159,6 +177,24 @@ namespace DnaMesUiBll.Shared
             }
 
             return res && Dal.Delete(proj);
+        }
+
+        /// <summary>
+        /// 先删除依赖关系，再删除实体
+        /// </summary>
+        /// <param name="child"></param>
+        /// <param name="parent"></param>
+        /// <returns></returns>
+        public bool DeleteModel<TP, TC, TLink>(TC child, TP parent = null)
+            where TP : BaseModel, new() where TLink : BaseLink, new() where TC : BaseModel, new()
+        {
+            var dal = new BaseDal<TC>();
+            var res = true;
+            if (parent != null)
+            {
+                res = dal.DeleteLinkWith<TP, TC, TLink>(parent, child);
+            }
+            return res && dal.Delete(child);
         }
 
         #region 树控件操作

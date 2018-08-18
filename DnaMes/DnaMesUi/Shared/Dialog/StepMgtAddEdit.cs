@@ -15,44 +15,45 @@ using DnaMesUiBll.Shared;
 
 namespace DnaMesUi.Shared.Dialog
 {
-    public partial class ProcessMgtAddEdit : BaseDialog<Process>
+    public partial class StepMgtAddEdit : BaseDialog<Step>
     {
-        public ProcessMgtAddEdit()
+        public StepMgtAddEdit()
         {
             InitializeComponent();
             txtCode.NullText = "必填项";
             txtName.NullText = "必填项";
-            txtDescription.NullText = "工艺描述、步骤等(选填项)";
+            txtDescription.NullText = "工序描述(选填项)";
+            tip.SetError(numIndex, "工序号设为相同值表示“同步工序”，即完成任意其一即可");
         }
+
         /// <summary>
         /// <see cref="ProjectMgtAddEdit"/>
         /// </summary>
         /// <param name="text"></param>
-        /// <param name="proc"></param>
-        public ProcessMgtAddEdit(string text, Process proc = null) : this()
+        /// <param name="step">待编辑工序</param>
+        public StepMgtAddEdit(string text, Step step = null) : this()
         {
             Text = text;
-            if (proc!= null)
+            if (step != null)
             {
                 txtCode.ReadOnly = true;
-                tipForIsValid.SetError(txtCode, "该值不可修改");
-                BindingModel(proc);
+                tip.SetError(txtCode, "该值不可修改");
+                BindingModel(step);
             }
 
-            _isEditable = proc != null;
+            _isEditable = step != null;
         }
 
 
-        protected override BaseBll<Process> Bll => new ProcessMgtBll();
+        protected override BaseBll<Step> Bll => new StepMgtBll();
         private readonly bool _isEditable; //true为“编辑”状态，false为“新增”状态
 
-        protected override void BindingModel(Process proc)
+        protected sealed override void BindingModel(Step step)
         {
-            txtCode.Text = proc.Code;
-            txtName.Text = proc.Name;
-            ckIsMain.Checked = proc.IsValid;
-            txtDescription.Text = proc.Description;
-
+            txtCode.Text = step.Code;
+            txtName.Text = step.Name;
+            numIndex.Value = (decimal) step.Index;
+            txtDescription.Text = step.Description;
         }
 
         public sealed override string Text
@@ -65,11 +66,11 @@ namespace DnaMesUi.Shared.Dialog
         /// <summary>
         /// 界面间传递值
         /// </summary>
-        public override Process TransModel => new Process
+        public override Step TransModel => new Step
         {
             Code = txtCode.Text.Trim(),
             Name = txtName.Text.Trim(),
-            IsValid = ckIsMain.Checked,
+            Index = (double) numIndex.Value,
             Description = txtDescription.Text,
         };
 
@@ -77,7 +78,7 @@ namespace DnaMesUi.Shared.Dialog
         {
             if (!_isEditable && Bll.IsExist(TransModel))
             {
-                MsgBoxLib.ShowError("该工艺已存在");
+                MsgBoxLib.ShowError("该工序已存在");
                 return;
             }
 
@@ -92,12 +93,17 @@ namespace DnaMesUi.Shared.Dialog
 
         private void txtCode_Validating(object sender, CancelEventArgs e)
         {
-            errorProvider.SetError(txtCode, txtCode.Text.IsNullOrEmpty() ? "工艺编号不允许为空" : null);
+            errorProvider.SetError(txtCode, txtCode.Text.IsNullOrEmpty() ? "工序编码不允许为空" : null);
         }
 
         private void txtName_Validating(object sender, CancelEventArgs e)
         {
-            errorProvider.SetError(txtName, txtName.Text.IsNullOrEmpty() ? "工艺名称不允许为空" : null);
+            errorProvider.SetError(txtName, txtName.Text.IsNullOrEmpty() ? "工序名称不允许为空" : null);
+        }
+
+        private void numIndex_Validating(object sender, CancelEventArgs e)
+        {
+            errorProvider.SetError(numIndex, numIndex.Value <= 0 ? "工序号不允许小于0" : null);
         }
     }
 }

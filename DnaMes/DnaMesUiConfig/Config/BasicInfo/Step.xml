@@ -1,8 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+
 <Grid Name="ug2" Text="工序管理">
-    <Columns>
-        <Column Name="Code" Text="工序编码" Visible="true" IsReadOnly="true" Width="120" ColumnStyle="Default" DataType="System.String" />
-        <Column Name="Index" Text="工序号" Visible="true" IsReadOnly="true" Width="120" ColumnStyle="Default" DataType="System.Double" />
-        <Column Name="Name" Text="工序名称" Visible="true" IsReadOnly="true" Width="120" ColumnStyle="Default" DataType="System.String" />
-    </Columns>
+  <Columns>
+    <Column Name="Code" Text="工序编码" Visible="true" IsReadOnly="true" Width="120" ColumnStyle="Default"
+            DataType="System.String" />
+    <Column Name="Index" Text="工序号" Visible="true" IsReadOnly="true" Width="120" ColumnStyle="Default"
+            DataType="System.Double" />
+    <Column Name="Name" Text="工序名称" Visible="true" IsReadOnly="true" Width="120" ColumnStyle="Default"
+            DataType="System.String" />
+    <Column Name="Description" Text="工序描述" Visible="true" IsReadOnly="true" Width="200" ColumnStyle="Default"
+            DataType="System.String" />
+  </Columns>
 </Grid>

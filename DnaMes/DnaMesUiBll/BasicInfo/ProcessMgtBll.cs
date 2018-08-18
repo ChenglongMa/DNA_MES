@@ -72,10 +72,19 @@ namespace DnaMesUiBll.BasicInfo
             return res && Dal.Delete(proc);
         }
 
-        public List<Process> GetProcesses(Project proj)
-        {
-            var dal = new BaseDal<Project>();
-            return dal.GetChildren<Process>(proj);
-        }
+//        public List<Process> GetChildren(Project proj)
+//        {
+//            if (proj == null)
+//            {
+//                return null;
+//            }
+//            var dal = new BaseDal<Project>();
+//            return dal.GetChildren<Process>(proj);
+//        }
+
+//        public List<Step> GetChildren(Process pProc)
+//        {
+//            return pProc == null ? null : Dal.GetChildren<Step>(pProc);
+//        }
     }
 }

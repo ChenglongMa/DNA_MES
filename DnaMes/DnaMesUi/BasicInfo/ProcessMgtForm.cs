@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using DnaLib.Control;
 using DnaLib.Helper;
+using DnaMesModel.Link.BasicInfo;
 using DnaMesModel.Model.BasicInfo;
 using DnaMesModel.Shared;
 using DnaMesUi.Shared.Dialog;
@@ -15,13 +16,16 @@ using Infragistics.Win.UltraWinEditors;
 using Infragistics.Win.UltraWinGrid;
 using Infragistics.Win.UltraWinToolbars;
 using Infragistics.Win.UltraWinTree;
-using Process = DnaMesModel.Model.BasicInfo.Process;
 
 namespace DnaMesUi.BasicInfo
 {
     public partial class ProcessMgtForm : BaseForm
     {
         private readonly ProcessMgtBll _bll = new ProcessMgtBll();
+        private readonly StepMgtBll _bllStep = new StepMgtBll();
+        private List<Process> _procDataSrc;
+        private List<Step> _stepDataSrc;
+        
         private const string FieldName2 = "BasicInfo\\Step.xml";
 
         public ProcessMgtForm()
@@ -31,18 +35,26 @@ namespace DnaMesUi.BasicInfo
             dteEndTime.Enabled = ckEndTime.Checked;
             _bll.BuildTree(ref uTree, imageList1.Images);
             FieldName = "BasicInfo\\Process.xml";
-            GridBindingBll<Process>.BindingStyleAndData(ug1, null, FieldName);
-            GridBindingBll<Step>.BindingStyleAndData(ug2, null, FieldName2);
+            GridBindingBll<Process>.BindingStyleAndData(ug1, _procDataSrc, FieldName);
+            GridBindingBll<Step>.BindingStyleAndData(ug2, _stepDataSrc, FieldName2);
         }
 
 
         #region 其他
 
-        private void RefreshData()
+        private void RefreshProc()
         {
-            _bll.BuildTree(ref uTree, imageList1.Images);
-            GridBindingBll<Process>.BindingData(ug1, null, FieldName);
-            GridBindingBll<Step>.BindingData(ug2, null, FieldName2);
+            GridBindingBll<Process>.BindingData(ug1, _procDataSrc, FieldName);
+            _stepDataSrc = null;
+        }
+
+        private void RefreshStep()
+        {
+            if (_stepDataSrc.IsNotNullorEmpty())
+            {
+                _stepDataSrc.Sort((s1, s2) => (int)(100 * (s1.Index - s2.Index)));
+            }
+            GridBindingBll<Step>.BindingData(ug2, _stepDataSrc, FieldName2);
         }
 
         #endregion
@@ -97,7 +109,8 @@ namespace DnaMesUi.BasicInfo
 
         private UltraGridRow SelectedProcRow => ug1.Selected.Rows.IsNullOrEmpty() ? null : ug1.Selected.Rows[0];
         private UltraGridRow SelectedStepRow => ug2.Selected.Rows.IsNullOrEmpty() ? null : ug2.Selected.Rows[0];
-        private UltraGridRow _activeProcRow,_activeStepRow;
+        private UltraGridRow _activeProcRow, _activeStepRow;
+
         private void uTree_AfterExpand(object sender, NodeEventArgs e)
         {
             _bll.AfterExpand(e.TreeNode, imageList1.Images);
@@ -115,8 +128,9 @@ namespace DnaMesUi.BasicInfo
                 return;
             }
 
-            var dataSource = _bll.GetProcesses(SelectedNode.Tag as Project);
-            GridBindingBll<Process>.BindingData(ug1, dataSource, FieldName);
+            _procDataSrc = _bll.GetChildren<Project, Process>(SelectedNode.Tag as Project);
+            RefreshProc();
+
         }
 
         #endregion
@@ -130,7 +144,8 @@ namespace DnaMesUi.BasicInfo
             {
                 case "Refresh":
                 default:
-                    RefreshData();
+                    RefreshProc();
+                    RefreshStep();
                     break;
                 case "Add":
 
@@ -153,21 +168,6 @@ namespace DnaMesUi.BasicInfo
 
         #region Grid区
 
-        private void ug1_DoubleClickRow(object sender, DoubleClickRowEventArgs e)
-        {
-            ResetNodeBackColor();
-            if (!(e.Row.ListObject is Process proj)) return;
-            var node = new UltraTreeNode(); //TODO: _bll.FindNode(uTree, proj);
-            if (node == null)
-            {
-                MsgBoxLib.ShowWarning("未找到该项目结构");
-            }
-            else
-            {
-                node.Override.NodeAppearance.BackColor = Color.DarkTurquoise;
-                NodesWithColor.Enqueue(node);
-            }
-        }
         private void ug1_MouseDown(object sender, MouseEventArgs e)
         {
             _activeProcRow = GetActiveRow(sender, e);
@@ -175,7 +175,8 @@ namespace DnaMesUi.BasicInfo
             switch (e.Button)
             {
                 case MouseButtons.Left:
-                    
+                    _stepDataSrc = _bll.GetChildren<Process, Step>(proc);
+                    RefreshStep();
                     //左击事件
                     break;
                 case MouseButtons.Right:
@@ -192,6 +193,7 @@ namespace DnaMesUi.BasicInfo
             switch (e.Button)
             {
                 case MouseButtons.Left:
+
                     //左击事件
                     break;
                 case MouseButtons.Right:
@@ -215,10 +217,11 @@ namespace DnaMesUi.BasicInfo
             var objUiElement = activedGrid?.DisplayLayout.UIElement.ElementFromPoint(point);
             if (objUiElement == null)
                 return null;
-            var objRow = (UltraGridRow)objUiElement.GetContext(typeof(UltraGridRow));
+            var objRow = (UltraGridRow) objUiElement.GetContext(typeof(UltraGridRow));
             activedGrid.ActiveRow = objRow;
             return objRow;
         }
+
         #endregion
 
         #region 右键菜单
@@ -235,7 +238,6 @@ namespace DnaMesUi.BasicInfo
 
         private void cmsStep_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            
             tipForProc.Visible = !(SelectedProcRow?.ListObject is Process);
             新增工序ToolStripMenuItem.Enabled = SelectedProcRow?.ListObject is Process;
             var step = _activeStepRow?.ListObject as Step;
@@ -271,6 +273,8 @@ namespace DnaMesUi.BasicInfo
                 _bll.UpdateModel(p);
                 MsgBoxLib.ShowInformationOk("激活工艺设置成功");
             }
+
+            RefreshProc();
         }
 
         private void 新增工艺ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -284,7 +288,7 @@ namespace DnaMesUi.BasicInfo
                     MsgBoxLib.ShowInformationOk("操作成功！");
                     //将父类加入List，表示需要从数据库中更新子类数据
                     if (pProj != null) _bll.ParentsToBeUpdated.AddFirst(pProj.Code);
-                    RefreshData();
+                    RefreshProc();//TODO:待验证
                 }
                 else
                 {
@@ -295,7 +299,7 @@ namespace DnaMesUi.BasicInfo
 
         private void 编辑工艺ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = new ProcessMgtAddEdit("编辑工艺", SelectedProcRow?.ListObject as Process);
+            var form = new ProcessMgtAddEdit("编辑工艺", _activeProcRow?.ListObject as Process);
             if (form.ShowDialog(this) == DialogResult.OK)
             {
                 if (_bll.UpdateModel(form.TransModel))
@@ -303,7 +307,7 @@ namespace DnaMesUi.BasicInfo
                     MsgBoxLib.ShowInformationOk("操作成功！");
                     //将父类加入List，表示需要从数据库中更新子类数据
                     //if (pProj != null) _bll.ParentsToBeUpdated.AddFirst(pProj.Code);
-                    RefreshData();
+                    RefreshProc();
                 }
                 else
                 {
@@ -315,11 +319,11 @@ namespace DnaMesUi.BasicInfo
         private void 删除工艺ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var pProj = SelectedNode?.Tag as Project;
-            var proc = SelectedProcRow?.ListObject as Process;
+            var proc = _activeProcRow?.ListObject as Process;
             if (_bll.DeleteProcess(proc, pProj))
             {
                 MsgBoxLib.ShowInformationOk("操作成功");
-                RefreshData();
+                RefreshProc();
             }
             else
             {
@@ -329,10 +333,58 @@ namespace DnaMesUi.BasicInfo
 
         private void 新增工序ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            var pProc = SelectedProcRow?.ListObject as Process;
+            var form = new StepMgtAddEdit("新增工序");
+            if (form.ShowDialog(this) == DialogResult.OK)
+            {
+                if (_bllStep.AddModel(form.TransModel, pProc))
+                {
+                    MsgBoxLib.ShowInformationOk("操作成功！");
+                    //将父类加入List，表示需要从数据库中更新子类数据
+                    if (pProc != null) _bll.ParentsToBeUpdated.AddFirst(pProc.Code);
+                    RefreshStep();
+                }
+                else
+                {
+                    MsgBoxLib.ShowStop("操作失败");
+                }
+            }
+        }
+
+        private void 编辑工序ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new StepMgtAddEdit("编辑工序", _activeStepRow?.ListObject as Step);
+            if (form.ShowDialog(this) == DialogResult.OK)
+            {
+                if (_bllStep.UpdateModel(form.TransModel))
+                {
+                    MsgBoxLib.ShowInformationOk("操作成功！");
+                    //将父类加入List，表示需要从数据库中更新子类数据
+                    //if (pProj != null) _bll.ParentsToBeUpdated.AddFirst(pProj.Code);
+                    RefreshStep();
+                }
+                else
+                {
+                    MsgBoxLib.ShowStop("操作失败");
+                }
+            }
+        }
+
+        private void 删除工序ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var pProc = SelectedProcRow?.ListObject as Process;
+            var step = _activeStepRow?.ListObject as Step;
+            if (_bllStep.DeleteModel<Process, ProcessStep>(step, pProc))
+            {
+                MsgBoxLib.ShowInformationOk("操作成功");
+                RefreshStep();
+            }
+            else
+            {
+                MsgBoxLib.ShowStop("操作失败");
+            }
         }
 
         #endregion
-
-
     }
 }
