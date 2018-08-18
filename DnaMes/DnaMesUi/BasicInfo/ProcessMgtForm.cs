@@ -14,6 +14,7 @@ using Infragistics.Win.UltraWinEditors;
 using Infragistics.Win.UltraWinGrid;
 using Infragistics.Win.UltraWinToolbars;
 using Infragistics.Win.UltraWinTree;
+using Process = DnaMesModel.Model.BasicInfo.Process;
 
 namespace DnaMesUi.BasicInfo
 {
@@ -103,7 +104,6 @@ namespace DnaMesUi.BasicInfo
 
         private void uTree_AfterSelect(object sender, SelectEventArgs e)
         {
-            SetToolsEnable(SelectedNode?.Tag is Project, "Add");
             foreach (var node in uTree.SelectedNodes)
             {
                 node.Expanded = true;
@@ -125,7 +125,6 @@ namespace DnaMesUi.BasicInfo
         private void toolBarManager_ToolClick(object sender, ToolClickEventArgs e)
         {
             var pProj = SelectedNode?.Parent?.Tag as Project;
-            ProcessMgtAddEdit form;
             switch (e.Tool.Key)
             {
                 case "Refresh":
@@ -134,78 +133,18 @@ namespace DnaMesUi.BasicInfo
                     break;
                 case "Add":
 
-                    form = new ProcessMgtAddEdit("新增工艺");
-                    if (form.ShowDialog(this) == DialogResult.OK)
-                    {
-                        if (_bll.AddModel(form.TransModel, pProj))
-                        {
-                            MsgBoxLib.ShowInformationOk("操作成功！");
-                            //将父类加入List，表示需要从数据库中更新子类数据
-                            if (pProj != null) _bll.ParentsToBeUpdated.AddFirst(pProj.Code);
-                        }
-                        else
-                        {
-                            MsgBoxLib.ShowStop("操作失败");
-                        }
-                    }
-
                     goto default;
 
                 case "Edit":
-                    form = new ProcessMgtAddEdit("编辑工艺", SelectedNode?.Tag as Project);
-                    if (form.ShowDialog(this) == DialogResult.OK)
-                    {
-                        if (_bll.UpdateProcess(form.TransModel, pProj))
-                        {
-                            MsgBoxLib.ShowInformationOk("操作成功！");
-                            //将父类加入List，表示需要从数据库中更新子类数据
-                            if (pProj != null) _bll.ParentsToBeUpdated.AddFirst(pProj.Code);
-                        }
-                        else
-                        {
-                            MsgBoxLib.ShowStop("操作失败");
-                        }
-                    }
-
                     goto default;
 
                 case "Delete":
-                    if (SelectedNode?.Tag is Process proc)
-                    {
-                        if (_bll.DeleteProcess(proc, pProj))
-                        {
-                            MsgBoxLib.ShowInformationOk("操作成功");
-                            //TODO: 将父类加入List，表示需要从数据库中更新子类数据
-                            //if (pProj != null) _projectsNeedRefresh.AddFirst(pProj.Code);
-                        }
-                        else
-                        {
-                            MsgBoxLib.ShowStop("操作失败");
-                        }
-                    }
-                    else
-                    {
-                        MsgBoxLib.ShowWarning("请先选择要删除的工艺");
-                    }
 
                     goto default;
 
                 case "AddChild":
-                    //TODO：还未想出解决方案
-                    goto default;
-            }
-        }
 
-        //TODO:修改逻辑
-        private void SetToolsEnable(bool enable, params string[] keys)
-        {
-            foreach (var key in keys)
-            {
-                var tools = toolBarManager.Toolbars["SysToolBar"].Tools;
-                if (tools.Exists(key))
-                {
-                    tools[key].SharedProps.Enabled = enable;
-                }
+                    goto default;
             }
         }
 
@@ -235,6 +174,8 @@ namespace DnaMesUi.BasicInfo
 
         private void cmsProc_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            tipForProject.Visible = !(SelectedNode?.Tag is Project);
+            新增工艺ToolStripMenuItem.Enabled = SelectedNode?.Tag is Project;
             var proc = SelectedProcRow?.ListObject as Process;
             编辑工艺ToolStripMenuItem.Enabled = proc != null;
             激活工艺ToolStripMenuItem.Enabled = proc != null && !proc.IsValid;
@@ -243,13 +184,13 @@ namespace DnaMesUi.BasicInfo
 
         private void cmsStep_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            tipForProc.Visible = !(SelectedProcRow?.ListObject is Process);
             新增工序ToolStripMenuItem.Enabled = SelectedProcRow?.ListObject is Process;
             var step = SelectedStepRow?.ListObject as Step;
             编辑工序ToolStripMenuItem.Enabled = step != null;
             删除工序ToolStripMenuItem.Enabled = step != null;
         }
 
-        #endregion
 
         private void 激活工艺ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -279,5 +220,65 @@ namespace DnaMesUi.BasicInfo
                 MsgBoxLib.ShowInformationOk("激活工艺设置成功");
             }
         }
+
+        private void 新增工艺ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var pProj = SelectedNode?.Tag as Project;
+            var form = new ProcessMgtAddEdit("新增工艺");
+            if (form.ShowDialog(this) == DialogResult.OK)
+            {
+                if (_bll.AddModel(form.TransModel, pProj))
+                {
+                    MsgBoxLib.ShowInformationOk("操作成功！");
+                    //将父类加入List，表示需要从数据库中更新子类数据
+                    if (pProj != null) _bll.ParentsToBeUpdated.AddFirst(pProj.Code);
+                    RefreshData();
+                }
+                else
+                {
+                    MsgBoxLib.ShowStop("操作失败");
+                }
+            }
+        }
+
+        private void 编辑工艺ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new ProcessMgtAddEdit("编辑工艺", SelectedProcRow?.ListObject as Process);
+            if (form.ShowDialog(this) == DialogResult.OK)
+            {
+                if (_bll.UpdateProcess(form.TransModel))
+                {
+                    MsgBoxLib.ShowInformationOk("操作成功！");
+                    //将父类加入List，表示需要从数据库中更新子类数据
+                    //if (pProj != null) _bll.ParentsToBeUpdated.AddFirst(pProj.Code);
+                    RefreshData();
+                }
+                else
+                {
+                    MsgBoxLib.ShowStop("操作失败");
+                }
+            }
+        }
+
+        private void 删除工艺ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var pProj = SelectedNode?.Tag as Project;
+            var proc = SelectedProcRow?.ListObject as Process;
+            if (_bll.DeleteProcess(proc, pProj))
+            {
+                MsgBoxLib.ShowInformationOk("操作成功");
+                RefreshData();
+            }
+            else
+            {
+                MsgBoxLib.ShowStop("操作失败");
+            }
+        }
+
+        private void 新增工序ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+        }
+
+        #endregion
     }
 }

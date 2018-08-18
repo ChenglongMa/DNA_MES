@@ -15,7 +15,7 @@ using DnaMesUiBll.Shared;
 
 namespace DnaMesUi.Shared.Dialog
 {
-    public partial class ProcessMgtAddEdit : BaseDialog<Process> //Form //
+    public partial class ProcessMgtAddEdit : Form//BaseDialog<Process> //Form //
     {
         public ProcessMgtAddEdit()
         {
@@ -25,10 +25,10 @@ namespace DnaMesUi.Shared.Dialog
             txtDescription.NullText = "项目描述(选填项)";
         }
 
-        public ProcessMgtAddEdit(string text, Project proj = null) : this()
+        public ProcessMgtAddEdit(string text, Process proc = null) : this()
         {
             Text = text;
-            if (proj == null)
+            if (proc == null)
             {
                 _isEditable = false;
                 //项目无父节点时只能为主项目
@@ -47,13 +47,17 @@ namespace DnaMesUi.Shared.Dialog
         }
 
 
-        protected override BaseBll<Process> Bll => new ProcessMgtBll();
+        private BaseBll<Process> Bll => new ProcessMgtBll();
         private readonly bool _isEditable; //true为“编辑”状态，false为“新增”状态
-        public override Process TransModel { get; } //TODO:通过控件构建该属性
+        public Process TransModel { get; } //TODO:通过控件构建该属性
 
-        protected sealed override void BindingModel(Process model)
+        private void BindingModel(Process proc)
         {
-            throw new NotImplementedException();
+            txtCode.Text = proc.Code;
+            txtName.Text = proc.Name;
+            ckIsMain.Checked = proc.IsValid;
+            txtDescription.Text = proc.Description;
+
         }
 
         public sealed override string Text
@@ -65,21 +69,13 @@ namespace DnaMesUi.Shared.Dialog
         /// <summary>
         /// 界面间传递值
         /// </summary>
-        public Process Project => new Process
+        public Process Process => new Process
         {
             Code = txtCode.Text.Trim(),
             Name = txtName.Text.Trim(),
             IsValid = ckIsMain.Checked,
+            Description = txtDescription.Text,
         };
-
-        private void BindingProject(Project proc)
-        {
-            txtCode.Text = proc.Code;
-            txtName.Text = proc.Name;
-            dteStartTime.DateTime = proc.StartingTime;
-            dteEndTime.DateTime = proc.EndingTime;
-            ckIsMain.Checked = proc.IsMain;
-        }
 
         private void btnOk_Click(object sender, EventArgs e)
         {

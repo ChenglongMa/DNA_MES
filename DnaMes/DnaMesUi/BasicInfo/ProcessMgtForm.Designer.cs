@@ -91,20 +91,22 @@
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.ug1 = new Infragistics.Win.UltraWinGrid.UltraGrid();
-            this.ug2 = new Infragistics.Win.UltraWinGrid.UltraGrid();
-            this._BaseForm_Toolbars_Dock_Area_Left = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
-            this._BaseForm_Toolbars_Dock_Area_Right = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
-            this._BaseForm_Toolbars_Dock_Area_Top = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
-            this._BaseForm_Toolbars_Dock_Area_Bottom = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this.cmsProc = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.cmsStep = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.新增工艺ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.编辑工艺ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.激活工艺ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.删除工艺ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ug2 = new Infragistics.Win.UltraWinGrid.UltraGrid();
+            this.cmsStep = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.新增工序ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.编辑工序ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.删除工序ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._BaseForm_Toolbars_Dock_Area_Left = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
+            this._BaseForm_Toolbars_Dock_Area_Right = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
+            this._BaseForm_Toolbars_Dock_Area_Top = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
+            this._BaseForm_Toolbars_Dock_Area_Bottom = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
+            this.tipForProject = new System.Windows.Forms.ToolStripMenuItem();
+            this.tipForProc = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.toolBarManager)).BeginInit();
             this.BaseForm_Fill_Panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -129,8 +131,8 @@
             this.splitContainer3.Panel2.SuspendLayout();
             this.splitContainer3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ug1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ug2)).BeginInit();
             this.cmsProc.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ug2)).BeginInit();
             this.cmsStep.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -493,6 +495,46 @@
             this.ug1.UpdateMode = Infragistics.Win.UltraWinGrid.UpdateMode.OnCellChangeOrLostFocus;
             this.ug1.DoubleClickRow += new Infragistics.Win.UltraWinGrid.DoubleClickRowEventHandler(this.ug1_DoubleClickRow);
             // 
+            // cmsProc
+            // 
+            this.cmsProc.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tipForProject,
+            this.新增工艺ToolStripMenuItem,
+            this.编辑工艺ToolStripMenuItem,
+            this.激活工艺ToolStripMenuItem,
+            this.删除工艺ToolStripMenuItem});
+            this.cmsProc.Name = "cmsProc";
+            this.cmsProc.Size = new System.Drawing.Size(149, 114);
+            this.cmsProc.Opening += new System.ComponentModel.CancelEventHandler(this.cmsProc_Opening);
+            // 
+            // 新增工艺ToolStripMenuItem
+            // 
+            this.新增工艺ToolStripMenuItem.Name = "新增工艺ToolStripMenuItem";
+            this.新增工艺ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.新增工艺ToolStripMenuItem.Text = "新增工艺";
+            this.新增工艺ToolStripMenuItem.Click += new System.EventHandler(this.新增工艺ToolStripMenuItem_Click);
+            // 
+            // 编辑工艺ToolStripMenuItem
+            // 
+            this.编辑工艺ToolStripMenuItem.Name = "编辑工艺ToolStripMenuItem";
+            this.编辑工艺ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.编辑工艺ToolStripMenuItem.Text = "编辑工艺";
+            this.编辑工艺ToolStripMenuItem.Click += new System.EventHandler(this.编辑工艺ToolStripMenuItem_Click);
+            // 
+            // 激活工艺ToolStripMenuItem
+            // 
+            this.激活工艺ToolStripMenuItem.Name = "激活工艺ToolStripMenuItem";
+            this.激活工艺ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.激活工艺ToolStripMenuItem.Text = "激活工艺";
+            this.激活工艺ToolStripMenuItem.Click += new System.EventHandler(this.激活工艺ToolStripMenuItem_Click);
+            // 
+            // 删除工艺ToolStripMenuItem
+            // 
+            this.删除工艺ToolStripMenuItem.Name = "删除工艺ToolStripMenuItem";
+            this.删除工艺ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.删除工艺ToolStripMenuItem.Text = "删除工艺";
+            this.删除工艺ToolStripMenuItem.Click += new System.EventHandler(this.删除工艺ToolStripMenuItem_Click);
+            // 
             // ug2
             // 
             this.ug2.ContextMenuStrip = this.cmsStep;
@@ -570,6 +612,36 @@
             this.ug2.UpdateMode = Infragistics.Win.UltraWinGrid.UpdateMode.OnCellChangeOrLostFocus;
             this.ug2.DoubleClickRow += new Infragistics.Win.UltraWinGrid.DoubleClickRowEventHandler(this.ug1_DoubleClickRow);
             // 
+            // cmsStep
+            // 
+            this.cmsStep.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tipForProc,
+            this.新增工序ToolStripMenuItem,
+            this.编辑工序ToolStripMenuItem,
+            this.删除工序ToolStripMenuItem});
+            this.cmsStep.Name = "cmsStep";
+            this.cmsStep.Size = new System.Drawing.Size(181, 114);
+            this.cmsStep.Opening += new System.ComponentModel.CancelEventHandler(this.cmsStep_Opening);
+            // 
+            // 新增工序ToolStripMenuItem
+            // 
+            this.新增工序ToolStripMenuItem.Name = "新增工序ToolStripMenuItem";
+            this.新增工序ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.新增工序ToolStripMenuItem.Text = "新增工序";
+            this.新增工序ToolStripMenuItem.Click += new System.EventHandler(this.新增工序ToolStripMenuItem_Click);
+            // 
+            // 编辑工序ToolStripMenuItem
+            // 
+            this.编辑工序ToolStripMenuItem.Name = "编辑工序ToolStripMenuItem";
+            this.编辑工序ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.编辑工序ToolStripMenuItem.Text = "编辑工序";
+            // 
+            // 删除工序ToolStripMenuItem
+            // 
+            this.删除工序ToolStripMenuItem.Name = "删除工序ToolStripMenuItem";
+            this.删除工序ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.删除工序ToolStripMenuItem.Text = "删除工序";
+            // 
             // _BaseForm_Toolbars_Dock_Area_Left
             // 
             this._BaseForm_Toolbars_Dock_Area_Left.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
@@ -614,69 +686,21 @@
             this._BaseForm_Toolbars_Dock_Area_Bottom.Size = new System.Drawing.Size(1408, 0);
             this._BaseForm_Toolbars_Dock_Area_Bottom.ToolbarsManager = this.toolBarManager;
             // 
-            // cmsProc
+            // tipForProject
             // 
-            this.cmsProc.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.新增工艺ToolStripMenuItem,
-            this.编辑工艺ToolStripMenuItem,
-            this.激活工艺ToolStripMenuItem,
-            this.删除工艺ToolStripMenuItem});
-            this.cmsProc.Name = "cmsProc";
-            this.cmsProc.Size = new System.Drawing.Size(181, 114);
-            this.cmsProc.Opening += new System.ComponentModel.CancelEventHandler(this.cmsProc_Opening);
+            this.tipForProject.Enabled = false;
+            this.tipForProject.Name = "tipForProject";
+            this.tipForProject.Size = new System.Drawing.Size(148, 22);
+            this.tipForProject.Text = "请先选择项目";
+            this.tipForProject.Visible = false;
             // 
-            // cmsStep
+            // tipForProc
             // 
-            this.cmsStep.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.新增工序ToolStripMenuItem,
-            this.编辑工序ToolStripMenuItem,
-            this.删除工序ToolStripMenuItem});
-            this.cmsStep.Name = "cmsStep";
-            this.cmsStep.Size = new System.Drawing.Size(125, 70);
-            this.cmsStep.Opening += new System.ComponentModel.CancelEventHandler(this.cmsStep_Opening);
-            // 
-            // 新增工艺ToolStripMenuItem
-            // 
-            this.新增工艺ToolStripMenuItem.Name = "新增工艺ToolStripMenuItem";
-            this.新增工艺ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.新增工艺ToolStripMenuItem.Text = "新增工艺";
-            // 
-            // 编辑工艺ToolStripMenuItem
-            // 
-            this.编辑工艺ToolStripMenuItem.Name = "编辑工艺ToolStripMenuItem";
-            this.编辑工艺ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.编辑工艺ToolStripMenuItem.Text = "编辑工艺";
-            // 
-            // 激活工艺ToolStripMenuItem
-            // 
-            this.激活工艺ToolStripMenuItem.Name = "激活工艺ToolStripMenuItem";
-            this.激活工艺ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.激活工艺ToolStripMenuItem.Text = "激活工艺";
-            this.激活工艺ToolStripMenuItem.Click += new System.EventHandler(this.激活工艺ToolStripMenuItem_Click);
-            // 
-            // 删除工艺ToolStripMenuItem
-            // 
-            this.删除工艺ToolStripMenuItem.Name = "删除工艺ToolStripMenuItem";
-            this.删除工艺ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.删除工艺ToolStripMenuItem.Text = "删除工艺";
-            // 
-            // 新增工序ToolStripMenuItem
-            // 
-            this.新增工序ToolStripMenuItem.Name = "新增工序ToolStripMenuItem";
-            this.新增工序ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.新增工序ToolStripMenuItem.Text = "新增工序";
-            // 
-            // 编辑工序ToolStripMenuItem
-            // 
-            this.编辑工序ToolStripMenuItem.Name = "编辑工序ToolStripMenuItem";
-            this.编辑工序ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.编辑工序ToolStripMenuItem.Text = "编辑工序";
-            // 
-            // 删除工序ToolStripMenuItem
-            // 
-            this.删除工序ToolStripMenuItem.Name = "删除工序ToolStripMenuItem";
-            this.删除工序ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.删除工序ToolStripMenuItem.Text = "删除工序";
+            this.tipForProc.Enabled = false;
+            this.tipForProc.Name = "tipForProc";
+            this.tipForProc.Size = new System.Drawing.Size(180, 22);
+            this.tipForProc.Text = "请先选择工艺";
+            this.tipForProc.Visible = false;
             // 
             // ProcessMgtForm
             // 
@@ -715,8 +739,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
             this.splitContainer3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ug1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ug2)).EndInit();
             this.cmsProc.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ug2)).EndInit();
             this.cmsStep.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -757,5 +781,7 @@
         private System.Windows.Forms.ToolStripMenuItem 新增工序ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 编辑工序ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 删除工序ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tipForProject;
+        private System.Windows.Forms.ToolStripMenuItem tipForProc;
     }
 }

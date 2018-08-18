@@ -135,11 +135,11 @@ namespace DnaMesUiBll.Shared
         /// <summary>
         /// 验证Project是否存在
         /// </summary>
-        /// <param name="proj"></param>
+        /// <param name="model"></param>
         /// <returns></returns>
-        public bool IsExist(T proj)
+        public bool IsExist(T model)
         {
-            return Dal.IsExist(proj);
+            return Dal.IsExist(model);
         }
 
         /// <summary>
