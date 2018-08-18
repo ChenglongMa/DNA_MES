@@ -45,6 +45,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomeForm));
             Infragistics.Win.Appearance appearance6 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance7 = new Infragistics.Win.Appearance();
+            Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup ultraExplorerBarGroup9 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup();
+            Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup ultraExplorerBarGroup10 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup();
+            Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup ultraExplorerBarGroup11 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup();
+            Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup ultraExplorerBarGroup12 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup();
             Infragistics.Win.Appearance appearance8 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance9 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinTabControl.UltraTab ultraTab1 = new Infragistics.Win.UltraWinTabControl.UltraTab();
@@ -56,22 +60,23 @@
             Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup ultraExplorerBarGroup7 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup();
             Infragistics.Win.Appearance appearance12 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance13 = new Infragistics.Win.Appearance();
-            Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup ultraExplorerBarGroup9 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup();
-            Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup ultraExplorerBarGroup10 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup();
-            Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup ultraExplorerBarGroup11 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup();
-            Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup ultraExplorerBarGroup12 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup();
+            this.ultraTabPageControl1 = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
+            this.ultraTabPageControl2 = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
             this.MenuExplorerBar = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBar();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.MailBoxExplorerBar = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBar();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.txt_MailFind = new Infragistics.Win.UltraWinEditors.UltraTextEditor();
+            this.MailLineExplorerBar = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBar();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.pictureBox_Mail = new System.Windows.Forms.PictureBox();
             this.lblAddresser = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lblRecipient = new System.Windows.Forms.Label();
@@ -82,13 +87,13 @@
             this.btn_DelMail = new System.Windows.Forms.Button();
             this.btn_ReplyMail = new System.Windows.Forms.Button();
             this.btn_ReadMail = new System.Windows.Forms.Button();
+            this.btn_AttFileDown = new System.Windows.Forms.Button();
             this.lbl_MailBtntext = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.lbl_MailTitle = new System.Windows.Forms.Label();
             this.txt_MailContent = new Infragistics.Win.UltraWinEditors.UltraTextEditor();
             this.ultraTabControl1 = new Infragistics.Win.UltraWinTabControl.UltraTabControl();
-            this.ultraTabPageControl1 = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
-            this.ultraTabPageControl2 = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
+            this.ultraTabSharedControlsPage1 = new Infragistics.Win.UltraWinTabControl.UltraTabSharedControlsPage();
             this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
             this.txt_FindMenu = new Infragistics.Win.UltraWinEditors.UltraTextEditor();
             this.ultraExplorerBar1 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBar();
@@ -96,7 +101,6 @@
             this.newNoticeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editNoticeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.delNoticeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.cMenu_MailList = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.回复邮件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.标记为已读ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -106,10 +110,6 @@
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.delToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ultraTabSharedControlsPage1 = new Infragistics.Win.UltraWinTabControl.UltraTabSharedControlsPage();
-            this.MailLineExplorerBar = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBar();
-            this.pictureBox_Mail = new System.Windows.Forms.PictureBox();
-            this.btn_AttFileDown = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.MenuExplorerBar)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -119,9 +119,11 @@
             this.tableLayoutPanel4.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txt_MailFind)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MailLineExplorerBar)).BeginInit();
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Mail)).BeginInit();
             this.flowLayoutPanel3.SuspendLayout();
             this.flowLayoutPanel4.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -134,15 +136,25 @@
             this.NoticecontextMenuStrip.SuspendLayout();
             this.cMenu_MailList.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.MailLineExplorerBar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Mail)).BeginInit();
             this.SuspendLayout();
+            // 
+            // ultraTabPageControl1
+            // 
+            this.ultraTabPageControl1.Location = new System.Drawing.Point(1, 23);
+            this.ultraTabPageControl1.Name = "ultraTabPageControl1";
+            this.ultraTabPageControl1.Size = new System.Drawing.Size(1175, 245);
+            // 
+            // ultraTabPageControl2
+            // 
+            this.ultraTabPageControl2.Location = new System.Drawing.Point(-10000, -10000);
+            this.ultraTabPageControl2.Name = "ultraTabPageControl2";
+            this.ultraTabPageControl2.Size = new System.Drawing.Size(1175, 245);
             // 
             // MenuExplorerBar
             // 
             this.MenuExplorerBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MenuExplorerBar.Location = new System.Drawing.Point(0, 0);
-            this.MenuExplorerBar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MenuExplorerBar.Margin = new System.Windows.Forms.Padding(2);
             this.MenuExplorerBar.Name = "MenuExplorerBar";
             this.MenuExplorerBar.Size = new System.Drawing.Size(1371, 656);
             this.MenuExplorerBar.Style = Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarStyle.Toolbox;
@@ -277,6 +289,27 @@
             this.MailBoxExplorerBar.TabIndex = 3;
             this.MailBoxExplorerBar.ViewStyle = Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarViewStyle.Office2007;
             // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "addButton.png");
+            this.imageList1.Images.SetKeyName(1, "delButton.png");
+            this.imageList1.Images.SetKeyName(2, "infomationButton.png");
+            this.imageList1.Images.SetKeyName(3, "okButton.png");
+            this.imageList1.Images.SetKeyName(4, "replyButton.png");
+            this.imageList1.Images.SetKeyName(5, "createNewMail.png");
+            this.imageList1.Images.SetKeyName(6, "delMailBox.png");
+            this.imageList1.Images.SetKeyName(7, "MailBox.png");
+            this.imageList1.Images.SetKeyName(8, "ReadMail.png");
+            this.imageList1.Images.SetKeyName(9, "readMailbox.png");
+            this.imageList1.Images.SetKeyName(10, "sendMailbox.png");
+            this.imageList1.Images.SetKeyName(11, "unReadMail.png");
+            this.imageList1.Images.SetKeyName(12, "unReadMailbox.png");
+            this.imageList1.Images.SetKeyName(13, "unReadNRMail.png");
+            this.imageList1.Images.SetKeyName(14, "PlanDoneBtn.PNG");
+            this.imageList1.Images.SetKeyName(15, "download.png");
+            // 
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.ColumnCount = 1;
@@ -314,6 +347,37 @@
             this.txt_MailFind.NullTextAppearance = appearance7;
             this.txt_MailFind.Size = new System.Drawing.Size(188, 21);
             this.txt_MailFind.TabIndex = 5;
+            // 
+            // MailLineExplorerBar
+            // 
+            this.MailLineExplorerBar.Dock = System.Windows.Forms.DockStyle.Fill;
+            ultraExplorerBarGroup9.ItemSettings.Style = Infragistics.Win.UltraWinExplorerBar.ItemStyle.StateButton;
+            ultraExplorerBarGroup9.Key = "todayListBar";
+            ultraExplorerBarGroup9.Text = "今天";
+            ultraExplorerBarGroup10.ItemSettings.Style = Infragistics.Win.UltraWinExplorerBar.ItemStyle.StateButton;
+            ultraExplorerBarGroup10.Key = "thisWeekListBar";
+            ultraExplorerBarGroup10.Text = "本周（0）";
+            ultraExplorerBarGroup11.ItemSettings.Style = Infragistics.Win.UltraWinExplorerBar.ItemStyle.StateButton;
+            ultraExplorerBarGroup11.Key = "earlyListBar";
+            ultraExplorerBarGroup11.Text = "更早（0）";
+            ultraExplorerBarGroup12.Key = "FindResult";
+            ultraExplorerBarGroup12.Text = "查找结果";
+            ultraExplorerBarGroup12.Visible = false;
+            this.MailLineExplorerBar.Groups.AddRange(new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup[] {
+            ultraExplorerBarGroup9,
+            ultraExplorerBarGroup10,
+            ultraExplorerBarGroup11,
+            ultraExplorerBarGroup12});
+            this.MailLineExplorerBar.ImageSizeSmall = new System.Drawing.Size(21, 21);
+            this.MailLineExplorerBar.Location = new System.Drawing.Point(3, 35);
+            this.MailLineExplorerBar.Name = "MailLineExplorerBar";
+            this.MailLineExplorerBar.SettingsKey = "StartPageForm.MailLineExplorerBar";
+            this.MailLineExplorerBar.ShowDefaultContextMenu = false;
+            this.MailLineExplorerBar.Size = new System.Drawing.Size(188, 327);
+            this.MailLineExplorerBar.Style = Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarStyle.Toolbox;
+            this.MailLineExplorerBar.TabIndex = 5;
+            this.MailLineExplorerBar.UseOsThemes = Infragistics.Win.DefaultableBoolean.False;
+            this.MailLineExplorerBar.ViewStyle = Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarViewStyle.Office2007;
             // 
             // tableLayoutPanel5
             // 
@@ -363,6 +427,16 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(637, 74);
             this.panel2.TabIndex = 1;
+            // 
+            // pictureBox_Mail
+            // 
+            this.pictureBox_Mail.Image = global::DnaMesUi.Properties.Resources.mail;
+            this.pictureBox_Mail.Location = new System.Drawing.Point(6, 6);
+            this.pictureBox_Mail.Name = "pictureBox_Mail";
+            this.pictureBox_Mail.Size = new System.Drawing.Size(62, 62);
+            this.pictureBox_Mail.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox_Mail.TabIndex = 4;
+            this.pictureBox_Mail.TabStop = false;
             // 
             // lblAddresser
             // 
@@ -477,6 +551,19 @@
             this.btn_ReadMail.UseVisualStyleBackColor = false;
             this.btn_ReadMail.Visible = false;
             // 
+            // btn_AttFileDown
+            // 
+            this.btn_AttFileDown.BackColor = System.Drawing.Color.White;
+            this.btn_AttFileDown.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.btn_AttFileDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_AttFileDown.ImageKey = "download.png";
+            this.btn_AttFileDown.Location = new System.Drawing.Point(51, 3);
+            this.btn_AttFileDown.Name = "btn_AttFileDown";
+            this.btn_AttFileDown.Size = new System.Drawing.Size(23, 23);
+            this.btn_AttFileDown.TabIndex = 7;
+            this.btn_AttFileDown.UseVisualStyleBackColor = false;
+            this.btn_AttFileDown.Visible = false;
+            // 
             // lbl_MailBtntext
             // 
             this.lbl_MailBtntext.AutoSize = true;
@@ -547,17 +634,11 @@
             ultraTab2});
             this.ultraTabControl1.ViewStyle = Infragistics.Win.UltraWinTabControl.ViewStyle.Standard;
             // 
-            // ultraTabPageControl1
+            // ultraTabSharedControlsPage1
             // 
-            this.ultraTabPageControl1.Location = new System.Drawing.Point(1, 23);
-            this.ultraTabPageControl1.Name = "ultraTabPageControl1";
-            this.ultraTabPageControl1.Size = new System.Drawing.Size(1175, 245);
-            // 
-            // ultraTabPageControl2
-            // 
-            this.ultraTabPageControl2.Location = new System.Drawing.Point(-10000, -10000);
-            this.ultraTabPageControl2.Name = "ultraTabPageControl2";
-            this.ultraTabPageControl2.Size = new System.Drawing.Size(1227, 245);
+            this.ultraTabSharedControlsPage1.Location = new System.Drawing.Point(-10000, -10000);
+            this.ultraTabSharedControlsPage1.Name = "ultraTabSharedControlsPage1";
+            this.ultraTabSharedControlsPage1.Size = new System.Drawing.Size(1175, 245);
             // 
             // tableLayoutPanel11
             // 
@@ -656,27 +737,6 @@
             this.delNoticeToolStripMenuItem.Name = "delNoticeToolStripMenuItem";
             this.delNoticeToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.delNoticeToolStripMenuItem.Text = "删除公告";
-            // 
-            // imageList1
-            // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "addButton.png");
-            this.imageList1.Images.SetKeyName(1, "delButton.png");
-            this.imageList1.Images.SetKeyName(2, "infomationButton.png");
-            this.imageList1.Images.SetKeyName(3, "okButton.png");
-            this.imageList1.Images.SetKeyName(4, "replyButton.png");
-            this.imageList1.Images.SetKeyName(5, "createNewMail.png");
-            this.imageList1.Images.SetKeyName(6, "delMailBox.png");
-            this.imageList1.Images.SetKeyName(7, "MailBox.png");
-            this.imageList1.Images.SetKeyName(8, "ReadMail.png");
-            this.imageList1.Images.SetKeyName(9, "readMailbox.png");
-            this.imageList1.Images.SetKeyName(10, "sendMailbox.png");
-            this.imageList1.Images.SetKeyName(11, "unReadMail.png");
-            this.imageList1.Images.SetKeyName(12, "unReadMailbox.png");
-            this.imageList1.Images.SetKeyName(13, "unReadNRMail.png");
-            this.imageList1.Images.SetKeyName(14, "PlanDoneBtn.PNG");
-            this.imageList1.Images.SetKeyName(15, "download.png");
             // 
             // cMenu_MailList
             // 
@@ -840,66 +900,6 @@
             this.delToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.delToolStripMenuItem.Text = "删除项目";
             // 
-            // ultraTabSharedControlsPage1
-            // 
-            this.ultraTabSharedControlsPage1.Location = new System.Drawing.Point(-10000, -10000);
-            this.ultraTabSharedControlsPage1.Name = "ultraTabSharedControlsPage1";
-            this.ultraTabSharedControlsPage1.Size = new System.Drawing.Size(1175, 245);
-            // 
-            // MailLineExplorerBar
-            // 
-            this.MailLineExplorerBar.Dock = System.Windows.Forms.DockStyle.Fill;
-            ultraExplorerBarGroup9.ItemSettings.Style = Infragistics.Win.UltraWinExplorerBar.ItemStyle.StateButton;
-            ultraExplorerBarGroup9.Key = "todayListBar";
-            ultraExplorerBarGroup9.Text = "今天";
-            ultraExplorerBarGroup10.ItemSettings.Style = Infragistics.Win.UltraWinExplorerBar.ItemStyle.StateButton;
-            ultraExplorerBarGroup10.Key = "thisWeekListBar";
-            ultraExplorerBarGroup10.Text = "本周（0）";
-            ultraExplorerBarGroup11.ItemSettings.Style = Infragistics.Win.UltraWinExplorerBar.ItemStyle.StateButton;
-            ultraExplorerBarGroup11.Key = "earlyListBar";
-            ultraExplorerBarGroup11.Text = "更早（0）";
-            ultraExplorerBarGroup12.Key = "FindResult";
-            ultraExplorerBarGroup12.Text = "查找结果";
-            ultraExplorerBarGroup12.Visible = false;
-            this.MailLineExplorerBar.Groups.AddRange(new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup[] {
-            ultraExplorerBarGroup9,
-            ultraExplorerBarGroup10,
-            ultraExplorerBarGroup11,
-            ultraExplorerBarGroup12});
-            this.MailLineExplorerBar.ImageSizeSmall = new System.Drawing.Size(21, 21);
-            this.MailLineExplorerBar.Location = new System.Drawing.Point(3, 35);
-            this.MailLineExplorerBar.Name = "MailLineExplorerBar";
-            this.MailLineExplorerBar.SettingsKey = "StartPageForm.MailLineExplorerBar";
-            this.MailLineExplorerBar.ShowDefaultContextMenu = false;
-            this.MailLineExplorerBar.Size = new System.Drawing.Size(188, 327);
-            this.MailLineExplorerBar.Style = Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarStyle.Toolbox;
-            this.MailLineExplorerBar.TabIndex = 5;
-            this.MailLineExplorerBar.UseOsThemes = Infragistics.Win.DefaultableBoolean.False;
-            this.MailLineExplorerBar.ViewStyle = Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarViewStyle.Office2007;
-            // 
-            // pictureBox_Mail
-            // 
-            this.pictureBox_Mail.Image = global::DnaMesUi.Properties.Resources.mail;
-            this.pictureBox_Mail.Location = new System.Drawing.Point(6, 6);
-            this.pictureBox_Mail.Name = "pictureBox_Mail";
-            this.pictureBox_Mail.Size = new System.Drawing.Size(62, 62);
-            this.pictureBox_Mail.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox_Mail.TabIndex = 4;
-            this.pictureBox_Mail.TabStop = false;
-            // 
-            // btn_AttFileDown
-            // 
-            this.btn_AttFileDown.BackColor = System.Drawing.Color.White;
-            this.btn_AttFileDown.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
-            this.btn_AttFileDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_AttFileDown.ImageKey = "download.png";
-            this.btn_AttFileDown.Location = new System.Drawing.Point(51, 3);
-            this.btn_AttFileDown.Name = "btn_AttFileDown";
-            this.btn_AttFileDown.Size = new System.Drawing.Size(23, 23);
-            this.btn_AttFileDown.TabIndex = 7;
-            this.btn_AttFileDown.UseVisualStyleBackColor = false;
-            this.btn_AttFileDown.Visible = false;
-            // 
             // HomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -907,9 +907,9 @@
             this.ClientSize = new System.Drawing.Size(1371, 656);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.MenuExplorerBar);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "HomeForm";
-            this.Text = "Home";
+            this.Text = "我的主页";
             ((System.ComponentModel.ISupportInitialize)(this.MenuExplorerBar)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
@@ -921,11 +921,13 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txt_MailFind)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MailLineExplorerBar)).EndInit();
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
             this.tableLayoutPanel9.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Mail)).EndInit();
             this.flowLayoutPanel3.ResumeLayout(false);
             this.flowLayoutPanel3.PerformLayout();
             this.flowLayoutPanel4.ResumeLayout(false);
@@ -941,8 +943,6 @@
             this.NoticecontextMenuStrip.ResumeLayout(false);
             this.cMenu_MailList.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.MailLineExplorerBar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Mail)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -48,7 +48,7 @@ namespace DnaMesDal
 
         /// <summary>
         /// 根据关键属性删除Model
-        /// TODO:如何删除依赖关系
+        /// TODO:如何删除依赖关系:目前交由具体逻辑处理
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>

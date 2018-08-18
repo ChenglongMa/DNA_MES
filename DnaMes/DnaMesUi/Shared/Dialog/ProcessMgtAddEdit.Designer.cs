@@ -37,15 +37,11 @@
             this.btnOk = new Infragistics.Win.Misc.UltraButton();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.txtDescription = new Infragistics.Win.UltraWinEditors.UltraTextEditor();
-            this.dteEndTime = new Infragistics.Win.UltraWinEditors.UltraDateTimeEditor();
-            this.dteStartTime = new Infragistics.Win.UltraWinEditors.UltraDateTimeEditor();
             this.txtName = new Infragistics.Win.UltraWinEditors.UltraTextEditor();
             this.txtCode = new Infragistics.Win.UltraWinEditors.UltraTextEditor();
             this.lblName = new Infragistics.Win.Misc.UltraLabel();
             this.lblCode = new Infragistics.Win.Misc.UltraLabel();
             this.ckIsMain = new Infragistics.Win.UltraWinEditors.UltraCheckEditor();
-            this.ultraLabel4 = new Infragistics.Win.Misc.UltraLabel();
-            this.ultraLabel3 = new Infragistics.Win.Misc.UltraLabel();
             this.tipForIsValid = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -53,8 +49,6 @@
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtDescription)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dteEndTime)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dteStartTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ckIsMain)).BeginInit();
@@ -72,6 +66,7 @@
             this.btnCancel.Size = new System.Drawing.Size(69, 28);
             this.btnCancel.TabIndex = 1;
             this.btnCancel.Text = "取消";
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnOk
             // 
@@ -81,6 +76,7 @@
             this.btnOk.Size = new System.Drawing.Size(69, 28);
             this.btnOk.TabIndex = 0;
             this.btnOk.Text = "确定";
+            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // splitContainer1
             // 
@@ -94,15 +90,11 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.Controls.Add(this.txtDescription);
-            this.splitContainer1.Panel1.Controls.Add(this.dteEndTime);
-            this.splitContainer1.Panel1.Controls.Add(this.dteStartTime);
             this.splitContainer1.Panel1.Controls.Add(this.txtName);
             this.splitContainer1.Panel1.Controls.Add(this.txtCode);
             this.splitContainer1.Panel1.Controls.Add(this.lblName);
             this.splitContainer1.Panel1.Controls.Add(this.lblCode);
             this.splitContainer1.Panel1.Controls.Add(this.ckIsMain);
-            this.splitContainer1.Panel1.Controls.Add(this.ultraLabel4);
-            this.splitContainer1.Panel1.Controls.Add(this.ultraLabel3);
             // 
             // splitContainer1.Panel2
             // 
@@ -114,8 +106,8 @@
             // 
             // txtDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(49, 289);
-            this.txtDescription.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtDescription.Location = new System.Drawing.Point(49, 233);
+            this.txtDescription.Margin = new System.Windows.Forms.Padding(2);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
             appearance1.FontData.ItalicAsString = "True";
@@ -124,24 +116,6 @@
             this.txtDescription.NullTextAppearance = appearance1;
             this.txtDescription.Size = new System.Drawing.Size(361, 122);
             this.txtDescription.TabIndex = 8;
-            // 
-            // dteEndTime
-            // 
-            this.dteEndTime.Location = new System.Drawing.Point(206, 230);
-            this.dteEndTime.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.dteEndTime.MaskInput = "{date} {time}";
-            this.dteEndTime.Name = "dteEndTime";
-            this.dteEndTime.Size = new System.Drawing.Size(135, 21);
-            this.dteEndTime.TabIndex = 3;
-            // 
-            // dteStartTime
-            // 
-            this.dteStartTime.Location = new System.Drawing.Point(206, 191);
-            this.dteStartTime.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.dteStartTime.MaskInput = "{date} {time}";
-            this.dteStartTime.Name = "dteStartTime";
-            this.dteStartTime.Size = new System.Drawing.Size(135, 21);
-            this.dteStartTime.TabIndex = 2;
             // 
             // txtName
             // 
@@ -154,6 +128,7 @@
             this.txtName.NullTextAppearance = appearance2;
             this.txtName.Size = new System.Drawing.Size(134, 21);
             this.txtName.TabIndex = 1;
+            this.txtName.Validating += new System.ComponentModel.CancelEventHandler(this.txtName_Validating);
             // 
             // txtCode
             // 
@@ -166,6 +141,7 @@
             this.txtCode.NullTextAppearance = appearance3;
             this.txtCode.Size = new System.Drawing.Size(134, 21);
             this.txtCode.TabIndex = 0;
+            this.txtCode.Validating += new System.ComponentModel.CancelEventHandler(this.txtCode_Validating);
             // 
             // lblName
             // 
@@ -190,32 +166,12 @@
             // ckIsMain
             // 
             this.ckIsMain.AutoSize = true;
-            this.ckIsMain.Location = new System.Drawing.Point(138, 266);
+            this.ckIsMain.Location = new System.Drawing.Point(138, 210);
             this.ckIsMain.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.ckIsMain.Name = "ckIsMain";
             this.ckIsMain.Size = new System.Drawing.Size(71, 19);
             this.ckIsMain.TabIndex = 4;
             this.ckIsMain.Text = "有效工艺";
-            // 
-            // ultraLabel4
-            // 
-            this.ultraLabel4.AutoSize = true;
-            this.ultraLabel4.Location = new System.Drawing.Point(138, 230);
-            this.ultraLabel4.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.ultraLabel4.Name = "ultraLabel4";
-            this.ultraLabel4.Size = new System.Drawing.Size(54, 16);
-            this.ultraLabel4.TabIndex = 0;
-            this.ultraLabel4.Text = "结束时间";
-            // 
-            // ultraLabel3
-            // 
-            this.ultraLabel3.AutoSize = true;
-            this.ultraLabel3.Location = new System.Drawing.Point(138, 191);
-            this.ultraLabel3.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.ultraLabel3.Name = "ultraLabel3";
-            this.ultraLabel3.Size = new System.Drawing.Size(54, 16);
-            this.ultraLabel3.TabIndex = 0;
-            this.ultraLabel3.Text = "开始时间";
             // 
             // tipForIsValid
             // 
@@ -233,7 +189,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(485, 502);
             this.Controls.Add(this.splitContainer1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ProcessMgtAddEdit";
             this.Text = "ProcessMgtAddEdit";
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -242,8 +198,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.txtDescription)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dteEndTime)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dteStartTime)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ckIsMain)).EndInit();
@@ -258,15 +212,11 @@
         private Infragistics.Win.Misc.UltraButton btnCancel;
         private Infragistics.Win.Misc.UltraButton btnOk;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private Infragistics.Win.UltraWinEditors.UltraDateTimeEditor dteEndTime;
-        private Infragistics.Win.UltraWinEditors.UltraDateTimeEditor dteStartTime;
         private Infragistics.Win.UltraWinEditors.UltraTextEditor txtName;
         private Infragistics.Win.UltraWinEditors.UltraTextEditor txtCode;
         private Infragistics.Win.Misc.UltraLabel lblName;
         private Infragistics.Win.Misc.UltraLabel lblCode;
         private Infragistics.Win.UltraWinEditors.UltraCheckEditor ckIsMain;
-        private Infragistics.Win.Misc.UltraLabel ultraLabel4;
-        private Infragistics.Win.Misc.UltraLabel ultraLabel3;
         private System.Windows.Forms.ErrorProvider tipForIsValid;
         private System.Windows.Forms.ErrorProvider errorProvider;
         private Infragistics.Win.UltraWinEditors.UltraTextEditor txtDescription;

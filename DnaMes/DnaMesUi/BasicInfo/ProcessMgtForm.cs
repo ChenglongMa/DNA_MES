@@ -10,6 +10,7 @@ using DnaMesModel.Shared;
 using DnaMesUi.Shared.Dialog;
 using DnaMesUiBll.BasicInfo;
 using DnaMesUiBll.Shared;
+using Infragistics.Win;
 using Infragistics.Win.UltraWinEditors;
 using Infragistics.Win.UltraWinGrid;
 using Infragistics.Win.UltraWinToolbars;
@@ -96,7 +97,7 @@ namespace DnaMesUi.BasicInfo
 
         private UltraGridRow SelectedProcRow => ug1.Selected.Rows.IsNullOrEmpty() ? null : ug1.Selected.Rows[0];
         private UltraGridRow SelectedStepRow => ug2.Selected.Rows.IsNullOrEmpty() ? null : ug2.Selected.Rows[0];
-
+        private UltraGridRow _activeProcRow,_activeStepRow;
         private void uTree_AfterExpand(object sender, NodeEventArgs e)
         {
             _bll.AfterExpand(e.TreeNode, imageList1.Images);
@@ -167,7 +168,57 @@ namespace DnaMesUi.BasicInfo
                 NodesWithColor.Enqueue(node);
             }
         }
+        private void ug1_MouseDown(object sender, MouseEventArgs e)
+        {
+            _activeProcRow = GetActiveRow(sender, e);
+            var proc = _activeProcRow?.ListObject as Process;
+            switch (e.Button)
+            {
+                case MouseButtons.Left:
+                    
+                    //左击事件
+                    break;
+                case MouseButtons.Right:
+                    //右击事件
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
 
+        private void ug2_MouseDown(object sender, MouseEventArgs e)
+        {
+            _activeStepRow = GetActiveRow(sender, e);
+            switch (e.Button)
+            {
+                case MouseButtons.Left:
+                    //左击事件
+                    break;
+                case MouseButtons.Right:
+                    //右击事件
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        /// <summary>
+        /// 在MouseDown事件中获取激活行
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <returns></returns>
+        private static UltraGridRow GetActiveRow(object sender, MouseEventArgs e)
+        {
+            var activedGrid = sender as UltraGrid;
+            var point = new Point(e.X, e.Y);
+            var objUiElement = activedGrid?.DisplayLayout.UIElement.ElementFromPoint(point);
+            if (objUiElement == null)
+                return null;
+            var objRow = (UltraGridRow)objUiElement.GetContext(typeof(UltraGridRow));
+            activedGrid.ActiveRow = objRow;
+            return objRow;
+        }
         #endregion
 
         #region 右键菜单
@@ -176,7 +227,7 @@ namespace DnaMesUi.BasicInfo
         {
             tipForProject.Visible = !(SelectedNode?.Tag is Project);
             新增工艺ToolStripMenuItem.Enabled = SelectedNode?.Tag is Project;
-            var proc = SelectedProcRow?.ListObject as Process;
+            var proc = _activeProcRow?.ListObject as Process;
             编辑工艺ToolStripMenuItem.Enabled = proc != null;
             激活工艺ToolStripMenuItem.Enabled = proc != null && !proc.IsValid;
             删除工艺ToolStripMenuItem.Enabled = proc != null;
@@ -184,9 +235,10 @@ namespace DnaMesUi.BasicInfo
 
         private void cmsStep_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            
             tipForProc.Visible = !(SelectedProcRow?.ListObject is Process);
             新增工序ToolStripMenuItem.Enabled = SelectedProcRow?.ListObject is Process;
-            var step = SelectedStepRow?.ListObject as Step;
+            var step = _activeStepRow?.ListObject as Step;
             编辑工序ToolStripMenuItem.Enabled = step != null;
             删除工序ToolStripMenuItem.Enabled = step != null;
         }
@@ -209,14 +261,14 @@ namespace DnaMesUi.BasicInfo
                     }
 
                     proc.IsValid = false;
-                    _bll.UpdateProcess(proc);
+                    _bll.UpdateModel(proc);
                 }
             }
 
             if (SelectedProcRow?.ListObject is Process p)
             {
                 p.IsValid = true;
-                _bll.UpdateProcess(p);
+                _bll.UpdateModel(p);
                 MsgBoxLib.ShowInformationOk("激活工艺设置成功");
             }
         }
@@ -246,7 +298,7 @@ namespace DnaMesUi.BasicInfo
             var form = new ProcessMgtAddEdit("编辑工艺", SelectedProcRow?.ListObject as Process);
             if (form.ShowDialog(this) == DialogResult.OK)
             {
-                if (_bll.UpdateProcess(form.TransModel))
+                if (_bll.UpdateModel(form.TransModel))
                 {
                     MsgBoxLib.ShowInformationOk("操作成功！");
                     //将父类加入List，表示需要从数据库中更新子类数据
@@ -280,5 +332,7 @@ namespace DnaMesUi.BasicInfo
         }
 
         #endregion
+
+
     }
 }

@@ -86,17 +86,18 @@ namespace DnaMesUiBll.Shared
         public virtual bool AddModel<TParent>(T model, TParent parent = null) where TParent : BaseModel, new()
         {
             var res = Dal.Insert(model);
-            return parent == null ? res : Dal.SetLinkWith(parent, model);
+            return parent == null ? res : res && Dal.SetLinkWith(parent, model);
         }
 
         /// <summary>
         /// 更新Model
         /// </summary>
-        /// <typeparam name="TParent"></typeparam>
         /// <param name="model"></param>
-        /// <param name="parent"></param>
         /// <returns></returns>
-        public abstract bool UpdateModel<TParent>(T model, TParent parent = null) where TParent : BaseModel, new();
+        public virtual bool UpdateModel(T model)
+        {
+            return Dal.Update(model);
+        }
 
         /// <summary>
         /// 获取子类集合
@@ -133,7 +134,7 @@ namespace DnaMesUiBll.Shared
         }
 
         /// <summary>
-        /// 验证Project是否存在
+        /// 验证Model是否存在
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
@@ -177,7 +178,7 @@ namespace DnaMesUiBll.Shared
             var root = uTree.TopNode;
             if (root == null)
             {
-                root = new UltraTreeNode("root", "项目");
+                root = new UltraTreeNode("root", "项目"); //此处默认称为项目
                 if (!images.IsNullOrEmpty() && images.Count > 2)
                 {
                     root.LeftImages.Clear();
@@ -211,7 +212,7 @@ namespace DnaMesUiBll.Shared
         /// <param name="children"></param>
         /// <param name="images"></param>
         protected virtual void BuildSubTree(UltraTreeNode pNode, IEnumerable<T> children,
-            ImageList.ImageCollection images) //where TC:BaseModel,new()
+            ImageList.ImageCollection images) //不建议设置成抽象方法，某些窗体中没有树控件
         {
             throw new NotImplementedException("该方法为虚方法，调用前需重写");
         }

@@ -163,7 +163,6 @@ namespace DnaMesUiBll.BasicInfo
             }
         }
 
-        /// <inheritdoc />
         /// <summary>
         /// 更新项目
         /// 若更新为主项目并存在父级则将关系删除
@@ -171,7 +170,7 @@ namespace DnaMesUiBll.BasicInfo
         /// <param name="project"></param>
         /// <param name="parent"></param>
         /// <returns></returns>
-        public override bool UpdateModel<TParent>(Project project, TParent parent = null)
+        public bool UpdateModel<TParent>(Project project, TParent parent = default)
         {
             var res = true;
             //修改为主项目后将原来与父级关系删除
@@ -192,7 +191,7 @@ namespace DnaMesUiBll.BasicInfo
                     proj.IsMain = true;
                     Dal.Update(proj);
                     var parent = Dal.GetParent(proj);
-                    Dal.DeleteLinkWith<Project,Project,ProjectProject>(parent, proj);
+                    Dal.DeleteLinkWith<Project, Project, ProjectProject>(parent, proj);
                 }
             }
             else

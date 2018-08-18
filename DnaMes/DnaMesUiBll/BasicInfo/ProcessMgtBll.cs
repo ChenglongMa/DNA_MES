@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Windows.Forms;
 using DnaMesDal;
+using DnaMesModel.Link.BasicInfo;
 using DnaMesModel.Model.BasicInfo;
 using DnaMesUiBll.Shared;
 using Infragistics.Win.UltraWinTree;
@@ -50,11 +51,6 @@ namespace DnaMesUiBll.BasicInfo
             return _projBll.BuildExp(code, name, startTime, endTime);
         }
 
-        public override bool UpdateModel<TParent>(Process model, TParent parent = null)
-        {
-            throw new NotImplementedException();
-        }
-
         public new void AfterExpand(UltraTreeNode node, ImageList.ImageCollection images)
         {
             _projBll.AfterExpand(node, images);
@@ -70,14 +66,10 @@ namespace DnaMesUiBll.BasicInfo
             return _projBll.GetDataSource(exp);
         }
 
-        public bool UpdateProcess(Process process, Project pProj=null)
-        {
-            throw new NotImplementedException();
-        }
-
         public bool DeleteProcess(Process proc, Project pProj)
         {
-            throw new NotImplementedException();
+            var res = Dal.DeleteLinkWith<Project, Process, ProjectProcess>(pProj, proc);
+            return res && Dal.Delete(proc);
         }
 
         public List<Process> GetProcesses(Project proj)

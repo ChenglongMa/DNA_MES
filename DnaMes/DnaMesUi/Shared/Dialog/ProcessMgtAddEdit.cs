@@ -15,43 +15,38 @@ using DnaMesUiBll.Shared;
 
 namespace DnaMesUi.Shared.Dialog
 {
-    public partial class ProcessMgtAddEdit : Form//BaseDialog<Process> //Form //
+    public partial class ProcessMgtAddEdit : BaseDialog<Process>
     {
         public ProcessMgtAddEdit()
         {
             InitializeComponent();
             txtCode.NullText = "必填项";
             txtName.NullText = "必填项";
-            txtDescription.NullText = "项目描述(选填项)";
+            txtDescription.NullText = "工艺描述、步骤等(选填项)";
         }
-
+        /// <summary>
+        /// <see cref="ProjectMgtAddEdit"/>
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="proc"></param>
         public ProcessMgtAddEdit(string text, Process proc = null) : this()
         {
             Text = text;
-            if (proc == null)
+            if (proc!= null)
             {
-                _isEditable = false;
-                //项目无父节点时只能为主项目
-                ckIsMain.Checked = true;
-                ckIsMain.Enabled = false;
-                tipForIsValid.SetError(ckIsMain, "该节点下只能添加主项目");
-            }
-            else
-            {
-                _isEditable = true;
-//                BindingModel(proj);
-                //txtCode.Enabled = false;
                 txtCode.ReadOnly = true;
                 tipForIsValid.SetError(txtCode, "该值不可修改");
+                BindingModel(proc);
             }
+
+            _isEditable = proc != null;
         }
 
 
-        private BaseBll<Process> Bll => new ProcessMgtBll();
+        protected override BaseBll<Process> Bll => new ProcessMgtBll();
         private readonly bool _isEditable; //true为“编辑”状态，false为“新增”状态
-        public Process TransModel { get; } //TODO:通过控件构建该属性
 
-        private void BindingModel(Process proc)
+        protected override void BindingModel(Process proc)
         {
             txtCode.Text = proc.Code;
             txtName.Text = proc.Name;
@@ -66,10 +61,11 @@ namespace DnaMesUi.Shared.Dialog
             set => base.Text = value;
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// 界面间传递值
         /// </summary>
-        public Process Process => new Process
+        public override Process TransModel => new Process
         {
             Code = txtCode.Text.Trim(),
             Name = txtName.Text.Trim(),
@@ -91,6 +87,7 @@ namespace DnaMesUi.Shared.Dialog
         private void btnCancel_Click(object sender, EventArgs e)
         {
             //Close();
+            DialogResult = DialogResult.Cancel;
         }
 
         private void txtCode_Validating(object sender, CancelEventArgs e)
@@ -101,16 +98,6 @@ namespace DnaMesUi.Shared.Dialog
         private void txtName_Validating(object sender, CancelEventArgs e)
         {
             errorProvider.SetError(txtName, txtName.Text.IsNullOrEmpty() ? "项目名称不允许为空" : null);
-        }
-
-        private void dteStartTime_Validating(object sender, CancelEventArgs e)
-        {
-            errorProvider.SetError(dteStartTime, dteStartTime.DateTime.IsLegalDate() ? null : "指定日期不合法");
-        }
-
-        private void dteEndTime_Validating(object sender, CancelEventArgs e)
-        {
-            errorProvider.SetError(dteEndTime, dteEndTime.DateTime.IsLegalDate() ? null : "指定日期不合法");
         }
     }
 }

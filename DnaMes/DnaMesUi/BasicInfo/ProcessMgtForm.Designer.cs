@@ -31,10 +31,6 @@
             this.components = new System.ComponentModel.Container();
             Infragistics.Win.UltraWinToolbars.UltraToolbar ultraToolbar1 = new Infragistics.Win.UltraWinToolbars.UltraToolbar("SysToolBar");
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool4 = new Infragistics.Win.UltraWinToolbars.ButtonTool("Refresh");
-            Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool1 = new Infragistics.Win.UltraWinToolbars.ButtonTool("Add");
-            Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool2 = new Infragistics.Win.UltraWinToolbars.ButtonTool("Edit");
-            Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool3 = new Infragistics.Win.UltraWinToolbars.ButtonTool("Delete");
-            Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool9 = new Infragistics.Win.UltraWinToolbars.ButtonTool("AddChild");
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool5 = new Infragistics.Win.UltraWinToolbars.ButtonTool("Add");
             Infragistics.Win.Appearance appearance26 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool6 = new Infragistics.Win.UltraWinToolbars.ButtonTool("Edit");
@@ -92,12 +88,14 @@
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.ug1 = new Infragistics.Win.UltraWinGrid.UltraGrid();
             this.cmsProc = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tipForProject = new System.Windows.Forms.ToolStripMenuItem();
             this.新增工艺ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.编辑工艺ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.激活工艺ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.删除工艺ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ug2 = new Infragistics.Win.UltraWinGrid.UltraGrid();
             this.cmsStep = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tipForProc = new System.Windows.Forms.ToolStripMenuItem();
             this.新增工序ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.编辑工序ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.删除工序ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -105,8 +103,6 @@
             this._BaseForm_Toolbars_Dock_Area_Right = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this._BaseForm_Toolbars_Dock_Area_Top = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this._BaseForm_Toolbars_Dock_Area_Bottom = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
-            this.tipForProject = new System.Windows.Forms.ToolStripMenuItem();
-            this.tipForProc = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.toolBarManager)).BeginInit();
             this.BaseForm_Fill_Panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -152,13 +148,8 @@
             ultraToolbar1.DockedRow = 0;
             ultraToolbar1.FloatingSize = new System.Drawing.Size(142, 27);
             buttonTool4.InstanceProps.IsFirstInGroup = true;
-            buttonTool9.InstanceProps.IsFirstInGroup = true;
             ultraToolbar1.NonInheritedTools.AddRange(new Infragistics.Win.UltraWinToolbars.ToolBase[] {
-            buttonTool4,
-            buttonTool1,
-            buttonTool2,
-            buttonTool3,
-            buttonTool9});
+            buttonTool4});
             ultraToolbar1.Settings.AllowCustomize = Infragistics.Win.DefaultableBoolean.False;
             ultraToolbar1.Settings.AllowDockBottom = Infragistics.Win.DefaultableBoolean.False;
             ultraToolbar1.Settings.AllowDockLeft = Infragistics.Win.DefaultableBoolean.False;
@@ -212,9 +203,9 @@
             this.BaseForm_Fill_Panel.Controls.Add(this.splitContainer1);
             this.BaseForm_Fill_Panel.Cursor = System.Windows.Forms.Cursors.Default;
             this.BaseForm_Fill_Panel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BaseForm_Fill_Panel.Location = new System.Drawing.Point(0, 68);
+            this.BaseForm_Fill_Panel.Location = new System.Drawing.Point(0, 44);
             this.BaseForm_Fill_Panel.Name = "BaseForm_Fill_Panel";
-            this.BaseForm_Fill_Panel.Size = new System.Drawing.Size(1408, 499);
+            this.BaseForm_Fill_Panel.Size = new System.Drawing.Size(1408, 523);
             this.BaseForm_Fill_Panel.TabIndex = 0;
             // 
             // splitContainer1
@@ -234,7 +225,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(1408, 499);
+            this.splitContainer1.Size = new System.Drawing.Size(1408, 523);
             this.splitContainer1.SplitterDistance = 70;
             this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 0;
@@ -363,7 +354,7 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
-            this.splitContainer2.Size = new System.Drawing.Size(1408, 426);
+            this.splitContainer2.Size = new System.Drawing.Size(1408, 450);
             this.splitContainer2.SplitterDistance = 266;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -379,7 +370,7 @@
             appearance1.Image = "TreeSelected.png";
             _override1.SelectedNodeAppearance = appearance1;
             this.uTree.Override = _override1;
-            this.uTree.Size = new System.Drawing.Size(266, 426);
+            this.uTree.Size = new System.Drawing.Size(266, 450);
             this.uTree.TabIndex = 0;
             this.uTree.AfterExpand += new Infragistics.Win.UltraWinTree.AfterNodeChangedEventHandler(this.uTree_AfterExpand);
             this.uTree.AfterSelect += new Infragistics.Win.UltraWinTree.AfterNodeSelectEventHandler(this.uTree_AfterSelect);
@@ -413,8 +404,8 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.ug2);
-            this.splitContainer3.Size = new System.Drawing.Size(1138, 426);
-            this.splitContainer3.SplitterDistance = 213;
+            this.splitContainer3.Size = new System.Drawing.Size(1138, 450);
+            this.splitContainer3.SplitterDistance = 225;
             this.splitContainer3.SplitterWidth = 3;
             this.splitContainer3.TabIndex = 2;
             // 
@@ -489,11 +480,12 @@
             this.ug1.Location = new System.Drawing.Point(0, 0);
             this.ug1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ug1.Name = "ug1";
-            this.ug1.Size = new System.Drawing.Size(1138, 213);
+            this.ug1.Size = new System.Drawing.Size(1138, 225);
             this.ug1.TabIndex = 1;
             this.ug1.Text = "ultraGrid1";
             this.ug1.UpdateMode = Infragistics.Win.UltraWinGrid.UpdateMode.OnCellChangeOrLostFocus;
             this.ug1.DoubleClickRow += new Infragistics.Win.UltraWinGrid.DoubleClickRowEventHandler(this.ug1_DoubleClickRow);
+            this.ug1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ug1_MouseDown);
             // 
             // cmsProc
             // 
@@ -506,6 +498,13 @@
             this.cmsProc.Name = "cmsProc";
             this.cmsProc.Size = new System.Drawing.Size(149, 114);
             this.cmsProc.Opening += new System.ComponentModel.CancelEventHandler(this.cmsProc_Opening);
+            // 
+            // tipForProject
+            // 
+            this.tipForProject.Name = "tipForProject";
+            this.tipForProject.Size = new System.Drawing.Size(148, 22);
+            this.tipForProject.Text = "请先选择项目";
+            this.tipForProject.Visible = false;
             // 
             // 新增工艺ToolStripMenuItem
             // 
@@ -606,11 +605,12 @@
             this.ug2.Location = new System.Drawing.Point(0, 0);
             this.ug2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ug2.Name = "ug2";
-            this.ug2.Size = new System.Drawing.Size(1138, 210);
+            this.ug2.Size = new System.Drawing.Size(1138, 222);
             this.ug2.TabIndex = 1;
             this.ug2.Text = "ultraGrid1";
             this.ug2.UpdateMode = Infragistics.Win.UltraWinGrid.UpdateMode.OnCellChangeOrLostFocus;
             this.ug2.DoubleClickRow += new Infragistics.Win.UltraWinGrid.DoubleClickRowEventHandler(this.ug1_DoubleClickRow);
+            this.ug2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ug2_MouseDown);
             // 
             // cmsStep
             // 
@@ -620,26 +620,33 @@
             this.编辑工序ToolStripMenuItem,
             this.删除工序ToolStripMenuItem});
             this.cmsStep.Name = "cmsStep";
-            this.cmsStep.Size = new System.Drawing.Size(181, 114);
+            this.cmsStep.Size = new System.Drawing.Size(149, 92);
             this.cmsStep.Opening += new System.ComponentModel.CancelEventHandler(this.cmsStep_Opening);
+            // 
+            // tipForProc
+            // 
+            this.tipForProc.Name = "tipForProc";
+            this.tipForProc.Size = new System.Drawing.Size(148, 22);
+            this.tipForProc.Text = "请先选择工艺";
+            this.tipForProc.Visible = false;
             // 
             // 新增工序ToolStripMenuItem
             // 
             this.新增工序ToolStripMenuItem.Name = "新增工序ToolStripMenuItem";
-            this.新增工序ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.新增工序ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.新增工序ToolStripMenuItem.Text = "新增工序";
             this.新增工序ToolStripMenuItem.Click += new System.EventHandler(this.新增工序ToolStripMenuItem_Click);
             // 
             // 编辑工序ToolStripMenuItem
             // 
             this.编辑工序ToolStripMenuItem.Name = "编辑工序ToolStripMenuItem";
-            this.编辑工序ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.编辑工序ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.编辑工序ToolStripMenuItem.Text = "编辑工序";
             // 
             // 删除工序ToolStripMenuItem
             // 
             this.删除工序ToolStripMenuItem.Name = "删除工序ToolStripMenuItem";
-            this.删除工序ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.删除工序ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.删除工序ToolStripMenuItem.Text = "删除工序";
             // 
             // _BaseForm_Toolbars_Dock_Area_Left
@@ -648,9 +655,9 @@
             this._BaseForm_Toolbars_Dock_Area_Left.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
             this._BaseForm_Toolbars_Dock_Area_Left.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Left;
             this._BaseForm_Toolbars_Dock_Area_Left.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._BaseForm_Toolbars_Dock_Area_Left.Location = new System.Drawing.Point(0, 68);
+            this._BaseForm_Toolbars_Dock_Area_Left.Location = new System.Drawing.Point(0, 44);
             this._BaseForm_Toolbars_Dock_Area_Left.Name = "_BaseForm_Toolbars_Dock_Area_Left";
-            this._BaseForm_Toolbars_Dock_Area_Left.Size = new System.Drawing.Size(0, 499);
+            this._BaseForm_Toolbars_Dock_Area_Left.Size = new System.Drawing.Size(0, 523);
             this._BaseForm_Toolbars_Dock_Area_Left.ToolbarsManager = this.toolBarManager;
             // 
             // _BaseForm_Toolbars_Dock_Area_Right
@@ -659,9 +666,9 @@
             this._BaseForm_Toolbars_Dock_Area_Right.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
             this._BaseForm_Toolbars_Dock_Area_Right.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Right;
             this._BaseForm_Toolbars_Dock_Area_Right.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._BaseForm_Toolbars_Dock_Area_Right.Location = new System.Drawing.Point(1408, 68);
+            this._BaseForm_Toolbars_Dock_Area_Right.Location = new System.Drawing.Point(1408, 44);
             this._BaseForm_Toolbars_Dock_Area_Right.Name = "_BaseForm_Toolbars_Dock_Area_Right";
-            this._BaseForm_Toolbars_Dock_Area_Right.Size = new System.Drawing.Size(0, 499);
+            this._BaseForm_Toolbars_Dock_Area_Right.Size = new System.Drawing.Size(0, 523);
             this._BaseForm_Toolbars_Dock_Area_Right.ToolbarsManager = this.toolBarManager;
             // 
             // _BaseForm_Toolbars_Dock_Area_Top
@@ -685,22 +692,6 @@
             this._BaseForm_Toolbars_Dock_Area_Bottom.Name = "_BaseForm_Toolbars_Dock_Area_Bottom";
             this._BaseForm_Toolbars_Dock_Area_Bottom.Size = new System.Drawing.Size(1408, 0);
             this._BaseForm_Toolbars_Dock_Area_Bottom.ToolbarsManager = this.toolBarManager;
-            // 
-            // tipForProject
-            // 
-            this.tipForProject.Enabled = false;
-            this.tipForProject.Name = "tipForProject";
-            this.tipForProject.Size = new System.Drawing.Size(148, 22);
-            this.tipForProject.Text = "请先选择项目";
-            this.tipForProject.Visible = false;
-            // 
-            // tipForProc
-            // 
-            this.tipForProc.Enabled = false;
-            this.tipForProc.Name = "tipForProc";
-            this.tipForProc.Size = new System.Drawing.Size(180, 22);
-            this.tipForProc.Text = "请先选择工艺";
-            this.tipForProc.Visible = false;
             // 
             // ProcessMgtForm
             // 
