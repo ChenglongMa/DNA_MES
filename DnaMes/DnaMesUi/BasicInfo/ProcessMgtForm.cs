@@ -204,24 +204,6 @@ namespace DnaMesUi.BasicInfo
             }
         }
 
-        /// <summary>
-        /// 在MouseDown事件中获取激活行
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /// <returns></returns>
-        private static UltraGridRow GetActiveRow(object sender, MouseEventArgs e)
-        {
-            var activedGrid = sender as UltraGrid;
-            var point = new Point(e.X, e.Y);
-            var objUiElement = activedGrid?.DisplayLayout.UIElement.ElementFromPoint(point);
-            if (objUiElement == null)
-                return null;
-            var objRow = (UltraGridRow) objUiElement.GetContext(typeof(UltraGridRow));
-            activedGrid.ActiveRow = objRow;
-            return objRow;
-        }
-
         #endregion
 
         #region 右键菜单
