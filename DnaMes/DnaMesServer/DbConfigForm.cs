@@ -42,6 +42,7 @@ namespace DnaMesServer
                 cmbMES.SelectedIndex = list.ToList().IndexOf(info.DbType.ToString());
                 txtMESServer.Text = info.DataSource;
                 txtMESDbName.Text = info.DbName;
+                txtMESPort.Text = info.Port.ToString();
                 txtMESUser.Text = info.UserId;
                 txtMESPswd.Text = info.Password;
             }
@@ -57,6 +58,7 @@ namespace DnaMesServer
                 DataSource = txtMESServer.Text,
                 DbName = txtMESDbName.Text,
                 UserId = txtMESUser.Text,
+                Port = Convert.ToInt32(txtMESPort.Text),
                 Password = txtMESPswd.Text
             };
             if (DbConfigHelper.TestConnection(dbInfo, out var errorMessage))
@@ -80,6 +82,7 @@ namespace DnaMesServer
                     cmbMES.SelectedItem as string ?? throw new InvalidOperationException()),
                 DataSource = txtMESServer.Text,
                 DbName = txtMESDbName.Text,
+                Port = Convert.ToInt32(txtMESPort.Text),
                 UserId = txtMESUser.Text,
                 Password = txtMESPswd.Text
             };

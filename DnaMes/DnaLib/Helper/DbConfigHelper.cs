@@ -154,7 +154,7 @@ namespace DnaLib.Helper
                     db.Ado.Open();
                     db.Ado.Close();
                 }
-                catch (UtilExceptions e)
+                catch (Exception e)
                 {
                     errorMessage = e.Message;
                     return false;

@@ -39,31 +39,33 @@ namespace DnaMesUi.Shared.Sys
 
         private void ShowNewForm(object sender, EventArgs e)
         {
-            Form childForm = new Form();
-            childForm.MdiParent = this;
-            childForm.Text = "窗口 " + _childFormNumber++;
+            var childForm = new Form {MdiParent = this, Text = "窗口 " + _childFormNumber++};
             childForm.Show();
         }
 
         private void OpenFile(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            openFileDialog.Filter = "文本文件(*.txt)|*.txt|所有文件(*.*)|*.*";
+            var openFileDialog = new OpenFileDialog
+            {
+                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal),
+                Filter = "文本文件(*.txt)|*.txt|所有文件(*.*)|*.*"
+            };
             if (openFileDialog.ShowDialog(this) == DialogResult.OK)
             {
-                string FileName = openFileDialog.FileName;
+                var FileName = openFileDialog.FileName;
             }
         }
 
         private void SaveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            saveFileDialog.Filter = "文本文件(*.txt)|*.txt|所有文件(*.*)|*.*";
+            var saveFileDialog = new SaveFileDialog
+            {
+                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal),
+                Filter = "文本文件(*.txt)|*.txt|所有文件(*.*)|*.*"
+            };
             if (saveFileDialog.ShowDialog(this) == DialogResult.OK)
             {
-                string FileName = saveFileDialog.FileName;
+                var FileName = saveFileDialog.FileName;
             }
         }
 
@@ -106,7 +108,7 @@ namespace DnaMesUi.Shared.Sys
 
         private void CloseAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            foreach (Form childForm in MdiChildren)
+            foreach (var childForm in MdiChildren)
             {
                 childForm.Close();
             }

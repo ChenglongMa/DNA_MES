@@ -43,6 +43,8 @@
             this.txtMESUser = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.txtMESPort = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.TabControlMES.SuspendLayout();
             this.pageMES.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -71,7 +73,9 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.btnSaveMes);
+            this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.label8);
+            this.groupBox2.Controls.Add(this.txtMESPort);
             this.groupBox2.Controls.Add(this.txtMESDbName);
             this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.txtMESServer);
@@ -103,7 +107,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(16, 106);
+            this.label8.Location = new System.Drawing.Point(16, 140);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(65, 12);
             this.label8.TabIndex = 23;
@@ -111,7 +115,7 @@
             // 
             // txtMESDbName
             // 
-            this.txtMESDbName.Location = new System.Drawing.Point(106, 103);
+            this.txtMESDbName.Location = new System.Drawing.Point(106, 137);
             this.txtMESDbName.Name = "txtMESDbName";
             this.txtMESDbName.Size = new System.Drawing.Size(149, 21);
             this.txtMESDbName.TabIndex = 24;
@@ -139,7 +143,7 @@
             "SQLSERVER",
             "ORACLE"});
             this.cmbMES.Location = new System.Drawing.Point(106, 36);
-            this.cmbMES.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmbMES.Margin = new System.Windows.Forms.Padding(2);
             this.cmbMES.Name = "cmbMES";
             this.cmbMES.Size = new System.Drawing.Size(149, 20);
             this.cmbMES.TabIndex = 19;
@@ -155,7 +159,7 @@
             // 
             // txtMESPswd
             // 
-            this.txtMESPswd.Location = new System.Drawing.Point(106, 170);
+            this.txtMESPswd.Location = new System.Drawing.Point(106, 204);
             this.txtMESPswd.Name = "txtMESPswd";
             this.txtMESPswd.Size = new System.Drawing.Size(149, 21);
             this.txtMESPswd.TabIndex = 7;
@@ -173,7 +177,7 @@
             // 
             // txtMESUser
             // 
-            this.txtMESUser.Location = new System.Drawing.Point(106, 137);
+            this.txtMESUser.Location = new System.Drawing.Point(106, 171);
             this.txtMESUser.Name = "txtMESUser";
             this.txtMESUser.Size = new System.Drawing.Size(149, 21);
             this.txtMESUser.TabIndex = 6;
@@ -181,7 +185,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(16, 140);
+            this.label11.Location = new System.Drawing.Point(16, 174);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(53, 12);
             this.label11.TabIndex = 2;
@@ -190,11 +194,27 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(16, 173);
+            this.label12.Location = new System.Drawing.Point(16, 207);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(53, 12);
             this.label12.TabIndex = 3;
             this.label12.Text = "密    码";
+            // 
+            // txtMESPort
+            // 
+            this.txtMESPort.Location = new System.Drawing.Point(106, 106);
+            this.txtMESPort.Name = "txtMESPort";
+            this.txtMESPort.Size = new System.Drawing.Size(149, 21);
+            this.txtMESPort.TabIndex = 24;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(16, 109);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(29, 12);
+            this.label1.TabIndex = 23;
+            this.label1.Text = "端口";
             // 
             // DbConfigForm
             // 
@@ -203,7 +223,7 @@
             this.ClientSize = new System.Drawing.Size(386, 423);
             this.Controls.Add(this.TabControlMES);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "DbConfigForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "数据库配置";
@@ -232,6 +252,8 @@
         private System.Windows.Forms.TextBox txtMESUser;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtMESPort;
     }
 }
 
