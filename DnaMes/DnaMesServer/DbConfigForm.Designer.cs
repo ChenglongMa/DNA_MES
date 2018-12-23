@@ -212,9 +212,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(16, 109);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(29, 12);
+            this.label1.Size = new System.Drawing.Size(53, 12);
             this.label1.TabIndex = 23;
-            this.label1.Text = "端口";
+            this.label1.Text = "端    口";
             // 
             // DbConfigForm
             // 
