@@ -26,7 +26,7 @@ namespace DnaMesUnitTest
 
         #region UI设计
 
-        //每个模块窗体toolBar先导致默认配置再添加按钮
+        //每个模块窗体toolBar先导入默认配置再添加按钮
 
         /* Form命名规范：
          * Mgt:Management
@@ -63,6 +63,11 @@ namespace DnaMesUnitTest
 
     #endregion
 
+    #region 模块设计过程
+
+    
+
+    #endregion
     #endregion
 }
 }

@@ -15,11 +15,11 @@
   </PopMenus>
   <PopMenus Name="BasicInfoPop" Text="基础信息" ShortCut="B">
     <MenuItems Name="NoTree" Text="无树窗体" ShortCut="N" CommandType="Activate" DomainId="10001">
-      <FormPath>Templetes.NoTreeForm</FormPath>
+      <FormPath>Templates.NoTreeForm</FormPath>
       <FormType>ChildForm</FormType>
     </MenuItems>
     <MenuItems Name="WithTree" Text="有树窗体" ShortCut="W" CommandType="Activate" DomainId="10001">
-      <FormPath>Templetes.WithTreeForm</FormPath>
+      <FormPath>Templates.WithTreeForm</FormPath>
       <FormType>ChildForm</FormType>
     </MenuItems>
     <MenuItems Name="ProjectMant" Text="项目管理" ShortCut="P" CommandType="Activate" DomainId="10001">
@@ -33,11 +33,11 @@
   </PopMenus>
   <PopMenus Name="WorkshopPop" Text="车间管理" ShortCut="C">
     <MenuItems Name="WorkPlan" Text="车间计划" ShortCut="J" CommandType="Activate" DomainId="20001">
-      <FormPath>Templetes.NoTreeForm</FormPath>
+      <FormPath>Templates.NoTreeForm</FormPath>
       <FormType>ChildForm</FormType>
     </MenuItems>
     <MenuItems Name="WorkOrder" Text="生产工单" ShortCut="S" CommandType="Activate" DomainId="20002">
-      <FormPath>Templetes.WithTreeForm</FormPath>
+      <FormPath>Templates.WithTreeForm</FormPath>
       <FormType>ChildForm</FormType>
     </MenuItems>
     <MenuItems Name="Dispatching" Text="派工领工" ShortCut="P" CommandType="Activate" DomainId="20003">

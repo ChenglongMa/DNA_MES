@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using DnaMesModel.Model.BasicInfo;
 using DnaMesUiBll.Shared;
 
-namespace DnaMesUi.Templetes
+namespace DnaMesUi.Templates
 {
     /// <summary>
     /// Info:迁移步骤：

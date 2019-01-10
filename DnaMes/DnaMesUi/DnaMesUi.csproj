@@ -127,10 +127,10 @@
     <Compile Include="Shared\Sys\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Templetes\NoTreeForm.cs">
+    <Compile Include="Templates\NoTreeForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Templetes\NoTreeForm.Designer.cs">
+    <Compile Include="Templates\NoTreeForm.Designer.cs">
       <DependentUpon>NoTreeForm.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="BaseDialog.resx">
@@ -174,7 +174,7 @@
     <EmbeddedResource Include="Shared\Sys\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Templetes\NoTreeForm.resx">
+    <EmbeddedResource Include="Templates\NoTreeForm.resx">
       <DependentUpon>NoTreeForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">

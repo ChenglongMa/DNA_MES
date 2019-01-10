@@ -4,7 +4,7 @@ using System.IO;
 using DnaLib.Control;
 using DnaLib.Helper;
 using DnaMesUi.BasicInfo;
-using DnaMesUi.Templetes;
+using DnaMesUi.Templates;
 using DnaMesUiBll.Shared;
 using DnaMesUiConfig.Model;
 using Infragistics.Win.UltraWinGrid;

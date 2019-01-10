@@ -1,4 +1,4 @@
-﻿namespace DnaMesUi.Templetes
+﻿namespace DnaMesUi.Templates
 {
     partial class NoTreeForm
     {
